@@ -2077,13 +2077,44 @@ body{
         fill="none" stroke="rgba(245,245,247,.5)" stroke-width="3.5" style="--d:.2s"/>
       <line class="fadein" x1="108" y1="200" x2="592" y2="200" stroke="rgba(245,245,247,.55)" stroke-width="6" stroke-linecap="round" style="--d:.35s"/>
       <text class="fadein lbl-strong" x="350" y="262" text-anchor="middle" style="--d:1.5s;font-size:14px;letter-spacing:.16em">EVERYTHING THAT NEEDS UNDERSTANDING</text>
-      <!-- the spill -->
+      <!-- the spill: the tub can't hold it — water sheets over the lip and cascades -->
       <g class="fadein" style="--d:9.6s">
-        <path d="M 122 198 q -10 4 -12 16" fill="none" stroke="rgba(125,211,252,.55)" stroke-width="3" stroke-linecap="round"/>
-        <circle r="2.6" fill="#9db9ff">
-          <animateMotion dur="1.3s" repeatCount="indefinite" path="M 110 216 L 102 300"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="1.3s" repeatCount="indefinite"/>
+        <!-- the curtain of water pouring over the rim and down the outside wall -->
+        <path d="M 130 199 q -14 5 -18 26 q -6 28 -11 60 q -3 18 -9 41" fill="none"
+          stroke="rgba(125,211,252,.34)" stroke-width="9" stroke-linecap="round"/>
+        <path d="M 120 199 q -12 6 -16 27 q -5 26 -10 57 q -2 16 -8 38" fill="none"
+          stroke="rgba(157,185,255,.46)" stroke-width="5.5" stroke-linecap="round"/>
+        <path d="M 110 200 q -9 6 -12 27 q -4 24 -8 53" fill="none"
+          stroke="rgba(205,225,255,.6)" stroke-width="3" stroke-linecap="round"/>
+        <!-- droplets breaking off the cascade, staggered so it reads as a continuous torrent -->
+        <circle r="3.1" fill="#bfe0ff">
+          <animateMotion dur="1.05s" repeatCount="indefinite" path="M 118 206 q -6 54 -15 118"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.82;1" dur="1.05s" repeatCount="indefinite"/>
         </circle>
+        <circle r="2.5" fill="#7dd3fc">
+          <animateMotion dur="1.3s" begin="-.5s" repeatCount="indefinite" path="M 110 206 q -9 56 -19 120"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.82;1" dur="1.3s" begin="-.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.9" fill="#9db9ff">
+          <animateMotion dur="1s" begin="-.25s" repeatCount="indefinite" path="M 125 206 q -3 50 -7 112"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.82;1" dur="1s" begin="-.25s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.2" fill="#7dd3fc">
+          <animateMotion dur="1.45s" begin="-.8s" repeatCount="indefinite" path="M 101 208 q -11 58 -23 118"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.82;1" dur="1.45s" begin="-.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.7" fill="#bfe0ff">
+          <animateMotion dur="1.18s" begin="-.95s" repeatCount="indefinite" path="M 114 206 q -6 52 -13 116"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.82;1" dur="1.18s" begin="-.95s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2" fill="#7dd3fc">
+          <animateMotion dur="1.25s" begin="-.35s" repeatCount="indefinite" path="M 121 206 q -4 48 -9 110"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.82;1" dur="1.25s" begin="-.35s" repeatCount="indefinite"/>
+        </circle>
+        <!-- the puddle it's pooling into -->
+        <ellipse cx="96" cy="318" rx="26" ry="4.5" fill="rgba(125,211,252,.22)">
+          <animate attributeName="rx" values="20;28;20" dur="2.6s" repeatCount="indefinite"/>
+        </ellipse>
       </g>
       <text class="creep" x="4" y="356" style="--d:5.8s;font-size:14px;fill:rgba(245,245,247,.75)">the overflow has a name:</text>
       <text class="risk" x="200" y="356" style="font-size:15px;font-weight:800;fill:#ef4444">risk</text>
