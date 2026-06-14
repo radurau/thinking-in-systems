@@ -6,15 +6,15 @@ An illustrated, self-contained HTML presentation — *A Primer on Seeing the Inv
 
 | File | Description |
 | --- | --- |
-| [`thinking-in-systems.html`](./thinking-in-systems.html) | The slide deck. Single self-contained HTML file (inline CSS/JS, no build step). |
-| [`thinking-in-systems-notes.html`](./thinking-in-systems-notes.html) | Speaker notes for the deck. |
+| [`index.html`](./index.html) | The slide deck (entry point). Single self-contained HTML file (inline CSS/JS, no build step). |
+| [`thinking-in-systems-notes.html`](./thinking-in-systems-notes.html) | Speaker notes for the deck; links back into each slide. |
 
 ## Viewing
 
 Both files are standalone — just open them in a browser:
 
 ```sh
-open thinking-in-systems.html
+open index.html
 ```
 
 No dependencies, no build, no server required.
