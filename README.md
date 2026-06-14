@@ -2,6 +2,13 @@
 
 An illustrated, self-contained HTML presentation — *A Primer on Seeing the Invisible* — with companion speaker notes.
 
+## Live
+
+**→ [radurau.github.io/thinking-in-systems](https://radurau.github.io/thinking-in-systems/)**
+
+- Presentation: <https://radurau.github.io/thinking-in-systems/presentation.html>
+- Control panel: <https://radurau.github.io/thinking-in-systems/thinking-in-systems-notes.html>
+
 ## Contents
 
 | File | Description |
