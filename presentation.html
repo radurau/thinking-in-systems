@@ -1,0 +1,2688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Thinking in Systems — A Primer on Seeing the Invisible</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237aa2ff'/%3E%3Cstop offset='1' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='url(%23g)' stroke-width='3'/%3E%3Ccircle cx='16' cy='4' r='4' fill='%23c084fc'/%3E%3C/svg%3E">
+<style>
+/* ==================================================================
+   THINKING IN SYSTEMS · v4
+   Calm background, illustrated figures: the diagrams carry the story.
+   ================================================================== */
+:root{
+  --bg:#050507;
+  --ink:#f5f5f7;
+  --ink-dim:rgba(245,245,247,.55);
+  --ink-faint:rgba(245,245,247,.30);
+  --a1:#7aa2ff;
+  --a2:#c084fc;
+  --a3:#5eead4;
+  --a4:#fb923c;
+  --a5:#f472b6;
+  --glass:rgba(255,255,255,.055);
+  --glass-edge:rgba(255,255,255,.12);
+  --ease:cubic-bezier(.22,.68,.18,1);
+  --hue:0deg;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;height:100dvh;overflow:hidden}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Inter,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;user-select:none;
+  animation:bodyIn 1.6s ease both;
+}
+@keyframes bodyIn{from{opacity:0}to{opacity:1}}
+
+/* ---------- background layers ---------- */
+.blobs{position:fixed;inset:-20%;z-index:0;pointer-events:none;
+  filter:hue-rotate(var(--hue));transition:filter 1.6s ease;will-change:filter,transform}
+.blob{position:absolute;border-radius:50%;opacity:.16;will-change:transform}
+.blob.b1{width:55vw;height:55vw;left:-10vw;top:-12vw;background:radial-gradient(circle,rgba(59,91,219,.85) 0%,rgba(59,91,219,.3) 38%,transparent 68%);animation:drift1 26s ease-in-out infinite alternate}
+.blob.b2{width:48vw;height:48vw;right:-8vw;bottom:-10vw;background:radial-gradient(circle,rgba(124,58,237,.85) 0%,rgba(124,58,237,.3) 38%,transparent 68%);animation:drift2 32s ease-in-out infinite alternate}
+.blob.b3{width:30vw;height:30vw;right:18vw;top:-8vw;background:radial-gradient(circle,rgba(13,148,136,.85) 0%,rgba(13,148,136,.3) 38%,transparent 68%);animation:drift1 38s ease-in-out infinite alternate-reverse}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(6vw,4vh) scale(1.12)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1.05)}to{transform:translate(-5vw,-5vh) scale(.95)}}
+#cursorGlow{position:fixed;left:0;top:0;width:36vmin;height:36vmin;border-radius:50%;
+  pointer-events:none;z-index:1;opacity:.8;
+  background:radial-gradient(circle,rgba(130,150,255,.08),transparent 62%);
+  transform:translate(-50%,-50%);will-change:transform}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
+
+/* ---------- deck & slides ---------- */
+#deck{position:fixed;top:0;left:0;right:0;bottom:0;height:100vh;height:100dvh;z-index:2;perspective:1500px}
+.slide{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;visibility:hidden;
+  transform:scale(1.08) translateY(3%) rotateX(5deg);filter:blur(28px);
+  transition:opacity 1.05s var(--ease),transform 1.2s var(--ease),filter 1.05s var(--ease),
+    visibility 0s linear 1.25s;
+  will-change:opacity,transform,filter;
+}
+.slide.past{transform:scale(.92) translateY(-3%) rotateX(-5deg)}
+.slide.active{opacity:1;transform:none;filter:none;pointer-events:auto;z-index:3;visibility:visible;
+  transition:opacity 1.05s var(--ease),transform 1.2s var(--ease),filter 1.05s var(--ease),visibility 0s}
+.wrap{max-width:1180px;width:100%;padding:0 7vw;text-align:center;position:relative}
+.slide.active .wrap{animation:push 22s ease-out both}
+@keyframes push{from{transform:scale(1)}to{transform:scale(1.025)}}
+.scrim{position:absolute;left:50%;top:50%;width:96vw;height:78vh;transform:translate(-50%,-50%);
+  pointer-events:none;z-index:-2;
+  background:radial-gradient(ellipse closest-side,rgba(5,5,7,.72),rgba(5,5,7,.3) 55%,transparent 78%)}
+.glow{position:absolute;left:50%;top:50%;width:64vw;height:64vw;max-width:900px;max-height:900px;
+  transform:translate(-50%,-50%);pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(122,146,255,.13),transparent 60%);filter:blur(30px)}
+.slide.active .glow{animation:breathe 9s ease-in-out infinite alternate}
+@keyframes breathe{from{opacity:.7;transform:translate(-50%,-50%) scale(.92)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+
+/* ---------- typography ---------- */
+.kicker{font-size:clamp(11px,1.1vw,14px);letter-spacing:.42em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:2.6vh;font-weight:600}
+.title{font-size:clamp(34px,5.6vw,84px);font-weight:700;line-height:1.06;
+  letter-spacing:-.025em;margin-bottom:2.4vh}
+.grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5),var(--a1));
+  background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad-warm{background:linear-gradient(100deg,#fbbf24,var(--a4),#f43f5e,#fbbf24);
+  background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad-cool{background:linear-gradient(100deg,var(--a3),#38bdf8,var(--a3));
+  background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.slide.active .grad,.slide.active .grad-warm,.slide.active .grad-cool{animation:shimmer 8s linear infinite}
+@keyframes shimmer{to{background-position:250% center}}
+.sub{font-size:clamp(15px,1.7vw,23px);color:var(--ink-dim);line-height:1.55;
+  font-weight:400;max-width:760px;margin:0 auto}
+.oneliner{font-size:clamp(16px,1.9vw,26px);color:var(--ink-dim);margin-top:3vh;font-weight:500}
+.oneliner em{font-style:normal;color:var(--ink)}
+.bigquote{font-size:clamp(16px,1.9vw,25px);line-height:1.55;color:var(--ink);
+  max-width:740px;margin:2vh auto 0;font-weight:500;position:relative}
+.bigquote cite{display:block;margin-top:10px;font-style:normal;font-size:.58em;
+  color:var(--ink-faint);letter-spacing:.22em;text-transform:uppercase}
+
+/* ---------- reveal system ---------- */
+.r{opacity:0;transform:translateY(34px);filter:blur(10px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);
+  transition-delay:var(--d,0s)}
+.slide.active .r{opacity:1;transform:none;filter:none}
+.wline{perspective:900px}
+.w{display:inline-block;opacity:0;transform:translateY(.55em) rotateX(58deg) scale(.96);
+  transform-origin:50% 100%;filter:blur(12px);
+  transition:opacity .9s var(--ease),transform .95s var(--ease),filter .9s var(--ease);
+  transition-delay:var(--d,0s)}
+.slide.active .w{opacity:1;transform:none;filter:none}
+/* per-character cinema — spans injected by JS into .chars elements */
+.word{display:inline-block;white-space:nowrap}
+.c{display:inline-block;opacity:0;transform:translateY(.7em) rotateX(74deg) scale(.92);
+  transform-origin:50% 100%;filter:blur(12px);
+  transition:opacity .65s var(--ease),transform .85s var(--ease),filter .65s var(--ease);
+  transition-delay:var(--d,0s)}
+.slide.active .c{opacity:1;transform:none;filter:none}
+
+/* ---------- glass ---------- */
+.glass{background:var(--glass);border:1px solid var(--glass-edge);border-radius:22px;
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 18px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08)}
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:3.2vh}
+.chip{padding:11px 22px;border-radius:999px;font-size:clamp(13px,1.3vw,17px);font-weight:500;
+  background:var(--glass);border:1px solid var(--glass-edge);color:var(--ink-dim);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  transition:border-color .4s ease,color .4s ease}
+.chip:hover{border-color:rgba(255,255,255,.32);color:var(--ink)}
+.chip b{color:var(--ink);font-weight:600}
+
+/* ---------- card grids ---------- */
+.cards{display:grid;gap:16px;margin-top:4vh;text-align:left}
+.cards.c3{grid-template-columns:repeat(3,1fr)}
+.cards.c4{grid-template-columns:repeat(4,1fr);gap:13px}
+.card{padding:26px 26px 24px;border-radius:20px;will-change:transform}
+.cards.c4 .card{padding:20px 19px 17px;border-radius:17px}
+.card h3{font-size:clamp(15px,1.5vw,20px);font-weight:650;margin-bottom:8px;letter-spacing:-.01em}
+.cards.c4 .card h3{font-size:clamp(13px,1.15vw,16px);margin-bottom:6px}
+.card p{font-size:clamp(12.5px,1.25vw,16px);color:var(--ink-dim);line-height:1.5;font-weight:400}
+.cards.c4 .card p{font-size:clamp(11.5px,1vw,13.5px);line-height:1.45}
+.card .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:9px;
+  vertical-align:1px;background:var(--a1);box-shadow:0 0 14px currentColor}
+.cards.c4 .card .dot{width:7px;height:7px}
+
+/* ---------- svg shared ---------- */
+.fig{margin:3.5vh auto 0;display:block;max-width:min(620px,72vw);height:auto;overflow:visible}
+.fig text{font-family:inherit;fill:var(--ink-dim);font-size:15px;letter-spacing:.02em}
+.fig .lbl-strong{fill:var(--ink);font-weight:600}
+.draw{stroke-dasharray:1;stroke-dashoffset:1}
+.slide.active .draw{animation:draw 1.8s var(--ease) forwards;animation-delay:var(--d,0s)}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pop{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(0)}
+.slide.active .pop{animation:pop .7s var(--ease) forwards;animation-delay:var(--d,0s)}
+@keyframes pop{to{opacity:1;transform:scale(1)}}
+.fadein{opacity:0}
+.slide.active .fadein{animation:fadein 1s ease forwards;animation-delay:var(--d,0s)}
+@keyframes fadein{to{opacity:1}}
+.slide.active .pulse{animation:pulse 3s ease-out infinite;animation-delay:var(--d,0s);
+  transform-box:fill-box;transform-origin:center}
+@keyframes pulse{0%{opacity:.7;transform:scale(.6)}70%{opacity:0;transform:scale(2.4)}100%{opacity:0;transform:scale(2.4)}}
+.slide.active .spin{animation:spin 14s linear infinite;transform-box:fill-box;transform-origin:center}
+.slide.active .spin-rev{animation:spin 18s linear infinite reverse;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.water{transform-box:fill-box;transform-origin:bottom;transform:scaleY(.18)}
+.slide.active .water{animation:fill 7s ease-in-out infinite alternate}
+@keyframes fill{0%{transform:scaleY(.18)}55%{transform:scaleY(.86)}100%{transform:scaleY(.45)}}
+.flowdash{stroke-dasharray:4 10}
+.slide.active .flowdash{animation:flow 1.1s linear infinite,fadein 1s ease forwards;
+  animation-delay:0s,var(--d,0s)}
+@keyframes flow{to{stroke-dashoffset:-14}}
+
+/* ---------- slide 1 hero ---------- */
+.hero-line{font-size:clamp(40px,7vw,108px);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.hero-line + .hero-line{margin-top:1.2vh}
+.hero-sub{margin-top:4.5vh;font-size:clamp(15px,1.7vw,22px);color:var(--ink-dim);letter-spacing:.01em}
+.hint{margin-top:6vh;font-size:13px;color:var(--ink-faint);letter-spacing:.18em;text-transform:uppercase}
+.hint kbd{font-family:inherit;border:1px solid var(--glass-edge);border-radius:6px;padding:2px 8px;margin:0 3px;background:var(--glass)}
+
+/* ---------- slide 2 book ---------- */
+.book-scene{perspective:1000px;margin:3vh auto 2.6vh;width:fit-content}
+.book{height:clamp(120px,19vh,210px);aspect-ratio:5/7;border-radius:6px 14px 14px 6px;
+  position:relative;transform:rotateY(-24deg) rotateX(5deg);transform-style:preserve-3d;
+  background:linear-gradient(125deg,#1c2547 0%,#2b1c4e 60%,#3a2160 100%);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:-18px 30px 60px rgba(0,0,0,.6),0 0 60px rgba(124,80,255,.12);
+  display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 12%}
+.book::before{content:"";position:absolute;left:0;top:0;bottom:0;width:9%;
+  border-radius:6px 0 0 6px;
+  background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(0,0,0,.35) 90%)}
+.book::after{content:"";position:absolute;right:-5px;top:5px;bottom:5px;width:5px;
+  border-radius:0 3px 3px 0;
+  background:repeating-linear-gradient(180deg,rgba(245,245,247,.55) 0 1.5px,rgba(140,140,150,.25) 1.5px 3px);
+  transform:translateZ(-3px)}
+.slide.active .book{animation:floaty 6s ease-in-out infinite alternate}
+@keyframes floaty{from{transform:rotateY(-24deg) rotateX(5deg) translateY(0)}
+  to{transform:rotateY(-19deg) rotateX(3deg) translateY(-10px)}}
+.book .bt{font-size:clamp(11px,1.5vh,16px);font-weight:700;letter-spacing:.02em;line-height:1.25;text-align:left}
+.book .ba{font-size:clamp(8px,1.1vh,11px);color:var(--ink-dim);text-align:left;letter-spacing:.06em}
+.book .bl{width:26px;height:2px;background:linear-gradient(90deg,var(--a1),var(--a2));border-radius:2px}
+.book-shadow{width:60%;height:14px;margin:-4px auto 0;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 70%)}
+
+/* ---------- illustrated figures ---------- */
+.slide.active .bob{animation:bob 7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(8px)}}
+.slide.active .sway{animation:sway 6s ease-in-out infinite alternate}
+@keyframes sway{from{transform:translateX(-12px)}to{transform:translateX(12px)}}
+.slide.active .knob{animation:knobturn 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes knobturn{0%{transform:rotate(-50deg)}30%{transform:rotate(55deg)}
+  60%{transform:rotate(-30deg)}85%{transform:rotate(18deg)}100%{transform:rotate(-50deg)}}
+.fig .node{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.16)}
+.fig .lbl-sm{font-size:12px;fill:var(--ink-faint)}
+
+/* ---------- slide 3 iceberg: label sizing, ship, kraken ---------- */
+.icefig .lbl-strong{font-size:21px}
+.icefig .lbl-sm{font-size:15px;fill:rgba(245,245,247,.8)}
+.icefig .see{font-size:16.5px;font-weight:650;fill:#7dd3fc;letter-spacing:.03em}
+.icefig .see90{font-size:16.5px;font-weight:650;fill:rgba(245,245,247,.85);letter-spacing:.03em}
+.slide.active .softpulse{animation:softpulse 3s ease-in-out 3.4s infinite}
+@keyframes softpulse{0%,100%{opacity:1}50%{opacity:.35}}
+.icefig{overflow:hidden}
+.slide.active .ship{animation:sail 8s cubic-bezier(.3,.7,.4,1) .8s both,
+  flee 3.5s cubic-bezier(.65,.05,.9,.4) 18.5s forwards}
+@keyframes sail{from{transform:translateX(-460px)}to{transform:translateX(0)}}
+@keyframes flee{to{transform:translateX(-900px)}}
+.slide.active .turn{animation:turnflip .7s ease-in-out 17.8s forwards;transform-origin:150px 120px}
+.slide.active .cflip{animation:fadein 1s ease var(--d,1.9s) forwards,turnflip .7s ease-in-out 17.8s forwards;
+  transform-origin:150px 140px}
+@keyframes turnflip{to{transform:scaleX(-1)}}
+.tentacle{stroke-dasharray:1;stroke-dashoffset:1}
+.slide.active .tentacle{animation:draw 3.5s ease-out forwards;animation-delay:var(--d,13.6s)}
+.slide.active .hop{animation:hop .55s ease-in-out 15.2s infinite}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.shout{opacity:0;transform-box:fill-box;transform-origin:center}
+.slide.active .shout{animation:shout 1.9s var(--ease) forwards;animation-delay:var(--d,8.2s)}
+@keyframes shout{0%{opacity:0;transform:scale(.3)}12%{opacity:1;transform:scale(1)}80%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.peek{opacity:0}
+.slide.active .peek{animation:peek 2s ease forwards;animation-delay:var(--d,9.9s)}
+@keyframes peek{0%{opacity:0}15%{opacity:1}85%{opacity:1}100%{opacity:0}}
+
+/* ---------- step-through reveals ---------- */
+.step-item{opacity:.13;transform:translateY(10px) scale(.97);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.step-item.on{opacity:1;transform:none}
+
+/* ---------- trap stage (slide 10): one big card at a time ---------- */
+.trap-stage{position:relative;height:clamp(240px,34vh,310px);max-width:880px;margin:2.6vh auto 0}
+.trap-stage .trap{position:absolute;inset:0;display:flex;align-items:center;gap:38px;padding:26px 46px;
+  border-radius:24px;text-align:left;opacity:0;transform:translateY(16px) scale(.985);
+  transition:opacity .55s var(--ease),transform .55s var(--ease);pointer-events:none}
+.trap-stage .trap.current{opacity:1;transform:none;pointer-events:auto}
+.tanim{flex:0 0 clamp(160px,24vw,250px);height:clamp(150px,27vh,210px);overflow:visible}
+.trap h3{font-size:clamp(20px,2.3vw,30px);font-weight:700;letter-spacing:-.015em}
+.trap p{font-size:clamp(13.5px,1.5vw,19px);color:var(--ink-dim);line-height:1.55;margin-top:10px}
+.trap-intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:10px;border-radius:24px;border:1px dashed rgba(255,255,255,.14);
+  color:var(--ink-dim);font-size:clamp(15px,1.6vw,20px);transition:opacity .4s ease}
+.trap-intro .ti-hint{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint)}
+.trap-stage.started .trap-intro{opacity:0}
+.trap-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.trap-pill{font-size:11.5px;padding:5px 13px;border-radius:999px;border:1px solid var(--glass-edge);
+  background:var(--glass);color:var(--ink-faint);transition:all .35s ease}
+.trap-pill.done{color:var(--ink-dim)}
+.trap-pill.current{color:var(--ink);border-color:rgba(251,146,60,.55);background:rgba(251,146,60,.1)}
+
+/* ---------- card icons ---------- */
+.ico{width:19px;height:19px;margin-right:9px;vertical-align:-4px;overflow:visible}
+.ico path,.ico circle,.ico rect{stroke:currentColor;stroke-width:1.8;fill:none;
+  stroke-linecap:round;stroke-linejoin:round}
+
+
+/* slide 11 is a pure-SVG lever diagram — no extra CSS needed */
+
+/* ---------- slide 13 mindset ---------- */
+.shift-old{font-size:clamp(26px,3.6vw,52px);font-weight:600;color:var(--ink);
+  display:inline-block;position:relative}
+.slide.active .shift-old{animation:dimOld 1.1s ease forwards;animation-delay:1.5s}
+@keyframes dimOld{to{color:var(--ink-faint);filter:blur(1.5px)}}
+.shift-old::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:3px;border-radius:2px;
+  background:linear-gradient(90deg,#f472b6,#fb7185);transform:scaleX(0);transform-origin:left}
+.slide.active .shift-old::after{animation:strike .7s var(--ease) forwards;animation-delay:1.4s}
+@keyframes strike{to{transform:scaleX(1)}}
+.shift-arrow{font-size:clamp(22px,3vw,40px);color:var(--ink-faint);margin:2.5vh 0}
+.shift-new{font-size:clamp(32px,5vw,72px);font-weight:700;letter-spacing:-.025em;line-height:1.12}
+
+/* ---------- slide 15 method: steps left, living diagram right ---------- */
+.method-row{display:flex;gap:44px;align-items:center;max-width:1100px;margin:2.2vh auto 0;text-align:left}
+.method-row .method{flex:0 0 410px;margin:0;max-width:410px}
+.method-row .mfig{flex:1;margin:0;max-width:480px}
+.method .step.step-item{opacity:.22}
+.method .step.step-item.on{opacity:1}
+.mfig .lbl-sm{font-size:13.5px;fill:rgba(245,245,247,.75)}
+.mfig .ml{opacity:0;transition:opacity .6s var(--ease)}
+.mfig.s1 .l1,.mfig.s2 .l2,.mfig.s3 .l3,.mfig.s4 .l4,.mfig.s5 .l5,.mfig.s6 .l6{opacity:1}
+.mfig .mdraw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s var(--ease) .1s}
+.mfig.s1 .l1 .mdraw,.mfig.s2 .l2 .mdraw,.mfig.s3 .l3 .mdraw{stroke-dashoffset:0}
+.mfig .pre,.mfig .pre-handle,.mfig .p2,.mfig .p4,.mfig .lr,.mfig .mhint{transition:opacity .7s var(--ease)}
+.mfig.s2 .p2{opacity:0}
+.mfig.s4 .p4{opacity:0}
+.mfig.s6 .pre,.mfig.s6 .pre-handle{opacity:0}
+.mfig.s6 .lr{opacity:.3}
+.mhint{opacity:.7}
+.mfig.s1 .mhint{opacity:0}
+/* step 6: jitter scrolls out once, calm scrolls forever — no reset */
+@keyframes settleOut{from{transform:translateX(0)}to{transform:translateX(-924px)}}
+@keyframes calmScroll{from{transform:translateX(-924px)}to{transform:translateX(-1056px)}}
+.mfig .wave6{transform:translateX(0)}
+.mfig.s6 .wave6{animation:settleOut 8s linear forwards,calmScroll 1.5s linear 8s infinite}
+/* the pen rides the leading edge: vertex-by-vertex, phase-locked to the strip */
+@keyframes settlePen{
+  0%{transform:translate(438px,346px)}3.571%{transform:translate(438px,306px)}
+  7.143%{transform:translate(438px,338px)}10.71%{transform:translate(438px,322px)}
+  14.29%{transform:translate(438px,340px)}17.86%{transform:translate(438px,312px)}
+  21.43%{transform:translate(438px,348px)}25%{transform:translate(438px,318px)}
+  28.57%{transform:translate(438px,342px)}32.14%{transform:translate(438px,322px)}
+  35.71%{transform:translate(438px,338px)}39.29%{transform:translate(438px,326px)}
+  42.86%{transform:translate(438px,334px)}46.43%{transform:translate(438px,328px)}
+  50%{transform:translate(438px,332px)}53.57%{transform:translate(438px,330px)}
+  57.14%{transform:translate(438px,331px)}60.71%{transform:translate(438px,329px)}
+  64.29%{transform:translate(438px,332px)}67.86%{transform:translate(438px,330px)}
+  71.43%{transform:translate(438px,331px)}75%{transform:translate(438px,329px)}
+  78.57%{transform:translate(438px,332px)}82.14%{transform:translate(438px,330px)}
+  85.71%{transform:translate(438px,331px)}89.29%{transform:translate(438px,329px)}
+  92.86%{transform:translate(438px,332px)}96.43%{transform:translate(438px,330px)}
+  100%{transform:translate(438px,331px)}
+}
+@keyframes calmPen{
+  0%{transform:translate(438px,331px)}25%{transform:translate(438px,329px)}
+  50%{transform:translate(438px,332px)}75%{transform:translate(438px,330px)}
+  100%{transform:translate(438px,331px)}
+}
+@keyframes penColor{from{color:#fde68a}to{color:#5eead4}}
+.mfig .pen6{transform:translate(438px,346px)}
+.mfig.s6 .pen6{animation:settlePen 8s cubic-bezier(.42,0,.58,1) forwards,
+  calmPen 1.5s cubic-bezier(.42,0,.58,1) 8s infinite,penColor 8s linear forwards}
+@media (max-width:980px){.method-row{flex-direction:column;gap:18px}.method-row .method{flex:auto}}
+.method{display:flex;flex-direction:column;margin:3.5vh auto 0;max-width:680px;text-align:left}
+.step{display:flex;gap:22px;align-items:flex-start;padding:12px 0}
+.step .n{flex:0 0 40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:650;font-size:15px;background:var(--glass);border:1px solid var(--glass-edge);
+  color:var(--a1);position:relative}
+.step:not(:last-child) .n::after{content:"";position:absolute;top:42px;left:50%;width:1px;height:26px;
+  background:linear-gradient(rgba(255,255,255,.25),transparent)}
+.step h3{font-size:clamp(15px,1.6vw,21px);font-weight:650;padding-top:7px}
+.step p{font-size:clamp(12.5px,1.25vw,16px);color:var(--ink-dim);margin-top:3px}
+.step.final h3{background:linear-gradient(95deg,var(--a1),var(--a2));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.step.final .n{color:var(--a2);border-color:rgba(192,132,252,.45)}
+
+/* ---------- slide 16 questions ---------- */
+.qcards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:4.5vh;text-align:left}
+.qcard{padding:30px;border-radius:22px;position:relative;overflow:hidden;will-change:transform}
+.qcard::before{content:"?";position:absolute;right:18px;top:2px;font-size:90px;font-weight:700;
+  color:rgba(255,255,255,.04)}
+.qcard .qn{font-size:12px;letter-spacing:.3em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:12px}
+.qcard p{font-size:clamp(15px,1.6vw,21px);font-weight:550;line-height:1.4}
+
+/* ---------- AI coda (slides 16–18) ---------- */
+.rise{transform-box:fill-box;transform-origin:bottom;transform:scaleY(.22)}
+.slide.active .rise{animation:rise 8s ease-in 1.2s forwards}
+@keyframes rise{to{transform:scaleY(1)}}
+.creep{opacity:0}
+.slide.active .creep{animation:fadein 2.5s ease forwards;animation-delay:var(--d,10s)}
+.risk{opacity:0;transform-box:fill-box;transform-origin:center;
+  filter:drop-shadow(0 0 7px rgba(239,68,68,.75))}
+.slide.active .risk{animation:riskin .6s var(--ease) 13s forwards,
+  riskgrow 4s ease-in 13.6s forwards,riskpulse 2.4s ease-in-out 17.6s infinite}
+@keyframes riskin{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes riskgrow{to{transform:scale(3)}}
+@keyframes riskpulse{0%,100%{transform:scale(3)}50%{transform:scale(3.16)}}
+
+/* ---------- closing epilogue: the ship returns, and dances ---------- */
+.epi{position:absolute;left:50%;bottom:.5vh;transform:translateX(-50%);
+  width:min(900px,86vw);height:auto;z-index:0;pointer-events:none;overflow:hidden}
+.hero-sm{font-size:clamp(34px,5.6vw,86px)}
+.slide.active .sail16{animation:sail16 26s linear 5s forwards}
+@keyframes sail16{to{transform:translateX(1560px)}}
+
+/* ---------- closing halo ---------- */
+.halo{position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;
+  pointer-events:none;z-index:-1;border:1.5px solid rgba(160,150,255,.5);opacity:0;
+  transform:translate(-50%,-50%)}
+.slide.active .halo{animation:halo 5s ease-out infinite;animation-delay:var(--d,4s)}
+@keyframes halo{0%{opacity:.8;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(80)}}
+
+/* ---------- chrome ---------- */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:10;
+  background:linear-gradient(90deg,var(--a1),var(--a2));
+  box-shadow:0 0 12px rgba(140,140,255,.7);transition:width .7s var(--ease)}
+#counter{position:fixed;left:max(28px,env(safe-area-inset-left));bottom:calc(24px + env(safe-area-inset-bottom));z-index:10;font-size:12px;letter-spacing:.25em;
+  color:var(--ink-faint);font-variant-numeric:tabular-nums}
+#counter b{color:var(--ink-dim);font-weight:600}
+.navbtns{position:fixed;right:max(24px,env(safe-area-inset-right));bottom:calc(20px + env(safe-area-inset-bottom));z-index:10;display:flex;gap:10px}
+.navbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--glass-edge);
+  background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  color:var(--ink-dim);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .3s ease}
+.navbtn:hover{color:var(--ink);border-color:rgba(255,255,255,.3);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.navbtn:active{transform:translateY(0) scale(.95)}
+.navbtn:disabled{opacity:.25;cursor:default;transform:none;box-shadow:none}
+#rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:10;
+  display:flex;flex-direction:column;gap:9px}
+.raildot{width:7px;height:7px;border-radius:99px;border:0;padding:0;cursor:pointer;
+  background:rgba(255,255,255,.16);transition:all .45s var(--ease)}
+.raildot:hover{background:rgba(255,255,255,.45)}
+.raildot.on{height:24px;background:linear-gradient(var(--a1),var(--a2));
+  box-shadow:0 0 12px rgba(140,140,255,.6)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){.cards.c4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:820px){
+  .cards.c3{grid-template-columns:repeat(2,1fr)}
+  .qcards{grid-template-columns:1fr;gap:12px}
+  .qcard{padding:22px}
+  .wrap{padding:0 6vw}
+  #rail{display:none}
+}
+@media (max-width:560px){
+  .cards.c3,.cards.c4{grid-template-columns:1fr}
+  .card{padding:18px}
+  .step .n{flex-basis:34px;height:34px}
+  /* more horizontal room and a tighter vertical rhythm so dense slides fit portrait */
+  .wrap{padding:0 5vw}
+  .cards{margin-top:2.4vh;gap:12px}
+  .oneliner{margin-top:2vh}
+  .hint{margin-top:3vh}
+  /* safety net: if a slide's content is still taller than the phone screen,
+     let it scroll instead of clipping. `safe center` keeps the top reachable. */
+  .slide{overflow-y:auto;overflow-x:hidden;align-items:safe center;
+    padding:max(16px,env(safe-area-inset-top)) 0 calc(64px + env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling:touch}
+}
+/* short screens (e.g. phone in landscape): a tall slide must scroll, not clip */
+@media (max-height:560px){
+  .slide{overflow-y:auto;overflow-x:hidden;align-items:safe center;
+    padding:max(12px,env(safe-area-inset-top)) 0 calc(56px + env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling:touch}
+  .cards{margin-top:2vh}
+  .hint{margin-top:2vh}
+}
+/* slide 10 traps: stack the animation above full-width text on phones
+   (the desktop side-by-side layout crushes the paragraph into a ribbon) */
+@media (max-width:560px){
+  .trap-stage{height:clamp(390px,66vh,470px);margin-top:2vh}
+  .trap-stage .trap{flex-direction:column;align-items:flex-start;justify-content:center;
+    gap:14px;padding:20px 22px}
+  .trap-stage .tanim{flex:none;align-self:center;
+    width:clamp(120px,42vw,168px);height:clamp(104px,20vh,148px)}
+  .trap h3{font-size:clamp(19px,5.2vw,24px)}
+  .trap p{font-size:clamp(13px,3.7vw,15px);margin-top:8px}
+  .trap-intro{font-size:clamp(14px,4vw,17px);padding:0 20px;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){
+  /* one-shot reveals become instant; infinite loops run once and freeze
+     (a tiny duration alone would strobe them at ~100 cycles/s) */
+  *,*::before,*::after{animation-duration:.01s !important;animation-delay:0s !important;
+    animation-iteration-count:1 !important;transition-duration:.2s !important;transition-delay:0s !important}
+  .water{transform:scaleY(.6)}
+  /* the ship stays put instead of fleeing (one-iteration flee would vanish it) */
+  .slide.active .ship{animation-name:sail}
+  .slide.active .turn{animation:none}
+  .slide.active .cflip{animation-name:fadein}
+}
+
+/* ---------- print: one slide per landscape page ---------- */
+@page{size:320mm 180mm;margin:0}
+@media print{
+  html,body{overflow:visible;height:auto;background:#06060a;
+    print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .blobs,#cursorGlow,.vignette,.grain,#progress,#counter,#rail,.navbtns,.hint{display:none !important}
+  #deck{position:static;perspective:none}
+  .slide{position:relative;inset:auto;height:100vh;opacity:1 !important;visibility:visible !important;
+    transform:none !important;filter:none !important;break-after:page;background:#06060a}
+  .slide:last-child{break-after:auto}
+  .r,.w,.c,.fadein,.pop,.step-item,.creep,.risk{opacity:1 !important;transform:none !important;filter:none !important}
+  .draw,.tentacle{stroke-dashoffset:0 !important}
+  .ship{transform:none !important}
+  .turn,.cflip{animation:none !important;transform:none !important}
+  .fsa{display:none !important}
+  .trap-stage{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .trap-stage .trap{position:relative;inset:auto;opacity:1 !important;transform:none !important;
+    padding:12px 16px;gap:14px;border-radius:14px}
+  .tanim{flex-basis:80px;height:70px}
+  .trap h3{font-size:14px}
+  .trap p{font-size:10.5px;margin-top:4px}
+  .trap-intro,.trap-pills{display:none}
+  .mfig .ml{opacity:1 !important}
+  .mfig .mdraw{stroke-dashoffset:0 !important}
+  .mfig .pre,.mfig .pre-handle,.mfig .p2{opacity:0 !important}
+  .mfig .lr{opacity:.3 !important}
+  .mfig .mhint{display:none}
+  .mfig .wave6{transform:translateX(-924px) !important;animation:none !important}
+  .mfig .pen6{transform:translate(438px,331px) !important;animation:none !important;color:#5eead4 !important}
+  .water{transform:scaleY(.6)}
+  .rise{transform:scaleY(.95)}
+  .shift-old{color:var(--ink-faint)}
+  .shift-old::after{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+
+<div class="blobs" id="blobs">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+<div id="cursorGlow"></div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah1" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7aa2ff"/></marker>
+    <marker id="ah2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c084fc"/></marker>
+    <marker id="ahw" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#fb923c"/></marker>
+    <marker id="ah3" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5eead4"/></marker>
+    <linearGradient id="iceTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef4ff"/><stop offset="1" stop-color="#b9d2ff"/></linearGradient>
+    <linearGradient id="iceDeep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="rgba(125,170,255,.55)"/>
+      <stop offset="1" stop-color="rgba(60,80,180,.16)"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="rgba(56,120,220,.16)"/>
+      <stop offset="1" stop-color="rgba(20,40,110,.04)"/></linearGradient>
+    <radialGradient id="ballg" cx=".35" cy=".3" r="1">
+      <stop offset="0" stop-color="#8fb0ff"/><stop offset=".55" stop-color="#7aa2ff"/>
+      <stop offset="1" stop-color="#9333ea"/></radialGradient>
+    <linearGradient id="lpg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#c084fc"/><stop offset="1" stop-color="#f472b6"/></linearGradient>
+    <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="rgba(122,162,255,.65)"/>
+      <stop offset="1" stop-color="rgba(94,234,212,.35)"/></linearGradient>
+    <linearGradient id="rg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#f43f5e"/></linearGradient>
+    <linearGradient id="rga" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="rgba(251,146,60,.22)"/><stop offset="1" stop-color="rgba(251,146,60,0)"/></linearGradient>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#5eead4"/></linearGradient>
+  </defs>
+</svg>
+
+<div id="deck">
+
+<!-- ============ 1 · OPENING ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="scrim"></div>
+    <div class="glow"></div>
+    <div class="kicker r" style="--d:.1s">Thinking in Systems</div>
+    <h1 class="hero-line wline chars" data-d="0.55" data-step="0.045">The world is not a machine.</h1>
+    <h1 class="hero-line wline">
+      <span class="chars" data-d="2.3" data-step="0.055">It is a</span>
+      <span class="w grad" style="--d:2.95s">system.</span>
+    </h1>
+    <p class="hero-sub r" style="--d:3.7s">A Primer on Seeing the Invisible</p>
+    <p class="hint r" style="--d:4.5s"><kbd>←</kbd><kbd>→</kbd> scroll, or swipe · <kbd>F</kbd> fullscreen</p>
+  </div>
+</section>
+
+<!-- ============ 2 · THE BOOK ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">The Book</div>
+    <h2 class="title r" style="--d:.15s">One small book.<br><span class="grad">A new way of seeing.</span></h2>
+    <div class="book-scene r" style="--d:.4s">
+      <div class="book">
+        <div class="bl"></div>
+        <div class="bt">Thinking<br>in<br>Systems</div>
+        <div class="ba">DONELLA H. MEADOWS</div>
+      </div>
+      <div class="book-shadow"></div>
+    </div>
+    <p class="sub r" style="--d:.6s">A scientist's field guide to the invisible architecture behind everyday life — published 2008.</p>
+    <div class="chips">
+      <span class="chip r" style="--d:.85s">Patterns</span>
+      <span class="chip r" style="--d:.97s">Relationships</span>
+      <span class="chip r" style="--d:1.09s">Feedback</span>
+      <span class="chip r" style="--d:1.21s">Delays</span>
+      <span class="chip r" style="--d:1.33s"><b>Leverage points</b></span>
+    </div>
+    <p class="oneliner r" style="--d:1.65s">Once you see systems, <em>you can't unsee them.</em></p>
+  </div>
+</section>
+
+<!-- ============ 3 · WHY NORMAL THINKING FAILS ============ -->
+<section class="slide" data-hue="35" id="icebergSlide">
+  <div class="wrap">
+    <div class="kicker r">The Blind Spot</div>
+    <h2 class="title r" style="--d:.15s">We blame the event.<br><span class="grad">The structure shrugs.</span></h2>
+    <p class="sub r" style="--d:.35s">The missed deadline. The bad quarter. Easy targets — and almost never the real cause.</p>
+    <svg class="fig icefig" viewBox="-200 0 1100 410" aria-hidden="true" style="max-width:min(920px,92vw);margin-top:2.2vh">
+      <defs>
+        <clipPath id="icelvl1"><rect x="80" y="140" width="420" height="85"/></clipPath>
+        <clipPath id="icelvl2"><rect x="80" y="225" width="420" height="83"/></clipPath>
+        <clipPath id="icelvl3"><rect x="80" y="308" width="420" height="106"/></clipPath>
+      </defs>
+      <!-- ocean -->
+      <rect class="fadein" x="-180" y="140" width="1060" height="256" fill="url(#sea)" style="--d:.5s"/>
+      <!-- the iceberg: only the tip until the captain looks down -->
+      <g class="bob">
+        <g clip-path="url(#icelvl1)" class="fadein" style="--d:9.6s">
+          <polygon fill="url(#iceDeep)"
+            points="234,142 210,180 228,200 180,240 200,262 148,308 170,330 118,378 176,392 232,374 286,404 340,378 398,394 452,372 420,340 436,318 398,274 414,252 376,208 392,186 366,142"/>
+          <path d="M 286 142 L 262 330 L 286 404 M 322 142 L 332 320 L 340 378 M 210 180 L 252 250 L 232 374 M 392 186 L 360 262 L 398 394" fill="none"
+            stroke="rgba(190,215,255,.20)"/>
+        </g>
+        <g clip-path="url(#icelvl2)" class="fadein" style="--d:11.6s">
+          <polygon fill="url(#iceDeep)"
+            points="234,142 210,180 228,200 180,240 200,262 148,308 170,330 118,378 176,392 232,374 286,404 340,378 398,394 452,372 420,340 436,318 398,274 414,252 376,208 392,186 366,142"/>
+          <path d="M 286 142 L 262 330 L 286 404 M 322 142 L 332 320 L 340 378 M 210 180 L 252 250 L 232 374 M 392 186 L 360 262 L 398 394" fill="none"
+            stroke="rgba(190,215,255,.20)"/>
+        </g>
+        <g clip-path="url(#icelvl3)" class="fadein" style="--d:13.5s">
+          <polygon fill="url(#iceDeep)"
+            points="234,142 210,180 228,200 180,240 200,262 148,308 170,330 118,378 176,392 232,374 286,404 340,378 398,394 452,372 420,340 436,318 398,274 414,252 376,208 392,186 366,142"/>
+          <path d="M 286 142 L 262 330 L 286 404 M 322 142 L 332 320 L 340 378 M 210 180 L 252 250 L 232 374 M 392 186 L 360 262 L 398 394" fill="none"
+            stroke="rgba(190,215,255,.20)"/>
+        </g>
+        <polygon class="pop" style="--d:.4s" fill="url(#iceTop)"
+          points="250,142 263,125 273,129 290,95 298,119 313,100 325,127 337,119 354,142"/>
+        <path class="fadein" d="M 290 95 L 296 142 M 313 100 L 319 142 M 263 125 L 269 142" fill="none"
+          stroke="rgba(90,130,220,.35)" style="--d:.9s"/>
+      </g>
+      <!-- the kraken: mental models grab you from below -->
+      <g class="sway" style="animation-duration:9s">
+        <path class="tentacle" pathLength="1" style="--d:14s" fill="none" stroke="rgba(192,132,252,.4)" stroke-width="6" stroke-linecap="round"
+          d="M 560 414 C 545 390 536 372 543 356 C 548 344 561 348 556 359"/>
+        <path class="tentacle" pathLength="1" style="--d:14.4s" fill="none" stroke="rgba(192,132,252,.34)" stroke-width="7" stroke-linecap="round"
+          d="M 612 414 C 614 392 606 376 614 361 C 620 349 633 354 627 365"/>
+        <path class="tentacle" pathLength="1" style="--d:14.8s" fill="none" stroke="rgba(192,132,252,.38)" stroke-width="6" stroke-linecap="round"
+          d="M 668 412 C 680 392 688 372 678 355 C 671 344 659 350 665 361"/>
+      </g>
+      <!-- the captain's eye locks onto it -->
+      <g class="softpulse">
+        <ellipse class="pop" style="--d:15.1s" cx="635" cy="360" rx="128" ry="46" fill="none"
+          stroke="rgba(239,68,68,.55)" stroke-width="2" stroke-dasharray="6 8"/>
+      </g>
+      <!-- waterline -->
+      <g class="sway">
+        <path class="draw" pathLength="1" fill="none" stroke="rgba(125,211,252,.65)" stroke-width="2.5" style="--d:.25s"
+          d="M -220 140 q 30 -8 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0"/>
+      </g>
+      <!-- the company, steaming in from the left toward the only ice it can see -->
+      <g class="ship">
+        <g class="bob" style="animation-duration:5s">
+          <g class="turn">
+            <path class="fadein" style="--d:1.1s" fill="#dbe6f7"
+              d="M 96 124 L 204 124 L 188 147 L 104 147 Z"/>
+            <rect class="fadein" style="--d:1.2s" x="112" y="108" width="52" height="16" rx="2" fill="#b9cdef"/>
+            <rect class="fadein" style="--d:1.3s" x="121" y="94" width="9" height="14" rx="1.5" fill="#fda4af"/>
+            <rect class="fadein" style="--d:1.35s" x="139" y="94" width="9" height="14" rx="1.5" fill="#fda4af"/>
+            <path class="fadein" style="--d:1.6s" d="M 132 88 q -10 -8 -22 -5 q -14 3 -24 -3" fill="none"
+              stroke="rgba(245,245,247,.25)" stroke-width="3" stroke-linecap="round"/>
+            <text class="fadein cflip" x="150" y="140" text-anchor="middle" style="--d:1.9s;font-size:12.5px;font-weight:650;fill:#0a0f1c;letter-spacing:.02em">the company</text>
+            <!-- the captain -->
+            <g class="fadein" style="--d:1.5s">
+              <g class="hop">
+                <circle cx="184" cy="103" r="3.2" fill="#f5f5f7"/>
+                <path d="M 184 107 L 184 117 M 184 110 L 192 105 M 184 111 L 178 115 M 184 117 L 180 124 M 184 117 L 188 124"
+                  fill="none" stroke="#f5f5f7" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M 179 96 L 189 96 L 189 98.6 L 179 98.6 Z" fill="#f5f5f7"/>
+                <path d="M 179 98.6 L 189 98.6 L 189 100.4 L 179 100.4 Z" fill="#7aa2ff"/>
+                <path d="M 188.6 100.4 L 193.2 100.4" stroke="#f5f5f7" stroke-width="1.4" stroke-linecap="round"/>
+              </g>
+            </g>
+            <!-- turbine, full speed ahead -->
+            <g class="fsa">
+              <path class="fadein flowdash" style="--d:18.6s" d="M 100 141 L 16 141" fill="none"
+                stroke="rgba(125,211,252,.55)" stroke-width="2.5" stroke-linecap="round"/>
+              <path class="fadein flowdash" style="--d:18.7s" d="M 102 146 L 30 146" fill="none"
+                stroke="rgba(125,211,252,.35)" stroke-width="2" stroke-linecap="round"/>
+              <circle class="fadein" style="--d:18.5s" cx="101" cy="143" r="3.5" fill="rgba(125,211,252,.45)"/>
+              <circle class="fadein" style="--d:18.6s" cx="95" cy="147" r="2.5" fill="rgba(125,211,252,.35)"/>
+              <circle class="fadein" style="--d:18.6s" cx="94" cy="139" r="2" fill="rgba(125,211,252,.3)"/>
+              <path class="fadein" style="--d:18.5s" d="M 126 84 q -16 -10 -34 -6 q -20 5 -34 -4" fill="none"
+                stroke="rgba(245,245,247,.4)" stroke-width="5" stroke-linecap="round"/>
+            </g>
+          </g>
+          <!-- peering down, level by level — each gaze lands on the writing -->
+          <path class="peek" style="--d:9.5s" d="M 194 104 Q 330 215 518 178" fill="none"
+            stroke="rgba(245,245,247,.4)" stroke-width="1.5" stroke-dasharray="3 6"/>
+          <path class="peek" style="--d:11.5s" d="M 194 104 Q 330 300 518 261" fill="none"
+            stroke="rgba(245,245,247,.4)" stroke-width="1.5" stroke-dasharray="3 6"/>
+          <!-- ...and then it sees the kraken -->
+          <path class="peek" style="--d:13.4s" d="M 194 104 Q 330 390 540 370" fill="none"
+            stroke="rgba(239,68,68,.5)" stroke-width="1.5" stroke-dasharray="3 6"/>
+          <!-- escalating alarm -->
+          <text class="shout" x="192" y="92" style="--d:6.6s;font-size:16px;font-weight:800;fill:#fbbf24">!</text>
+          <text class="shout" x="192" y="90" style="--d:9.8s;font-size:18px;font-weight:800;fill:#fb923c">!!</text>
+          <text class="shout" x="192" y="88" style="--d:11.7s;font-size:20px;font-weight:800;fill:#f97316">!!!</text>
+          <g class="softpulse">
+            <text class="pop" x="194" y="84" style="--d:15.1s;font-size:26px;font-weight:800;fill:#ef4444">!!!</text>
+          </g>
+        </g>
+      </g>
+      <!-- depth separators -->
+      <line class="fadein" x1="-160" y1="225" x2="860" y2="225" stroke="rgba(245,245,247,.13)" stroke-dasharray="5 9" style="--d:9.7s"/>
+      <line class="fadein" x1="-160" y1="308" x2="860" y2="308" stroke="rgba(245,245,247,.13)" stroke-dasharray="5 9" style="--d:11.7s"/>
+      <!-- level labels -->
+      <g class="fadein" style="--d:6.8s">
+        <line x1="324" y1="112" x2="518" y2="112" stroke="rgba(245,245,247,.22)" stroke-dasharray="2 6"/>
+        <text class="lbl-strong" x="530" y="108" style="fill:#fda4af">Events</text>
+        <text class="lbl-sm" x="530" y="129">what happened — we react</text>
+      </g>
+      <g class="fadein" style="--d:9.6s">
+        <line x1="412" y1="185" x2="518" y2="185" stroke="rgba(245,245,247,.22)" stroke-dasharray="2 6"/>
+        <text class="lbl-strong" x="530" y="181" style="fill:#7aa2ff">Patterns</text>
+        <text class="lbl-sm" x="530" y="202">what keeps happening</text>
+        <text class="lbl-sm" x="530" y="220">— we anticipate</text>
+      </g>
+      <g class="fadein" style="--d:11.6s">
+        <line x1="424" y1="268" x2="518" y2="268" stroke="rgba(245,245,247,.22)" stroke-dasharray="2 6"/>
+        <text class="lbl-strong" x="530" y="264" style="fill:#5eead4">Structure</text>
+        <text class="lbl-sm" x="530" y="285">what creates the pattern</text>
+        <text class="lbl-sm" x="530" y="303">— we redesign</text>
+      </g>
+      <g class="fadein" style="--d:13.5s">
+        <line x1="448" y1="355" x2="518" y2="355" stroke="rgba(245,245,247,.22)" stroke-dasharray="2 6"/>
+        <text class="lbl-strong" x="530" y="351" style="fill:#c084fc">Mental models</text>
+        <text class="lbl-sm" x="530" y="372">what we believe — we transform</text>
+      </g>
+      <!-- visibility annotations -->
+      <g class="softpulse">
+        <text class="fadein see" x="56" y="72" style="--d:2.8s">the 10% we see</text>
+      </g>
+      <text class="fadein see90" x="-150" y="392" style="--d:15.3s">the 90% that runs the show</text>
+    </svg>
+    <p class="oneliner r" style="--d:2.6s">Systems thinking <em>dives below the waterline.</em></p>
+  </div>
+</section>
+
+<!-- ============ 4 · WHAT IS A SYSTEM ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">Definition</div>
+    <h2 class="title r" style="--d:.15s">Elements. Interconnections. <span class="grad">Purpose.</span></h2>
+    <blockquote class="bigquote r" style="--d:.3s">"An interconnected set of elements that is coherently
+      organized in a way that achieves something."<cite>— Donella H. Meadows</cite></blockquote>
+    <svg class="fig" viewBox="0 0 680 384" aria-hidden="true" style="margin-top:2vh;max-width:min(550px,62vw)">
+      <!-- the pitch -->
+      <rect class="fadein" x="50" y="50" width="540" height="280" rx="16"
+        fill="rgba(94,234,212,.05)" stroke="rgba(94,234,212,.32)" stroke-width="1.5" style="--d:.3s"/>
+      <line class="fadein" x1="320" y1="50" x2="320" y2="330" stroke="rgba(94,234,212,.2)" style="--d:.45s"/>
+      <circle class="fadein" cx="320" cy="190" r="42" fill="none" stroke="rgba(94,234,212,.2)" style="--d:.45s"/>
+      <!-- the goal -->
+      <path class="draw" pathLength="1" d="M 590 158 h 26 v 64 h -26" fill="none"
+        stroke="#fbbf24" stroke-width="2.5" style="--d:.7s"/>
+      <path class="fadein" d="M 593 165 l 20 6 M 593 180 l 20 6 M 593 195 l 20 6 M 593 210 l 20 6"
+        stroke="rgba(251,191,36,.3)" style="--d:.95s"/>
+      <!-- the passes -->
+      <g stroke="rgba(140,175,255,.75)" stroke-width="2" fill="none">
+        <line class="flowdash fadein" x1="120" y1="210" x2="210" y2="110" style="--d:1.1s"/>
+        <line class="flowdash fadein" x1="210" y1="110" x2="262" y2="262" style="--d:1.2s"/>
+        <line class="flowdash fadein" x1="262" y1="262" x2="398" y2="150" style="--d:1.3s"/>
+        <line class="flowdash fadein" x1="398" y1="150" x2="487" y2="246" style="--d:1.4s"/>
+        <line class="flowdash fadein" x1="487" y1="246" x2="598" y2="190" style="--d:1.5s"/>
+      </g>
+      <!-- the players -->
+      <g>
+        <circle class="pop" cx="120" cy="210" r="10" fill="#7aa2ff" style="--d:.5s"/>
+        <circle class="pop" cx="210" cy="110" r="10" fill="#7aa2ff" style="--d:.6s"/>
+        <circle class="pop" cx="262" cy="262" r="10" fill="#7aa2ff" style="--d:.7s"/>
+        <circle class="pop" cx="398" cy="150" r="10" fill="#7aa2ff" style="--d:.8s"/>
+        <circle class="pop" cx="487" cy="246" r="10" fill="#7aa2ff" style="--d:.9s"/>
+        <circle class="pop" cx="450" cy="86"  r="10" fill="#7aa2ff" style="--d:1s"/>
+        <circle class="pop" cx="150" cy="300" r="10" fill="#7aa2ff" style="--d:1.05s"/>
+      </g>
+      <!-- the ball -->
+      <g class="fadein" style="--d:1.7s">
+        <circle r="5.5" fill="#f5f5f7">
+          <animateMotion dur="5.5s" repeatCount="indefinite"
+            path="M 120 210 L 210 110 L 262 262 L 398 150 L 487 246 L 598 190"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5.5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <circle class="pulse" cx="600" cy="190" r="9" fill="none" stroke="#fbbf24" stroke-width="1.5" style="--d:2.2s"/>
+      <!-- the reading -->
+      <g style="font-size:13px">
+        <text class="fadein" x="52" y="368" style="--d:2s;fill:#9db9ff"><tspan style="font-weight:650">elements</tspan> — players</text>
+        <text class="fadein" x="340" y="368" text-anchor="middle" style="--d:2.2s;fill:#7fe7d4"><tspan style="font-weight:650">interconnections</tspan> — passes</text>
+        <text class="fadein" x="624" y="368" text-anchor="end" style="--d:2.4s;fill:#fbbf24"><tspan style="font-weight:650">purpose</tspan> — score</text>
+      </g>
+    </svg>
+    <p class="oneliner r" style="--d:2.6s">Change the passing — not the players — <em>and you change the team.</em></p>
+  </div>
+</section>
+
+<!-- ============ 5 · STOCKS & FLOWS ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">Building Block № 1</div>
+    <h2 class="title r" style="--d:.15s">Stocks <span style="color:var(--ink-faint)">&amp;</span> <span class="grad">Flows</span></h2>
+    <p class="sub r" style="--d:.3s">A stock is what accumulates. A flow is what changes it. Meadows calls this chapter "Bathtubs 101."</p>
+    <svg class="fig" viewBox="0 0 680 400" aria-hidden="true" style="max-width:min(620px,72vw)">
+      <!-- source cloud -->
+      <g class="fadein" style="--d:.3s">
+        <path d="M 78 70 a 13 13 0 0 1 6 -24 a 15 15 0 0 1 28 -7 a 13 13 0 0 1 22 9 a 11 11 0 0 1 -2 22 z"
+          fill="rgba(255,255,255,.05)" stroke="rgba(245,245,247,.3)"/>
+        <text class="lbl-sm" x="106" y="92" text-anchor="middle">source</text>
+      </g>
+      <!-- supply pipe with valve -->
+      <path class="draw" pathLength="1" d="M 138 58 H 168" fill="none" stroke="rgba(245,245,247,.4)" stroke-width="3" style="--d:.45s"/>
+      <g class="pop" style="--d:.6s">
+        <path d="M 172 49 L 172 67 L 188 58 Z M 204 49 L 204 67 L 188 58 Z" fill="#7aa2ff"/>
+        <line x1="188" y1="58" x2="188" y2="44" stroke="#7aa2ff" stroke-width="2"/>
+        <line x1="180" y1="44" x2="196" y2="44" stroke="#7aa2ff" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <path class="draw" pathLength="1" d="M 208 58 H 230 q 10 0 10 10 V 90 h 8 v 8 h -16 v -8 h 8" fill="none"
+        stroke="rgba(245,245,247,.4)" stroke-width="3" style="--d:.7s"/>
+      <!-- water stream -->
+      <line class="flowdash fadein" x1="240" y1="102" x2="240" y2="200" stroke="#7aa2ff" stroke-width="3" stroke-linecap="round" style="--d:.9s"/>
+      <g class="fadein" style="--d:.9s">
+        <circle r="3.4" fill="#9db9ff">
+          <animateMotion dur="1.1s" repeatCount="indefinite" path="M 240 104 L 240 198"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="1.1s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.6" fill="#9db9ff">
+          <animateMotion dur="1.1s" begin=".5s" repeatCount="indefinite" path="M 240 104 L 240 198"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="1.1s" begin=".5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <text class="fadein" x="262" y="150" style="--d:1.1s;fill:#9db9ff">inflow</text>
+      <!-- the tub -->
+      <rect class="water" x="158" y="212" width="344" height="100" rx="8" fill="url(#wg)"/>
+      <path class="draw" pathLength="1" d="M 150 204 v 76 q 0 36 36 36 h 288 q 36 0 36 -36 v -76"
+        fill="none" stroke="rgba(245,245,247,.5)" stroke-width="3.5" style="--d:.2s"/>
+      <line class="fadein" x1="128" y1="204" x2="532" y2="204" stroke="rgba(245,245,247,.55)" stroke-width="6" stroke-linecap="round" style="--d:.35s"/>
+      <path class="fadein" d="M 196 318 q -6 16 -18 18 M 464 318 q 6 16 18 18" fill="none"
+        stroke="rgba(245,245,247,.4)" stroke-width="3.5" stroke-linecap="round" style="--d:.5s"/>
+      <text class="fadein lbl-strong" x="330" y="270" text-anchor="middle" style="--d:1.3s;font-size:17px;letter-spacing:.18em">STOCK</text>
+      <!-- drain & outflow pipe with valve -->
+      <ellipse class="fadein" cx="466" cy="310" rx="9" ry="4" fill="rgba(5,5,7,.6)" stroke="rgba(245,245,247,.35)" style="--d:.6s"/>
+      <path class="draw" pathLength="1" d="M 466 316 v 22 q 0 10 10 10 h 56" fill="none"
+        stroke="rgba(245,245,247,.4)" stroke-width="3" style="--d:1.2s"/>
+      <g class="pop" style="--d:1.4s">
+        <path d="M 538 339 L 538 357 L 554 348 Z M 570 339 L 570 357 L 554 348 Z" fill="#5eead4"/>
+        <line x1="554" y1="348" x2="554" y2="334" stroke="#5eead4" stroke-width="2"/>
+        <line x1="546" y1="334" x2="562" y2="334" stroke="#5eead4" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <path class="draw" pathLength="1" d="M 574 348 H 596" fill="none" stroke="rgba(245,245,247,.4)" stroke-width="3" style="--d:1.5s"/>
+      <g class="fadein" style="--d:1.3s">
+        <circle r="2.8" fill="#7fe7d4">
+          <animateMotion dur="1.6s" repeatCount="indefinite" path="M 466 318 L 466 338 Q 466 348 476 348 L 594 348"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.85;1" dur="1.6s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <text class="fadein" x="496" y="386" style="--d:1.6s;fill:#7fe7d4">outflow</text>
+      <!-- sink cloud -->
+      <g class="fadein" style="--d:1.7s">
+        <path d="M 606 356 a 12 12 0 0 1 6 -22 a 14 14 0 0 1 26 -6 a 12 12 0 0 1 20 8 a 10 10 0 0 1 -2 20 z"
+          fill="rgba(255,255,255,.05)" stroke="rgba(245,245,247,.3)"/>
+        <text class="lbl-sm" x="632" y="376" text-anchor="middle">sink</text>
+      </g>
+      <text class="fadein lbl-sm" x="40" y="392" style="--d:2.1s">real stock-and-flow notation: cloud → valve → stock → valve → cloud</text>
+    </svg>
+    <div class="chips">
+      <span class="chip r" style="--d:1.5s"><b>Bank account</b> — salary in, spending out</span>
+      <span class="chip r" style="--d:1.65s"><b>Trust</b> — built in drops, lost in buckets</span>
+      <span class="chip r" style="--d:1.8s"><b>Team workload</b> — requests in, delivery out</span>
+    </div>
+    <p class="oneliner r" style="--d:2.1s">A stock changes <em>only</em> through its flows — and you can fill a bathtub by closing the drain.</p>
+  </div>
+</section>
+
+<!-- ============ 6 · FEEDBACK LOOPS ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">Building Block № 2</div>
+    <h2 class="title r" style="--d:.15s">Feedback is how a system<br><span class="grad">talks to itself.</span></h2>
+    <svg class="fig" viewBox="0 0 560 350" aria-hidden="true" style="max-width:min(420px,52vw);margin-top:2.4vh">
+      <!-- nodes -->
+      <g class="pop" style="--d:.3s">
+        <rect class="node" x="190" y="40" width="180" height="40" rx="20"/>
+        <text class="lbl-strong" x="280" y="65" text-anchor="middle">the system's state</text>
+      </g>
+      <g class="pop" style="--d:.55s">
+        <rect class="node" x="330" y="246" width="180" height="40" rx="20"/>
+        <text class="lbl-strong" x="420" y="271" text-anchor="middle">what you observe</text>
+      </g>
+      <g class="pop" style="--d:.8s">
+        <rect class="node" x="50" y="246" width="180" height="40" rx="20"/>
+        <text class="lbl-strong" x="140" y="271" text-anchor="middle">how you respond</text>
+      </g>
+      <!-- arrows around the loop -->
+      <path class="draw" pathLength="1" d="M 376 78 Q 472 122 444 238" fill="none"
+        stroke="#7aa2ff" stroke-width="2.5" marker-end="url(#ah1)" style="--d:1s"/>
+      <path class="draw" pathLength="1" d="M 326 290 Q 280 318 234 290" fill="none"
+        stroke="#c084fc" stroke-width="2.5" marker-end="url(#ah2)" style="--d:1.25s"/>
+      <path class="draw" pathLength="1" d="M 116 238 Q 88 122 184 78" fill="none"
+        stroke="#5eead4" stroke-width="2.5" marker-end="url(#ah3)" style="--d:1.5s"/>
+      <!-- signal flowing around -->
+      <g class="fadein" style="--d:2s">
+        <circle r="4.5" fill="#dbe4ff">
+          <animateMotion dur="6s" repeatCount="indefinite"
+            path="M 376 78 Q 472 122 444 238 Q 436 290 330 286 Q 280 314 230 286 Q 124 290 116 238 Q 88 122 184 78 Q 280 50 376 78"/>
+        </circle>
+        <circle r="4.5" fill="#e6d4ff">
+          <animateMotion dur="6s" begin="-3s" repeatCount="indefinite"
+            path="M 376 78 Q 472 122 444 238 Q 436 290 330 286 Q 280 314 230 286 Q 124 290 116 238 Q 88 122 184 78 Q 280 50 376 78"/>
+        </circle>
+      </g>
+      <text class="fadein lbl-strong" x="280" y="172" text-anchor="middle" style="--d:1.7s">feedback</text>
+      <text class="fadein lbl-sm" x="280" y="194" text-anchor="middle" style="--d:1.85s">output becomes input</text>
+    </svg>
+    <div class="chips">
+      <span class="chip r" style="--d:2.1s"><b>Yellowstone wolves</b> — loops that moved rivers</span>
+      <span class="chip r" style="--d:2.22s">Scale → what you eat</span>
+      <span class="chip r" style="--d:2.34s">Balance → what you buy</span>
+      <span class="chip r" style="--d:2.46s">Retry policy → load</span>
+    </div>
+    <p class="oneliner r" style="--d:2.7s">Output circles back to become input.<br>
+      <em>Two flavors run the world:</em> loops that amplify, and loops that stabilize.</p>
+  </div>
+</section>
+
+<!-- ============ 7 · REINFORCING LOOPS ============ -->
+<section class="slide" data-hue="150">
+  <div class="wrap">
+    <div class="kicker r" style="color:rgba(251,146,60,.7)">Reinforcing Loops</div>
+    <h2 class="title r" style="--d:.15s"><span class="grad-warm">More leads to more.</span></h2>
+    <p class="sub r" style="--d:.3s">Growth, momentum, compounding — and runaway collapse. Same loop, both directions.</p>
+    <svg class="fig" viewBox="0 0 740 300" aria-hidden="true" style="max-width:min(660px,76vw)">
+      <!-- causal loop: bank interest -->
+      <g class="pop" style="--d:.4s">
+        <rect class="node" x="70" y="42" width="200" height="40" rx="20" style="stroke:rgba(251,146,60,.35)"/>
+        <text class="lbl-strong" x="170" y="67" text-anchor="middle">money in the bank</text>
+      </g>
+      <g class="pop" style="--d:.6s">
+        <rect class="node" x="70" y="212" width="200" height="40" rx="20" style="stroke:rgba(251,146,60,.35)"/>
+        <text class="lbl-strong" x="170" y="237" text-anchor="middle">interest earned</text>
+      </g>
+      <path class="draw" pathLength="1" d="M 262 86 Q 330 147 262 208" fill="none"
+        stroke="#fb923c" stroke-width="2.5" marker-end="url(#ahw)" style="--d:.85s"/>
+      <path class="draw" pathLength="1" d="M 78 208 Q 10 147 78 86" fill="none"
+        stroke="#fbbf24" stroke-width="2.5" marker-end="url(#ahw)" style="--d:1.05s"/>
+      <text class="fadein" x="312" y="152" style="--d:1.25s;fill:#fdba74;font-size:19px;font-weight:700">+</text>
+      <text class="fadein" x="20" y="152" style="--d:1.35s;fill:#fdba74;font-size:19px;font-weight:700">+</text>
+      <text class="fadein" x="170" y="156" text-anchor="middle"
+        style="--d:1.5s;fill:#fb923c;font-size:27px;font-weight:700">R</text>
+      <g class="spin" style="animation-duration:10s">
+        <path class="fadein" d="M 170 120 A 29 29 0 1 1 169 121" fill="none" stroke="rgba(251,146,60,.55)"
+          stroke-width="1.8" marker-end="url(#ahw)" style="--d:1.6s"/>
+      </g>
+      <!-- behavior over time: it compounds -->
+      <line class="fadein" x1="380" y1="260" x2="718" y2="260" stroke="rgba(245,245,247,.18)"/>
+      <line class="fadein" x1="380" y1="260" x2="380" y2="30" stroke="rgba(245,245,247,.18)"/>
+      <path class="fadein" d="M 385 255 C 480 252 560 235 625 170 C 665 130 695 75 710 40 L 710 260 L 385 260 Z"
+        fill="url(#rga)" style="--d:2.4s"/>
+      <path class="draw" pathLength="1" d="M 385 255 C 480 252 560 235 625 170 C 665 130 695 75 710 40"
+        fill="none" stroke="url(#rg)" stroke-width="4" stroke-linecap="round" style="--d:1.8s"/>
+      <g class="fadein" style="--d:2.6s">
+        <circle r="5" fill="#fde68a">
+          <animateMotion dur="3.6s" repeatCount="indefinite"
+            path="M 385 255 C 480 252 560 235 625 170 C 665 130 695 75 710 40"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="3.6s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <text class="fadein" x="712" y="282" text-anchor="end" style="--d:2.2s">time →</text>
+      <text class="fadein lbl-sm" x="396" y="46" style="--d:2.8s">slow… slow… then sudden</text>
+    </svg>
+    <div class="chips">
+      <span class="chip r" style="--d:1.2s">Viral content</span>
+      <span class="chip r" style="--d:1.32s">Confidence</span>
+      <span class="chip r" style="--d:1.44s">Network effects</span>
+      <span class="chip r" style="--d:1.56s">Debt &amp; interest</span>
+      <span class="chip r" style="--d:1.68s">Addiction</span>
+    </div>
+    <blockquote class="bigquote r" style="--d:2.1s;font-size:clamp(14px,1.6vw,21px)">"A quantity growing exponentially toward a limit
+      reaches that limit in a surprisingly short time."<cite>— Donella H. Meadows</cite></blockquote>
+  </div>
+</section>
+
+<!-- ============ 8 · BALANCING LOOPS ============ -->
+<section class="slide" data-hue="-40">
+  <div class="wrap">
+    <div class="kicker r" style="color:rgba(94,234,212,.7)">Balancing Loops</div>
+    <h2 class="title r" style="--d:.15s"><span class="grad-cool">Systems seek a goal.</span></h2>
+    <p class="sub r" style="--d:.3s">Balancing loops sense the gap between where things are and where they should be — then close it.</p>
+    <svg class="fig" viewBox="0 0 740 300" aria-hidden="true" style="max-width:min(660px,76vw)">
+      <!-- causal loop: the thermostat -->
+      <text class="fadein lbl-sm" x="170" y="26" text-anchor="middle" style="--d:1.4s;fill:rgba(94,234,212,.8)">goal: 21°C</text>
+      <g class="pop" style="--d:.4s">
+        <rect class="node" x="70" y="36" width="200" height="40" rx="20" style="stroke:rgba(94,234,212,.35)"/>
+        <text class="lbl-strong" x="170" y="61" text-anchor="middle">room temperature</text>
+      </g>
+      <g class="pop" style="--d:.6s">
+        <rect class="node" x="70" y="214" width="200" height="40" rx="20" style="stroke:rgba(94,234,212,.35)"/>
+        <text class="lbl-strong" x="170" y="239" text-anchor="middle">heater output</text>
+      </g>
+      <path class="draw" pathLength="1" d="M 262 80 Q 330 147 262 210" fill="none"
+        stroke="#38bdf8" stroke-width="2.5" marker-end="url(#ah3)" style="--d:.85s"/>
+      <path class="draw" pathLength="1" d="M 78 210 Q 10 147 78 80" fill="none"
+        stroke="#5eead4" stroke-width="2.5" marker-end="url(#ah3)" style="--d:1.05s"/>
+      <text class="fadein lbl-sm" x="318" y="140" style="--d:1.25s">senses</text>
+      <text class="fadein lbl-sm" x="318" y="158" style="--d:1.25s">the gap</text>
+      <text class="fadein lbl-sm" x="52" y="140" text-anchor="end" style="--d:1.35s">closes</text>
+      <text class="fadein lbl-sm" x="52" y="158" text-anchor="end" style="--d:1.35s">the gap</text>
+      <text class="fadein" x="170" y="156" text-anchor="middle"
+        style="--d:1.5s;fill:#5eead4;font-size:27px;font-weight:700">B</text>
+      <g class="spin-rev" style="animation-duration:12s">
+        <path class="fadein" d="M 170 120 A 29 29 0 1 0 171 121" fill="none" stroke="rgba(94,234,212,.55)"
+          stroke-width="1.8" marker-end="url(#ah3)" style="--d:1.6s"/>
+      </g>
+      <!-- behavior over time: hunting the goal -->
+      <line class="fadein" x1="380" y1="145" x2="713" y2="145" stroke="rgba(94,234,212,.5)"
+        stroke-width="1.5" stroke-dasharray="6 8" style="--d:.4s"/>
+      <text class="fadein" x="713" y="127" text-anchor="end" style="--d:.6s;fill:rgba(94,234,212,.8)">the goal</text>
+      <path class="draw" pathLength="1"
+        d="M 385 145 q 25 -86 50 0 q 25 74 50 0 q 25 -50 50 0 q 25 34 50 0 q 25 -20 50 0 q 25 9 50 0 q 15 -3 28 0"
+        fill="none" stroke="url(#bg2)" stroke-width="3.5" stroke-linecap="round" style="--d:.8s;animation-duration:2.6s"/>
+      <g class="fadein" style="--d:3.4s">
+        <circle r="5" fill="#a7f3e9">
+          <animateMotion dur="5s" repeatCount="indefinite"
+            path="M 385 145 q 25 -86 50 0 q 25 74 50 0 q 25 -50 50 0 q 25 34 50 0 q 25 -20 50 0 q 25 9 50 0 q 15 -3 28 0"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.92;1" dur="5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <circle class="pop" cx="713" cy="145" r="7" fill="#5eead4" style="--d:3.2s"/>
+      <circle class="pulse" cx="713" cy="145" r="7" fill="none" stroke="#5eead4" stroke-width="1.5" style="--d:3.5s"/>
+      <text class="fadein" x="712" y="282" text-anchor="end" style="--d:2.2s">time →</text>
+    </svg>
+    <div class="chips">
+      <span class="chip r" style="--d:1.1s">Thermostat</span>
+      <span class="chip r" style="--d:1.22s">Hunger &amp; eating</span>
+      <span class="chip r" style="--d:1.34s">Project deadlines</span>
+      <span class="chip r" style="--d:1.46s">Immune response</span>
+    </div>
+    <p class="oneliner r" style="--d:1.8s">When change keeps failing, <em>a balancing loop is quietly undoing your work.</em></p>
+  </div>
+</section>
+
+<!-- ============ 9 · DELAYS ============ -->
+<section class="slide" data-hue="20">
+  <div class="wrap">
+    <div class="kicker r">The Hidden Variable</div>
+    <h2 class="title r" style="--d:.15s">Act now. <span class="grad">Feel it later.</span></h2>
+    <p class="sub r" style="--d:.3s">Delays separate cause from effect — which is why we overshoot, overcorrect, and give up too soon.</p>
+    <svg class="fig" viewBox="0 0 740 330" aria-hidden="true" style="max-width:min(820px,88vw)">
+      <!-- the shower -->
+      <path class="draw" pathLength="1" d="M 120 246 V 72 q 0 -14 14 -14 H 188" fill="none"
+        stroke="rgba(245,245,247,.4)" stroke-width="5" stroke-linecap="round" style="--d:.3s"/>
+      <path class="pop" d="M 178 54 h 36 l 12 20 h -60 z" fill="rgba(245,245,247,.35)" style="--d:.6s"/>
+      <g stroke="rgba(125,211,252,.5)" stroke-width="2" stroke-linecap="round" fill="none">
+        <line class="flowdash fadein" x1="182" y1="80" x2="166" y2="160" style="--d:.85s"/>
+        <line class="flowdash fadein" x1="196" y1="82" x2="194" y2="166" style="--d:.95s"/>
+        <line class="flowdash fadein" x1="210" y1="80" x2="222" y2="160" style="--d:1.05s"/>
+      </g>
+      <g class="fadein" style="--d:1.1s">
+        <circle r="3" fill="#9dd6fc">
+          <animateMotion dur="1.3s" repeatCount="indefinite" path="M 176 96 L 160 210"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="1.3s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.6" fill="#9dd6fc">
+          <animateMotion dur="1.3s" begin=".45s" repeatCount="indefinite" path="M 198 98 L 196 218"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="1.3s" begin=".45s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.6" fill="#9dd6fc">
+          <animateMotion dur="1.3s" begin=".85s" repeatCount="indefinite" path="M 214 96 L 228 210"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="1.3s" begin=".85s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <!-- the knob you turn -->
+      <g class="knob">
+        <circle class="pop" cx="120" cy="246" r="21" fill="rgba(255,255,255,.06)"
+          stroke="rgba(245,245,247,.45)" stroke-width="2.5" style="--d:.5s"/>
+        <line class="fadein" x1="120" y1="246" x2="120" y2="229" stroke="#fb923c" stroke-width="3"
+          stroke-linecap="round" style="--d:.7s"/>
+      </g>
+      <text class="fadein lbl-sm" x="86" y="250" text-anchor="end" style="--d:1.3s;fill:#fda4af">H</text>
+      <text class="fadein lbl-sm" x="154" y="250" style="--d:1.3s;fill:#9dd6fc">C</text>
+      <text class="fadein lbl-strong" x="120" y="296" text-anchor="middle" style="--d:1.4s">you act here</text>
+      <!-- heat travelling the pipe, late -->
+      <g class="fadein" style="--d:1.6s">
+        <circle r="5" fill="#fb923c">
+          <animateMotion dur="4.5s" repeatCount="indefinite" path="M 120 224 V 72 Q 120 58 134 58 H 188"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.88;1" dur="4.5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <text class="fadein lbl-sm" x="104" y="150" text-anchor="end" style="--d:1.8s">…still in<tspan x="104" dy="16">the pipe…</tspan></text>
+      <!-- temperature over time: overshoot, overcorrect -->
+      <line class="fadein" x1="335" y1="170" x2="715" y2="170" stroke="rgba(94,234,212,.5)"
+        stroke-width="1.5" stroke-dasharray="6 8" style="--d:.5s"/>
+      <text class="fadein lbl-sm" x="713" y="154" text-anchor="end" style="--d:.7s;fill:rgba(94,234,212,.8)">comfortable</text>
+      <path class="draw" pathLength="1"
+        d="M 340 282 C 365 282 380 70 415 70 C 448 70 452 258 488 258 C 516 258 522 118 552 118 C 578 118 582 208 608 208 C 630 208 634 152 656 152 C 674 152 690 168 714 170"
+        fill="none" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round" style="--d:.9s;animation-duration:2.8s"/>
+      <g class="fadein" style="--d:3.6s">
+        <circle r="5" fill="#e6d4ff">
+          <animateMotion dur="6s" repeatCount="indefinite"
+            path="M 340 282 C 365 282 380 70 415 70 C 448 70 452 258 488 258 C 516 258 522 118 552 118 C 578 118 582 208 608 208 C 630 208 634 152 656 152 C 674 152 690 168 714 170"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.05;.93;1" dur="6s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <text class="fadein lbl-sm" x="352" y="306" style="--d:2.2s;fill:#9dd6fc">freezing</text>
+      <text class="fadein lbl-sm" x="415" y="52" text-anchor="middle" style="--d:2.5s;fill:#fb7185">scalded!</text>
+      <text class="fadein lbl-sm" x="488" y="282" text-anchor="middle" style="--d:2.8s;fill:#9dd6fc">too cold again</text>
+      <text class="fadein" x="712" y="322" text-anchor="end" style="--d:2.2s">time →</text>
+    </svg>
+    <div class="chips">
+      <span class="chip r" style="--d:1.4s">Hiring decisions</span>
+      <span class="chip r" style="--d:1.52s">Health habits</span>
+      <span class="chip r" style="--d:1.64s">Climate change</span>
+      <span class="chip r" style="--d:1.76s">Technical debt</span>
+    </div>
+    <p class="oneliner r" style="--d:2.2s">When delays are long, <em>foresight is not optional.</em></p>
+  </div>
+</section>
+
+<!-- ============ 10 · SYSTEM TRAPS ============ -->
+<section class="slide" data-hue="130">
+  <div class="wrap">
+    <div class="kicker r">Archetypes</div>
+    <h2 class="title r" style="--d:.15s">The eight <span class="grad-warm">system traps.</span></h2>
+    <p class="sub r" style="--d:.3s">Meadows catalogued them. Recurring structures, reliably bad outcomes — no villains required.</p>
+    <div class="trap-stage r" style="--d:.45s">
+      <div class="trap-intro">
+        <p>Eight recurring structures. No villains required.</p>
+        <p class="ti-hint">press → to meet the first one</p>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <line x1="120" y1="42" x2="120" y2="158" stroke="rgba(245,245,247,.15)" stroke-dasharray="4 8"/>
+          <!-- round 1: push, pushed back · round 2: push HARDER, pushed back harder -->
+          <circle cy="100" r="20" fill="rgba(253,164,175,.18)" stroke="#fda4af" stroke-width="2.5">
+            <animate attributeName="cx" values="110;150;110;106;110;110;162;102;114;110" keyTimes="0;.16;.28;.34;.4;.48;.62;.8;.9;1" dur="7s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 30 100 h 42 m -10 -8 l 10 8 -10 8" fill="none" stroke="#fda4af" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="opacity" values="1;1;.1;.1;1" keyTimes="0;.16;.22;.94;1" dur="7s" repeatCount="indefinite"/>
+          </path>
+          <path d="M 210 100 h -42 m 10 -8 l -10 8 10 8" fill="none" stroke="rgba(245,245,247,.6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.17;.2;.36;.42;1" dur="7s" repeatCount="indefinite"/>
+          </path>
+          <path d="M 18 100 h 54 m -12 -10 l 12 10 -12 10" fill="none" stroke="#fda4af" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.46;.5;.62;.68;1" dur="7s" repeatCount="indefinite"/>
+          </path>
+          <path d="M 222 100 h -54 m 12 -10 l -12 10 12 10" fill="none" stroke="rgba(245,245,247,.8)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.63;.67;.86;.94" dur="7s" repeatCount="indefinite"/>
+          </path>
+        </svg>
+        <div>
+          <h3 style="color:#fda4af">Policy resistance</h3>
+          <p>Fixes that fail. Everyone pushes, the system pushes back — the quick fix relieves the symptom while quietly feeding the problem.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- everyone sips faster… then the pool is gone and everyone goes gray -->
+          <g fill="#5eead4">
+            <animate attributeName="fill" values="#5eead4;#5eead4;#6b7280;#6b7280;#5eead4" keyTimes="0;.74;.8;.95;1" dur="7s" repeatCount="indefinite"/>
+            <circle cx="75" cy="28" r="7"/>
+            <circle cx="120" cy="20" r="7"/>
+            <circle cx="165" cy="28" r="7"/>
+          </g>
+          <g stroke="#5eead4" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="4 9">
+            <animate attributeName="opacity" values="1;1;.2;.2;1" keyTimes="0;.76;.8;.96;1" dur="7s" repeatCount="indefinite"/>
+            <path d="M 75 40 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1s" repeatCount="indefinite"/></path>
+            <path d="M 120 32 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur=".8s" repeatCount="indefinite"/></path>
+            <path d="M 165 40 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.2s" repeatCount="indefinite"/></path>
+          </g>
+          <path d="M 62 122 v 34 q 0 14 14 14 h 88 q 14 0 14 -14 v -34" stroke="rgba(245,245,247,.45)" stroke-width="2.5" fill="none"/>
+          <rect x="68" y="130" width="104" height="32" rx="6" fill="rgba(94,234,212,.4)">
+            <animate attributeName="y" values="130;152;156;156;130" keyTimes="0;.6;.74;.92;1" dur="7s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="32;10;6;6;32" keyTimes="0;.6;.74;.92;1" dur="7s" repeatCount="indefinite"/>
+          </rect>
+        </svg>
+        <div>
+          <h3 style="color:#5eead4">Tragedy of the commons</h3>
+          <p>Everyone acts sensibly — the shared thing dies anyway. The meeting-room calendar. The oceans. The on-call rota.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the old standard winces each step down — and the team follows -->
+          <line x1="30" y1="48" x2="210" y2="48" stroke="rgba(245,245,247,.2)" stroke-dasharray="5 8">
+            <animate attributeName="opacity" values="1;.35;1;.35;1;.35;1;.35;1" keyTimes="0;.175;.28;.392;.5;.608;.7;.825;1" dur="5.5s" repeatCount="indefinite"/>
+          </line>
+          <path d="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36" stroke="#a3a3c2" stroke-width="2.5" fill="none"/>
+          <circle r="6" fill="#cfcfe0">
+            <animateMotion dur="5.5s" repeatCount="indefinite" path="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36"/>
+          </circle>
+          <circle r="4.5" fill="rgba(207,207,224,.5)">
+            <animateMotion dur="5.5s" begin=".8s" repeatCount="indefinite" path="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36"/>
+          </circle>
+        </svg>
+        <div>
+          <h3 style="color:#a3a3c2">Drift to low performance</h3>
+          <p>Bad becomes normal one small excuse at a time. Nobody decided to have flaky tests — the standard just… drifted.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- they one-up each other to the ceiling — then both crash -->
+          <line x1="50" y1="170" x2="190" y2="170" stroke="rgba(245,245,247,.25)"/>
+          <line x1="50" y1="40" x2="190" y2="40" stroke="rgba(244,63,94,.4)" stroke-dasharray="5 7">
+            <animate attributeName="opacity" values=".4;.4;1;1;.4" keyTimes="0;.6;.7;.78;1" dur="9s" repeatCount="indefinite"/>
+          </line>
+          <rect x="85" width="26" rx="3">
+            <animate attributeName="y" values="140;140;112;112;84;84;48;48;162;162;140" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="30;30;58;58;86;86;122;122;8;8;30" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="fill" values="rgba(251,146,60,.8);rgba(251,146,60,.8);rgba(120,120,130,.5);rgba(120,120,130,.5);rgba(251,146,60,.8)" keyTimes="0;.76;.82;.94;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="129" width="26" rx="3">
+            <animate attributeName="y" values="156;126;126;98;98;70;70;44;162;162;156" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="14;44;44;72;72;100;100;126;8;8;14" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="fill" values="rgba(244,63,94,.8);rgba(244,63,94,.8);rgba(120,120,130,.5);rgba(120,120,130,.5);rgba(244,63,94,.8)" keyTimes="0;.76;.82;.94;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+        </svg>
+        <div>
+          <h3 style="color:#fb923c">Escalation</h3>
+          <p>"I'll raise you one." Price wars, feature wars, the reply-all thread. It's a reinforcing loop — it compounds.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the winner gets the resources — including the ones meant for the loser -->
+          <line x1="40" y1="165" x2="200" y2="165" stroke="rgba(245,245,247,.25)"/>
+          <rect x="56" width="28" rx="3" fill="rgba(192,132,252,.35)">
+            <animate attributeName="y" values="105;105;115;115;125;125;135;135;105" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="60;60;50;50;40;40;30;30;60" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="146" width="28" rx="3" fill="rgba(192,132,252,.85)">
+            <animate attributeName="y" values="85;85;73;73;61;61;49;49;85" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="80;80;92;92;104;104;116;116;80" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+          <circle r="4" fill="#e6d4ff">
+            <animateMotion dur="3s" repeatCount="indefinite" path="M 160 20 V 52"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="4" fill="#e6d4ff">
+            <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite"
+              path="M 120 24 C 95 45 75 70 88 86 C 100 98 140 100 156 100"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.85;1" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <div>
+          <h3 style="color:#c084fc">Success to the successful</h3>
+          <p>Winners get the resources to keep winning. The strong team gets the best projects — which makes it stronger.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- each lap of the quick fix gets faster — and the problem grows -->
+          <circle cx="60" cy="100" fill="rgba(251,191,36,.15)" stroke="#fbbf24" stroke-width="2">
+            <animate attributeName="r" values="14;14;21;21" keyTimes="0;.15;.9;1" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 74 90 Q 120 46 160 58 Q 120 94 76 94" stroke="rgba(251,191,36,.5)" stroke-width="2" fill="none"/>
+          <circle r="5" fill="#fde68a">
+            <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear" keyPoints="0;.333;.667;1" keyTimes="0;.5;.8;1"
+              path="M 74 90 Q 120 44 160 58 Q 120 96 74 90 Q 120 44 160 58 Q 120 96 74 90 Q 120 44 160 58 Q 120 96 74 90"/>
+          </circle>
+          <circle cx="170" cy="56" r="13" fill="rgba(251,191,36,.3)">
+            <animate attributeName="r" values="13;16;13" dur="1.6s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 74 112 Q 120 152 154 148" stroke="rgba(245,245,247,.5)" stroke-width="2" stroke-dasharray="5 7" fill="none">
+            <animate attributeName="opacity" values=".7;.1;.1;.7" keyTimes="0;.6;.9;1" dur="8s" repeatCount="indefinite"/>
+          </path>
+          <circle cx="168" cy="148" r="13" fill="none" stroke="rgba(245,245,247,.4)" stroke-dasharray="3 5">
+            <animate attributeName="opacity" values=".8;.12;.12;.8" keyTimes="0;.6;.9;1" dur="8s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <div>
+          <h3 style="color:#fbbf24">Shifting the burden</h3>
+          <p>The workaround works, so the real fix never gets built. Meadows' word for this one is <em style="font-style:normal;color:var(--ink)">addiction</em>. Every "temporary" process is five years old.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the gate stamps ✓ while everyone goes over the wall -->
+          <line x1="120" y1="44" x2="120" y2="92" stroke="rgba(56,189,248,.7)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="120" y1="118" x2="120" y2="166" stroke="rgba(56,189,248,.7)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="120" y1="92" x2="120" y2="118" stroke="#38bdf8" stroke-width="3" stroke-dasharray="3 5"/>
+          <line x1="55" y1="105" x2="105" y2="105" stroke="rgba(245,245,247,.18)" stroke-dasharray="4 7"/>
+          <circle r="5" fill="#7dd3fc">
+            <animateMotion dur="2.4s" repeatCount="indefinite" path="M 48 105 C 70 105 85 36 120 32 C 155 36 170 105 192 105"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.9;1" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="4" fill="#7dd3fc" opacity=".7">
+            <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M 48 105 C 70 105 85 36 120 32 C 155 36 170 105 192 105"/>
+            <animate attributeName="opacity" values="0;.7;.7;0" keyTimes="0;.1;.9;1" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 130 102 l 5 6 10 -12" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0">
+            <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.72;.8;1" dur="1.2s" repeatCount="indefinite"/>
+          </path>
+        </svg>
+        <div>
+          <h3 style="color:#38bdf8">Rule beating</h3>
+          <p>Obeying the letter of the rule while defeating its purpose. Hitting the metric, missing the point.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the score climbs while the actual purpose fades to black -->
+          <g>
+            <animate attributeName="opacity" values=".5;.5;.32;.32;.16;.16;.06;.5" keyTimes="0;.27;.32;.6;.65;.93;.98;1" dur="5.4s" repeatCount="indefinite"/>
+            <circle cx="170" cy="52" r="26" stroke="rgba(245,245,247,.5)" fill="none"/>
+            <circle cx="170" cy="52" r="15" stroke="rgba(245,245,247,.4)" fill="none"/>
+            <circle cx="170" cy="52" r="5" fill="rgba(245,245,247,.4)"/>
+          </g>
+          <circle cx="160" cy="140" r="17" stroke="#f472b6" fill="none" stroke-width="2"/>
+          <circle cx="160" cy="140" r="6" fill="#f472b6"/>
+          <circle r="4.5" fill="#fbcfe8">
+            <animateMotion dur="1.8s" repeatCount="indefinite" path="M 38 100 Q 100 112 154 138"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="160" cy="140" fill="none" stroke="#f472b6" stroke-width="2">
+            <animate attributeName="r" values="6;6;22" keyTimes="0;.82;1" dur="1.8s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;0;.9;0" keyTimes="0;.8;.86;1" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <g stroke="#f472b6" stroke-width="2.5" stroke-linecap="round">
+            <line x1="192" y1="126" x2="192" y2="142" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.28;.31;1" dur="5.4s" repeatCount="indefinite"/>
+            </line>
+            <line x1="199" y1="126" x2="199" y2="142" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.61;.64;1" dur="5.4s" repeatCount="indefinite"/>
+            </line>
+            <line x1="206" y1="126" x2="206" y2="142" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.94;.97;1" dur="5.4s" repeatCount="indefinite"/>
+            </line>
+          </g>
+        </svg>
+        <div>
+          <h3 style="color:#f472b6">Seeking the wrong goal</h3>
+          <p>You get what you measure — exactly that, and nothing more. The big target was the point; the small one was just easier to hit.</p>
+        </div>
+      </div>
+    </div>
+    <div class="trap-pills r" style="--d:.6s">
+      <span class="trap-pill">1 · Resistance</span>
+      <span class="trap-pill">2 · Commons</span>
+      <span class="trap-pill">3 · Drift</span>
+      <span class="trap-pill">4 · Escalation</span>
+      <span class="trap-pill">5 · Success</span>
+      <span class="trap-pill">6 · Burden</span>
+      <span class="trap-pill">7 · Rule beating</span>
+      <span class="trap-pill">8 · Wrong goal</span>
+    </div>
+    <p class="oneliner r" style="--d:.8s;margin-top:1.6vh">Traps are <em>structures, not character flaws</em> — and structures can be redesigned.</p>
+  </div>
+</section>
+
+<!-- ============ 11 · LEVERAGE POINTS ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">Where to Push</div>
+    <h2 class="title r" style="--d:.15s;margin-bottom:1.2vh">Twelve <span class="grad">leverage points.</span></h2>
+    <p class="sub r" style="--d:.3s">Meadows' actual list — places to intervene in a system, in increasing order of power.</p>
+    <svg class="fig" viewBox="0 0 1000 440" aria-hidden="true" style="max-width:min(980px,90vw);margin-top:1.6vh">
+      <!-- the lever assembly — everything that tilts together -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" calcMode="spline" dur="16s" begin="3.2s" repeatCount="indefinite"
+          values="0 210 344;0 210 344;1 210 344;0.8 210 344;0.9 210 344;0 210 344;0 210 344;8.2 210 344;7.4 210 344;7.8 210 344;0 210 344;0 210 344"
+          keyTimes="0;.12;.16;.19;.40;.46;.52;.57;.60;.90;.96;1"
+          keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
+      <line class="draw" pathLength="1" x1="66" y1="386" x2="952" y2="129"
+        stroke="rgba(245,245,247,.7)" stroke-width="3.5" stroke-linecap="round" style="--d:.25s"/>
+      <!-- twelve points, climbing the arm -->
+      <g class="fadein" opacity=".62" style="--d:.55s">
+        <line x1="250" y1="318" x2="250" y2="295" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="250" cy="333" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="250" y="337" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">12</text>
+        <text x="250" y="291" text-anchor="middle" style="font-size:11.5px">Numbers</text>
+      </g>
+      <g class="fadein" opacity=".62" style="--d:.67s">
+        <line x1="311" y1="300" x2="311" y2="239" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="311" cy="315" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="311" y="319" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">11</text>
+        <text x="311" y="235" text-anchor="middle" style="font-size:11.5px">Buffers</text>
+      </g>
+      <g class="fadein" opacity=".62" style="--d:.79s">
+        <line x1="372" y1="282" x2="372" y2="259" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="372" cy="297" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="372" y="301" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">10</text>
+        <text x="372" y="255" text-anchor="middle" style="font-size:11.5px">Stocks &amp; flows</text>
+      </g>
+      <g class="fadein" opacity=".62" style="--d:.91s">
+        <line x1="433" y1="265" x2="433" y2="204" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="433" cy="280" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="433" y="284" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">9</text>
+        <text x="433" y="200" text-anchor="middle" style="font-size:11.5px">Delays</text>
+      </g>
+      <g class="fadein" opacity=".62" style="--d:1.03s">
+        <line x1="494" y1="247" x2="494" y2="224" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="494" cy="262" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="494" y="266" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">8</text>
+        <text x="494" y="220" text-anchor="middle" style="font-size:11.5px">Balancing loops</text>
+      </g>
+      <g class="fadein" opacity=".62" style="--d:1.15s">
+        <line x1="555" y1="229" x2="555" y2="168" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="555" cy="244" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="555" y="248" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">7</text>
+        <text x="555" y="164" text-anchor="middle" style="font-size:11.5px">Reinforcing loops</text>
+      </g>
+      <g class="fadein" style="--d:1.27s">
+        <line x1="616" y1="212" x2="616" y2="189" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="616" cy="227" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="616" y="231" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">6</text>
+        <text x="616" y="185" text-anchor="middle" style="font-size:11.5px;font-weight:650;fill:var(--ink)">Information flows</text>
+        <circle class="pulse" cx="616" cy="227" r="13" fill="none" stroke="#c084fc" stroke-width="1.5" style="--d:3.1s"/>
+      </g>
+      <g class="fadein" opacity=".62" style="--d:1.39s">
+        <line x1="677" y1="194" x2="677" y2="133" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="677" cy="209" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="677" y="213" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">5</text>
+        <text x="677" y="129" text-anchor="middle" style="font-size:11.5px">Rules</text>
+      </g>
+      <g class="fadein" opacity=".62" style="--d:1.51s">
+        <line x1="738" y1="176" x2="738" y2="153" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="738" cy="191" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="738" y="195" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">4</text>
+        <text x="738" y="149" text-anchor="middle" style="font-size:11.5px">Self-organization</text>
+      </g>
+      <g class="fadein" style="--d:1.63s">
+        <line x1="798" y1="159" x2="798" y2="98" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="798" cy="174" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="798" y="178" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">3</text>
+        <text x="798" y="94" text-anchor="middle" style="font-size:11.5px;font-weight:650;fill:var(--ink)">Goals</text>
+        <circle class="pulse" cx="798" cy="174" r="13" fill="none" stroke="#c084fc" stroke-width="1.5" style="--d:3.3s"/>
+      </g>
+      <g class="fadein" style="--d:1.75s">
+        <line x1="859" y1="141" x2="859" y2="118" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="859" cy="156" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="859" y="160" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">2</text>
+        <text x="859" y="114" text-anchor="middle" style="font-size:11.5px;font-weight:650;fill:var(--ink)">Paradigms</text>
+        <circle class="pulse" cx="859" cy="156" r="13" fill="none" stroke="#c084fc" stroke-width="1.5" style="--d:3.5s"/>
+      </g>
+      <g class="fadein" opacity=".62" style="--d:1.87s">
+        <line x1="920" y1="124" x2="920" y2="72" stroke="rgba(245,245,247,.25)"/>
+        <circle cx="920" cy="139" r="13" fill="#0d0d15" stroke="url(#lpg)" stroke-width="2"/>
+        <text x="920" y="143" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--ink)">1</text>
+        <text x="920" y="52" text-anchor="middle" style="font-size:11.5px">Transcending</text>
+        <text x="920" y="66" text-anchor="middle" style="font-size:11.5px">paradigms</text>
+      </g>
+      <!-- bands -->
+      <g stroke="rgba(245,245,247,.22)" fill="none">
+        <path class="fadein" d="M 238 380 v-6 M 238 380 H 384 M 384 380 v-6" style="--d:2.1s"/>
+        <path class="fadein" d="M 421 327 v-6 M 421 327 H 567 M 567 327 v-6" style="--d:2.25s"/>
+        <path class="fadein" d="M 604 273 v-6 M 604 273 H 750 M 750 273 v-6" style="--d:2.4s"/>
+        <path class="fadein" d="M 786 219 v-6 M 786 219 H 932 M 932 219 v-6" style="--d:2.55s"/>
+      </g>
+      <g style="font-size:10px;letter-spacing:.15em" fill="rgba(245,245,247,.34)">
+        <text class="fadein" x="311" y="398" text-anchor="middle" style="--d:2.15s">PHYSICAL EVENTS</text>
+        <text class="fadein" x="494" y="345" text-anchor="middle" style="--d:2.3s">PATTERNS OF BEHAVIOR</text>
+        <text class="fadein" x="677" y="291" text-anchor="middle" style="--d:2.45s">SYSTEM STRUCTURE</text>
+        <text class="fadein" x="859" y="237" text-anchor="middle" style="--d:2.6s">MENTAL MODELS</text>
+      </g>
+      <!-- act 1: a tonne of effort, low on the arm -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.103;.125;.42;.46;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 -80;0 -80;0 0;0 0" keyTimes="0;.105;.13;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <rect x="269" y="303" width="30" height="20" rx="4" fill="rgba(251,146,60,.85)"/>
+        <rect x="273" y="285" width="22" height="16" rx="4" fill="rgba(251,146,60,.55)"/>
+      </g>
+      <circle cx="284" cy="318" fill="none" stroke="#fb923c" stroke-width="2" opacity="0">
+        <animate attributeName="r" values="8;8;28;30;30" keyTimes="0;.125;.17;.22;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;.7;0;0" keyTimes="0;.125;.155;.21;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+      </circle>
+      <!-- act 2: a pebble at the very top -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.503;.525;.92;.96;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 -60;0 -60;0 0;0 0" keyTimes="0;.505;.53;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <circle cx="893" cy="140" r="6" fill="#c084fc"/>
+      </g>
+      <circle cx="893" cy="140" fill="none" stroke="#c084fc" stroke-width="2" opacity="0">
+        <animate attributeName="r" values="6;6;24;28;28" keyTimes="0;.525;.57;.63;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;.8;0;0" keyTimes="0;.525;.555;.62;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+      </circle>
+      </g>
+      <polygon class="fadein" points="210,346 186,404 234,404"
+        fill="rgba(255,255,255,.09)" stroke="rgba(245,245,247,.4)" stroke-width="1.5" style="--d:.3s"/>
+      <!-- the system, sitting on the short end — it lifts only when the push is smart -->
+      <g>
+        <animateTransform attributeName="transform" type="translate" calcMode="spline" dur="16s" begin="3.2s" repeatCount="indefinite"
+          values="0 0;0 0;0 -1.8;0 -1.4;0 -1.6;0 0;0 0;0 -20;0 -18;0 -19;0 0;0 0"
+          keyTimes="0;.12;.16;.19;.40;.46;.52;.57;.60;.90;.96;1"
+          keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
+        <circle cx="90" cy="345" r="44" fill="none" stroke="rgba(94,234,212,.6)" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" values="0;0;.8;.8;0;0" keyTimes="0;.54;.58;.88;.94;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        </circle>
+        <g class="pop" style="--d:.45s">
+          <circle cx="90" cy="345" r="36" fill="url(#ballg)"/>
+          <text x="90" y="341" text-anchor="middle" style="font-size:13px;font-weight:650;fill:#fff">The</text>
+          <text x="90" y="358" text-anchor="middle" style="font-size:13px;font-weight:650;fill:#fff">System</text>
+        </g>
+      </g>
+      <!-- the moral, told in two acts -->
+      <g style="font-size:13.5px" text-anchor="middle">
+        <text x="120" y="206" fill="#fb923c" opacity="0">a tonne of effort, low on the arm…
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.12;.15;.42;.46;1" dur="16s" begin="3.2s" repeatCount="indefinite"/></text>
+        <text x="120" y="228" fill="rgba(245,245,247,.6)" opacity="0">…barely moves it
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.15;.18;.42;.46;1" dur="16s" begin="3.2s" repeatCount="indefinite"/></text>
+        <text x="120" y="206" fill="#c084fc" opacity="0">a pebble, at the very top…
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.52;.55;.90;.94;1" dur="16s" begin="3.2s" repeatCount="indefinite"/></text>
+        <text x="120" y="228" fill="#5eead4" opacity="0">…lifts the whole system
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.55;.58;.90;.94;1" dur="16s" begin="3.2s" repeatCount="indefinite"/></text>
+      </g>
+      <text class="fadein lbl-sm" x="985" y="432" text-anchor="end" style="--d:2.9s">layout after Werner Vogels' final keynote · re:Invent 2025</text>
+    </svg>
+    <p class="oneliner r" style="--d:3.1s;margin-top:1.2vh">The higher you climb, <em>the more one change changes everything.</em></p>
+  </div>
+</section>
+
+<!-- ============ 12 · REAL-WORLD SYSTEMS ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">Everywhere You Look</div>
+    <h2 class="title r" style="--d:.15s">You already live<br><span class="grad">inside systems.</span></h2>
+    <div class="trap-stage r" style="--d:.45s">
+      <div class="trap-intro">
+        <p>Six systems you were in this morning.</p>
+        <p class="ti-hint">press → to look around</p>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <defs>
+            <g id="person12">
+              <circle cy="-4" r="4"/>
+              <path d="M -6 9 a 6 6 0 0 1 12 0 z"/>
+            </g>
+          </defs>
+          <!-- the org chart everyone drew -->
+          <g stroke="rgba(122,162,255,.3)" fill="none" stroke-width="1.5">
+            <path d="M 120 46 V 66 M 56 66 H 184 M 56 66 V 82 M 120 66 V 82 M 184 66 V 82"/>
+            <path d="M 56 102 V 118 M 36 118 H 76 M 36 118 V 132 M 120 102 V 118 M 106 118 H 134 M 106 118 V 132 M 134 118 V 132 M 184 102 V 118 M 164 118 H 204 M 164 118 V 132 M 204 118 V 132"/>
+            <!-- the two seat-lines that get rewired flash during the swap -->
+            <path d="M 76 118 V 132" stroke="rgba(122,162,255,.3)">
+              <animate attributeName="stroke" values="rgba(122,162,255,.3);rgba(122,162,255,.3);#c084fc;rgba(122,162,255,.3)" keyTimes="0;.66;.74;.85" dur="12s" repeatCount="indefinite"/>
+            </path>
+            <path d="M 164 118 V 132" stroke="rgba(122,162,255,.3)">
+              <animate attributeName="stroke" values="rgba(122,162,255,.3);rgba(122,162,255,.3);#c084fc;rgba(122,162,255,.3)" keyTimes="0;.66;.74;.85" dur="12s" repeatCount="indefinite"/>
+            </path>
+          </g>
+          <!-- culture touches each person as it sweeps past: purple halos, clockwise -->
+          <g fill="#c084fc">
+            <circle cx="120" cy="34" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="0s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle>
+            <circle cx="184" cy="86" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="1s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="1s" repeatCount="indefinite"/></circle>
+            <circle cx="204" cy="138" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="1.7s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="1.7s" repeatCount="indefinite"/></circle>
+            <circle cx="164" cy="138" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="2.2s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="2.2s" repeatCount="indefinite"/></circle>
+            <circle cx="134" cy="138" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="2.7s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="2.7s" repeatCount="indefinite"/></circle>
+            <circle cx="106" cy="138" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="3.2s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="3.2s" repeatCount="indefinite"/></circle>
+            <circle cx="76" cy="138" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="3.7s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="3.7s" repeatCount="indefinite"/></circle>
+            <circle cx="36" cy="138" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="4.2s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="4.2s" repeatCount="indefinite"/></circle>
+            <circle cx="56" cy="86" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="4.9s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="4.9s" repeatCount="indefinite"/></circle>
+            <circle cx="120" cy="86" r="7" opacity="0"><animate attributeName="opacity" values="0;.5;0;0" keyTimes="0;.07;.15;1" dur="6s" begin="5.4s" repeatCount="indefinite"/><animate attributeName="r" values="7;16;7;7" keyTimes="0;.07;.15;1" dur="6s" begin="5.4s" repeatCount="indefinite"/></circle>
+          </g>
+          <!-- the people -->
+          <use href="#person12" x="120" y="38" fill="#7aa2ff" transform="translate(120 38) scale(1.18) translate(-120 -38)"/>
+          <use href="#person12" x="56" y="90" fill="#9db9ff"/>
+          <use href="#person12" x="120" y="90" fill="#9db9ff"/>
+          <use href="#person12" x="184" y="90" fill="#9db9ff"/>
+          <use href="#person12" x="36" y="142" fill="#9db9ff"/>
+          <use href="#person12" x="106" y="142" fill="#9db9ff"/>
+          <use href="#person12" x="134" y="142" fill="#9db9ff"/>
+          <!-- the reorg: two people swap teams, arcing across the company -->
+          <use href="#person12" x="76" y="142" fill="#bcd0ff">
+            <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear"
+              keyPoints="0;0;1;1" keyTimes="0;.66;.82;1" path="M 0 0 C 14 52 74 52 88 0"/>
+          </use>
+          <use href="#person12" x="164" y="142" fill="#bcd0ff">
+            <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear"
+              keyPoints="0;0;1;1" keyTimes="0;.66;.82;1" path="M 0 0 C -14 -80 -74 -80 -88 0"/>
+          </use>
+          <!-- churn: the far seat quits, drifts out… -->
+          <use href="#person12" x="204" y="142" fill="#9db9ff">
+            <animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;.25;.29;.94;.97;1" dur="12s" repeatCount="indefinite"/>
+          </use>
+          <use href="#person12" fill="rgba(157,185,255,.6)">
+            <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear"
+              keyPoints="0;0;1;1" keyTimes="0;.25;.36;1" path="M 204 142 C 216 168 236 180 258 188"/>
+            <animate attributeName="opacity" values="0;0;.8;0;0" keyTimes="0;.25;.3;.36;1" dur="12s" repeatCount="indefinite"/>
+          </use>
+          <!-- …and a hire walks in to the empty seat -->
+          <use href="#person12" fill="#bcd0ff">
+            <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear"
+              keyPoints="0;0;1;1" keyTimes="0;.37;.5;1" path="M 256 110 C 238 120 222 132 204 142"/>
+            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.37;.45;.92;.95" dur="12s" repeatCount="indefinite"/>
+          </use>
+          <!-- the loop nobody drew -->
+          <ellipse cx="120" cy="96" rx="106" ry="76" fill="none" stroke="rgba(192,132,252,.4)"
+            stroke-width="1.8" stroke-dasharray="5 9">
+            <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="2.2s" repeatCount="indefinite"/>
+          </ellipse>
+          <circle r="4" fill="#e6d4ff">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M 120 20 a 106 76 0 1 1 -0.1 0"/>
+          </circle>
+          <text x="232" y="30" text-anchor="end" style="font-size:10px" fill="rgba(192,132,252,.65)">culture</text>
+        </svg>
+        <div>
+          <h3 style="color:#7aa2ff">A company</h3>
+          <p>Hiring fills the stock, attrition drains it. Culture is the loop nobody drew — and every reorg proves the point: same people, new wiring, different company.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- fills in drops, cracks, dumps — then slowly heals -->
+          <clipPath id="heartclip12">
+            <path d="M 120 162 C 68 122 58 80 84 64 c 16 -10 31 2 36 15 c 5 -13 20 -25 36 -15 c 26 16 16 58 -36 98 z"/>
+          </clipPath>
+          <g>
+            <animateTransform attributeName="transform" type="translate" dur="10s" repeatCount="indefinite"
+              values="0 0;0 0;3 0;-3 0;2 0;0 0;0 0" keyTimes="0;.6;.62;.64;.66;.68;1"/>
+            <rect x="55" y="150" width="130" height="120" fill="rgba(244,114,182,.45)" clip-path="url(#heartclip12)">
+              <animate attributeName="y" values="150;86;86;152;150;148" keyTimes="0;.58;.6;.66;.85;1" dur="10s" repeatCount="indefinite"/>
+            </rect>
+            <path d="M 120 162 C 68 122 58 80 84 64 c 16 -10 31 2 36 15 c 5 -13 20 -25 36 -15 c 26 16 16 58 -36 98 z"
+              fill="none" stroke="#f472b6" stroke-width="2.5"/>
+            <path d="M 113 70 l 8 18 -12 14 10 16 -6 22" fill="none" stroke="#fff" stroke-width="2"
+              stroke-linejoin="round" stroke-linecap="round" opacity="0">
+              <animate attributeName="opacity" values="0;0;.95;.7;.35;.12;0;0" keyTimes="0;.6;.62;.7;.8;.9;.96;1" dur="10s" repeatCount="indefinite"/>
+            </path>
+          </g>
+          <circle r="3.5" fill="#fbcfe8">
+            <animateMotion dur="1.25s" repeatCount="indefinite" path="M 120 24 V 66"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="1.25s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <div>
+          <h3 style="color:#f472b6">A family</h3>
+          <p>Trust accumulates in drops — and drains in buckets. Old arguments are loops on repeat.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- shipping piles up… the debt side balloons later, and the beam slams -->
+          <path d="M 120 152 L 100 180 H 140 Z" fill="rgba(255,255,255,.08)" stroke="rgba(245,245,247,.4)" stroke-width="1.5"/>
+          <text x="58" y="196" text-anchor="middle" style="font-size:10px" fill="rgba(245,245,247,.5)">ship</text>
+          <text x="182" y="196" text-anchor="middle" style="font-size:10px" fill="rgba(245,245,247,.5)">debt</text>
+          <g opacity="0">
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.52;.56;.7;.74;1" dur="10s" repeatCount="indefinite"/>
+            <circle cx="196" cy="58" r="10" fill="none" stroke="rgba(251,146,60,.7)" stroke-width="2"/>
+            <line x1="196" y1="58" x2="196" y2="51" stroke="#fb923c" stroke-width="2" stroke-linecap="round">
+              <animateTransform attributeName="transform" type="rotate" values="0 196 58;360 196 58" dur="1.4s" repeatCount="indefinite"/>
+            </line>
+          </g>
+          <g>
+            <animateTransform attributeName="transform" type="rotate" dur="10s" repeatCount="indefinite"
+              values="-2 120 150;-6 120 150;-6 120 150;-10 120 150;-10 120 150;-14 120 150;-14 120 150;12 120 150;6 120 150;-2 120 150"
+              keyTimes="0;.14;.2;.34;.4;.54;.7;.76;.88;1"/>
+            <line x1="40" y1="150" x2="200" y2="150" stroke="rgba(245,245,247,.6)" stroke-width="3" stroke-linecap="round"/>
+            <rect x="48" y="128" width="26" height="18" rx="4" fill="rgba(192,132,252,.85)"/>
+            <rect x="48" y="108" width="26" height="18" rx="4" fill="rgba(192,132,252,.65)" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.13;.16;1" dur="10s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="48" y="88" width="26" height="18" rx="4" fill="rgba(192,132,252,.5)" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.33;.36;1" dur="10s" repeatCount="indefinite"/>
+            </rect>
+            <g transform="translate(179 137)">
+              <g>
+                <animateTransform attributeName="transform" type="scale" dur="10s" repeatCount="indefinite"
+                  values="1;1;1;2.1;2.1;1" keyTimes="0;.68;.72;.76;.94;1"/>
+                <rect x="-13" y="-9" width="26" height="18" rx="4" fill="rgba(251,146,60,.75)"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <div>
+          <h3 style="color:#c084fc">A product team</h3>
+          <p>Shipping speed versus technical debt — a balancing act ruled by delays, which is why it feels fine right up until it doesn't.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- habits fill, then stop — and the heartbeat answers months late, both ways -->
+          <rect x="103" y="48" width="34" height="116" rx="17" fill="none" stroke="rgba(94,234,212,.55)" stroke-width="2.5"/>
+          <rect x="108" y="146" width="24" height="13" rx="6" fill="rgba(94,234,212,.4)">
+            <animate attributeName="y" values="146;76;76;132;146" keyTimes="0;.5;.6;.95;1" dur="11s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="13;83;83;27;13" keyTimes="0;.5;.6;.95;1" dur="11s" repeatCount="indefinite"/>
+          </rect>
+          <g>
+            <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.48;.52;.96;1" dur="11s" repeatCount="indefinite"/>
+            <circle r="3.5" fill="#a7f3e9">
+              <animateMotion dur="1.1s" repeatCount="indefinite" path="M 120 20 V 44"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="1.1s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          <g transform="translate(0 184)">
+            <g>
+              <animateTransform attributeName="transform" type="scale" dur="11s" repeatCount="indefinite"
+                values="1 .35;1 .35;1 1.25;1 1.25;1 .55;1 .35" keyTimes="0;.25;.6;.75;.95;1"/>
+              <path d="M 36 0 h 30 l 9 -16 15 28 9 -12 h 105" stroke="rgba(94,234,212,.55)" stroke-width="2" fill="none"/>
+            </g>
+          </g>
+        </svg>
+        <div>
+          <h3 style="color:#5eead4">Your health</h3>
+          <p>Your body is the stock. Every habit is a flow. Results arrive months late — in both directions.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the mercury crosses the line we drew for ourselves -->
+          <g stroke="rgba(56,189,248,.6)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 8" fill="none">
+            <path d="M 28 82 H 98"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur=".6s" repeatCount="indefinite"/></path>
+            <path d="M 28 112 H 98"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur=".75s" repeatCount="indefinite"/></path>
+          </g>
+          <path d="M 142 96 H 214" stroke="rgba(245,245,247,.3)" stroke-width="2" stroke-dasharray="3 12" stroke-linecap="round">
+            <animate attributeName="stroke-dashoffset" from="0" to="-15" dur="6s" repeatCount="indefinite"/>
+          </path>
+          <line x1="100" y1="72" x2="140" y2="72" stroke="rgba(244,63,94,.55)" stroke-dasharray="4 5"/>
+          <text x="146" y="76" style="font-size:10px" fill="rgba(244,63,94,.7)">+1.5°</text>
+          <rect x="112" y="40" width="16" height="100" rx="8" fill="none" stroke="rgba(56,189,248,.7)" stroke-width="2.5"/>
+          <rect x="116" y="126" width="8" height="16">
+            <animate attributeName="y" values="126;74;50;50;126" keyTimes="0;.55;.8;.96;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="16;68;92;92;16" keyTimes="0;.55;.8;.96;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="fill" values="#38bdf8;#38bdf8;#f43f5e;#f43f5e;#38bdf8" keyTimes="0;.55;.62;.96;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+          <circle cx="120" cy="152" r="17" opacity=".85">
+            <animate attributeName="fill" values="#38bdf8;#38bdf8;#f43f5e;#f43f5e;#38bdf8" keyTimes="0;.55;.62;.96;1" dur="9s" repeatCount="indefinite"/>
+          </circle>
+          <g opacity="0">
+            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.58;.62;.94;1" dur="9s" repeatCount="indefinite"/>
+            <circle cx="120" cy="152" fill="none" stroke="#f43f5e" stroke-width="2">
+              <animate attributeName="r" values="18;34" dur="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values=".8;0" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </svg>
+        <div>
+          <h3 style="color:#38bdf8">The climate</h3>
+          <p>Emissions flow in fast. The carbon stock drains out over centuries. The thermometer is the level of the tub.</p>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the leader rides the boom — the followers arrive at the crash -->
+          <line x1="30" y1="172" x2="212" y2="172" stroke="rgba(245,245,247,.25)"/>
+          <path d="M 30 150 C 55 95 70 60 88 64 C 100 67 100 130 116 138 C 128 144 138 75 156 62 C 170 53 180 105 192 128"
+            stroke="#fbbf24" stroke-width="2.5" fill="none"/>
+          <circle r="5.5" fill="#fde68a">
+            <animateMotion dur="4.5s" repeatCount="indefinite"
+              path="M 30 150 C 55 95 70 60 88 64 C 100 67 100 130 116 138 C 128 144 138 75 156 62 C 170 53 180 105 192 128"/>
+          </circle>
+          <circle r="4" fill="rgba(253,230,138,.7)">
+            <animateMotion dur="4.5s" begin=".4s" repeatCount="indefinite"
+              path="M 30 150 C 55 95 70 60 88 64 C 100 67 100 130 116 138 C 128 144 138 75 156 62 C 170 53 180 105 192 128"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="4.5s" begin=".4s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="3.4" fill="rgba(253,230,138,.45)">
+            <animateMotion dur="4.5s" begin=".8s" repeatCount="indefinite"
+              path="M 30 150 C 55 95 70 60 88 64 C 100 67 100 130 116 138 C 128 144 138 75 156 62 C 170 53 180 105 192 128"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="4.5s" begin=".8s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="2.8" fill="rgba(253,230,138,.3)">
+            <animateMotion dur="4.5s" begin="1.2s" repeatCount="indefinite"
+              path="M 30 150 C 55 95 70 60 88 64 C 100 67 100 130 116 138 C 128 144 138 75 156 62 C 170 53 180 105 192 128"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="4.5s" begin="1.2s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <div>
+          <h3 style="color:#fbbf24">The economy</h3>
+          <p>Reinforcing booms, balancing busts, and delays that surprise everyone — every time.</p>
+        </div>
+      </div>
+    </div>
+    <div class="trap-pills r" style="--d:.6s">
+      <span class="trap-pill">1 · Company</span>
+      <span class="trap-pill">2 · Family</span>
+      <span class="trap-pill">3 · Product team</span>
+      <span class="trap-pill">4 · Health</span>
+      <span class="trap-pill">5 · Climate</span>
+      <span class="trap-pill">6 · Economy</span>
+    </div>
+    <p class="oneliner r" style="--d:.8s;margin-top:1.6vh"><em>"There are no separate systems. The world is a continuum."</em></p>
+  </div>
+</section>
+
+<!-- ============ 13 · ONE SYSTEM, MAPPED ============ -->
+<section class="slide" data-hue="20">
+  <div class="wrap">
+    <div class="kicker r">Worked Example</div>
+    <h2 class="title r" style="--d:.15s">Your overloaded team, <span class="grad">mapped.</span></h2>
+    <svg class="fig" viewBox="0 0 760 410" aria-hidden="true" style="max-width:min(780px,86vw);margin-top:1.6vh">
+      <!-- requests cloud → intake valve → WIP stock → delivery valve → done -->
+      <g class="fadein" style="--d:.3s">
+        <path d="M 48 118 a 13 13 0 0 1 6 -24 a 15 15 0 0 1 28 -7 a 13 13 0 0 1 22 9 a 11 11 0 0 1 -2 22 z"
+          fill="rgba(255,255,255,.05)" stroke="rgba(245,245,247,.3)"/>
+        <text class="lbl-sm" x="76" y="140" text-anchor="middle">requests</text>
+      </g>
+      <path class="draw" pathLength="1" d="M 108 112 H 142" fill="none" stroke="rgba(245,245,247,.4)" stroke-width="3" style="--d:.45s"/>
+      <g class="pop" style="--d:.6s">
+        <path d="M 144 103 L 144 121 L 158 112 Z M 172 103 L 172 121 L 158 112 Z" fill="#7aa2ff"/>
+        <line x1="158" y1="112" x2="158" y2="97" stroke="#7aa2ff" stroke-width="2"/>
+        <line x1="150" y1="97" x2="166" y2="97" stroke="#7aa2ff" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <path class="draw" pathLength="1" d="M 174 112 H 223" fill="none" stroke="rgba(245,245,247,.4)" stroke-width="3" style="--d:.7s"/>
+      <rect class="water" x="230" y="83" width="210" height="60" rx="6" fill="url(#wg)"/>
+      <rect class="fadein" x="225" y="78" width="220" height="70" rx="8" fill="none"
+        stroke="rgba(245,245,247,.5)" stroke-width="2.5" style="--d:.2s"/>
+      <text class="fadein lbl-strong" x="335" y="118" text-anchor="middle" style="--d:.9s;font-size:13.5px;letter-spacing:.14em">WORK IN PROGRESS</text>
+      <path class="draw" pathLength="1" d="M 447 112 H 497" fill="none" stroke="rgba(245,245,247,.4)" stroke-width="3" style="--d:.8s"/>
+      <g class="pop" style="--d:.95s">
+        <path d="M 499 103 L 499 121 L 513 112 Z M 527 103 L 527 121 L 513 112 Z" fill="#5eead4"/>
+        <line x1="513" y1="112" x2="513" y2="97" stroke="#5eead4" stroke-width="2"/>
+        <line x1="505" y1="97" x2="521" y2="97" stroke="#5eead4" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <path class="draw" pathLength="1" d="M 529 112 H 558" fill="none" stroke="rgba(245,245,247,.4)" stroke-width="3" style="--d:1.05s"/>
+      <text class="fadein" x="568" y="117" style="--d:1.15s;fill:#7fe7d4">delivered ✓</text>
+      <!-- the leverage point -->
+      <circle class="pulse" cx="158" cy="112" r="17" fill="none" stroke="#5eead4" stroke-width="1.5" style="--d:2.9s"/>
+      <circle class="fadein" cx="158" cy="112" r="22" fill="none" stroke="rgba(94,234,212,.4)"
+        stroke-dasharray="3 6" style="--d:2.7s"/>
+      <text class="fadein lbl-strong" x="158" y="56" text-anchor="middle" style="--d:2.8s;fill:#5eead4">the leverage point</text>
+      <text class="fadein lbl-sm" x="158" y="74" text-anchor="middle" style="--d:2.95s">an intake rule — control the tap</text>
+      <!-- shortcuts fill a hidden stock -->
+      <line class="flowdash fadein" x1="335" y1="152" x2="335" y2="228" stroke="#fb923c" stroke-width="2.5" style="--d:1.3s"/>
+      <path class="fadein" d="M 331 224 l 4 7 4 -7" fill="none" stroke="#fb923c" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round" style="--d:1.45s"/>
+      <text class="fadein" x="350" y="186" style="--d:1.5s;fill:#fdba74">shortcuts</text>
+      <text class="fadein lbl-sm" x="350" y="204" style="--d:1.6s">under pressure</text>
+      <rect class="fadein" x="250" y="240" width="170" height="52" rx="6" fill="url(#rga)" style="--d:1.75s"/>
+      <rect class="fadein" x="245" y="235" width="180" height="62" rx="8" fill="none"
+        stroke="rgba(251,146,60,.55)" stroke-width="2.5" style="--d:1.65s"/>
+      <text class="fadein lbl-strong" x="335" y="262" text-anchor="middle" style="--d:1.85s;font-size:13px;letter-spacing:.12em;fill:#fdba74">TECHNICAL DEBT</text>
+      <text class="fadein lbl-sm" x="335" y="281" text-anchor="middle" style="--d:1.95s">the hidden stock</text>
+      <!-- the debt narrows the drain — months later -->
+      <path class="draw" pathLength="1" d="M 427 262 C 560 262 560 190 518 130" fill="none"
+        stroke="#fb7185" stroke-width="2.5" marker-end="url(#ahw)" style="--d:2.1s"/>
+      <path class="fadein" d="M 545 216 l 13 -7 M 549 227 l 13 -7" fill="none"
+        stroke="rgba(245,245,247,.55)" stroke-width="2" style="--d:2.35s"/>
+      <text class="fadein lbl-sm" x="572" y="238" style="--d:2.45s">months later</text>
+      <text class="fadein" x="552" y="162" style="--d:2.3s;fill:#fb7185;font-size:13px">− slows delivery</text>
+      <!-- R: the vicious loop -->
+      <text class="fadein" x="458" y="206" text-anchor="middle"
+        style="--d:2.55s;fill:#fb7185;font-size:26px;font-weight:700">R</text>
+      <g class="spin" style="animation-duration:11s">
+        <path class="fadein" d="M 458 174 A 26 26 0 1 1 457 175" fill="none"
+          stroke="rgba(251,113,133,.5)" stroke-width="1.8" marker-end="url(#ahw)" style="--d:2.65s"/>
+      </g>
+      <!-- the fix that doesn't work -->
+      <g class="fadein" style="--d:3.1s">
+        <text x="648" y="310" text-anchor="middle" style="font-size:15px;fill:var(--ink-dim);font-weight:600">"work harder!"</text>
+        <line x1="592" y1="305" x2="704" y2="305" stroke="#f472b6" stroke-width="2.5" stroke-linecap="round"/>
+        <text class="lbl-sm" x="648" y="332" text-anchor="middle">widens the drain — the loop eats it</text>
+      </g>
+    </svg>
+    <div class="chips">
+      <span class="chip step-item">two stocks</span>
+      <span class="chip step-item">one reinforcing loop</span>
+      <span class="chip step-item">one delay</span>
+      <span class="chip step-item"><b>one high-leverage valve</b></span>
+    </div>
+    <p class="oneliner r" style="--d:3.4s">Everyone argues at the drain. <em>The leverage is at the tap.</em></p>
+  </div>
+</section>
+
+<!-- ============ 14 · THE MINDSET SHIFT ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="scrim"></div>
+    <div class="glow"></div>
+    <div class="kicker r">The Shift</div>
+    <p class="r" style="--d:.4s"><span class="shift-old">"What caused this?"</span></p>
+    <p class="shift-arrow r" style="--d:1.9s">↓</p>
+    <h2 class="shift-new wline">
+      <span class="w" style="--d:2.4s">"What</span>
+      <span class="w grad" style="--d:2.6s">structure</span>
+      <span class="w" style="--d:2.8s">keeps</span>
+      <span class="w" style="--d:3s">producing</span>
+      <span class="w" style="--d:3.2s">this?"</span>
+    </h2>
+    <p class="oneliner r" style="--d:3.9s">Stop hunting for culprits. <em>Start mapping structures.</em></p>
+  </div>
+</section>
+
+<!-- ============ 15 · PRACTICAL METHOD ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">In Practice</div>
+    <h2 class="title r" style="--d:.15s">Six moves. <span class="grad">Any system.</span></h2>
+    <div class="method-row r" style="--d:.4s">
+      <div class="method">
+        <div class="step step-item"><div class="n">1</div>
+          <div><h3>Map the system</h3><p>Draw what connects to what. Paper is fine.</p></div></div>
+        <div class="step step-item"><div class="n">2</div>
+          <div><h3>Identify stocks and flows</h3><p>What accumulates? What fills it, what drains it?</p></div></div>
+        <div class="step step-item"><div class="n">3</div>
+          <div><h3>Look for feedback loops</h3><p>What amplifies? What pushes back?</p></div></div>
+        <div class="step step-item"><div class="n">4</div>
+          <div><h3>Notice the delays</h3><p>When will you actually see the results of acting?</p></div></div>
+        <div class="step step-item"><div class="n">5</div>
+          <div><h3>Find the leverage points</h3><p>Where does a small push travel furthest?</p></div></div>
+        <div class="step final step-item"><div class="n">6</div>
+          <div><h3>Change structure, not symptoms</h3><p>The only change that lasts.</p></div></div>
+      </div>
+      <svg class="fig mfig" viewBox="0 0 460 400" aria-hidden="true">
+        <defs>
+          <clipPath id="chartclip15"><rect x="40" y="296" width="398" height="82"/></clipPath>
+          <linearGradient id="settleg" x1="570" y1="0" x2="966" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fb923c"/><stop offset="1" stop-color="#5eead4"/>
+          </linearGradient>
+        </defs>
+        <text class="mhint lbl-sm" x="230" y="195" text-anchor="middle">the method, live — press →</text>
+        <!-- 1 · map: sketch the parts and what touches what -->
+        <g class="ml l1">
+          <g fill="none" stroke="rgba(245,245,247,.45)" stroke-width="2">
+            <circle class="mdraw" pathLength="1" cx="70" cy="100" r="16"/>
+            <circle class="mdraw p2" pathLength="1" cx="220" cy="120" r="20"/>
+            <circle class="mdraw" pathLength="1" cx="375" cy="140" r="16"/>
+            <circle class="mdraw" pathLength="1" cx="250" cy="262" r="14"/>
+            <path class="mdraw" pathLength="1" d="M 88 104 Q 145 108 198 115"/>
+            <path class="mdraw" pathLength="1" d="M 242 124 Q 300 130 357 137"/>
+            <path class="mdraw" pathLength="1" d="M 372 156 Q 330 235 266 259"/>
+            <path class="mdraw" pathLength="1" d="M 236 256 Q 180 235 208 142"/>
+          </g>
+          <text class="lbl-sm" x="70" y="138" text-anchor="middle">requests</text>
+          <text class="lbl-sm p2" x="220" y="156" text-anchor="middle">the team</text>
+          <text class="lbl-sm" x="375" y="172" text-anchor="middle">output</text>
+          <text class="lbl-sm" x="250" y="294" text-anchor="middle">rework</text>
+        </g>
+        <!-- 2 · stocks & flows: the team becomes a stock with a tap and a drain -->
+        <g class="ml l2">
+          <rect class="water pre" x="171" y="94" width="98" height="52" rx="6" fill="url(#wg)"/>
+          <rect class="mdraw" pathLength="1" x="165" y="88" width="110" height="64" rx="10"
+            fill="none" stroke="rgba(245,245,247,.55)" stroke-width="2.5"/>
+          <text class="lbl-sm" x="220" y="80" text-anchor="middle">the team — a stock</text>
+          <path d="M 121 111 L 121 129 L 135 120 Z M 149 111 L 149 129 L 135 120 Z" fill="#7aa2ff"/>
+          <g class="pre-handle">
+            <line x1="135" y1="120" x2="135" y2="105" stroke="#7aa2ff" stroke-width="2"/>
+            <line x1="127" y1="105" x2="143" y2="105" stroke="#7aa2ff" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <line class="flowdash" x1="92" y1="106" x2="116" y2="116" stroke="#7aa2ff" stroke-width="2.5" stroke-linecap="round"/>
+          <line class="flowdash" x1="280" y1="124" x2="354" y2="136" stroke="#5eead4" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+        <!-- 3 · feedback: the loop closes, the output starts oscillating -->
+        <g class="ml l3">
+          <path class="mdraw lr" pathLength="1" d="M 375 158 C 392 225 330 262 268 263" fill="none"
+            stroke="#fb923c" stroke-width="2.5" marker-end="url(#ahw)"/>
+          <path class="mdraw lr" pathLength="1" d="M 234 254 C 172 238 160 185 178 148" fill="none"
+            stroke="#fb923c" stroke-width="2.5" marker-end="url(#ahw)"/>
+          <text class="lr" x="312" y="228" text-anchor="middle" style="font-size:20px;font-weight:700;fill:#fb923c">R</text>
+          <circle class="pre p4" r="4" fill="#fde68a">
+            <animateMotion dur="2.2s" repeatCount="indefinite"
+              path="M 280 124 C 320 130 357 137 372 150 C 392 225 330 262 268 263 C 230 256 172 238 178 148 C 185 135 230 124 280 124"/>
+          </circle>
+          <line x1="40" y1="372" x2="448" y2="372" stroke="rgba(245,245,247,.2)"/>
+          <line x1="40" y1="372" x2="40" y2="302" stroke="rgba(245,245,247,.2)"/>
+          <line x1="40" y1="330" x2="448" y2="330" stroke="rgba(245,245,247,.22)" stroke-dasharray="5 7"/>
+          <text class="lbl-sm" x="48" y="312">output</text>
+          <text class="lbl-sm" x="446" y="390" text-anchor="end">time →</text>
+          <g clip-path="url(#chartclip15)">
+            <g class="pre p4">
+              <animateTransform attributeName="transform" type="translate" from="0 0" to="-264 0"
+                dur="3s" repeatCount="indefinite"/>
+              <path stroke="rgba(251,146,60,.75)" stroke-width="2.5" fill="none"
+                d="M 42 340 C 57 340 60 310 75 310 C 90 310 93 352 108 352 C 123 352 126 318 141 318 C 156 318 159 346 174 346 C 189 346 192 306 207 306 C 222 306 225 338 240 338 C 255 338 258 322 273 322 C 288 322 291 340 306 340 C 321 340 324 310 339 310 C 354 310 357 352 372 352 C 387 352 390 318 405 318 C 420 318 423 346 438 346 C 453 346 456 306 471 306 C 486 306 489 338 504 338 C 519 338 522 322 537 322 C 552 322 555 340 570 340 C 585 340 588 310 603 310 C 618 310 621 352 636 352 C 651 352 654 318 669 318 C 684 318 687 346 702 346 C 717 346 720 306 735 306 C 750 306 753 338 768 338 C 783 338 786 322 801 322 C 816 322 819 340 834 340"/>
+            </g>
+          </g>
+          <g class="pre p4" fill="#fde68a">
+            <animateTransform attributeName="transform" type="translate" calcMode="spline"
+              values="438 346;438 306;438 338;438 322;438 340;438 310;438 352;438 318;438 346"
+              keyTimes="0;.125;.25;.375;.5;.625;.75;.875;1"
+              keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"
+              dur="3s" repeatCount="indefinite"/>
+            <circle r="9" opacity=".22"/>
+            <circle r="4.5"/>
+          </g>
+        </g>
+        <!-- 4 · delays: the signal slams into the wait — and a clock spins while it sits there -->
+        <g class="ml l4">
+          <path d="M 165 202 l 15 -8 M 169 213 l 15 -8" stroke="rgba(245,245,247,.6)" stroke-width="2" fill="none"/>
+          <path class="pre" d="M 165 202 l 15 -8 M 169 213 l 15 -8" stroke="#fbbf24" stroke-width="2" fill="none" opacity="0">
+            <animate attributeName="opacity" values="0;0;.9;.9;0;0" keyTimes="0;.24;.3;.72;.78;1" dur="4s" repeatCount="indefinite"/>
+          </path>
+          <text class="lbl-sm" x="152" y="226" text-anchor="end">weeks later</text>
+          <circle class="pre" r="4" fill="#fde68a">
+            <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear"
+              keyPoints="0;.69;.69;1" keyTimes="0;.25;.75;1"
+              path="M 280 124 C 320 130 357 137 372 150 C 392 225 330 262 268 263 C 230 256 172 238 178 148 C 185 135 230 124 280 124"/>
+            <animate attributeName="r" values="4;4;5.5;4;4;4" keyTimes="0;.27;.5;.65;.75;1" dur="4s" repeatCount="indefinite"/>
+          </circle>
+          <g class="pre" opacity="0">
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.24;.29;.72;.78;1" dur="4s" repeatCount="indefinite"/>
+            <circle cx="138" cy="182" r="9" fill="none" stroke="rgba(251,191,36,.8)" stroke-width="1.8"/>
+            <line x1="138" y1="182" x2="138" y2="175" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round">
+              <animateTransform attributeName="transform" type="rotate"
+                values="0 138 182;0 138 182;1080 138 182;1080 138 182" keyTimes="0;.25;.75;1" dur="4s" repeatCount="indefinite"/>
+            </line>
+          </g>
+          <!-- the chart freezes while the signal waits — the pen hovers mid-air -->
+          <g clip-path="url(#chartclip15)">
+            <g class="pre">
+              <animateTransform attributeName="transform" type="translate" calcMode="linear"
+                values="0 0;-66 0;-66 0;-264 0" keyTimes="0;.25;.75;1" dur="4s" repeatCount="indefinite"/>
+              <path stroke="rgba(251,146,60,.75)" stroke-width="2.5" fill="none"
+                d="M 42 340 C 57 340 60 310 75 310 C 90 310 93 352 108 352 C 123 352 126 318 141 318 C 156 318 159 346 174 346 C 189 346 192 306 207 306 C 222 306 225 338 240 338 C 255 338 258 322 273 322 C 288 322 291 340 306 340 C 321 340 324 310 339 310 C 354 310 357 352 372 352 C 387 352 390 318 405 318 C 420 318 423 346 438 346 C 453 346 456 306 471 306 C 486 306 489 338 504 338 C 519 338 522 322 537 322 C 552 322 555 340 570 340 C 585 340 588 310 603 310 C 618 310 621 352 636 352 C 651 352 654 318 669 318 C 684 318 687 346 702 346 C 717 346 720 306 735 306 C 750 306 753 338 768 338 C 783 338 786 322 801 322 C 816 322 819 340 834 340"/>
+            </g>
+          </g>
+          <g class="pre" fill="#fde68a">
+            <animateTransform attributeName="transform" type="translate" calcMode="spline"
+              values="438 346;438 306;438 338;438 338;438 322;438 340;438 310;438 352;438 318;438 346"
+              keyTimes="0;.125;.25;.75;.79167;.83333;.875;.91667;.95833;1"
+              keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"
+              dur="4s" repeatCount="indefinite"/>
+            <circle r="9" opacity=".22"/>
+            <circle r="4.5"/>
+          </g>
+        </g>
+        <!-- 5 · leverage: it was the tap all along -->
+        <g class="ml l5">
+          <circle cx="135" cy="120" r="26" fill="none" stroke="rgba(94,234,212,.5)" stroke-dasharray="4 6"/>
+          <circle class="pulse" cx="135" cy="120" r="18" fill="none" stroke="#5eead4" stroke-width="1.5" style="--d:.2s"/>
+          <text class="lbl-sm" x="98" y="68" text-anchor="middle" style="fill:#5eead4">the leverage point</text>
+        </g>
+        <!-- 6 · change the structure: turn the valve, the system calms -->
+        <g class="ml l6">
+          <line x1="135" y1="120" x2="152" y2="120" stroke="#5eead4" stroke-width="2"/>
+          <line x1="152" y1="112" x2="152" y2="128" stroke="#5eead4" stroke-width="3" stroke-linecap="round"/>
+          <rect x="171" y="118" width="98" height="28" rx="6" fill="rgba(94,234,212,.3)"/>
+          <!-- the flow takes the healthy path now: in the tap, through the team, out the drain -->
+          <circle r="4" fill="#7fe7d4">
+            <animateMotion dur="3.6s" repeatCount="indefinite"
+              path="M 84 104 Q 145 108 198 115 L 242 124 Q 300 130 362 138"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="3.6s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="4" fill="#7fe7d4">
+            <animateMotion dur="3.6s" begin="1.8s" repeatCount="indefinite"
+              path="M 84 104 Q 145 108 198 115 L 242 124 Q 300 130 362 138"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="40" y1="330" x2="446" y2="330" stroke="rgba(94,234,212,.45)" stroke-dasharray="5 7"/>
+          <g clip-path="url(#chartclip15)">
+            <g class="wave6">
+              <path stroke="rgba(251,146,60,.75)" stroke-width="2.5" fill="none"
+                d="M 42 340 C 57 340 60 310 75 310 C 90 310 93 352 108 352 C 123 352 126 318 141 318 C 156 318 159 346 174 346 C 189 346 192 306 207 306 C 222 306 225 338 240 338 C 255 338 258 322 273 322 C 288 322 291 340 306 340 C 321 340 324 310 339 310 C 354 310 357 352 372 352 C 387 352 390 318 405 318 C 420 318 423 346 438 346 C 453 346 456 306 471 306 C 486 306 489 338 504 338 C 519 338 522 322 537 322 C 552 322 555 340 570 340"/>
+              <path stroke="url(#settleg)" stroke-width="2.5" fill="none"
+                d="M 570 340 C 585 340 588 312 603 312 C 618 312 621 348 636 348 C 651 348 654 318 669 318 C 684 318 687 342 702 342 C 717 342 720 322 735 322 C 750 322 753 338 768 338 C 783 338 786 326 801 326 C 816 326 819 334 834 334 C 849 334 852 328 867 328 C 882 328 885 332 900 332 C 915 332 918 330 933 330 C 948 330 951 331 966 331"/>
+              <path stroke="#5eead4" stroke-width="2.5" fill="none"
+                d="M 966 331 C 981 331 984 329 999 329 C 1014 329 1017 332 1032 332 C 1047 332 1050 330 1065 330 C 1080 330 1083 331 1098 331 C 1113 331 1116 329 1131 329 C 1146 329 1149 332 1164 332 C 1179 332 1182 330 1197 330 C 1212 330 1215 331 1230 331 C 1245 331 1248 329 1263 329 C 1278 329 1281 332 1296 332 C 1311 332 1314 330 1329 330 C 1344 330 1347 331 1362 331 C 1377 331 1380 329 1395 329 C 1410 329 1413 332 1428 332 C 1443 332 1446 330 1461 330 C 1476 330 1479 331 1494 331 C 1509 331 1512 329 1527 329 C 1542 329 1545 332 1560 332 C 1575 332 1578 330 1593 330 C 1608 330 1611 331 1626 331"/>
+            </g>
+          </g>
+          <g class="pen6" fill="currentColor" style="color:#fde68a">
+            <circle r="9" opacity=".22"/>
+            <circle r="4.5"/>
+            <circle r="5" fill="none" stroke="currentColor" stroke-width="1.5">
+              <animate attributeName="r" values="5;16" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values=".7;0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          <text class="lbl-sm" x="244" y="392" text-anchor="middle" style="fill:#7fe7d4">the output settles onto the goal</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16 · AI: THE NEW FLOW ============ -->
+<section class="slide" data-hue="20">
+  <div class="wrap">
+    <div class="kicker r">And Then Came AI</div>
+    <h2 class="title r" style="--d:.15s">AI is not a tool. <span class="grad">It's a new flow.</span></h2>
+    <p class="sub r" style="--d:.3s">Bolted straight onto the biggest valve your system has ever had.</p>
+    <svg class="fig" viewBox="0 0 760 392" aria-hidden="true" style="max-width:min(680px,78vw)">
+      <!-- the AI tap -->
+      <g class="pop" style="--d:.5s">
+        <path d="M 196 44 L 196 76 L 224 60 Z M 252 44 L 252 76 L 224 60 Z" fill="#c084fc"/>
+        <line x1="224" y1="60" x2="224" y2="38" stroke="#c084fc" stroke-width="2.5"/>
+        <line x1="212" y1="38" x2="236" y2="38" stroke="#c084fc" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <circle class="pulse" cx="224" cy="60" r="22" fill="none" stroke="#c084fc" stroke-width="1.5" style="--d:1.2s"/>
+      <text class="fadein lbl-strong" x="224" y="22" text-anchor="middle" style="--d:.7s;fill:#c084fc;font-size:17px">AI</text>
+      <text class="fadein lbl-sm" x="264" y="56" style="--d:1.3s">a machine-sized tap</text>
+      <!-- the torrent -->
+      <line class="flowdash fadein" x1="210" y1="86" x2="210" y2="190" stroke="#c084fc" stroke-width="5" stroke-linecap="round" style="--d:.9s"/>
+      <line class="flowdash fadein" x1="224" y1="90" x2="224" y2="196" stroke="#a78bfa" stroke-width="6" stroke-linecap="round" style="--d:1s"/>
+      <line class="flowdash fadein" x1="238" y1="86" x2="238" y2="190" stroke="#c084fc" stroke-width="5" stroke-linecap="round" style="--d:1.1s"/>
+      <!-- the tub -->
+      <rect class="rise" x="138" y="208" width="424" height="98" rx="8" fill="url(#wg)"/>
+      <path class="draw" pathLength="1" d="M 130 200 v 74 q 0 36 36 36 h 368 q 36 0 36 -36 v -74"
+        fill="none" stroke="rgba(245,245,247,.5)" stroke-width="3.5" style="--d:.2s"/>
+      <line class="fadein" x1="108" y1="200" x2="592" y2="200" stroke="rgba(245,245,247,.55)" stroke-width="6" stroke-linecap="round" style="--d:.35s"/>
+      <text class="fadein lbl-strong" x="350" y="262" text-anchor="middle" style="--d:1.5s;font-size:14px;letter-spacing:.16em">EVERYTHING THAT NEEDS UNDERSTANDING</text>
+      <!-- the spill -->
+      <g class="fadein" style="--d:9.6s">
+        <path d="M 122 198 q -10 4 -12 16" fill="none" stroke="rgba(125,211,252,.55)" stroke-width="3" stroke-linecap="round"/>
+        <circle r="2.6" fill="#9db9ff">
+          <animateMotion dur="1.3s" repeatCount="indefinite" path="M 110 216 L 102 300"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="1.3s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <text class="creep" x="4" y="356" style="--d:5.8s;font-size:14px;fill:rgba(245,245,247,.75)">the overflow has a name:</text>
+      <text class="risk" x="200" y="356" style="font-size:15px;font-weight:800;fill:#ef4444">risk</text>
+      <!-- the human drain -->
+      <ellipse class="fadein" cx="520" cy="304" rx="8" ry="3.5" fill="rgba(5,5,7,.6)" stroke="rgba(245,245,247,.35)" style="--d:.6s"/>
+      <path class="draw" pathLength="1" d="M 520 309 v 20 q 0 9 9 9 h 47" fill="none" stroke="rgba(245,245,247,.4)" stroke-width="2.5" style="--d:1.4s"/>
+      <g class="pop" style="--d:1.6s">
+        <path d="M 580 331 L 580 345 L 591 338 Z M 602 331 L 602 345 L 591 338 Z" fill="#5eead4"/>
+        <line x1="591" y1="338" x2="591" y2="327" stroke="#5eead4" stroke-width="2"/>
+        <line x1="585" y1="327" x2="597" y2="327" stroke="#5eead4" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+      <g class="fadein" style="--d:1.8s">
+        <circle r="2.4" fill="#7fe7d4">
+          <animateMotion dur="2.8s" repeatCount="indefinite" path="M 520 311 L 520 330 Q 520 338 528 338 L 604 338"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.85;1" dur="2.8s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <!-- the PR that lands in that drain -->
+      <g class="pop" style="--d:18s">
+        <rect x="596" y="270" width="150" height="44" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(245,245,247,.25)"/>
+        <text x="610" y="290" style="font-size:14px;font-weight:700;fill:#3fb950">+5,000</text>
+        <text x="668" y="290" style="font-size:14px;font-weight:700;fill:#f85149">−12,000</text>
+        <rect x="610" y="298" width="8" height="8" rx="1.5" fill="#3fb950"/>
+        <rect x="622" y="298" width="8" height="8" rx="1.5" fill="#3fb950"/>
+        <rect x="634" y="298" width="8" height="8" rx="1.5" fill="#f85149"/>
+        <rect x="646" y="298" width="8" height="8" rx="1.5" fill="#f85149"/>
+        <rect x="658" y="298" width="8" height="8" rx="1.5" fill="rgba(245,245,247,.2)"/>
+      </g>
+      <text class="creep lbl-sm" x="660" y="364" text-anchor="middle" style="--d:18.6s">human review — drop by drop</text>
+    </svg>
+    <div class="chips">
+      <span class="chip r" style="--d:2s">code nobody wrote</span>
+      <span class="chip r" style="--d:2.12s">docs nobody read</span>
+      <span class="chip r" style="--d:2.24s">decisions on autopilot</span>
+    </div>
+    <p class="oneliner r" style="--d:2.5s">AI widens the tap. <em>Your drain is still human-sized.</em></p>
+  </div>
+</section>
+
+<!-- ============ 17 · AI: CLOCK SPEED ============ -->
+<section class="slide" data-hue="-40">
+  <div class="wrap">
+    <div class="kicker r">Clock Speed</div>
+    <h2 class="title r" style="--d:.15s">Same structure. <span class="grad-warm">Ten times the spin.</span></h2>
+    <p class="sub r" style="--d:.3s">AI doesn't change what your loops do — it changes how fast they do it. Both of them.</p>
+    <svg class="fig" viewBox="0 0 800 330" aria-hidden="true" style="max-width:min(700px,80vw)">
+      <!-- the virtuous loop, accelerated -->
+      <g class="spin" style="animation-duration:3.5s">
+        <path class="fadein" d="M 170 50 A 78 78 0 1 1 169 50.01" fill="none"
+          stroke="rgba(94,234,212,.55)" stroke-width="2.5" marker-end="url(#ah3)" style="--d:.5s"/>
+      </g>
+      <text class="fadein" x="170" y="120" text-anchor="middle" style="--d:.7s;fill:#5eead4;font-size:30px;font-weight:700">R</text>
+      <text class="fadein lbl-sm" x="170" y="146" text-anchor="middle" style="--d:.9s">build → learn → build</text>
+      <text class="fadein lbl-strong" x="170" y="250" text-anchor="middle" style="--d:1.1s;fill:#5eead4">the virtuous one</text>
+      <text class="fadein lbl-sm" x="170" y="270" text-anchor="middle" style="--d:1.2s">compounds your strengths</text>
+      <!-- the vicious loop, accelerated just as much -->
+      <g class="spin" style="animation-duration:3.5s">
+        <path class="fadein" d="M 630 50 A 78 78 0 1 1 629 50.01" fill="none"
+          stroke="rgba(251,113,133,.55)" stroke-width="2.5" marker-end="url(#ahw)" style="--d:.5s"/>
+      </g>
+      <text class="fadein" x="630" y="120" text-anchor="middle" style="--d:.7s;fill:#fb7185;font-size:30px;font-weight:700">R</text>
+      <text class="fadein lbl-sm" x="630" y="146" text-anchor="middle" style="--d:.9s">shortcut → debt → slower</text>
+      <text class="fadein lbl-strong" x="630" y="250" text-anchor="middle" style="--d:1.1s;fill:#fb7185">the vicious one</text>
+      <text class="fadein lbl-sm" x="630" y="270" text-anchor="middle" style="--d:1.2s">compounds your debt</text>
+      <!-- the part that didn't speed up -->
+      <path class="fadein" d="M 392 84 l 14 -8 M 396 98 l 14 -8" stroke="rgba(245,245,247,.55)" stroke-width="2.5" fill="none" style="--d:1.5s"/>
+      <text class="fadein lbl-strong" x="400" y="130" text-anchor="middle" style="--d:1.6s">your delays didn't speed up</text>
+      <text class="fadein lbl-sm" x="400" y="151" text-anchor="middle" style="--d:1.7s">trust · review · learning · culture</text>
+      <!-- and you've seen what that does -->
+      <line class="fadein" x1="310" y1="248" x2="490" y2="248" stroke="rgba(94,234,212,.5)" stroke-width="1.5" stroke-dasharray="6 8" style="--d:2s"/>
+      <path class="draw" pathLength="1" d="M 310 290 C 330 290 345 212 372 212 C 398 212 400 272 424 272 C 446 272 452 236 470 236 C 482 236 486 246 490 248"
+        fill="none" stroke="#c084fc" stroke-width="3" stroke-linecap="round" style="--d:2.2s;animation-duration:2.2s"/>
+      <text class="fadein lbl-sm" x="400" y="316" text-anchor="middle" style="--d:2.8s">remember the shower — turn the knob hard, get scalded</text>
+    </svg>
+    <p class="oneliner r" style="--d:2.9s">Fast loops with human delays <em>overshoot harder.</em></p>
+  </div>
+</section>
+
+<!-- ============ 18 · AI: MACHINE DRAINS ============ -->
+<section class="slide" data-hue="150">
+  <div class="wrap">
+    <div class="kicker r">The Obvious Fix</div>
+    <h2 class="title r" style="--d:.15s">Machine taps need <span class="grad">machine drains.</span></h2>
+    <p class="sub r" style="--d:.3s">So we build a second outflow: agents in harnesses — nondeterministic engines inside deterministic constraints.</p>
+    <svg class="fig" viewBox="0 0 760 380" aria-hidden="true" style="max-width:min(660px,76vw)">
+      <!-- the AI tap, still pouring -->
+      <g class="pop" style="--d:.4s">
+        <path d="M 152 36 L 152 60 L 172 48 Z M 192 36 L 192 60 L 172 48 Z" fill="#c084fc"/>
+        <line x1="172" y1="48" x2="172" y2="30" stroke="#c084fc" stroke-width="2"/>
+        <line x1="162" y1="30" x2="182" y2="30" stroke="#c084fc" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <text class="fadein lbl-sm" x="200" y="46" style="--d:.6s;fill:#c084fc">AI — same tap as before</text>
+      <line class="flowdash fadein" x1="165" y1="68" x2="165" y2="140" stroke="#c084fc" stroke-width="5" stroke-linecap="round" style="--d:.7s"/>
+      <line class="flowdash fadein" x1="179" y1="70" x2="179" y2="146" stroke="#a78bfa" stroke-width="5" stroke-linecap="round" style="--d:.8s"/>
+      <!-- the tub — balanced now -->
+      <rect class="water" x="120" y="158" width="444" height="94" rx="8" fill="url(#wg)"/>
+      <path class="draw" pathLength="1" d="M 112 150 v 64 q 0 38 38 38 h 364 q 38 0 38 -38 v -64"
+        fill="none" stroke="rgba(245,245,247,.5)" stroke-width="3.5" style="--d:.2s"/>
+      <line class="fadein" x1="90" y1="150" x2="602" y2="150" stroke="rgba(245,245,247,.55)" stroke-width="5" stroke-linecap="round" style="--d:.3s"/>
+      <text class="fadein lbl-sm" x="610" y="156" style="--d:2.4s;fill:#5eead4">the level holds ✓</text>
+      <!-- the small human drain, unchanged -->
+      <ellipse class="fadein" cx="492" cy="248" rx="7" ry="3" fill="rgba(5,5,7,.6)" stroke="rgba(245,245,247,.35)" style="--d:.5s"/>
+      <path class="draw" pathLength="1" d="M 492 252 v 16 q 0 8 8 8 h 36" fill="none" stroke="rgba(245,245,247,.4)" stroke-width="2" style="--d:.9s"/>
+      <g class="fadein" style="--d:1.1s">
+        <circle r="2.2" fill="#7fe7d4">
+          <animateMotion dur="2.8s" repeatCount="indefinite" path="M 492 254 L 492 268 Q 492 276 500 276 L 536 276"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.85;1" dur="2.8s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <text class="fadein lbl-sm" x="548" y="280" style="--d:1.2s">human review — still here, still human</text>
+      <!-- the new machine drain -->
+      <ellipse class="pop" cx="270" cy="248" rx="12" ry="4.5" fill="rgba(5,5,7,.7)" stroke="rgba(94,234,212,.5)" style="--d:1.4s"/>
+      <path class="draw" pathLength="1" d="M 270 254 V 282" fill="none" stroke="rgba(94,234,212,.5)" stroke-width="4" style="--d:1.5s"/>
+      <!-- the harness: deterministic walls around a nondeterministic core -->
+      <rect class="fadein" x="216" y="284" width="108" height="52" rx="10" fill="rgba(94,234,212,.06)"
+        stroke="#5eead4" stroke-width="2" style="--d:1.7s"/>
+      <path class="fadein" d="M 252 302 l 3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z" fill="#c084fc" style="--d:1.9s"/>
+      <g class="pop" style="--d:2s">
+        <path d="M 278 302 L 278 318 L 291 310 Z M 304 302 L 304 318 L 291 310 Z" fill="#5eead4"/>
+        <line x1="291" y1="310" x2="291" y2="298" stroke="#5eead4" stroke-width="2"/>
+        <line x1="284" y1="298" x2="298" y2="298" stroke="#5eead4" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+      <text class="fadein lbl-sm" x="208" y="278" text-anchor="end" style="--d:2.2s;fill:#5eead4">evals · policies</text>
+      <text class="fadein lbl-sm" x="208" y="334" text-anchor="end" style="--d:2.3s;fill:#5eead4">limits · rollbacks</text>
+      <!-- and it drains at machine speed -->
+      <line class="flowdash fadein" x1="332" y1="310" x2="430" y2="310" stroke="#5eead4" stroke-width="4" stroke-linecap="round" style="--d:2.1s"/>
+      <path class="fadein" d="M 426 304 l 10 6 -10 6" fill="none" stroke="#5eead4" stroke-width="2.5" stroke-linejoin="round" style="--d:2.15s"/>
+      <text class="fadein lbl-sm" x="444" y="314" style="--d:2.25s">out — at machine speed</text>
+      <text class="fadein lbl-sm" x="270" y="362" text-anchor="middle" style="--d:2.4s">nondeterministic core · deterministic walls</text>
+    </svg>
+    <div class="chips">
+      <span class="chip r" style="--d:2.5s"><b>evals</b> — gate every merge</span>
+      <span class="chip r" style="--d:2.62s"><b>guardrails</b> — bound the blast radius</span>
+      <span class="chip r" style="--d:2.74s"><b>rollbacks</b> — cheap and rehearsed</span>
+    </div>
+    <p class="oneliner r" style="--d:3s">A nondeterministic engine is fine — <em>inside a deterministic harness.</em></p>
+  </div>
+</section>
+
+<!-- ============ 19 · AI: THE SAME CAR ============ -->
+<section class="slide" data-hue="35">
+  <div class="wrap">
+    <div class="kicker r">The Familiarity Trap</div>
+    <h2 class="title r" style="--d:.15s">Same color. Same plate. <span class="grad-warm">Not the same car.</span></h2>
+    <p class="sub r" style="--d:.3s">You start the engine every morning without fear — because you believe it's the same car as yesterday.</p>
+    <svg class="fig" viewBox="0 0 760 340" aria-hidden="true" style="max-width:min(680px,78vw)">
+      <!-- the car -->
+      <path class="draw" pathLength="1" d="M 130 240 Q 124 200 165 194 L 235 186 Q 260 142 315 138 L 445 138 Q 500 142 525 186 L 595 194 Q 636 200 630 240 Z"
+        fill="rgba(255,255,255,.06)" stroke="rgba(245,245,247,.55)" stroke-width="2.5" style="--d:.3s"/>
+      <path class="fadein" d="M 252 184 Q 272 150 318 147 L 368 147 L 368 184 Z M 384 147 L 436 147 Q 482 150 502 184 L 384 184 Z"
+        fill="rgba(125,211,252,.12)" stroke="rgba(245,245,247,.25)" style="--d:.7s"/>
+      <circle class="fadein" cx="225" cy="240" r="27" fill="#0a0f14" stroke="rgba(245,245,247,.5)" stroke-width="2.5" style="--d:.8s"/>
+      <circle class="fadein" cx="225" cy="240" r="10" fill="none" stroke="rgba(245,245,247,.35)" stroke-width="2" style="--d:.85s"/>
+      <circle class="fadein" cx="535" cy="240" r="27" fill="#0a0f14" stroke="rgba(245,245,247,.5)" stroke-width="2.5" style="--d:.8s"/>
+      <circle class="fadein" cx="535" cy="240" r="10" fill="none" stroke="rgba(245,245,247,.35)" stroke-width="2" style="--d:.85s"/>
+      <g class="fadein" style="--d:.9s">
+        <rect x="600" y="212" width="48" height="17" rx="2.5" fill="rgba(245,245,247,.85)"/>
+        <text x="624" y="224" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#0a0f14;letter-spacing:.06em">TRUST·1</text>
+      </g>
+      <!-- everything checks out -->
+      <g class="fadein" style="--d:1.3s">
+        <line x1="330" y1="98" x2="345" y2="132" stroke="rgba(245,245,247,.22)" stroke-dasharray="2 6"/>
+        <text class="lbl-strong" x="330" y="88" text-anchor="middle" style="fill:#5eead4">same color ✓</text>
+      </g>
+      <g class="fadein" style="--d:1.6s">
+        <line x1="660" y1="150" x2="634" y2="206" stroke="rgba(245,245,247,.22)" stroke-dasharray="2 6"/>
+        <text class="lbl-strong" x="660" y="140" text-anchor="middle" style="fill:#5eead4">same plate ✓</text>
+      </g>
+      <!-- ...but under the hood, overnight -->
+      <g class="fadein" style="--d:2.6s">
+        <rect x="478" y="152" width="104" height="44" rx="8" fill="rgba(192,132,252,.07)"
+          stroke="#c084fc" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <path d="M 510 166 l 3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z" fill="#c084fc"/>
+        <circle cx="548" cy="177" r="9" fill="none" stroke="rgba(192,132,252,.6)" stroke-width="2" stroke-dasharray="3 4"/>
+      </g>
+      <circle class="pulse" cx="530" cy="174" r="16" fill="none" stroke="#c084fc" stroke-width="1.5" style="--d:3.2s"/>
+      <g class="fadein" style="--d:3s">
+        <line x1="500" y1="92" x2="516" y2="148" stroke="rgba(239,68,68,.35)" stroke-dasharray="2 6"/>
+        <text class="lbl-strong" x="500" y="82" text-anchor="middle" style="fill:#fb7185">not the same engine ✗</text>
+      </g>
+      <text class="fadein lbl-sm" x="380" y="318" text-anchor="middle" style="--d:3.5s">swapped overnight · no visible change · your perception never got the memo</text>
+    </svg>
+    <p class="oneliner r" style="--d:3.8s">Perception says "same car." <em>The system under the hood already changed.</em></p>
+  </div>
+</section>
+
+<!-- ============ 20 · AI: SAMPLING RATE ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">The New Discipline</div>
+    <h2 class="title r" style="--d:.15s">The state changed. <span class="grad">Sample faster.</span></h2>
+    <p class="sub r" style="--d:.3s">Understanding decays — and with AI in the loop, it decays faster than you're anticipating. Your mental model is a cache with a shorter TTL.</p>
+    <svg class="fig" viewBox="0 0 880 330" aria-hidden="true" style="max-width:min(800px,86vw)">
+      <line class="fadein" x1="40" y1="170" x2="840" y2="170" stroke="rgba(245,245,247,.12)" style="--d:.3s"/>
+      <!-- before: slow state, sparse reviews kept up -->
+      <path class="draw" pathLength="1" d="M 40 170 q 42 -90 84 0 t 84 0 t 84 0 t 84 0" fill="none"
+        stroke="#7aa2ff" stroke-width="2.5" style="--d:.4s"/>
+      <g class="fadein" fill="#5eead4" style="--d:1s">
+        <circle cx="82" cy="125" r="5"/><circle cx="166" cy="215" r="5"/>
+        <circle cx="250" cy="125" r="5"/><circle cx="334" cy="215" r="5"/>
+      </g>
+      <text class="fadein lbl-sm" x="208" y="262" text-anchor="middle" style="--d:1.2s;fill:#5eead4">your reviews kept up</text>
+      <!-- AI enters -->
+      <line class="fadein" x1="400" y1="58" x2="400" y2="282" stroke="rgba(192,132,252,.4)" stroke-dasharray="5 8" style="--d:1.4s"/>
+      <path class="fadein" d="M 400 38 l 3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z" fill="#c084fc" style="--d:1.5s"/>
+      <text class="fadein lbl-sm" x="400" y="28" text-anchor="middle" style="--d:1.5s;fill:#c084fc">AI enters the system</text>
+      <!-- after: the state moves at machine speed -->
+      <path class="draw" pathLength="1" d="M 420 170 q 15 -90 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" fill="none"
+        stroke="rgba(245,245,247,.6)" stroke-width="2" style="--d:1.7s;animation-duration:2.4s"/>
+      <text class="fadein lbl-sm" x="838" y="120" text-anchor="end" style="--d:2.2s">the actual state</text>
+      <!-- same old sampling rate → a comforting fiction -->
+      <path class="draw" pathLength="1" d="M 420 170 q 42 -90 84 0 t 84 0 t 84 0 t 84 0 t 84 0" fill="none"
+        stroke="rgba(239,68,68,.55)" stroke-width="2.5" stroke-dasharray="7 7" style="--d:2.6s;animation-duration:2.4s"/>
+      <g class="fadein" fill="#ef4444" style="--d:3.2s">
+        <circle cx="462" cy="125" r="5"/><circle cx="546" cy="215" r="5"/>
+        <circle cx="630" cy="125" r="5"/><circle cx="714" cy="215" r="5"/><circle cx="798" cy="125" r="5"/>
+      </g>
+      <text class="fadein lbl-strong" x="660" y="86" text-anchor="middle" style="--d:3.4s;fill:#fb7185">the state you assume — same dots, wrong story</text>
+      <!-- the fix -->
+      <g class="fadein" stroke="#5eead4" stroke-width="2" style="--d:4s">
+        <path d="M 432 286 v 10 M 447 286 v 10 M 462 286 v 10 M 477 286 v 10 M 492 286 v 10 M 507 286 v 10 M 522 286 v 10 M 537 286 v 10 M 552 286 v 10 M 567 286 v 10 M 582 286 v 10 M 597 286 v 10 M 612 286 v 10 M 627 286 v 10 M 642 286 v 10 M 657 286 v 10 M 672 286 v 10 M 687 286 v 10 M 702 286 v 10 M 717 286 v 10 M 732 286 v 10 M 747 286 v 10 M 762 286 v 10 M 777 286 v 10 M 792 286 v 10 M 807 286 v 10 M 822 286 v 10"/>
+      </g>
+      <text class="fadein lbl-sm" x="424" y="296" text-anchor="end" style="--d:4.2s;fill:#5eead4">adapt the sampling rate:</text>
+      <text class="fadein lbl-sm" x="628" y="318" text-anchor="middle" style="--d:4.4s">re-review on the system's clock, not yours</text>
+    </svg>
+    <div class="chips">
+      <span class="chip r" style="--d:4.6s"><b>the repo you knew</b> — 40 AI PRs ago</span>
+      <span class="chip r" style="--d:4.72s"><b>the runbook</b> — written for the old system</span>
+      <span class="chip r" style="--d:4.84s"><b>your gut feel</b> — trained on stale data</span>
+    </div>
+    <p class="oneliner r" style="--d:5.1s">Critical thinking has a refresh rate. <em>AI just raised it.</em></p>
+  </div>
+</section>
+
+<!-- ============ 21 · AI: WHERE TO POINT IT ============ -->
+<section class="slide" data-hue="130">
+  <div class="wrap">
+    <div class="kicker r">Where to Point It</div>
+    <h2 class="title r" style="--d:.15s">Aim it <span class="grad">high on the lever.</span></h2>
+    <p class="sub r" style="--d:.3s">Most teams point AI at № 12 — produce more, faster. The wins live at the top.</p>
+    <svg class="fig" viewBox="0 0 980 330" aria-hidden="true" style="max-width:min(900px,90vw);margin-top:1.4vh">
+      <line class="draw" pathLength="1" x1="70" y1="280" x2="930" y2="92"
+        stroke="rgba(245,245,247,.7)" stroke-width="3.5" stroke-linecap="round" style="--d:.25s"/>
+      <polygon class="fadein" points="210,252 186,308 234,308"
+        fill="rgba(255,255,255,.09)" stroke="rgba(245,245,247,.4)" stroke-width="1.5" style="--d:.3s"/>
+      <g class="pop" style="--d:.45s">
+        <circle cx="110" cy="240" r="32" fill="url(#ballg)"/>
+        <text x="110" y="237" text-anchor="middle" style="font-size:12px;font-weight:650;fill:#fff">The</text>
+        <text x="110" y="252" text-anchor="middle" style="font-size:12px;font-weight:650;fill:#fff">System</text>
+      </g>
+      <!-- the default move: a swarm of AI, low on the arm -->
+      <g class="fadein" style="--d:1s" fill="#c084fc">
+        <path d="M 315 200 l 2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+        <path d="M 332 208 l 2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+        <path d="M 347 199 l 2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+        <path d="M 331 190 l 2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+      </g>
+      <circle class="pulse" cx="332" cy="204" r="9" fill="none" stroke="rgba(251,146,60,.7)" stroke-width="1.5" style="--d:2.6s"/>
+      <text class="fadein lbl-strong" x="332" y="252" text-anchor="middle" style="--d:1.3s">№ 12 — more output, faster</text>
+      <text class="fadein lbl-sm" x="332" y="272" text-anchor="middle" style="--d:1.4s">autocomplete everything · barely moves it</text>
+      <!-- the smart move: one spark, at the top -->
+      <path class="fadein" d="M 850 84 l 3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z" fill="#c084fc" style="--d:1.8s"/>
+      <circle class="pulse" cx="853" cy="95" r="14" fill="none" stroke="#c084fc" stroke-width="1.5" style="--d:2.9s"/>
+      <text class="fadein lbl-strong" x="820" y="44" text-anchor="end" style="--d:2s;fill:#c084fc">see the system</text>
+      <text class="fadein lbl-sm" x="820" y="64" text-anchor="end" style="--d:2.1s">information flows · goals · paradigms</text>
+      <!-- the nudge -->
+      <path class="fadein" d="M 372 186 Q 600 60 824 84" fill="none"
+        stroke="rgba(192,132,252,.35)" stroke-width="2" stroke-dasharray="3 8" marker-end="url(#ahw)" style="--d:2.3s"/>
+      <text class="fadein lbl-sm" x="960" y="322" text-anchor="end" style="--d:2.7s">tools change · systems thinking doesn't</text>
+    </svg>
+    <p class="oneliner r" style="--d:3s">Don't spend a 10× technology <em>on a № 12 problem.</em></p>
+  </div>
+</section>
+
+<!-- ============ 22 · CLOSING ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="scrim"></div>
+    <div class="glow"></div>
+    <div class="halo" style="--d:4.2s"></div>
+    <h2 class="hero-line hero-sm wline">
+      <span class="w" style="--d:.4s">Don't</span>
+      <span class="w" style="--d:.6s">fight</span>
+      <span class="w" style="--d:.8s">the</span>
+      <span class="w" style="--d:1s">system.</span>
+    </h2>
+    <h2 class="hero-line hero-sm wline" style="margin-top:2vh">
+      <span class="w" style="--d:1.8s">Understand</span>
+      <span class="w" style="--d:2s">it.</span>
+    </h2>
+    <h2 class="hero-line hero-sm wline" style="margin-top:2vh">
+      <span class="w" style="--d:2.9s">Then</span>
+      <span class="w" style="--d:3.1s">change</span>
+      <span class="w" style="--d:3.3s">the</span>
+      <span class="w grad" style="--d:3.6s">structure.</span>
+    </h2>
+    <blockquote class="bigquote r" style="--d:4.6s;margin-top:2.5vh">"We can't control systems or figure them out.
+      But we can dance with them!"<cite>— Donella H. Meadows, 1941–2001</cite></blockquote>
+  </div>
+  <!-- epilogue: the same ship, the same iceberg — but this time it sees the whole thing -->
+  <svg class="epi" viewBox="0 0 1200 170" aria-hidden="true">
+    <path class="draw" pathLength="1" style="--d:4.8s" fill="none" stroke="rgba(125,211,252,.35)" stroke-width="2"
+      d="M 0 100 q 30 -7 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0"/>
+    <g class="sail16">
+      <g class="bob">
+        <path fill="#dbe6f7" d="M -300 84 L -192 84 L -206 107 L -288 107 Z"/>
+        <rect x="-284" y="68" width="52" height="16" rx="2" fill="#b9cdef"/>
+        <rect x="-275" y="54" width="9" height="14" rx="1.5" fill="#fda4af"/>
+        <rect x="-257" y="54" width="9" height="14" rx="1.5" fill="#fda4af"/>
+        <path d="M -264 48 q -10 -8 -22 -5 q -14 3 -24 -3" fill="none"
+          stroke="rgba(245,245,247,.25)" stroke-width="3" stroke-linecap="round"/>
+        <text x="-246" y="100" text-anchor="middle"
+          style="font-size:12.5px;font-weight:650;fill:#0a0f1c;letter-spacing:.02em">the company</text>
+        <!-- the captain, at ease -->
+        <circle cx="-212" cy="63" r="3.2" fill="#f5f5f7"/>
+        <path d="M -212 67 L -212 78 M -212 70 L -207 75 M -212 70 L -217 75 M -212 78 L -215 84 M -212 78 L -209 84"
+          fill="none" stroke="#f5f5f7" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M -216.5 55.5 L -207.5 55.5 L -207.5 58.5 L -216.5 58.5 Z" fill="#f5f5f7"/>
+        <path d="M -216.5 58.5 L -207.5 58.5 L -207.5 60.5 L -216.5 60.5 Z" fill="#7aa2ff"/>
+        <path d="M -207.9 60.5 L -203.5 60.5" stroke="#f5f5f7" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+    </g>
+    <polygon class="fadein" style="--d:5.4s" fill="url(#iceDeep)"
+      points="700,100 676,126 690,138 664,152 700,166 748,158 790,164 824,144 808,128 824,112 814,100"/>
+    <polygon class="fadein" style="--d:5.2s" fill="url(#iceTop)"
+      points="710,100 723,83 733,87 750,53 758,77 773,58 785,85 797,77 814,100"/>
+    <text class="fadein lbl-sm" x="848" y="138" style="--d:8s">this time, it saw the whole thing</text>
+  </svg>
+</section>
+
+<!-- ============ 23 · DISCUSSION ============ -->
+<section class="slide" data-hue="0">
+  <div class="wrap">
+    <div class="kicker r">Discussion</div>
+    <h2 class="title r" style="--d:.15s">Four questions<br><span class="grad">to take with you.</span></h2>
+    <div class="qcards" style="max-width:900px;margin-left:auto;margin-right:auto">
+      <div class="qcard glass tilt r" style="--d:.5s">
+        <div class="qn">01 · <span style="color:#fda4af">the iceberg</span></div>
+        <p>What system are we part of — but not seeing?</p>
+      </div>
+      <div class="qcard glass tilt r" style="--d:.7s">
+        <div class="qn">02 · <span style="color:#7aa2ff">patterns</span></div>
+        <p>What behavior keeps repeating?</p>
+      </div>
+      <div class="qcard glass tilt r" style="--d:.9s">
+        <div class="qn">03 · <span style="color:#5eead4">loops</span></div>
+        <p>What feedback loop is driving it?</p>
+      </div>
+      <div class="qcard glass tilt r" style="--d:1.1s">
+        <div class="qn">04 · <span style="color:#c084fc">leverage</span></div>
+        <p>Where is the smallest high-leverage change?</p>
+      </div>
+    </div>
+    <p class="oneliner r" style="--d:1.6s"><em>Thank you.</em></p>
+  </div>
+</section>
+
+</div><!-- /deck -->
+
+<!-- chrome -->
+<div id="progress"></div>
+<div id="counter"><b>01</b> / 16</div>
+<div id="rail" aria-label="Slide navigation"></div>
+<div class="navbtns">
+  <button class="navbtn" id="prevBtn" aria-label="Previous slide">‹</button>
+  <button class="navbtn" id="nextBtn" aria-label="Next slide">›</button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ================= per-character cinema ================= */
+  document.querySelectorAll('.chars').forEach(el=>{
+    const base = parseFloat(el.dataset.d||'0');
+    const step = parseFloat(el.dataset.step||'0.05');
+    const words = el.textContent.trim().split(/\s+/);
+    el.textContent = '';
+    let k = 0;
+    words.forEach((word,wi)=>{
+      const w = document.createElement('span');
+      w.className = 'word';
+      for(const ch of word){
+        const c = document.createElement('span');
+        c.className = 'c';
+        c.textContent = ch;
+        c.style.setProperty('--d',(base + k*step).toFixed(3)+'s');
+        k++;
+        w.appendChild(c);
+      }
+      el.appendChild(w);
+      if(wi < words.length-1) el.appendChild(document.createTextNode(' '));
+    });
+  });
+
+  /* ================= deck navigation ================= */
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const N = slides.length;
+  const progress = document.getElementById('progress');
+  const counter  = document.getElementById('counter');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const rail     = document.getElementById('rail');
+  let cur = 0;
+
+  /* presenter-view sync: broadcast slide changes, accept remote jumps */
+  let bc = null;
+  try{ bc = new BroadcastChannel('tis-deck'); }catch(e){}
+  if(bc) bc.onmessage = e=>{
+    const d = e.data || {};
+    if(d.cmd === 'go' && d.n >= 1 && d.n <= N && d.n-1 !== cur) go(d.n-1);
+  };
+
+  const dots = slides.map((_,idx)=>{
+    const b = document.createElement('button');
+    b.className = 'raildot';
+    b.setAttribute('aria-label','Slide '+(idx+1));
+    b.addEventListener('click',()=>go(idx));
+    rail.appendChild(b);
+    return b;
+  });
+
+  const pad = n => String(n).padStart(2,'0');
+
+  function update(){
+    slides.forEach((s,idx)=>{
+      s.classList.toggle('active', idx===cur);
+      s.classList.toggle('past',   idx< cur);
+    });
+    dots.forEach((d,idx)=>d.classList.toggle('on', idx===cur));
+    progress.style.width = (cur/(N-1)*100) + '%';
+    counter.innerHTML = '<b>'+pad(cur+1)+'</b> / '+pad(N);
+    prevBtn.disabled = cur===0;
+    nextBtn.disabled = cur===N-1;
+    applyTheme(cur);
+    if(bc) try{ bc.postMessage({slide:cur+1}); }catch(e){}
+    try{ history.replaceState(null,'','#'+(cur+1)); }catch(e){}
+  }
+
+  function go(n){
+    n = Math.max(0, Math.min(N-1, n));
+    if(n===cur) return;
+    slides[cur].querySelectorAll('.tilt').forEach(el=>{
+      el.style.transform=''; el.style.transition='';
+    });
+    cur = n;
+    /* restart SMIL clocks so choreographed loops (e.g. the lever's two acts)
+       always begin after the slide's own build-in, not at a random phase */
+    slides[cur].querySelectorAll('svg').forEach(s=>{ try{ s.setCurrentTime(0); }catch(e){} });
+    update();
+  }
+  /* in-slide build steps: reveal/unreveal .step-item before changing slides */
+  function syncTraps(){
+    const stage = slides[cur].querySelector('.trap-stage');
+    if(!stage) return;
+    const panels = stage.querySelectorAll('.trap');
+    const pills  = slides[cur].querySelectorAll('.trap-pill');
+    let last = -1;
+    panels.forEach((p,i)=>{ if(p.classList.contains('on')) last = i; });
+    stage.classList.toggle('started', last >= 0);
+    panels.forEach((p,i)=>p.classList.toggle('current', i === last));
+    pills.forEach((p,i)=>{
+      p.classList.toggle('done', i < last);
+      p.classList.toggle('current', i === last);
+    });
+  }
+  function syncMethod(){
+    const fig = slides[cur].querySelector('.mfig');
+    if(!fig) return;
+    const n = slides[cur].querySelectorAll('.step-item.on').length;
+    for(let k=1;k<=6;k++) fig.classList.toggle('s'+k, n >= k);
+  }
+  function stepFwd(){
+    const it = slides[cur].querySelector('.step-item:not(.on)');
+    if(it){ it.classList.add('on'); syncTraps(); syncMethod(); return true; }
+    return false;
+  }
+  function stepBack(){
+    const ons = slides[cur].querySelectorAll('.step-item.on');
+    if(ons.length){ ons[ons.length-1].classList.remove('on'); syncTraps(); syncMethod(); return true; }
+    return false;
+  }
+  /* slide 3 cinematic: first forward-press finishes the ~22s sequence,
+     the second leaves the slide (infinite loops keep running) */
+  const cinema = document.getElementById('icebergSlide');
+  const cinemaIdx = slides.indexOf(cinema);
+  function cinemaPending(){
+    return cinema.getAnimations({subtree:true}).some(a=>{
+      try{ return a.effect.getTiming().iterations !== Infinity && a.playState !== 'finished'; }
+      catch(e){ return false; }
+    });
+  }
+  function finishCinema(){
+    cinema.getAnimations({subtree:true}).forEach(a=>{
+      try{ if(a.effect.getTiming().iterations !== Infinity) a.finish(); }catch(e){}
+    });
+  }
+  const next = ()=>{ if(cur===cinemaIdx && cinemaPending()){ finishCinema(); return; } if(!stepFwd()) go(cur+1); };
+  const prev = ()=>{ if(!stepBack()) go(cur-1); };
+
+  addEventListener('keydown', e=>{
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    switch(e.key){
+      case 'ArrowRight': case 'ArrowDown': case ' ': case 'PageDown': next(); e.preventDefault(); break;
+      case 'ArrowLeft':  case 'ArrowUp':  case 'PageUp':              prev(); e.preventDefault(); break;
+      case 'Home': go(0); break;
+      case 'End':  go(N-1); break;
+      case 'f': case 'F':
+        if(document.fullscreenElement) document.exitFullscreen();
+        else document.documentElement.requestFullscreen().catch(()=>{});
+        break;
+    }
+  });
+
+  let wheelAcc = 0, wheelLock = 0;
+  addEventListener('wheel', e=>{
+    const now = performance.now();
+    if(now < wheelLock) return;
+    wheelAcc += e.deltaY;
+    if(Math.abs(wheelAcc) > 70){
+      wheelAcc > 0 ? next() : prev();
+      wheelAcc = 0;
+      wheelLock = now + 950;
+    }
+  }, {passive:true});
+
+  let tsx=0, tsy=0;
+  addEventListener('touchstart', e=>{
+    tsx = e.touches[0].clientX; tsy = e.touches[0].clientY;
+  }, {passive:true});
+  addEventListener('touchend', e=>{
+    const dx = e.changedTouches[0].clientX - tsx;
+    const dy = e.changedTouches[0].clientY - tsy;
+    if(Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)*1.2){ dx < 0 ? next() : prev(); }
+    else if(Math.abs(dy) > 70 && Math.abs(dy) > Math.abs(dx)*1.2){ dy < 0 ? next() : prev(); }
+  }, {passive:true});
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+
+  /* ================= environment theming ================= */
+  function applyTheme(idx){
+    document.documentElement.style.setProperty('--hue',(slides[idx].dataset.hue||0)+'deg');
+  }
+
+  const h = parseInt((location.hash||'').slice(1),10);
+  if(h>=1 && h<=N) cur = h-1;
+  update();
+
+  /* remote control from the speaker-notes page */
+  addEventListener('hashchange', ()=>{
+    const n = parseInt((location.hash||'').slice(1),10);
+    if(n>=1 && n<=N && n-1!==cur) go(n-1);
+  });
+
+  /* ================= cursor glow & parallax depth ================= */
+  const cursorGlow = document.getElementById('cursorGlow');
+  const blobs = document.getElementById('blobs');
+  let mx=-9999, my=-9999, rawX=-9999, rawY=-9999;
+  let pmx=0, pmy=0, ppx=0, ppy=0;
+  addEventListener('mousemove', e=>{
+    rawX = e.clientX; rawY = e.clientY;
+    pmx = (e.clientX / innerWidth - .5);
+    pmy = (e.clientY / innerHeight - .5);
+  }, {passive:true});
+  function lerpLoop(){
+    /* only touch the DOM while something is actually moving */
+    if(Math.abs(rawX-mx) > .4 || Math.abs(rawY-my) > .4){
+      mx += (rawX-mx)*.08; my += (rawY-my)*.08;
+      cursorGlow.style.transform = 'translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
+    }
+    if(Math.abs(pmx-ppx) > .0005 || Math.abs(pmy-ppy) > .0005){
+      ppx += (pmx - ppx)*.05;
+      ppy += (pmy - ppy)*.05;
+      blobs.style.transform = 'translate('+(ppx*-28)+'px,'+(ppy*-22)+'px)';
+    }
+    requestAnimationFrame(lerpLoop);
+  }
+  if(!reduced) lerpLoop();
+
+  /* ================= hover tilt on glass cards ================= */
+  if(!reduced && matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.tilt').forEach(el=>{
+      el.addEventListener('pointermove', e=>{
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - r.left)/r.width  - .5;
+        const dy = (e.clientY - r.top)/r.height - .5;
+        el.style.transition = 'transform .15s ease';
+        el.style.transform = 'perspective(700px) rotateY('+(dx*7).toFixed(2)+
+          'deg) rotateX('+(-dy*7).toFixed(2)+'deg) translateY(-2px)';
+      });
+      el.addEventListener('pointerleave', ()=>{
+        el.style.transition = 'transform .6s var(--ease)';
+        el.style.transform = '';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
