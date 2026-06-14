@@ -444,6 +444,18 @@ body{
   .cards{margin-top:2vh}
   .hint{margin-top:2vh}
 }
+/* slide 10 traps: stack the animation above full-width text on phones
+   (the desktop side-by-side layout crushes the paragraph into a ribbon) */
+@media (max-width:560px){
+  .trap-stage{height:clamp(390px,66vh,470px);margin-top:2vh}
+  .trap-stage .trap{flex-direction:column;align-items:flex-start;justify-content:center;
+    gap:14px;padding:20px 22px}
+  .trap-stage .tanim{flex:none;align-self:center;
+    width:clamp(120px,42vw,168px);height:clamp(104px,20vh,148px)}
+  .trap h3{font-size:clamp(19px,5.2vw,24px)}
+  .trap p{font-size:clamp(13px,3.7vw,15px);margin-top:8px}
+  .trap-intro{font-size:clamp(14px,4vw,17px);padding:0 20px;text-align:center}
+}
 @media (prefers-reduced-motion:reduce){
   /* one-shot reveals become instant; infinite loops run once and freeze
      (a tiny duration alone would strobe them at ~100 cycles/s) */
