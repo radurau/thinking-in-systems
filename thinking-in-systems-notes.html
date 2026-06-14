@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaker Notes — Thinking in Systems</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237aa2ff'/%3E%3Cstop offset='1' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='url(%23g)' stroke-width='3'/%3E%3Ccircle cx='16' cy='4' r='4' fill='%23c084fc'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#050507;
+  --ink:#f5f5f7;
+  --ink-dim:rgba(245,245,247,.6);
+  --ink-faint:rgba(245,245,247,.34);
+  --a1:#7aa2ff;
+  --a2:#c084fc;
+  --a3:#5eead4;
+  --a4:#fb923c;
+  --a5:#f472b6;
+  --glass:rgba(255,255,255,.05);
+  --glass-edge:rgba(255,255,255,.11);
+  --ease:cubic-bezier(.22,.68,.18,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Inter,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(60vw 60vw at 8% -10%,rgba(59,91,219,.14),transparent 60%),
+    radial-gradient(50vw 50vw at 100% 110%,rgba(124,58,237,.12),transparent 60%),
+    radial-gradient(36vw 36vw at 85% -5%,rgba(13,148,136,.08),transparent 60%);
+}
+.page{max-width:780px;margin:0 auto;padding:9vh 28px 14vh}
+
+/* ---------- header ---------- */
+.kicker{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-faint);
+  font-weight:600;margin-bottom:18px}
+h1{font-size:clamp(34px,6vw,56px);font-weight:700;letter-spacing:-.025em;line-height:1.08}
+h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{color:var(--ink-dim);font-size:17px;margin-top:18px;max-width:620px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.pill{font-size:13px;padding:8px 16px;border-radius:999px;border:1px solid var(--glass-edge);
+  background:var(--glass);color:var(--ink-dim)}
+.pill b{color:var(--ink);font-weight:600}
+.openbtn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+  padding:8px 18px;border-radius:999px;text-decoration:none;color:#0b0b12;
+  background:linear-gradient(95deg,var(--a1),var(--a2));
+  box-shadow:0 6px 24px rgba(140,130,255,.3);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.openbtn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(140,130,255,.45)}
+
+/* ---------- how-to box ---------- */
+.howto{margin-top:42px;padding:22px 26px;border-radius:18px;background:var(--glass);
+  border:1px solid var(--glass-edge);font-size:14.5px;color:var(--ink-dim)}
+.howto b{color:var(--ink);font-weight:600}
+.howto .cue-demo{color:var(--a3)}
+.howto .say-demo{color:var(--ink)}
+
+/* ---------- note sections ---------- */
+.note{margin-top:64px;padding:34px 36px 30px;border-radius:24px;
+  background:var(--glass);border:1px solid var(--glass-edge);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 18px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07);
+  position:relative}
+.note::before{content:"";position:absolute;left:36px;right:36px;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent,#7aa2ff),transparent);opacity:.5}
+.note-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.num{font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--accent,#7aa2ff)}
+.note h2{font-size:clamp(20px,3vw,27px);font-weight:700;letter-spacing:-.015em;flex:1}
+.time{font-size:12.5px;color:var(--ink-faint);letter-spacing:.08em;white-space:nowrap}
+.jump{font-size:12.5px;color:var(--ink-faint);text-decoration:none;white-space:nowrap;
+  border:1px solid var(--glass-edge);border-radius:999px;padding:4px 12px;transition:all .25s ease}
+.jump:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
+.onscreen{font-size:13px;color:var(--ink-faint);margin-bottom:18px;font-style:italic}
+.onscreen b{color:var(--ink-dim);font-style:normal;font-weight:600}
+
+.say{font-size:16.5px;color:var(--ink);margin:14px 0}
+.say em{font-style:normal;font-weight:650;
+  background:linear-gradient(95deg,var(--a1),var(--a2));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.cue{font-size:13.5px;color:var(--a3);margin:16px 0 4px;letter-spacing:.02em}
+.cue::before{content:"⏵ ";opacity:.7}
+.aside{font-size:13.5px;color:var(--ink-faint);font-style:italic;margin-top:14px;
+  border-left:2px solid rgba(255,255,255,.12);padding-left:14px}
+
+/* section accents */
+.note[data-tone="warm"]{--accent:#fb923c}
+.note[data-tone="warm"] .say em{background:linear-gradient(95deg,#fbbf24,#f43f5e);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.note[data-tone="cool"]{--accent:#5eead4}
+.note[data-tone="cool"] .say em{background:linear-gradient(95deg,#5eead4,#38bdf8);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- footer ---------- */
+.footer{margin-top:80px;text-align:center;color:var(--ink-faint);font-size:13px}
+
+/* ---------- presenter mode: live section + timer ---------- */
+.note.live{border-color:rgba(122,162,255,.5);
+  box-shadow:0 0 0 1px rgba(122,162,255,.3),0 0 44px rgba(122,162,255,.12),
+    0 18px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07)}
+#timer{position:fixed;top:18px;right:22px;z-index:10;cursor:pointer;
+  font-variant-numeric:tabular-nums;font-size:15px;font-weight:650;letter-spacing:.08em;
+  padding:8px 16px;border-radius:999px;border:1px solid var(--glass-edge);
+  background:rgba(20,20,28,.75);backdrop-filter:blur(14px);color:var(--ink-dim);
+  transition:color .3s ease,border-color .3s ease}
+#timer.running{color:var(--ink);border-color:rgba(122,162,255,.4)}
+
+/* ---------- floating actions ---------- */
+.fab{position:fixed;right:24px;bottom:24px;display:flex;flex-direction:column;gap:10px;z-index:10}
+.fab a,.fab button{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--glass-edge);background:rgba(20,20,28,.7);backdrop-filter:blur(14px);
+  color:var(--ink-dim);font-size:17px;cursor:pointer;text-decoration:none;transition:all .25s ease}
+.fab a:hover,.fab button:hover{color:var(--ink);border-color:rgba(255,255,255,.3);transform:translateY(-2px)}
+
+/* ---------- print: clean white script ---------- */
+@media print{
+  body{background:#fff;color:#111}
+  body::before,.fab,.openbtn,#timer{display:none}
+  .page{max-width:100%;padding:0}
+  .note{background:none;border:1px solid #ddd;box-shadow:none;break-inside:avoid;margin-top:22px;padding:18px 22px}
+  .note::before{display:none}
+  .say{color:#111}
+  .say em{background:none;-webkit-text-fill-color:initial;color:#4338ca;font-weight:700}
+  .cue{color:#0d9488}
+  .onscreen,.aside,.time,.lede,.howto{color:#555}
+  .num{color:#4338ca}
+  .jump{display:none}
+  h1 .grad{background:none;-webkit-text-fill-color:initial;color:#4338ca}
+  .pill{border-color:#ddd;background:none;color:#555}
+}
+@media (max-width:600px){
+  .note{padding:24px 22px}
+  .note::before{left:22px;right:22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="kicker">Speaker Notes · Companion to the deck</div>
+  <h1>Thinking in Systems<br><span class="grad">— what to say.</span></h1>
+  <p class="lede">A word-for-word script for the presentation, written the way the book thinks:
+  start with something the audience already lives, then reveal the structure underneath it.
+  Read it as-is, or steal the beats and make it yours.</p>
+
+  <div class="meta">
+    <span class="pill">17 slides</span>
+    <span class="pill">≈ <b>20–22 min</b> talk</span>
+    <span class="pill">+ 10 min discussion</span>
+    <a class="openbtn" href="thinking-in-systems.html#1">▶ Open the presentation</a>
+  </div>
+
+  <div class="howto">
+    <b>How to read this page.</b> Plain text is <span class="say-demo">what you say out loud</span>.
+    <span class="cue-demo">⏵ Green lines are stage cues</span> — when to advance, when to wait for an
+    animation, when to shut up and let a line land. Slides build themselves a few seconds after they
+    appear, so the main skill is <b>pausing</b>. Each section's <i>"Slide N ↗"</i> button drives the deck:
+    the <b>first click opens it in its own window</b> — drag that to the presentation monitor — and every
+    click after that jumps the <b>same window</b> to that slide, no reload. Press <b>⌘P</b> for a clean
+    printable script.
+    <br><br>
+    <b>Presenter mode.</b> While the deck window is open, this page <b>follows it automatically</b> —
+    the section for the current slide lights up and scrolls into view, and the <b>timer</b> (top right)
+    starts on your first slide change. Click the timer to reset it. The deck itself prints too:
+    ⌘P in the deck window gives a PDF with one slide per page.
+  </div>
+
+  <!-- ============ 1 ============ -->
+  <section class="note" id="n1">
+    <div class="note-head">
+      <span class="num">01</span><h2>Opening</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#1">Slide 1 ↗</a>
+    </div>
+    <p class="onscreen">On screen: <b>"The world is not a machine. It is a system."</b> — builds word by word.</p>
+    <p class="cue">Open the slide and say nothing. Let the words finish appearing. Count three full seconds of silence — it will feel long to you and perfect to them.</p>
+    <p class="say">We're taught to see the world as a machine. Something breaks — you find the broken part, you replace it, you move on.</p>
+    <p class="say">But think about the last problem that actually mattered to you. The team that's always behind. The argument you keep having at home. The habit you've quit five times. You "fixed" them, didn't you? And they came back.</p>
+    <p class="say">That's because they were never machine problems. <em>They're system problems.</em> And for the next twenty minutes I want to teach you to see them that way.</p>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section class="note" id="n2">
+    <div class="note-head">
+      <span class="num">02</span><h2>The book</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#2">Slide 2 ↗</a>
+    </div>
+    <p class="onscreen">On screen: floating book, five concept chips.</p>
+    <p class="say">This idea comes from a small book: <em>Thinking in Systems</em>, by Donella Meadows. She was a scientist at MIT who spent her life modelling the biggest systems on Earth — the climate, the global economy, world population.</p>
+    <p class="say">And if you want proof this book matters to people like us: Werner Vogels — Amazon's CTO — gave his <em>final</em> re:Invent keynote in December 2025, after fourteen years. Of all the things he could say on his way out, he told every developer in the room to <em>think in systems</em> — quoting this exact book, this exact author.</p>
+    <p class="say">But here's the thing I love about this book: it isn't really about the planet. It's about Tuesday morning. It's about your inbox, your team, your savings account, your marriage.</p>
+    <p class="cue">Gesture at the chips as they sit on screen.</p>
+    <p class="say">She gives us five lenses: patterns, relationships, feedback, delays, and leverage points. By the end of this talk you'll have all five. And fair warning — <em>once you see systems, you can't unsee them.</em></p>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section class="note" id="n3">
+    <div class="note-head">
+      <span class="num">03</span><h2>Why normal thinking fails</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="thinking-in-systems.html#3">Slide 3 ↗</a>
+    </div>
+    <p class="onscreen">On screen: at first only a small, harmless-looking tip of ice — the underwater levels are hidden. "The company" approaches from the left; mid-approach the captain spots it (! + Events label, plenty of headroom), then on arrival peers down: each dotted gaze curve lands on the next label, revealing that slice of the iceberg with its writing — Patterns, Structure, then Mental models, where the kraken grabs the words, a red focus-ring locks on, and the captain jumps under big red !!!. Then the ship turns around and flees off-frame at full steam (heavy smoke, churning propeller wash), leaving the labelled iceberg behind. The threat grows with every look. "The 10% we see" pulses top-left. Full sequence ≈ 22 s — let it play while you talk; the slide settles into the clean diagram. Escape hatch: pressing → mid-sequence jumps straight to the finished state; the next press leaves the slide.</p>
+    <p class="say">Quick exercise. Think of the last thing that went wrong at work. Got it? Now notice the very first question everyone asked. I'll bet it was some version of: <em>"Whose fault was this?"</em></p>
+    <p class="say">So we find the culprit. We patch the bug, replace the person, write the apology email. And three months later the same problem is back — wearing a slightly different name.</p>
+    <p class="cue">The iceberg labels itself top to bottom. Walk down it with your hand.</p>
+    <p class="say">That's because we live up here — above the waterline, at the level of <em>events</em>: what happened. Just below the surface are <em>patterns</em>: what keeps happening. Deeper down is <em>structure</em>: the incentives, the flows, the feedback that made it almost inevitable. And at the very bottom sit the <em>mental models</em> — the beliefs that built that structure in the first place.</p>
+    <p class="say">Blame floats on the surface. The cause is under water.</p>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section class="note" id="n4">
+    <div class="note-head">
+      <span class="num">04</span><h2>What is a system?</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#4">Slide 4 ↗</a>
+    </div>
+    <p class="onscreen">On screen: Meadows' verbatim definition; a football pitch — the players, the passes, the goal — with the ball travelling the passing pattern.</p>
+    <p class="say">So what is a system? Meadows' own definition is on screen: <em>"an interconnected set of elements that is coherently organized in a way that achieves something."</em> Three things hiding in that sentence. <em>Elements</em> — the parts. <em>Interconnections</em> — how the parts talk to each other. And a <em>purpose</em> — what the whole thing is actually optimizing for, which is often not what's written on the poster in the lobby.</p>
+    <p class="cue">Wait for the ball to start travelling along the passes.</p>
+    <p class="say">Watch the ball. The play isn't in any single player — it lives in the passes. A team isn't eleven people. It's eleven people <em>plus the way the ball moves between them.</em></p>
+    <p class="say">Which is why you can reorganize the exact same people and get a completely different team. Same parts. Different connections. Different behavior.</p>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section class="note" id="n5">
+    <div class="note-head">
+      <span class="num">05</span><h2>Stocks and flows</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="thinking-in-systems.html#5">Slide 5 ↗</a>
+    </div>
+    <p class="onscreen">On screen: a clawfoot bathtub — source cloud, faucet valve, the water (the stock), drain valve, sink cloud; example chips below.</p>
+    <p class="say">First building block: stocks and flows. A <em>stock</em> is anything that accumulates — the water in this bathtub. A <em>flow</em> is what changes it — the tap, and the drain.</p>
+    <p class="say">Your bank account is a stock. Salary is the tap; spending is the drain. Your energy is a stock. Trust in a relationship is a stock — and notice it fills in drops and drains in buckets. One bad moment can undo a year of deposits.</p>
+    <p class="say">Your team's backlog? A stock. Requests pour in through the tap, and delivery is the drain — and most teams respond to overflow by demanding a bigger drain instead of touching the tap.</p>
+    <p class="cue">Slow down for the last line — it's the rule everything else builds on.</p>
+    <p class="say">Here's the law: a stock changes <em>only</em> through its flows. There are no shortcuts. You can't wish a stock to a new level. That's why crash diets fail and why nobody gets rich in a week — stocks take the time they take.</p>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section class="note" id="n6">
+    <div class="note-head">
+      <span class="num">06</span><h2>Feedback loops</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#6">Slide 6 ↗</a>
+    </div>
+    <p class="onscreen">On screen: a causal loop — the system's state → what you observe → how you respond — with two signals circulating; example chips below, Yellowstone wolves first.</p>
+    <p class="say">Second building block. Stocks don't just sit there — systems watch their own stocks and react. That's a <em>feedback loop</em>: the system talking to itself.</p>
+    <p class="say">You do this all day. You step on a scale, and the number changes what you eat. You check your bank balance, and it changes what you buy. Act, observe, adjust, repeat.</p>
+    <p class="cue">One story if you want the room leaning in: Yellowstone.</p>
+    <p class="say">Nature runs the most beautiful version of this. In 1995, Yellowstone brought wolves back after seventy years. The wolves didn't just eat elk — the elk stopped grazing the river valleys bare, the willows came back, the beavers came back, the beaver dams changed how the water flowed. <em>The wolves moved the rivers</em> — through nothing but feedback loops. Werner Vogels told that exact story in his final keynote, because it's true of our systems too: it's never the parts. It's the loops.</p>
+    <p class="say">Every loop in the world comes in one of two flavors: loops that <em>amplify</em>, and loops that <em>stabilize</em>. Let me show you both — because they explain almost everything.</p>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section class="note" data-tone="warm" id="n7">
+    <div class="note-head">
+      <span class="num">07</span><h2>Reinforcing loops</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="thinking-in-systems.html#7">Slide 7 ↗</a>
+    </div>
+    <p class="onscreen">On screen: the bank-interest loop — money ⇄ interest, both arrows "+", marked R — beside its exponential curve; the whole room turns warm.</p>
+    <p class="say">Flavor one: the reinforcing loop. <em>More leads to more.</em></p>
+    <p class="say">A video gets shared, so more people see it, so it gets shared more. A product gets users, which attracts users. You nail a presentation, you gain confidence, the confidence makes the next one better.</p>
+    <p class="say">And it runs downhill just as happily. Debt grows interest, which grows the debt. One missed workout makes the next one easier to miss. Same loop — both directions. The loop doesn't care.</p>
+    <p class="cue">Point at the top of the curve, then read Meadows' warning from the screen.</p>
+    <p class="say">One warning, in her own words: <em>"A quantity growing exponentially toward a limit reaches that limit in a surprisingly short time."</em> Nothing grows forever. The only question is whether you choose the limit — or it chooses you.</p>
+  </section>
+
+  <!-- ============ 8 ============ -->
+  <section class="note" data-tone="cool" id="n8">
+    <div class="note-head">
+      <span class="num">08</span><h2>Balancing loops</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="thinking-in-systems.html#8">Slide 8 ↗</a>
+    </div>
+    <p class="onscreen">On screen: the thermostat loop — room temperature ⇄ heater output, marked B, goal 21°C — beside the line settling onto the dashed goal; room turns teal.</p>
+    <p class="say">Flavor two: the balancing loop. These loops have a <em>goal</em>, and they fight to reach it.</p>
+    <p class="say">The thermostat in this room is running one right now. So is your body — holding thirty-seven degrees without you lifting a finger. Hunger is a balancing loop. Deadlines are a balancing loop: notice how the work somehow always expands or shrinks to exactly fill the time.</p>
+    <p class="cue">Watch the line settle on the goal, then deliver the punchline slowly.</p>
+    <p class="say">Balancing loops are why systems are so stubborn. Here's the insight worth the price of admission: when your change keeps mysteriously failing — at work, at home, in yourself — you're probably not weak-willed. <em>You're fighting a thermostat you haven't found yet.</em> Find the loop's goal, and change that instead.</p>
+  </section>
+
+  <!-- ============ 9 ============ -->
+  <section class="note" id="n9">
+    <div class="note-head">
+      <span class="num">09</span><h2>Delays</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="thinking-in-systems.html#9">Slide 9 ↗</a>
+    </div>
+    <p class="onscreen">On screen: the shower — you turn the knob, the heat is still in the pipe, and the temperature graph overshoots: freezing → scalded → too cold again → comfortable.</p>
+    <p class="cue">Let the knob swing and the heat pulse climb the pipe once before speaking.</p>
+    <p class="say">Now the ingredient that makes systems genuinely hard: <em>delays.</em> You turn the shower knob — nothing. So you turn it further. Two seconds later you're scalded, you overcorrect, and now it's freezing. In a system, you act here — and the consequence shows up over there. Later. Sometimes much later.</p>
+    <p class="say">Eat a salad today; the mirror says nothing for weeks. Hire someone today; your team gets <em>slower</em> for two months before it gets faster. Cut corners in the code today; the bill arrives next year, addressed to whoever touches it next.</p>
+    <p class="say">And climate is the ultimate delay: the weather we're getting now was decided decades ago.</p>
+    <p class="say">Delays are why we overshoot, overcorrect, and give up too soon — we keep steering by where the ship <em>is</em>, not where it's already heading. Meadows' rule: when delays are long, <em>foresight is not optional.</em> So when you change something important, decide in advance how long the delay should be — and don't judge the result before then.</p>
+  </section>
+
+  <!-- ============ 10 ============ -->
+  <section class="note" data-tone="warm" id="n10">
+    <div class="note-head">
+      <span class="num">10</span><h2>System traps</h2>
+      <span class="time">≈ 2 min</span><a class="jump" href="thinking-in-systems.html#10">Slide 10 ↗</a>
+    </div>
+    <p class="onscreen">On screen: one big center-stage card per trap, each with its own animation — the ball that springs back, the pool three straws drain dry, the standard stepping downhill, the leapfrogging bars, the resources flowing to the tall bar, the quick-fix loop while the real fix fades, the dots hopping the gate, the arrows hitting the small target while the big one goes dark. A pill strip below tracks where you are.</p>
+    <p class="say">Put loops and delays together and you get <em>traps</em> — structures that reliably produce bad outcomes, with no villains anywhere. Meadows catalogued exactly eight. See if you recognize your life in here.</p>
+    <p class="cue">Each → press brings the next trap to center stage. Name it, let the animation land for a beat, then press again. (← steps back.)</p>
+    <p class="say"><em>Policy resistance</em> — fixes that fail. Everyone pushes, the system pushes back; the quick fix relieves the symptom while quietly feeding the problem.</p>
+    <p class="say"><em>Tragedy of the commons</em> — everyone acts sensibly, the shared thing dies anyway. The meeting room calendar. The oceans. The on-call rota.</p>
+    <p class="say"><em>Drift to low performance</em> — bad becomes normal one small excuse at a time. Nobody decided to have flaky tests; the standard just… drifted.</p>
+    <p class="say"><em>Escalation</em> — "I'll raise you one." Price wars, feature wars, the reply-all thread, siblings in the back seat. It's a reinforcing loop, so it compounds.</p>
+    <p class="say"><em>Success to the successful</em> — winners get the resources to keep winning. The strong team gets the best projects, which makes it stronger.</p>
+    <p class="say"><em>Shifting the burden</em> — the workaround works, so the real solution never gets built. Meadows' word for this one is <em>addiction</em>. Every "temporary" process is five years old.</p>
+    <p class="say"><em>Rule beating</em> — obeying the letter of the rule while defeating its purpose. Hitting the metric, missing the point.</p>
+    <p class="say"><em>Seeking the wrong goal</em> — you get what you measure. Exactly that, and nothing more.</p>
+    <p class="cue">Pause before the punchline.</p>
+    <p class="say">Notice what's missing from every one of these: a bad guy. <em>Traps are structures, not character flaws.</em> Which is great news — because structures can be redesigned.</p>
+  </section>
+
+  <!-- ============ 11 ============ -->
+  <section class="note" id="n11">
+    <div class="note-head">
+      <span class="num">11</span><h2>Leverage points</h2>
+      <span class="time">≈ 2 min</span><a class="jump" href="thinking-in-systems.html#11">Slide 11 ↗</a>
+    </div>
+    <p class="onscreen">On screen: "The System" sits on the short end of a lever; Meadows' twelve points climb the long arm — from № 12 Numbers near the fulcrum to № 1 Transcending paradigms at the tip — grouped into Physical events, Patterns of behavior, System structure, and Mental models. Information flows, Goals and Paradigms pulse. The lever's two-act demonstration starts ~3 s after the labels finish, then loops every 16 s: heavy blocks thud down low on the arm and the System barely twitches — then a single pebble lands at the very tip, and the whole ball lifts with a glow.</p>
+    <p class="say">So where do you push? Meadows' most famous idea — her essay "Places to Intervene in a System." This is her actual list, all twelve, laid out on a lever: the further from the fulcrum you push, the more the system moves.</p>
+    <p class="aside">This is the same visualization Werner Vogels put on stage in his final re:Invent keynote (Dec 2025) — feel free to say so; it lands well with engineers.</p>
+    <p class="cue">The points light up from the fulcrum outward. Don't read all twelve — narrate the climb in the four groups: physical events, patterns, structure, mental models. (Same descent as the iceberg — going up the lever is going down the iceberg.)</p>
+    <p class="say">At the bottom, number twelve: <em>numbers.</em> Subsidies, taxes, budgets, targets. This is where 90% of arguments happen — and it's the weakest lever there is. Above that: buffers, physical structures, delays — the plumbing of the system.</p>
+    <p class="say">Then it gets interesting: the loops themselves, and number six — <em>information flows</em>: who does and doesn't have access to what. Just making a hidden number visible can transform behavior. Then rules. Then <em>self-organization</em> — the system's power to change its own structure.</p>
+    <p class="say">And the top three: the <em>goal</em> of the system. The <em>paradigm</em> — the mindset the whole system springs from. And number one, almost zen: <em>transcending paradigms</em> — staying loose enough to realize that no single worldview is true.</p>
+    <p class="cue">Now let the lever run one full cycle and just point. Boulder first — point at the ball not moving. Pebble second — point at the ball lifting.</p>
+    <p class="say">And watch the lever prove it. A tonne of effort parked low on the arm — more process, more metrics, another reorganized backlog — and the system barely moves. Now a pebble, placed at the very top — a changed goal, a changed belief about what the system is for — and <em>the whole thing lifts.</em></p>
+    <p class="say">That's the message hiding in this slide: <em>working smarter beats pushing harder.</em> Not as a motivational poster — as physics. Effort spent on events and patterns is heavy lifting near the fulcrum. Effort spent on goals and mental models is the long arm of the lever.</p>
+    <p class="say">The pattern to remember: <em>the higher you climb, the harder the change is to make — and the more it changes everything.</em> We fight over the bottom rung because it's easy. The top rungs are where futures get decided.</p>
+  </section>
+
+  <!-- ============ 12 ============ -->
+  <section class="note" id="n12">
+    <div class="note-head">
+      <span class="num">12</span><h2>Real-world systems</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="thinking-in-systems.html#12">Slide 12 ↗</a>
+    </div>
+    <p class="onscreen">On screen: one big center-stage card per system, each animated — people flowing through the company stock, the heart that fills in drops and empties in one dump, the ship/debt seesaw, the slow-filling health capsule, the thermometer fed by fast emissions, the boom-bust rollercoaster. Each → press brings the next; pills track progress.</p>
+    <p class="say">Let's make this concrete. Pick whichever of these is your life right now.</p>
+    <p class="cue">Each → press brings one system to center stage — a sentence each is plenty. (← steps back.)</p>
+    <p class="say">A company: hiring fills the stock, attrition drains it — and culture is the feedback loop nobody drew on the org chart. A family: trust accumulating in drops, draining in buckets; that argument you keep having isn't an event, it's a loop on repeat.</p>
+    <p class="say">A product team: speed versus technical debt — a balancing act ruled by delays, which is why it always feels fine right up until it doesn't. Your health: your body is the stock; every habit is a flow; the results arrive months late, in both directions.</p>
+    <p class="cue">Sweep a hand across all six cards, then read the Meadows line at the bottom.</p>
+    <p class="say">Different scales, different stakes — same patterns, different costumes. Or as Meadows put it: <em>"There are no separate systems. The world is a continuum."</em> Once you've seen the bathtub and the loops in one of these, you'll see them in all of them.</p>
+  </section>
+
+  <!-- ============ 13 ============ -->
+  <section class="note" data-tone="warm" id="n13">
+    <div class="note-head">
+      <span class="num">13</span><h2>One system, mapped</h2>
+      <span class="time">≈ 2 min</span><a class="jump" href="thinking-in-systems.html#13">Slide 13 ↗</a>
+    </div>
+    <p class="onscreen">On screen: the team-workload system — requests valve → work-in-progress stock → delivery valve; shortcuts filling a hidden technical-debt stock below; a red R loop closing back on delivery with a "months later" delay; the intake valve pulsing as the leverage point; "work harder!" struck through. The four summary chips (two stocks / one reinforcing loop / one delay / one high-leverage valve) step in one per → press.</p>
+    <p class="say">Let's cash all of this in on one system you've lived: the team that's always overloaded.</p>
+    <p class="say">Requests pour in through the tap. Delivery is the drain. Work-in-progress is the stock in between — so far, Bathtubs 101.</p>
+    <p class="cue">Point at the orange arrow going down.</p>
+    <p class="say">But under pressure, the team takes shortcuts. And shortcuts fill a <em>second, hidden stock</em>: technical debt. Debt narrows the drain — not today. <em>Months later.</em> So: the more behind you are, the more shortcuts you take, the slower delivery gets, the more behind you are. A reinforcing loop, with a delay long enough that nobody connects the cause to the effect.</p>
+    <p class="cue">Point at the struck-through "work harder!", then at the glowing valve.</p>
+    <p class="say">Now look where everyone pushes: <em>"work harder"</em> — widen the drain. It's a bottom-rung fix, and the loop eats it. The actual leverage point is the unglamorous one nobody campaigns for: <em>the intake rule.</em> Control the tap, and the loop starves.</p>
+    <p class="say">One picture: two stocks, one vicious loop, one delay, one high-leverage valve. <em>That's the whole toolkit.</em></p>
+  </section>
+
+  <!-- ============ 14 ============ -->
+  <section class="note" id="n14">
+    <div class="note-head">
+      <span class="num">14</span><h2>The mindset shift</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#14">Slide 14 ↗</a>
+    </div>
+    <p class="onscreen">On screen: "What caused this?" gets struck through and dissolves; the new question builds.</p>
+    <p class="cue">Stay quiet until the old question is struck through.</p>
+    <p class="say">If you take one sentence out of this room, make it this swap.</p>
+    <p class="say">The old question — <em>"what caused this?"</em> — gives you a culprit. A thing to blame, an event to patch. It feels satisfying, and it changes nothing.</p>
+    <p class="say">The new question — <em>"what structure keeps producing this?"</em> — gives you a design problem. And design problems have solutions.</p>
+    <p class="say">Try it this week. Once. On the most annoyingly recurring problem you have. Stop hunting for culprits — start mapping structures.</p>
+  </section>
+
+  <!-- ============ 15 ============ -->
+  <section class="note" id="n15">
+    <div class="note-head">
+      <span class="num">15</span><h2>Practical method</h2>
+      <span class="time">≈ 2 min</span><a class="jump" href="thinking-in-systems.html#15">Slide 15 ↗</a>
+    </div>
+    <p class="onscreen">On screen: the six moves on the left — and on the right, a small system that builds itself as you press: sketch → stock & valves → the amber signal starts circling the orange R loop and the output chart starts thrashing → the signal slams into the "weeks later" delay marks and hovers while a clock spins three turns → the leverage ring locks onto the tap → the valve turns, the orange loop empties, the flow turns teal and takes the healthy path (in → team → out), and the output wave calms onto the goal line.</p>
+    <p class="cue">Each → press reveals a move AND adds it to the diagram. Press, say the move, point at what just appeared. On move 4, point at the dot stuck at the delay — "that's your fix, in the pipe."</p>
+    <p class="say">And here's the method you just watched me use on the overloaded team — six moves, any system. Let me name them so you can take them home.</p>
+    <p class="say"><em>One — map it.</em> Draw what connects to what. Where does work come from, where does it go? Paper is fine; ugly is fine.</p>
+    <p class="say"><em>Two — find the stocks and flows.</em> The backlog is the stock. Requests are the tap. Delivery is the drain. Suddenly "we're overloaded" becomes "the tap is wider than the drain" — a different problem.</p>
+    <p class="say"><em>Three — trace the feedback.</em> Here's the hidden loop: the team delivers fast, so people send more requests, so the team rushes, quality drops, rework arrives… as more requests.</p>
+    <p class="say"><em>Four — respect the delays.</em> Any fix takes a quarter to show up. Decide that now, so nobody panics in week three.</p>
+    <p class="say"><em>Five — find the leverage.</em> Hiring is a bottom-rung fix: it widens the drain while the tap stays open. Making the queue <em>visible</em> to everyone who feeds it — that's an information flow. Higher rung, cheaper, stronger.</p>
+    <p class="cue">The last press has TWO beats — give each its own gesture, with a breath in between. Beat one: point at the valve and the orange loop as it empties. Beat two: drop your hand to the chart as the wave calms.</p>
+    <p class="say"><em>Six — change the structure, not the symptom.</em> Watch what one turn of the tap does.</p>
+    <p class="say">First, the structure: the rework loop <em>starves</em>. Nothing circles anymore — the work just flows the way it was always supposed to: in, through the team, out.</p>
+    <p class="say">And then — only then — the behavior: the output stops thrashing and settles onto the goal. <em>Structure first. Behavior follows.</em> That's this whole talk in two gestures.</p>
+  </section>
+
+  <!-- ============ 16 ============ -->
+  <section class="note" id="n16">
+    <div class="note-head">
+      <span class="num">16</span><h2>AI — the new flow</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#16">Slide 16 ↗</a>
+    </div>
+    <p class="onscreen">On screen: the bathtub returns — but the inflow valve is a big glowing purple tap labelled AI ("a machine-sized tap"). A torrent pours into a stock labelled EVERYTHING THAT NEEDS UNDERSTANDING; over ~8 s it fills and spills over the left rim. At ~10 s "the overflow has a name:" fades in, and at ~13 s "risk" pops in red, glowing, and swells to 3× by ~17 s. At ~18 s a GitHub-style PR card (+5,000 −12,000 with diff squares) pops beside the drain, captioned "human review — drop by drop".</p>
+    <p class="cue">Bridge from the six moves: "Before we close — let's run this method on the newest variable in every one of our systems." You have ~10 s of clean talking before the text beats start: point at the tap, then at the drain. Let "risk" finish growing before you name it. The PR card is the laugh line — wait for it.</p>
+    <p class="say">Every AI rollout is the same physical act: someone opens a tap. Code pours in. Documents pour in. Decisions pour in. The inflows just became machine-sized.</p>
+    <p class="say">But look at the drain. Review, comprehension, trust — everything that turns output into <em>understanding</em> — still runs at human speed. One drop at a time.</p>
+    <p class="say">And you know what a stock does when the tap outruns the drain. It doesn't ask permission. It overflows. The overflow has a name: risk.</p>
+    <p class="say">AI widens the tap. Your drain is still human-sized.</p>
+  </section>
+
+  <!-- ============ 17 ============ -->
+  <section class="note" id="n17">
+    <div class="note-head">
+      <span class="num">17</span><h2>AI — clock speed</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#17">Slide 17 ↗</a>
+    </div>
+    <p class="onscreen">On screen: two big R loops spinning fast — teal "build → learn → build" (the virtuous one) and red "shortcut → debt → slower" (the vicious one). Between them, the delay marks: "your delays didn't speed up — trust · review · learning · culture." Below, a mini overshoot curve: "remember the shower."</p>
+    <p class="say">Here's the part people miss. AI doesn't add new kinds of loops to your system. It spins the loops you already have — faster.</p>
+    <p class="say">If your team has a learning loop, AI compounds it. Wonderful. But if your team has a shortcut-to-debt loop — and after slide thirteen, you know if it does — AI compounds that one with exactly the same enthusiasm.</p>
+    <p class="say">And the delays? Trust, review, organizational learning — those didn't speed up at all. Remember the shower: a fast knob and a slow pipe is how you get scalded.</p>
+    <p class="say">Fast loops with human delays overshoot harder.</p>
+  </section>
+
+  <!-- ============ 18 ============ -->
+  <section class="note" id="n18">
+    <div class="note-head">
+      <span class="num">18</span><h2>AI — machine drains</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#18">Slide 18 ↗</a>
+    </div>
+    <p class="onscreen">On screen: the bathtub again, balanced this time — the AI tap still pours, the human drain still drips, but a second, machine-sized outflow appears: a teal harness box ("evals · policies / limits · rollbacks") with a purple spark inside and a valve, draining "out — at machine speed". Top right: "the level holds ✓". Caption: "nondeterministic core · deterministic walls".</p>
+    <p class="say">So the engineer in the room says: fine — if the taps and the loops run at machine speed, give the drains machine speed too. Build agents to review, test, and verify. Wrap the nondeterministic engine in deterministic constraints: evals that gate every merge, policies that bound the blast radius, rollbacks so cheap they're a reflex.</p>
+    <p class="say">And look — the level holds. The stock stops climbing. This is real, and we should absolutely build it.</p>
+    <p class="cue">Beat. Then, with a small smile: "Problem solved, right?" — and advance.</p>
+  </section>
+
+  <!-- ============ 19 ============ -->
+  <section class="note" id="n19">
+    <div class="note-head">
+      <span class="num">19</span><h2>AI — the same car</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="thinking-in-systems.html#19">Slide 19 ↗</a>
+    </div>
+    <p class="onscreen">On screen: a car. "same color ✓" and "same plate ✓" (plate: TRUST·1) check off in teal — then a dashed purple cutaway opens over the engine bay revealing an AI spark and strange parts, with a red "not the same engine ✗" and the caption "swapped overnight · no visible change · your perception never got the memo".</p>
+    <p class="say">Sure — that's logical. But here's what logic forgets: trust doesn't come from verification. It comes from familiarity.</p>
+    <p class="say">You started your car this morning and the thought that it might blow up never crossed your mind. Why? Not because you inspected it. Because you believe it's the same car as yesterday.</p>
+    <p class="say">Now imagine the engine was swapped overnight. Same color. Same plate. Even the seat is adjusted the way you like it. Every signal your perception checks says "same car" — and every one of those signals is true. And the conclusion is still false.</p>
+    <p class="say">That's a system with agents in it. The repo looks the same. The service answers on the same port. But under the hood, it changed while you slept — and your trust didn't notice, because trust samples the paint, not the engine.</p>
+  </section>
+
+  <!-- ============ 20 ============ -->
+  <section class="note" id="n20">
+    <div class="note-head">
+      <span class="num">20</span><h2>AI — sampling rate</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="thinking-in-systems.html#20">Slide 20 ↗</a>
+    </div>
+    <p class="onscreen">On screen: a state-over-time wave. Left: slow wave, four teal sample dots — "your reviews kept up". A purple dashed line marks "AI enters the system". Right: the wave turns fast, but the same sparse dots now trace a red dashed phantom wave — "the state you assume — same dots, wrong story". Then a dense teal tick row appears: "adapt the sampling rate — re-review on the system's clock, not yours".</p>
+    <p class="cue">This is the driving point of the whole AI arc — slow down and land each sentence.</p>
+    <p class="say">So here's what actually has to change — and it's not the tooling. It's us.</p>
+    <p class="say">To predict how a system behaves when you add something new, you need the elements, the flows, the loops — the things this whole talk has been about. That understanding is a snapshot. It was taken at a point in time. It decays.</p>
+    <p class="say">It always decayed. But remember the delays we talked about? With AI in the loop, the system changes many times inside one of your old review intervals. You're sampling a fast signal at a slow rate — and signal theory has a name for what you get: a comforting fiction. The dots are real. The story they tell is wrong.</p>
+    <p class="say">So the discipline is this: don't let familiarity stand in for understanding. The repo you "know", the runbook you wrote, the gut feel you trust — check the timestamp on each. Critical thinking has a refresh rate, and AI just raised it.</p>
+  </section>
+
+  <!-- ============ 21 ============ -->
+  <section class="note" id="n21">
+    <div class="note-head">
+      <span class="num">21</span><h2>AI — where to point it</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="thinking-in-systems.html#21">Slide 21 ↗</a>
+    </div>
+    <p class="onscreen">On screen: the lever returns. A swarm of AI sparks sits low at "№ 12 — more output, faster · autocomplete everything · barely moves it" with a small ripple. One single spark sits at the top — "see the system: information flows · goals · paradigms" — with a big ring, and a dashed arc nudges from low to high. Bottom-right: "tools change · systems thinking doesn't."</p>
+    <p class="cue">This is the keynote beat — slow down, Werner-style. Point low, then high.</p>
+    <p class="say">And here's the twist: the best tool for raising your sampling rate is the very technology that made it necessary. The question is only where you point it.</p>
+    <p class="say">The default is the bottom of the lever — № 12. Produce more, faster. Autocomplete everything. A tonne of effort, low on the arm. You've seen how much that moves the system.</p>
+    <p class="say">But remember the pebble. Information flows — number six — making the invisible visible: that's the thing AI is genuinely brilliant at. Summarize the incident history nobody reads. Surface the hidden stock. Show every team the same picture of the system. <em>That</em> is how you sample faster.</p>
+    <p class="say">And the top of the lever — goals, paradigms — that stays ours. AI can't decide what the system is <em>for</em>. That question just became the most valuable thing a human in this room does.</p>
+    <p class="say">Don't spend a ten-x technology on a № 12 problem.</p>
+  </section>
+
+  <!-- ============ 22 ============ -->
+  <section class="note" id="n22">
+    <div class="note-head">
+      <span class="num">22</span><h2>Closing</h2>
+      <span class="time">≈ 30 sec</span><a class="jump" href="thinking-in-systems.html#22">Slide 22 ↗</a>
+    </div>
+    <p class="onscreen">On screen: three lines build word by word; then her quote appears beneath. At the bottom, an epilogue: the same ship from slide 3 returns and calmly sails past the iceberg — whose underwater mass is fully visible this time — with the caption "this time, it saw the whole thing."</p>
+    <p class="cue">This slide does the talking. Read each line only after it has fully appeared, slowly, almost quietly.</p>
+    <p class="say">Don't fight the system.</p>
+    <p class="say">Understand it.</p>
+    <p class="say">Then change the structure.</p>
+    <p class="cue">Pause. Let her quote fade in, then read it with a smile — it's the most hopeful line in the book:</p>
+    <p class="say"><em>"We can't control systems or figure them out. But we can dance with them!"</em></p>
+    <p class="say">Donella Meadows died in 2001, before this book was even finished. Her colleagues completed it from her drafts — which means the ideas were strong enough to outlive their author. That's a system worth being part of.</p>
+  </section>
+
+  <!-- ============ 23 ============ -->
+  <section class="note" id="n23">
+    <div class="note-head">
+      <span class="num">23</span><h2>Discussion</h2>
+      <span class="time">open-ended</span><a class="jump" href="thinking-in-systems.html#23">Slide 23 ↗</a>
+    </div>
+    <p class="onscreen">On screen: four question cards.</p>
+    <p class="say">I'll leave these four questions up. Pick the one that stings a little — that's the one worth answering.</p>
+    <p class="say">What system are we part of, but not seeing? What behavior keeps repeating? What feedback loop is driving it? And — where is the <em>smallest</em> change with the <em>biggest</em> leverage?</p>
+    <p class="cue">Give the room a full thirty seconds of silence before inviting answers. Someone will break it — and that person's example is usually better than anything on your slides. Build on it using the six moves from slide 15.</p>
+    <p class="say">Thank you.</p>
+  </section>
+
+  <p class="footer">Companion to <a href="thinking-in-systems.html#1" style="color:var(--ink-dim)">thinking-in-systems.html</a> · based on “Thinking in Systems: A Primer” by Donella H. Meadows · ⌘P for a printable script</p>
+</div>
+
+<div id="timer" title="Elapsed talk time — starts on your first slide change. Click to reset.">00:00</div>
+
+<div class="fab">
+  <a href="thinking-in-systems.html#1" title="Open presentation">▶</a>
+  <button onclick="window.print()" title="Print script">⎙</button>
+  <button onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+</div>
+
+<script>
+/* All deck links drive ONE named window ("tis-deck"): the first click opens it —
+   drag it to the presentation monitor — and every later click just retargets it.
+   The deck listens for hashchange, so it jumps slides without reloading. */
+document.querySelectorAll('a[href*="thinking-in-systems.html"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    const w = window.open(a.getAttribute('href'), 'tis-deck');
+    if(w) w.focus();
+  });
+});
+
+/* Presenter mode: the deck broadcasts every slide change on the "tis-deck"
+   channel. Light up the matching section, scroll to it, and run the clock. */
+(function(){
+  const timerEl = document.getElementById('timer');
+  let t0 = null;
+  setInterval(()=>{
+    if(t0 === null) return;
+    const s = ((Date.now() - t0) / 1000) | 0;
+    timerEl.textContent = String((s/60)|0).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+  }, 1000);
+  timerEl.addEventListener('click', ()=>{
+    t0 = null;
+    timerEl.textContent = '00:00';
+    timerEl.classList.remove('running');
+  });
+  let last = 0;
+  try{
+    const bc = new BroadcastChannel('tis-deck');
+    bc.onmessage = e=>{
+      const n = e.data && e.data.slide;
+      if(!n || n === last) return;
+      /* arm the clock on the first real slide change (not the deck merely opening on #1) */
+      if(t0 === null && (last !== 0 || n !== 1)){ t0 = Date.now(); timerEl.classList.add('running'); }
+      last = n;
+      document.querySelectorAll('.note.live').forEach(s=>s.classList.remove('live'));
+      const sec = document.getElementById('n' + n);
+      if(sec){
+        sec.classList.add('live');
+        sec.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    };
+  }catch(err){ timerEl.style.display = 'none'; }
+})();
+</script>
+</body>
+</html>
