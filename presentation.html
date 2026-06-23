@@ -184,7 +184,7 @@ body{
 
 /* ---------- slide 2 book ---------- */
 .book-scene{perspective:1000px;margin:3vh auto 2.6vh;width:fit-content}
-.book{height:clamp(150px,25vh,280px);aspect-ratio:1588/2387;border-radius:4px 10px 10px 4px;
+.book{height:clamp(220px,42vh,480px);aspect-ratio:1588/2387;border-radius:4px 10px 10px 4px;
   position:relative;transform:rotateY(-24deg) rotateX(5deg);transform-style:preserve-3d;
   border:1px solid rgba(255,255,255,.16);
   box-shadow:-18px 30px 60px rgba(0,0,0,.6),0 0 60px rgba(124,80,255,.12)}
@@ -203,10 +203,15 @@ body{
 .book-shadow{width:60%;height:14px;margin:-4px auto 0;border-radius:50%;
   background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 70%)}
 /* slide 2: animations | book | video, side by side */
-.book-trio{display:flex;align-items:center;justify-content:center;
-  gap:clamp(20px,5vw,84px);margin:2.6vh auto 1.8vh;flex-wrap:wrap}
-.book-trio .book-scene{margin:0}
-.book-trio .trio-side{flex:0 0 auto;width:clamp(220px,26vw,360px)}
+.book-trio{display:grid;grid-template-columns:auto auto;
+  grid-template-areas:"book anim" "book vid";
+  align-items:center;justify-content:center;
+  column-gap:clamp(28px,6vw,96px);row-gap:clamp(12px,1.6vw,22px);
+  margin:2.6vh auto 1.8vh}
+.book-trio .book-scene{grid-area:book;margin:0}
+.book-trio .anim-side{grid-area:anim}
+.book-trio .vid-side{grid-area:vid}
+.book-trio .trio-side{width:clamp(170px,19vw,240px)}
 .book-trio .sys-fig{width:100%;height:auto;display:block}
 .sys-fig .sys-lbl{font-size:13px;font-weight:600;fill:var(--ink-dim)}
 .vidwrap{display:flex;flex-direction:column;gap:8px}
@@ -220,7 +225,10 @@ body{
 .vidframe:hover .playbtn{background:#ff0033}
 .vidcap{font-size:12px;color:var(--ink-faint);letter-spacing:.04em;text-align:center}
 .vidcap b{color:var(--ink-dim);font-weight:600}
-@media (max-width:860px){.book-trio .trio-side{width:min(72vw,320px)}}
+@media (max-width:860px){
+  .book-trio{grid-template-columns:1fr;grid-template-areas:"book" "anim" "vid";justify-items:center}
+  .book-trio .trio-side{width:min(72vw,320px)}
+}
 
 /* ---------- illustrated figures ---------- */
 .slide.active .bob{animation:bob 7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
@@ -266,7 +274,7 @@ body{
 .step-item.on{opacity:1;transform:none}
 
 /* ---------- trap stage (slide 10): one big card at a time ---------- */
-.trap-stage{position:relative;height:clamp(240px,34vh,310px);max-width:880px;margin:2.6vh auto 0}
+.trap-stage{position:relative;height:clamp(240px,34vh,310px);max-width:1080px;margin:2.6vh auto 0}
 .trap-stage .trap{position:absolute;inset:0;display:flex;align-items:center;gap:38px;padding:26px 46px;
   border-radius:24px;text-align:left;opacity:0;transform:translateY(16px) scale(.985);
   transition:opacity .55s var(--ease),transform .55s var(--ease);pointer-events:none}
@@ -279,6 +287,22 @@ body{
   color:var(--ink-dim);font-size:clamp(15px,1.6vw,20px);transition:opacity .4s ease}
 .trap-intro .ti-hint{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint)}
 .trap-stage.started .trap-intro{opacity:0}
+/* archetypes (slide 10): press → smoothly enlarges the current trap into its story */
+.trap-stage{transition:height .6s var(--ease)}
+.trap-stage:has(.trap.current.expanded){height:clamp(380px,60vh,520px)}
+.trap.current.expanded{align-items:flex-start;overflow-y:auto}
+.trap-detail{max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .6s var(--ease),opacity .5s ease .12s}
+.trap.current.expanded .trap-detail{max-height:660px;opacity:1}
+.trap-story{font-size:clamp(13px,1.35vw,17px);color:var(--ink-dim);line-height:1.5;padding-top:10px}
+.trap-story b{color:var(--ink);font-weight:650}
+.trap-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:16px}
+.trap-cols .tlabel{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:5px}
+.trap-cols .trap-box .tlabel{color:#fb7185}
+.trap-cols .way-box .tlabel{color:#5eead4}
+.trap-cols p{font-size:clamp(12px,1.15vw,15px);color:var(--ink-dim);line-height:1.45;margin-top:0}
+.trap-cols b{color:var(--ink);font-weight:600}
+@media(max-width:760px){.trap-cols{grid-template-columns:1fr;gap:10px}}
 .trap-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
 .trap-pill{font-size:11.5px;padding:5px 13px;border-radius:999px;border:1px solid var(--glass-edge);
   background:var(--glass);color:var(--ink-dim);transition:all .35s ease}
@@ -611,8 +635,8 @@ body{
     <div class="kicker r grad">The Book</div>
     <h2 class="title r" style="--d:.15s">One small book.<br><span class="grad">A new way of seeing.</span></h2>
     <div class="book-trio">
-      <!-- LEFT: the biggest systems on Earth -->
-      <div class="trio-side r" style="--d:.3s">
+      <!-- RIGHT TOP: the biggest systems on Earth -->
+      <div class="trio-side anim-side r" style="--d:.5s">
         <svg class="sys-fig" viewBox="0 0 240 270" aria-hidden="true">
           <defs>
             <clipPath id="earthClip"><circle cx="120" cy="118" r="40"/></clipPath>
@@ -688,15 +712,15 @@ body{
         </svg>
         <div class="vidcap" style="margin-top:8px">modelling Earth's biggest systems</div>
       </div>
-      <!-- CENTER: the book -->
-      <div class="book-scene r" style="--d:.45s">
+      <!-- LEFT: the book (bigger) -->
+      <div class="book-scene r" style="--d:.3s">
         <div class="book">
           <img class="cover" src="images/thinking-in-systems-cover.jpg" alt="Thinking in Systems: A Primer — Donella H. Meadows" loading="lazy">
         </div>
         <div class="book-shadow"></div>
       </div>
-      <!-- RIGHT: the re:Invent 2025 keynote (embedded, not autoplayed) -->
-      <div class="trio-side r" style="--d:.6s">
+      <!-- RIGHT BOTTOM: the re:Invent 2025 keynote (poster, not autoplayed) -->
+      <div class="trio-side vid-side r" style="--d:.65s">
         <div class="vidwrap">
           <a class="vidframe" href="https://www.youtube.com/watch?v=3Y1G9najGiI" target="_blank" rel="noopener" title="AWS re:Invent 2025 — Keynote with Dr. Werner Vogels">
             <img src="https://i.ytimg.com/vi/3Y1G9najGiI/maxresdefault.jpg"
@@ -1278,6 +1302,13 @@ body{
         <div>
           <h3 style="color:#fda4af">Policy resistance</h3>
           <p>Fixes that fail. Everyone pushes, the system pushes back — the quick fix relieves the symptom while quietly feeding the problem.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Romania, 1967.</b> To force the birth rate up, Ceaușescu abruptly <b>banned abortion and contraception</b>. Births tripled — then the people pushed back. The rate fell again through <b>dangerous illegal abortions</b> (maternal deaths tripled), and unwanted children filled the orphanages. When the regime fell, the first law repealed was the ban.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>Different actors haul one stock toward different goals. Every new push just drags it farther from someone else's goal — so everyone burns energy and no one likes the result.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Stop pushing harder. Bring all the actors in and find a <b>larger goal</b> they'll pull toward willingly — as Sweden did, aligning on child welfare, not family size.</p></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="trap step-item glass">
@@ -1304,6 +1335,13 @@ body{
         <div>
           <h3 style="color:#5eead4">Tragedy of the commons</h3>
           <p>Everyone acts sensibly — the shared thing dies anyway. The meeting-room calendar. The oceans. The on-call rota.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Hardin's shared pasture (1968).</b> Each herder keeps the whole gain from one more cow, but shares the cost of overgrazing with everyone. So every rational herder adds another, and another — until the grass is gone for all. Same shape: overfished seas, crowded parks, a warming atmosphere.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>A shared resource gives each user the full benefit of use but only a sliver of the cost of abuse. The feedback is too weak — so it's overused until it collapses.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Educate and appeal to conscience — then restore the missing feedback: <b>privatize</b> so each user feels their own impact, or <b>regulate</b> access ("mutual coercion, mutually agreed upon").</p></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="trap step-item glass">
@@ -1323,6 +1361,13 @@ body{
         <div>
           <h3 style="color:#a3a3c2">Drift to low performance</h3>
           <p>Bad becomes normal one small excuse at a time. Nobody decided to have flaky tests — the standard just… drifted.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>The boiled frog.</b> Every time results dip, you believe the bad news and quietly lower the bar — "not much worse than last year." The standard erodes to match, effort drops, performance sinks further. Meadows watched her own jogging habit fade out exactly this way.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>When the standard is set by recent — and pessimistically perceived — performance, a reinforcing loop of <b>eroding goals</b> drags the system steadily downhill.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Hold the standard <b>absolute</b>. Better still, peg it to your <b>best</b> past performance, not your worst — and the same loop pulls you upward.</p></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="trap step-item glass">
@@ -1346,6 +1391,13 @@ body{
         <div>
           <h3 style="color:#fb923c">Escalation</h3>
           <p>"I'll raise you one." Price wars, feature wars, the reply-all thread. It's a reinforcing loop — it compounds.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>"I'll raise you one."</b> Kids trading harder hits; the US–USSR <b>arms race</b>, each side inflating the other's arsenal to justify its own — trillions spent, doomsday weapons built. Price wars and attack-ad spirals run on the same engine.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>Each player's goal is simply to <b>beat the other's current state</b>. That's a reinforcing loop — it grows exponentially and ends in someone's collapse.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Best, don't enter. If you're in it: <b>unilaterally step down</b> to break the loop, or negotiate balancing limits both sides agree to.</p></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="trap step-item glass">
@@ -1373,6 +1425,13 @@ body{
         <div>
           <h3 style="color:#c084fc">Success to the successful</h3>
           <p>Winners get the resources to keep winning. The strong team gets the best projects — which makes it stronger.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Monopoly.</b> The first player to build hotels collects rent, buys more hotels, and ends up owning the board. Ecologists call it <b>competitive exclusion</b>; in markets it shrank US carmakers to three and most cities to one newspaper. Winners keep winning; losers get squeezed out.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>When winning is rewarded with the means to win again, a reinforcing loop lets the winners <b>take all</b> while the losers are eliminated.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Diversify into a new game; cap any one winner (<b>antitrust</b>); or <b>level the playing field</b> — handicaps, progressive and inheritance taxes, the potlatch — so each round starts fairer.</p></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="trap step-item glass">
@@ -1399,6 +1458,13 @@ body{
         <div>
           <h3 style="color:#fbbf24">Shifting the burden</h3>
           <p>The workaround works, so the real fix never gets built. Meadows' word for this one is <em style="font-style:normal;color:var(--ink)">addiction</em>. Every "temporary" process is five years old.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Addiction.</b> A drug numbs the pain without fixing what's wrong — so the real problem festers and you need more. Same shape beyond people: industries hooked on <b>subsidies</b>, farms on fertilizer, economies on cheap oil. The crutch erodes the system's own ability to cope.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>A fix relieves the <b>symptom</b>, not the cause, and quietly atrophies the system's capacity to help itself — so it needs ever more of the fix.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Best, avoid the easy fix. If you're hooked, shift focus to <b>long-term restructuring</b> — rebuild the system's own capability, then remove the prop.</p></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="trap step-item glass">
@@ -1423,6 +1489,13 @@ body{
         <div>
           <h3 style="color:#38bdf8">Rule beating</h3>
           <p>Obeying the letter of the rule while defeating its purpose. Hitting the metric, missing the point.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Letter, not spirit.</b> Departments <b>blow the budget</b> every December so next year's isn't cut; Vermont's 10-acre rule bred a rash of 10.1-acre lots; some landowners quietly killed an endangered species so their land stayed developable.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>Rules invite <b>perverse workarounds</b> that look like compliance while distorting the system.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Read rule-beating as <b>feedback</b>. Redesign the rule so the system's cleverness serves its purpose instead of evading it.</p></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="trap step-item glass">
@@ -1459,6 +1532,13 @@ body{
         <div>
           <h3 style="color:#f472b6">Seeking the wrong goal</h3>
           <p>You get what you measure — exactly that, and nothing more. The big target was the point; the small one was just easier to hit.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>You get what you measure.</b> Define security as military spending and you get spending, not safety. Grade schools by test scores and you get test scores. India once counted <b>IUDs implanted</b> — so doctors inserted them without consent. Chase GNP and you count car crashes as growth.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>If the goal or indicator is defined badly, the system <b>obediently</b> produces the wrong result — and looks busy doing it.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Choose indicators that reflect the system's <b>real welfare</b>, and never confuse effort with result.</p></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2887,11 +2967,18 @@ body{
     for(let k=1;k<=6;k++) fig.classList.toggle('s'+k, n >= k);
   }
   function stepFwd(){
+    /* archetypes: first → enlarges the current trap into its story, then → moves on */
+    const curTrap = slides[cur].querySelector('.trap.current');
+    if(curTrap && curTrap.querySelector('.trap-detail') && !curTrap.classList.contains('expanded')){
+      curTrap.classList.add('expanded'); return true;
+    }
     const it = slides[cur].querySelector('.step-item:not(.on)');
     if(it){ it.classList.add('on'); syncTraps(); syncMethod(); return true; }
     return false;
   }
   function stepBack(){
+    const expanded = slides[cur].querySelector('.trap.current.expanded');
+    if(expanded){ expanded.classList.remove('expanded'); return true; }
     const ons = slides[cur].querySelectorAll('.step-item.on');
     if(ons.length){ ons[ons.length-1].classList.remove('on'); syncTraps(); syncMethod(); return true; }
     return false;
