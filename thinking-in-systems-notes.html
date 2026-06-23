@@ -145,9 +145,20 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   .note{padding:24px 22px}
   .note::before{left:22px;right:22px}
 }
+.langtog{position:fixed;top:16px;left:18px;z-index:50;display:flex;gap:3px;
+  background:rgba(20,20,28,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--glass-edge);border-radius:999px;padding:4px}
+.langtog button{border:0;background:none;cursor:pointer;font-size:15px;line-height:1;
+  padding:5px 9px;border-radius:999px;opacity:.45;transition:opacity .2s ease,background .2s ease;filter:grayscale(.4)}
+.langtog button.on{opacity:1;background:rgba(255,255,255,.14);filter:none}
+@media print{.langtog{display:none}}
 </style>
 </head>
 <body>
+<div class="langtog" aria-label="Language">
+  <button data-lang="en" title="English" onclick="__setLang('en')">🇬🇧</button>
+  <button data-lang="ro" title="Română" onclick="__setLang('ro')">🇷🇴</button>
+</div>
 <div class="page">
 
   <div class="kicker">Speaker Notes · Companion to the deck</div>
@@ -634,6 +645,33 @@ function fitLive(sec){
 }
 let fitTimer;
 addEventListener('resize', ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout(()=>fitLive(), 150); });
+</script>
+<script src="i18n-ro.js"></script>
+<script>
+/* EN/RO toggle for the speaker notes (same engine as the deck). */
+(function(){
+  const T = window.__RO__ || {};
+  const norm = s => s.replace(/\s+/g,' ').trim();
+  const SEL = ['[data-ro]','.kicker','h1','.lede','.pill','.openbtn','.howto',
+    '.note-head h2','.onscreen','.say','.cue','.aside'];
+  const seen = new Set(), els = [];
+  document.querySelectorAll(SEL.join(',')).forEach(el=>{
+    if(seen.has(el)) return; seen.add(el); el.__en = el.innerHTML; els.push(el);
+  });
+  function apply(lang){
+    els.forEach(el=>{
+      if(lang==='ro'){ const r = (el.dataset.ro!=null? el.dataset.ro : T[norm(el.__en)]); el.innerHTML = (r!=null? r : el.__en); }
+      else el.innerHTML = el.__en;
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.langtog button').forEach(b=>b.classList.toggle('on', b.dataset.lang===lang));
+    if(typeof fitLive==='function') fitLive();
+  }
+  window.__setLang = l=>{ try{localStorage.setItem('tis-lang-notes',l);}catch(e){} apply(l); };
+  window.__unmatched = ()=> els.filter(el=>!(el.dataset.ro!=null) && !(norm(el.__en) in T)).map(el=>norm(el.__en));
+  let l='en'; try{ if(localStorage.getItem('tis-lang-notes')==='ro') l='ro'; }catch(e){}
+  apply(l);
+})();
 </script>
 </body>
 </html>

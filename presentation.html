@@ -561,9 +561,21 @@ body{
   .shift-old{color:var(--ink-faint)}
   .shift-old::after{transform:scaleX(1)}
 }
+/* language toggle */
+.langtog{position:fixed;top:16px;left:18px;z-index:50;display:flex;gap:3px;
+  background:rgba(20,20,28,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--glass-edge);border-radius:999px;padding:4px}
+.langtog button{border:0;background:none;cursor:pointer;font-size:15px;line-height:1;
+  padding:5px 9px;border-radius:999px;opacity:.45;transition:opacity .2s ease,background .2s ease;filter:grayscale(.4)}
+.langtog button.on{opacity:1;background:rgba(255,255,255,.14);filter:none}
+@media print{.langtog{display:none}}
 </style>
 </head>
 <body>
+<div class="langtog" aria-label="Language">
+  <button data-lang="en" title="English" onclick="__setLang('en')">🇬🇧</button>
+  <button data-lang="ro" title="Română" onclick="__setLang('ro')">🇷🇴</button>
+</div>
 
 <div class="blobs" id="blobs">
   <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
@@ -619,8 +631,8 @@ body{
     <div class="scrim"></div>
     <div class="glow"></div>
     <div class="kicker r grad" style="--d:.1s">Thinking in Systems</div>
-    <h1 class="hero-line wline chars" data-d="0.55" data-step="0.045">The world is not a machine.</h1>
-    <h1 class="hero-line wline">
+    <h1 class="hero-line wline chars" data-d="0.55" data-step="0.045" data-ro="Lumea nu e o mașină.">The world is not a machine.</h1>
+    <h1 class="hero-line wline" data-ro='Este un <span class="w grad">sistem.</span>'>
       <span class="chars" data-d="2.3" data-step="0.055">It is a</span>
       <span class="w grad" style="--d:2.95s">system.</span>
     </h1>
@@ -2241,7 +2253,7 @@ body{
     <div class="kicker r grad">The Shift</div>
     <p class="r" style="--d:.4s"><span class="shift-old">"What caused this?"</span></p>
     <p class="shift-arrow r" style="--d:1.9s">↓</p>
-    <h2 class="shift-new wline">
+    <h2 class="shift-new wline" data-ro='«Ce <span class="w grad">structură</span> tot produce asta?»'>
       <span class="w" style="--d:2.4s">"What</span>
       <span class="w grad" style="--d:2.6s">structure</span>
       <span class="w" style="--d:2.8s">keeps</span>
@@ -2773,17 +2785,17 @@ body{
     <div class="scrim"></div>
     <div class="glow"></div>
     <div class="halo" style="--d:4.2s"></div>
-    <h2 class="hero-line hero-sm wline">
+    <h2 class="hero-line hero-sm wline" data-ro="Nu lupta cu sistemul.">
       <span class="w" style="--d:.4s">Don't</span>
       <span class="w" style="--d:.6s">fight</span>
       <span class="w" style="--d:.8s">the</span>
       <span class="w" style="--d:1s">system.</span>
     </h2>
-    <h2 class="hero-line hero-sm wline" style="margin-top:2vh">
+    <h2 class="hero-line hero-sm wline" style="margin-top:2vh" data-ro="Înțelege-l.">
       <span class="w" style="--d:1.8s">Understand</span>
       <span class="w" style="--d:2s">it.</span>
     </h2>
-    <h2 class="hero-line hero-sm wline" style="margin-top:2vh">
+    <h2 class="hero-line hero-sm wline" style="margin-top:2vh" data-ro='Apoi schimbă <span class="w grad">structura.</span>'>
       <span class="w" style="--d:2.9s">Then</span>
       <span class="w" style="--d:3.1s">change</span>
       <span class="w" style="--d:3.3s">the</span>
@@ -3098,6 +3110,38 @@ body{
       });
     });
   }
+})();
+</script>
+<script src="i18n-ro.js"></script>
+<script>
+/* ---- EN/RO toggle: every translatable element carries its English innerHTML;
+   the Romanian comes from window.__RO__ keyed by the normalised English. ---- */
+(function(){
+  const T = window.__RO__ || {};
+  const norm = s => s.replace(/\s+/g,' ').trim();
+  const SEL = ['[data-ro]','.kicker','.title','.sub','.oneliner','.hero-sub','.hint','.chip',
+    '.bigquote','.bigquote cite','.trap-intro p','.ti-hint','.trap-pill',
+    '.trap > div > h3','.trap > div > p','.trap-story','.trap-cols .tlabel','.trap-cols p',
+    '.duo .d-lbl','.duo p','.vidcap','.qcard .qn','.qcard p','.step h3','.step p',
+    '.shift-old','.sys-lbl','.fig text','.icefig text','.sys-fig text',
+    '.fig .lbl-strong','.fig .lbl-sm'];
+  const seen = new Set(), els = [];
+  document.querySelectorAll(SEL.join(',')).forEach(el=>{
+    if(seen.has(el)) return; seen.add(el);
+    el.__en = el.innerHTML; els.push(el);
+  });
+  function apply(lang){
+    els.forEach(el=>{
+      if(lang==='ro'){ const r = (el.dataset.ro!=null? el.dataset.ro : T[norm(el.__en)]); el.innerHTML = (r!=null? r : el.__en); }
+      else el.innerHTML = el.__en;
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.langtog button').forEach(b=>b.classList.toggle('on', b.dataset.lang===lang));
+  }
+  window.__setLang = l=>{ try{localStorage.setItem('tis-lang-pres',l);}catch(e){} apply(l); };
+  window.__unmatched = ()=> els.filter(el=>!(norm(el.__en) in T)).map(el=>norm(el.__en));
+  let l='en'; try{ if(localStorage.getItem('tis-lang-pres')==='ro') l='ro'; }catch(e){}
+  apply(l);
 })();
 </script>
 </body>
