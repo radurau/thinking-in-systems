@@ -34,7 +34,7 @@ body::before{
     radial-gradient(50vw 50vw at 100% 110%,rgba(124,58,237,.12),transparent 60%),
     radial-gradient(36vw 36vw at 85% -5%,rgba(13,148,136,.08),transparent 60%);
 }
-.page{max-width:780px;margin:0 auto;padding:9vh 28px 14vh}
+.page{max-width:960px;margin:0 auto;padding:9vh 28px 14vh}
 
 /* ---------- header ---------- */
 .kicker{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-faint);
@@ -102,6 +102,15 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
 .note.live{border-color:rgba(122,162,255,.5);
   box-shadow:0 0 0 1px rgba(122,162,255,.3),0 0 44px rgba(122,162,255,.12),
     0 18px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07)}
+/* the current slide's notes scale to fill the screen (size set by fitLive in JS) */
+.note.live{--lf:26px;padding:clamp(24px,3vw,46px) clamp(30px,3.4vw,54px);scroll-margin-top:2.5vh}
+.note.live h2{font-size:calc(var(--lf)*1.28)}
+.note.live .num{font-size:calc(var(--lf)*.52)}
+.note.live .onscreen{font-size:calc(var(--lf)*.6);margin-bottom:calc(var(--lf)*.8)}
+.note.live .say{font-size:var(--lf);line-height:1.5;margin:calc(var(--lf)*.62) 0}
+.note.live .cue{font-size:calc(var(--lf)*.66);margin:calc(var(--lf)*.72) 0 6px}
+.note.live .aside{font-size:calc(var(--lf)*.66)}
+.note.live .time,.note.live .jump{font-size:calc(var(--lf)*.48)}
 #timer{position:fixed;top:18px;right:22px;z-index:10;cursor:pointer;
   font-variant-numeric:tabular-nums;font-size:15px;font-weight:650;letter-spacing:.08em;
   padding:8px 16px;border-radius:999px;border:1px solid var(--glass-edge);
@@ -148,8 +157,8 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   Read it as-is, or steal the beats and make it yours.</p>
 
   <div class="meta">
-    <span class="pill">17 slides</span>
-    <span class="pill">≈ <b>20–22 min</b> talk</span>
+    <span class="pill">25 slides</span>
+    <span class="pill">≈ <b>50 min</b> talk</span>
     <span class="pill">+ 10 min discussion</span>
     <a class="openbtn" href="presentation.html#1">▶ Open the presentation</a>
   </div>
@@ -179,7 +188,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="cue">Open the slide and say nothing. Let the words finish appearing. Count three full seconds of silence — it will feel long to you and perfect to them.</p>
     <p class="say">We're taught to see the world as a machine. Something breaks — you find the broken part, you replace it, you move on.</p>
     <p class="say">But think about the last problem that actually mattered to you. The team that's always behind. The argument you keep having at home. The habit you've quit five times. You "fixed" them, didn't you? And they came back.</p>
-    <p class="say">That's because they were never machine problems. <em>They're system problems.</em> And for the next twenty minutes I want to teach you to see them that way.</p>
+    <p class="say">That's because they were never machine problems. <em>They're system problems.</em> And for the next 50 minutes I want to teach you to see them that way.</p>
   </section>
 
   <!-- ============ 2 ============ -->
@@ -191,7 +200,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="onscreen">On screen: floating book, five concept chips.</p>
     <p class="say">This idea comes from a small book: <em>Thinking in Systems</em>, by Donella Meadows. She was a scientist at MIT who spent her life modelling the biggest systems on Earth — the climate, the global economy, world population.</p>
     <p class="say">And if you want proof this book matters to people like us: Werner Vogels — Amazon's CTO — gave his <em>final</em> re:Invent keynote in December 2025, after fourteen years. Of all the things he could say on his way out, he told every developer in the room to <em>think in systems</em> — quoting this exact book, this exact author.</p>
-    <p class="say">But here's the thing I love about this book: it isn't really about the planet. It's about Tuesday morning. It's about your inbox, your team, your savings account, your marriage.</p>
+    <p class="say">But here's the thing I love about this book: it isn't really about the planet. It's about Wednesday morning — such as this one. It's about your inbox, your team, your savings account, your marriage.</p>
     <p class="cue">Gesture at the chips as they sit on screen.</p>
     <p class="say">She gives us five lenses: patterns, relationships, feedback, delays, and leverage points. By the end of this talk you'll have all five. And fair warning — <em>once you see systems, you can't unsee them.</em></p>
   </section>
@@ -332,11 +341,38 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">The pattern to remember: <em>the higher you climb, the harder the change is to make — and the more it changes everything.</em> We fight over the bottom rung because it's easy. The top rungs are where futures get decided.</p>
   </section>
 
-  <!-- ============ 12 ============ -->
+  <!-- ============ 12 · paradigms ============ -->
   <section class="note" id="n12">
     <div class="note-head">
-      <span class="num">12</span><h2>Real-world systems</h2>
+      <span class="num">12</span><h2>The two at the top</h2>
       <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#12">Slide 12 ↗</a>
+    </div>
+    <p class="onscreen">On screen: an eye looks through a tinted lens at four stacked rows — Goals, Rules, Loops, Numbers — which all take the lens's colour. The lens toggles between <i>"Growth is good"</i> and <i>"Enough is enough,"</i> and the rows rewrite themselves each time. To the right, a "step back" arrow, then the same eye holding a fan of lenses — one yellow — none clamped on.</p>
+    <p class="say">We named the top two points and blew straight past them — so let's open them. A <em>paradigm</em> is the lens you think through, not about: the shared, unspoken belief the whole system grows out of. "Growth is good." "You can own land." "Nature is just resources."</p>
+    <p class="cue">Let the left lens flip once — Growth is good → Enough is enough — and point at the rows rewriting themselves underneath it.</p>
+    <p class="say">Watch what happens when the lens changes. Same system — but the goals, the rules, the loops, even the numbers all recolour. That's why it's the second-highest leverage point: everything downstream pours out of the belief at the top. Change the belief and the structure rearranges itself.</p>
+    <p class="say">And number one, higher still: <em>transcending</em> the paradigm. Not swapping to a better lens — realising it <em>is</em> a lens. Holding several, married to none, free to pick whichever one actually serves the problem in front of you.</p>
+    <p class="aside">Meadows on this one: "There are no cheap tickets to mastery — you let go, and dance with the system." Almost zen, and she means it.</p>
+  </section>
+
+  <!-- ============ 13 · systems within systems ============ -->
+  <section class="note" data-tone="cool" id="n13">
+    <div class="note-head">
+      <span class="num">13</span><h2>Systems inside systems</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#13">Slide 13 ↗</a>
+    </div>
+    <p class="onscreen">On screen: you at the centre, ringed by widening circles — your mental model (the iceberg's deepest layer, in purple), the system you can see, the system it sits inside — then dashed rings fading into the dark with question marks. Three chips: what we see · what we know we don't know · what we don't know we don't know.</p>
+    <p class="say">Which brings us full circle — back to the iceberg from the start. Remember its deepest layer? Mental models. Paradigms live right there.</p>
+    <p class="cue">Let the rings ripple outward once before you land the last line.</p>
+    <p class="say">But here's the humbling part. Transcending paradigms means admitting the water keeps going. You sit inside a system you can see, inside a bigger one you half-see, inside ones you've never even named. The known, the known unknowns — and out in the dark, the things we don't know we don't know.</p>
+    <p class="say">So the last move in this whole talk isn't a bigger model. It's the humility to keep looking <em>outside</em> the one you're standing in.</p>
+  </section>
+
+  <!-- ============ 14 ============ -->
+  <section class="note" id="n14">
+    <div class="note-head">
+      <span class="num">14</span><h2>Real-world systems</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#14">Slide 14 ↗</a>
     </div>
     <p class="onscreen">On screen: one big center-stage card per system, each animated — people flowing through the company stock, the heart that fills in drops and empties in one dump, the ship/debt seesaw, the slow-filling health capsule, the thermometer fed by fast emissions, the boom-bust rollercoaster. Each → press brings the next; pills track progress.</p>
     <p class="say">Let's make this concrete. Pick whichever of these is your life right now.</p>
@@ -348,10 +384,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 13 ============ -->
-  <section class="note" data-tone="warm" id="n13">
+  <section class="note" data-tone="warm" id="n15">
     <div class="note-head">
-      <span class="num">13</span><h2>One system, mapped</h2>
-      <span class="time">≈ 2 min</span><a class="jump" href="presentation.html#13">Slide 13 ↗</a>
+      <span class="num">15</span><h2>One system, mapped</h2>
+      <span class="time">≈ 2 min</span><a class="jump" href="presentation.html#15">Slide 15 ↗</a>
     </div>
     <p class="onscreen">On screen: the team-workload system — requests valve → work-in-progress stock → delivery valve; shortcuts filling a hidden technical-debt stock below; a red R loop closing back on delivery with a "months later" delay; the intake valve pulsing as the leverage point; "work harder!" struck through. The four summary chips (two stocks / one reinforcing loop / one delay / one high-leverage valve) step in one per → press.</p>
     <p class="say">Let's cash all of this in on one system you've lived: the team that's always overloaded.</p>
@@ -364,10 +400,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 14 ============ -->
-  <section class="note" id="n14">
+  <section class="note" id="n16">
     <div class="note-head">
-      <span class="num">14</span><h2>The mindset shift</h2>
-      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#14">Slide 14 ↗</a>
+      <span class="num">16</span><h2>The mindset shift</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#16">Slide 16 ↗</a>
     </div>
     <p class="onscreen">On screen: "What caused this?" gets struck through and dissolves; the new question builds.</p>
     <p class="cue">Stay quiet until the old question is struck through.</p>
@@ -378,10 +414,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 15 ============ -->
-  <section class="note" id="n15">
+  <section class="note" id="n17">
     <div class="note-head">
-      <span class="num">15</span><h2>Practical method</h2>
-      <span class="time">≈ 2 min</span><a class="jump" href="presentation.html#15">Slide 15 ↗</a>
+      <span class="num">17</span><h2>Practical method</h2>
+      <span class="time">≈ 2 min</span><a class="jump" href="presentation.html#17">Slide 17 ↗</a>
     </div>
     <p class="onscreen">On screen: the six moves on the left — and on the right, a small system that builds itself as you press: sketch → stock & valves → the amber signal starts circling the orange R loop and the output chart starts thrashing → the signal slams into the "weeks later" delay marks and hovers while a clock spins three turns → the leverage ring locks onto the tap → the valve turns, the orange loop empties, the flow turns teal and takes the healthy path (in → team → out), and the output wave calms onto the goal line.</p>
     <p class="cue">Each → press reveals a move AND adds it to the diagram. Press, say the move, point at what just appeared. On move 4, point at the dot stuck at the delay — "that's your fix, in the pipe."</p>
@@ -398,10 +434,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 16 ============ -->
-  <section class="note" id="n16">
+  <section class="note" id="n18">
     <div class="note-head">
-      <span class="num">16</span><h2>AI — the new flow</h2>
-      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#16">Slide 16 ↗</a>
+      <span class="num">18</span><h2>AI — the new flow</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#18">Slide 18 ↗</a>
     </div>
     <p class="onscreen">On screen: the bathtub returns — but the inflow valve is a big glowing purple tap labelled AI ("a machine-sized tap"). A torrent pours into a stock labelled EVERYTHING THAT NEEDS UNDERSTANDING; over ~8 s it fills and spills over the left rim. At ~10 s "the overflow has a name:" fades in, and at ~13 s "risk" pops in red, glowing, and swells to 3× by ~17 s. At ~18 s a GitHub-style PR card (+5,000 −12,000 with diff squares) pops beside the drain, captioned "human review — drop by drop".</p>
     <p class="cue">Bridge from the six moves: "Before we close — let's run this method on the newest variable in every one of our systems." You have ~10 s of clean talking before the text beats start: point at the tap, then at the drain. Let "risk" finish growing before you name it. The PR card is the laugh line — wait for it.</p>
@@ -412,10 +448,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 17 ============ -->
-  <section class="note" id="n17">
+  <section class="note" id="n19">
     <div class="note-head">
-      <span class="num">17</span><h2>AI — clock speed</h2>
-      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#17">Slide 17 ↗</a>
+      <span class="num">19</span><h2>AI — clock speed</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#19">Slide 19 ↗</a>
     </div>
     <p class="onscreen">On screen: two big R loops spinning fast — teal "build → learn → build" (the virtuous one) and red "shortcut → debt → slower" (the vicious one). Between them, the delay marks: "your delays didn't speed up — trust · review · learning · culture." Below, a mini overshoot curve: "remember the shower."</p>
     <p class="say">Here's the part people miss. AI doesn't add new kinds of loops to your system. It spins the loops you already have — faster.</p>
@@ -425,10 +461,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 18 ============ -->
-  <section class="note" id="n18">
+  <section class="note" id="n20">
     <div class="note-head">
-      <span class="num">18</span><h2>AI — machine drains</h2>
-      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#18">Slide 18 ↗</a>
+      <span class="num">20</span><h2>AI — machine drains</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#20">Slide 20 ↗</a>
     </div>
     <p class="onscreen">On screen: the bathtub again, balanced this time — the AI tap still pours, the human drain still drips, but a second, machine-sized outflow appears: a teal harness box ("evals · policies / limits · rollbacks") with a purple spark inside and a valve, draining "out — at machine speed". Top right: "the level holds ✓". Caption: "nondeterministic core · deterministic walls".</p>
     <p class="say">So the engineer in the room says: fine — if the taps and the loops run at machine speed, give the drains machine speed too. Build agents to review, test, and verify. Wrap the nondeterministic engine in deterministic constraints: evals that gate every merge, policies that bound the blast radius, rollbacks so cheap they're a reflex.</p>
@@ -437,10 +473,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 19 ============ -->
-  <section class="note" id="n19">
+  <section class="note" id="n21">
     <div class="note-head">
-      <span class="num">19</span><h2>AI — the same car</h2>
-      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#19">Slide 19 ↗</a>
+      <span class="num">21</span><h2>AI — the same car</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#21">Slide 21 ↗</a>
     </div>
     <p class="onscreen">On screen: a car. "same color ✓" and "same plate ✓" (plate: TRUST·1) check off in teal — then a dashed purple cutaway opens over the engine bay revealing an AI spark and strange parts, with a red "not the same engine ✗" and the caption "swapped overnight · no visible change · your perception never got the memo".</p>
     <p class="say">Sure — that's logical. But here's what logic forgets: trust doesn't come from verification. It comes from familiarity.</p>
@@ -450,10 +486,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 20 ============ -->
-  <section class="note" id="n20">
+  <section class="note" id="n22">
     <div class="note-head">
-      <span class="num">20</span><h2>AI — sampling rate</h2>
-      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#20">Slide 20 ↗</a>
+      <span class="num">22</span><h2>AI — sampling rate</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#22">Slide 22 ↗</a>
     </div>
     <p class="onscreen">On screen: a state-over-time wave. Left: slow wave, four teal sample dots — "your reviews kept up". A purple dashed line marks "AI enters the system". Right: the wave turns fast, but the same sparse dots now trace a red dashed phantom wave — "the state you assume — same dots, wrong story". Then a dense teal tick row appears: "adapt the sampling rate — re-review on the system's clock, not yours".</p>
     <p class="cue">This is the driving point of the whole AI arc — slow down and land each sentence.</p>
@@ -464,10 +500,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 21 ============ -->
-  <section class="note" id="n21">
+  <section class="note" id="n23">
     <div class="note-head">
-      <span class="num">21</span><h2>AI — where to point it</h2>
-      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#21">Slide 21 ↗</a>
+      <span class="num">23</span><h2>AI — where to point it</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#23">Slide 23 ↗</a>
     </div>
     <p class="onscreen">On screen: the lever returns. A swarm of AI sparks sits low at "№ 12 — more output, faster · autocomplete everything · barely moves it" with a small ripple. One single spark sits at the top — "see the system: information flows · goals · paradigms" — with a big ring, and a dashed arc nudges from low to high. Bottom-right: "tools change · systems thinking doesn't."</p>
     <p class="cue">This is the keynote beat — slow down, Werner-style. Point low, then high.</p>
@@ -479,10 +515,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 22 ============ -->
-  <section class="note" id="n22">
+  <section class="note" id="n24">
     <div class="note-head">
-      <span class="num">22</span><h2>Closing</h2>
-      <span class="time">≈ 30 sec</span><a class="jump" href="presentation.html#22">Slide 22 ↗</a>
+      <span class="num">24</span><h2>Closing</h2>
+      <span class="time">≈ 30 sec</span><a class="jump" href="presentation.html#24">Slide 24 ↗</a>
     </div>
     <p class="onscreen">On screen: three lines build word by word; then her quote appears beneath. At the bottom, an epilogue: the same ship from slide 3 returns and calmly sails past the iceberg — whose underwater mass is fully visible this time — with the caption "this time, it saw the whole thing."</p>
     <p class="cue">This slide does the talking. Read each line only after it has fully appeared, slowly, almost quietly.</p>
@@ -495,10 +531,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   </section>
 
   <!-- ============ 23 ============ -->
-  <section class="note" id="n23">
+  <section class="note" id="n25">
     <div class="note-head">
-      <span class="num">23</span><h2>Discussion</h2>
-      <span class="time">open-ended</span><a class="jump" href="presentation.html#23">Slide 23 ↗</a>
+      <span class="num">25</span><h2>Discussion</h2>
+      <span class="time">open-ended</span><a class="jump" href="presentation.html#25">Slide 25 ↗</a>
     </div>
     <p class="onscreen">On screen: four question cards.</p>
     <p class="say">I'll leave these four questions up. Pick the one that stings a little — that's the one worth answering.</p>
@@ -575,11 +611,29 @@ document.querySelectorAll('a[href*="index.html"]').forEach(a=>{
       const sec = document.getElementById('n' + n);
       if(sec){
         sec.classList.add('live');
+        fitLive(sec);
         sec.scrollIntoView({behavior:'smooth', block:'start'});
       }
     };
   }catch(err){ timerEl.style.display = 'none'; }
 })();
+
+/* Scale the live note's text so the whole note fits the screen (no scrolling). */
+function fitLive(sec){
+  sec = sec || document.querySelector('.note.live');
+  if(!sec) return;
+  const avail = window.innerHeight * 0.93;
+  let lf = 40;                      // start large, shrink until it fits
+  sec.style.setProperty('--lf', lf + 'px');
+  let guard = 0;
+  while(sec.getBoundingClientRect().height > avail && lf > 13 && guard < 60){
+    lf -= 1;
+    sec.style.setProperty('--lf', lf + 'px');
+    guard++;
+  }
+}
+let fitTimer;
+addEventListener('resize', ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout(()=>fitLive(), 150); });
 </script>
 </body>
 </html>
