@@ -13,8 +13,8 @@
 :root{
   --bg:#050507;
   --ink:#f5f5f7;
-  --ink-dim:rgba(245,245,247,.55);
-  --ink-faint:rgba(245,245,247,.30);
+  --ink-dim:rgba(245,245,247,.78);
+  --ink-faint:rgba(245,245,247,.60);
   --a1:#7aa2ff;
   --a2:#c084fc;
   --a3:#5eead4;
@@ -92,6 +92,8 @@ body{
   background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
 .slide.active .grad,.slide.active .grad-warm,.slide.active .grad-cool{animation:shimmer 8s linear infinite}
 @keyframes shimmer{to{background-position:250% center}}
+/* kickers tinted to match the title's accent below them */
+.kicker.grad,.kicker.grad-warm,.kicker.grad-cool{color:transparent;opacity:.92}
 .sub{font-size:clamp(15px,1.7vw,23px);color:var(--ink-dim);line-height:1.55;
   font-weight:400;max-width:760px;margin:0 auto}
 .oneliner{font-size:clamp(16px,1.9vw,26px);color:var(--ink-dim);margin-top:3vh;font-weight:500}
@@ -210,7 +212,7 @@ body{
 @keyframes knobturn{0%{transform:rotate(-50deg)}30%{transform:rotate(55deg)}
   60%{transform:rotate(-30deg)}85%{transform:rotate(18deg)}100%{transform:rotate(-50deg)}}
 .fig .node{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.16)}
-.fig .lbl-sm{font-size:12px;fill:var(--ink-faint)}
+.fig .lbl-sm{font-size:12px;fill:rgba(245,245,247,.74)}
 
 /* ---------- slide 3 iceberg: label sizing, ship, kraken ---------- */
 .icefig .lbl-strong{font-size:21px}
@@ -260,9 +262,15 @@ body{
 .trap-stage.started .trap-intro{opacity:0}
 .trap-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
 .trap-pill{font-size:11.5px;padding:5px 13px;border-radius:999px;border:1px solid var(--glass-edge);
-  background:var(--glass);color:var(--ink-faint);transition:all .35s ease}
-.trap-pill.done{color:var(--ink-dim)}
+  background:var(--glass);color:var(--ink-dim);transition:all .35s ease}
+.trap-pill.done{color:var(--ink)}
+/* archetypes: warm amber/orange pills */
+.trap-pills.warm .trap-pill{color:#fbbf24;border-color:rgba(251,191,36,.32)}
+.trap-pills.warm .trap-pill:nth-child(even){color:#fb923c;border-color:rgba(251,146,60,.32)}
 .trap-pill.current{color:var(--ink);border-color:rgba(251,146,60,.55);background:rgba(251,146,60,.1)}
+/* keep the step-through highlight winning inside .warm */
+.trap-pills.warm .trap-pill.done{color:var(--ink)}
+.trap-pills.warm .trap-pill.current{color:var(--ink);border-color:rgba(251,146,60,.7);background:rgba(251,146,60,.14)}
 
 /* ---------- card icons ---------- */
 .ico{width:19px;height:19px;margin-right:9px;vertical-align:-4px;overflow:visible}
@@ -567,7 +575,7 @@ body{
   <div class="wrap">
     <div class="scrim"></div>
     <div class="glow"></div>
-    <div class="kicker r" style="--d:.1s">Thinking in Systems</div>
+    <div class="kicker r grad" style="--d:.1s">Thinking in Systems</div>
     <h1 class="hero-line wline chars" data-d="0.55" data-step="0.045">The world is not a machine.</h1>
     <h1 class="hero-line wline">
       <span class="chars" data-d="2.3" data-step="0.055">It is a</span>
@@ -581,7 +589,7 @@ body{
 <!-- ============ 2 · THE BOOK ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">The Book</div>
+    <div class="kicker r grad">The Book</div>
     <h2 class="title r" style="--d:.15s">One small book.<br><span class="grad">A new way of seeing.</span></h2>
     <div class="book-scene r" style="--d:.4s">
       <div class="book">
@@ -604,7 +612,7 @@ body{
 <!-- ============ 3 · WHY NORMAL THINKING FAILS ============ -->
 <section class="slide" data-hue="35" id="icebergSlide">
   <div class="wrap">
-    <div class="kicker r">The Blind Spot</div>
+    <div class="kicker r grad">The Blind Spot</div>
     <h2 class="title r" style="--d:.15s">We blame the event.<br><span class="grad">The structure shrugs.</span></h2>
     <p class="sub r" style="--d:.35s">The missed deadline. The bad quarter. Easy targets — and almost never the real cause.</p>
     <svg class="fig icefig" viewBox="-200 0 1100 410" aria-hidden="true" style="max-width:min(920px,92vw);margin-top:2.2vh">
@@ -751,7 +759,7 @@ body{
 <!-- ============ 4 · WHAT IS A SYSTEM ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">Definition</div>
+    <div class="kicker r grad">Definition</div>
     <h2 class="title r" style="--d:.15s">Elements. Interconnections. <span class="grad">Purpose.</span></h2>
     <blockquote class="bigquote r" style="--d:.3s">"An interconnected set of elements that is coherently
       organized in a way that achieves something."<cite>— Donella H. Meadows</cite></blockquote>
@@ -807,7 +815,7 @@ body{
 <!-- ============ 5 · STOCKS & FLOWS ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">Building Block № 1</div>
+    <div class="kicker r grad">Building Block № 1</div>
     <h2 class="title r" style="--d:.15s">Stocks <span style="color:var(--ink-faint)">&amp;</span> <span class="grad">Flows</span></h2>
     <p class="sub r" style="--d:.3s">A stock is what accumulates. A flow is what changes it. Meadows calls this chapter "Bathtubs 101."</p>
     <svg class="fig" viewBox="0 0 680 400" aria-hidden="true" style="max-width:min(620px,72vw)">
@@ -884,7 +892,7 @@ body{
 <!-- ============ 6 · FEEDBACK LOOPS ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">Building Block № 2</div>
+    <div class="kicker r grad">Building Block № 2</div>
     <h2 class="title r" style="--d:.15s">Feedback is how a system<br><span class="grad">talks to itself.</span></h2>
     <svg class="fig" viewBox="0 0 560 350" aria-hidden="true" style="max-width:min(420px,52vw);margin-top:2.4vh">
       <!-- nodes -->
@@ -935,7 +943,7 @@ body{
 <!-- ============ 7 · REINFORCING LOOPS ============ -->
 <section class="slide" data-hue="150">
   <div class="wrap">
-    <div class="kicker r" style="color:rgba(251,146,60,.7)">Reinforcing Loops</div>
+    <div class="kicker r grad-warm">Reinforcing Loops</div>
     <h2 class="title r" style="--d:.15s"><span class="grad-warm">More leads to more.</span></h2>
     <p class="sub r" style="--d:.3s">Growth, momentum, compounding — and runaway collapse. Same loop, both directions.</p>
     <svg class="fig" viewBox="0 0 740 300" aria-hidden="true" style="max-width:min(660px,76vw)">
@@ -992,7 +1000,7 @@ body{
 <!-- ============ 8 · BALANCING LOOPS ============ -->
 <section class="slide" data-hue="-40">
   <div class="wrap">
-    <div class="kicker r" style="color:rgba(94,234,212,.7)">Balancing Loops</div>
+    <div class="kicker r grad-cool">Balancing Loops</div>
     <h2 class="title r" style="--d:.15s"><span class="grad-cool">Systems seek a goal.</span></h2>
     <p class="sub r" style="--d:.3s">Balancing loops sense the gap between where things are and where they should be — then close it.</p>
     <svg class="fig" viewBox="0 0 740 300" aria-hidden="true" style="max-width:min(660px,76vw)">
@@ -1010,10 +1018,10 @@ body{
         stroke="#38bdf8" stroke-width="2.5" marker-end="url(#ah3)" style="--d:.85s"/>
       <path class="draw" pathLength="1" d="M 78 210 Q 10 147 78 80" fill="none"
         stroke="#5eead4" stroke-width="2.5" marker-end="url(#ah3)" style="--d:1.05s"/>
-      <text class="fadein lbl-sm" x="318" y="140" style="--d:1.25s">senses</text>
-      <text class="fadein lbl-sm" x="318" y="158" style="--d:1.25s">the gap</text>
-      <text class="fadein lbl-sm" x="52" y="140" text-anchor="end" style="--d:1.35s">closes</text>
-      <text class="fadein lbl-sm" x="52" y="158" text-anchor="end" style="--d:1.35s">the gap</text>
+      <text class="fadein lbl-sm" x="300" y="143" text-anchor="middle" style="--d:1.25s">senses</text>
+      <text class="fadein lbl-sm" x="300" y="161" text-anchor="middle" style="--d:1.25s">the gap</text>
+      <text class="fadein lbl-sm" x="70" y="143" text-anchor="middle" style="--d:1.35s">closes</text>
+      <text class="fadein lbl-sm" x="70" y="161" text-anchor="middle" style="--d:1.35s">the gap</text>
       <text class="fadein" x="150" y="141" text-anchor="middle" dominant-baseline="central"
         style="--d:1.5s;fill:#5eead4;font-size:27px;font-weight:700">B</text>
       <g class="spin-rev" style="animation-duration:12s">
@@ -1051,7 +1059,7 @@ body{
 <!-- ============ 9 · DELAYS ============ -->
 <section class="slide" data-hue="20">
   <div class="wrap">
-    <div class="kicker r">The Hidden Variable</div>
+    <div class="kicker r grad">The Hidden Variable</div>
     <h2 class="title r" style="--d:.15s">Act now. <span class="grad">Feel it later.</span></h2>
     <p class="sub r" style="--d:.3s">Delays separate cause from effect — which is why we overshoot, overcorrect, and give up too soon.</p>
     <svg class="fig" viewBox="0 0 740 330" aria-hidden="true" style="max-width:min(820px,88vw)">
@@ -1099,7 +1107,7 @@ body{
       <!-- temperature over time: overshoot, overcorrect -->
       <line class="fadein" x1="335" y1="170" x2="715" y2="170" stroke="rgba(94,234,212,.5)"
         stroke-width="1.5" stroke-dasharray="6 8" style="--d:.5s"/>
-      <text class="fadein lbl-sm" x="713" y="154" text-anchor="end" style="--d:.7s;fill:rgba(94,234,212,.8)">comfortable</text>
+      <text class="fadein lbl-sm" x="713" y="136" text-anchor="end" style="--d:.7s;fill:rgba(94,234,212,.85)">comfortable</text>
       <path class="draw" pathLength="1"
         d="M 340 282 C 365 282 380 70 415 70 C 448 70 452 258 488 258 C 516 258 522 118 552 118 C 578 118 582 208 608 208 C 630 208 634 152 656 152 C 674 152 690 168 714 170"
         fill="none" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round" style="--d:.9s;animation-duration:2.8s"/>
@@ -1128,7 +1136,7 @@ body{
 <!-- ============ 10 · SYSTEM TRAPS ============ -->
 <section class="slide" data-hue="130">
   <div class="wrap">
-    <div class="kicker r">Archetypes</div>
+    <div class="kicker r grad-warm">Archetypes</div>
     <h2 class="title r" style="--d:.15s">The eight <span class="grad-warm">system traps.</span></h2>
     <p class="sub r" style="--d:.3s">Meadows catalogued them. Recurring structures, reliably bad outcomes — no villains required.</p>
     <div class="trap-stage r" style="--d:.45s">
@@ -1343,7 +1351,7 @@ body{
         </div>
       </div>
     </div>
-    <div class="trap-pills r" style="--d:.6s">
+    <div class="trap-pills warm r" style="--d:.6s">
       <span class="trap-pill">1 · Resistance</span>
       <span class="trap-pill">2 · Commons</span>
       <span class="trap-pill">3 · Drift</span>
@@ -1360,7 +1368,7 @@ body{
 <!-- ============ 11 · LEVERAGE POINTS ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">Where to Push</div>
+    <div class="kicker r grad">Where to Push</div>
     <h2 class="title r" style="--d:.15s;margin-bottom:1.2vh">Twelve <span class="grad">leverage points.</span></h2>
     <p class="sub r" style="--d:.3s">Meadows' actual list — places to intervene in a system, in increasing order of power.</p>
     <svg class="fig" viewBox="0 0 1000 440" aria-hidden="true" style="max-width:min(980px,90vw);margin-top:1.6vh">
@@ -1456,7 +1464,7 @@ body{
         <path class="fadein" d="M 604 273 v-6 M 604 273 H 750 M 750 273 v-6" style="--d:2.4s"/>
         <path class="fadein" d="M 786 219 v-6 M 786 219 H 932 M 932 219 v-6" style="--d:2.55s"/>
       </g>
-      <g style="font-size:10px;letter-spacing:.15em" fill="rgba(245,245,247,.34)">
+      <g style="font-size:10px;letter-spacing:.15em" fill="rgba(245,245,247,.56)">
         <text class="fadein" x="311" y="398" text-anchor="middle" style="--d:2.15s">PHYSICAL EVENTS</text>
         <text class="fadein" x="494" y="345" text-anchor="middle" style="--d:2.3s">PATTERNS OF BEHAVIOR</text>
         <text class="fadein" x="677" y="291" text-anchor="middle" style="--d:2.45s">SYSTEM STRUCTURE</text>
@@ -1521,7 +1529,7 @@ body{
 <!-- ============ 11b · PARADIGMS = THE LENS ============ -->
 <section class="slide" data-hue="-25">
   <div class="wrap">
-    <div class="kicker r">The Two at the Top</div>
+    <div class="kicker r grad">The Two at the Top</div>
     <h2 class="title r" style="--d:.15s">See the lens. <span class="grad">Then set it down.</span></h2>
     <p class="sub r" style="--d:.3s">Point 2 is the mind-set the whole system grows from. Point 1 is refusing to be ruled by any single one.</p>
     <svg class="fig r" viewBox="0 0 960 300" aria-hidden="true" style="--d:.45s;max-width:min(960px,94vw);margin-top:1vh">
@@ -1611,11 +1619,11 @@ body{
       <g class="fadein" style="--d:2.2s">
         <g transform="rotate(-28 838 210)"><ellipse cx="838" cy="84" rx="12" ry="36" fill="rgba(122,162,255,.18)" stroke="#7aa2ff" stroke-width="1.8"/></g>
         <g transform="rotate(0 838 210)"><ellipse cx="838" cy="84" rx="12" ry="36" fill="rgba(94,234,212,.18)" stroke="#5eead4" stroke-width="1.8"/></g>
-        <g transform="rotate(28 838 210)"><ellipse cx="838" cy="84" rx="12" ry="36" fill="rgba(245,245,247,.06)" stroke="rgba(245,245,247,.4)" stroke-width="1.6" stroke-dasharray="4 4"/></g>
+        <g transform="rotate(28 838 210)"><ellipse cx="838" cy="84" rx="12" ry="36" fill="rgba(251,191,36,.12)" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="4 4"/></g>
       </g>
       <text class="fadein" x="772" y="68" text-anchor="end" style="--d:2.5s;font-size:12px;fill:#9dd6fc">"Growth is good"</text>
       <text class="fadein" x="838" y="44" text-anchor="middle" style="--d:2.55s;font-size:12px;fill:#5eead4">"Enough is enough"</text>
-      <text class="fadein lbl-sm" x="906" y="68" text-anchor="start" style="--d:2.6s;font-size:12px">…and others</text>
+      <text class="fadein lbl-sm" x="906" y="68" text-anchor="start" style="--d:2.6s;font-size:12px;fill:#fbbf24">…and others</text>
       <!-- one lens lifts to the eye, then returns to the fan -->
       <ellipse rx="13" ry="38" fill="rgba(122,162,255,.24)" stroke="#7aa2ff" stroke-width="2.2" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.16;.22;.5;.56;1" dur="8s" repeatCount="indefinite"/>
@@ -1643,7 +1651,7 @@ body{
 <!-- ============ 11c · SYSTEMS WITHIN SYSTEMS / THE UNKNOWN ============ -->
 <section class="slide" data-hue="210">
   <div class="wrap">
-    <div class="kicker r">Full Circle</div>
+    <div class="kicker r grad-cool">Full Circle</div>
     <h2 class="title r" style="--d:.15s">Systems inside systems — <span class="grad-cool">all the way out.</span></h2>
     <p class="sub r" style="--d:.3s">Remember the iceberg? Its deepest layer was the <b style="color:#c8a2ff">mental model</b>. Transcending paradigms is admitting the water keeps going — we sit inside systems we've never named.</p>
     <svg class="fig r" viewBox="0 0 820 400" aria-hidden="true" style="--d:.45s;max-width:min(760px,90vw);margin-top:1vh">
@@ -1694,7 +1702,7 @@ body{
 <!-- ============ 12 · REAL-WORLD SYSTEMS ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">Everywhere You Look</div>
+    <div class="kicker r grad">Everywhere You Look</div>
     <h2 class="title r" style="--d:.15s">You already live<br><span class="grad">inside systems.</span></h2>
     <div class="trap-stage r" style="--d:.45s">
       <div class="trap-intro">
@@ -1814,8 +1822,8 @@ body{
         <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
           <!-- shipping piles up… the debt side balloons later, and the beam slams -->
           <path d="M 120 152 L 100 180 H 140 Z" fill="rgba(255,255,255,.08)" stroke="rgba(245,245,247,.4)" stroke-width="1.5"/>
-          <text x="58" y="196" text-anchor="middle" style="font-size:10px" fill="rgba(245,245,247,.5)">ship</text>
-          <text x="182" y="196" text-anchor="middle" style="font-size:10px" fill="rgba(245,245,247,.5)">debt</text>
+          <text x="58" y="196" text-anchor="middle" style="font-size:10px" fill="rgba(245,245,247,.66)">ship</text>
+          <text x="182" y="196" text-anchor="middle" style="font-size:10px" fill="rgba(245,245,247,.66)">debt</text>
           <g opacity="0">
             <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.52;.56;.7;.74;1" dur="10s" repeatCount="indefinite"/>
             <circle cx="196" cy="58" r="10" fill="none" stroke="rgba(251,146,60,.7)" stroke-width="2"/>
@@ -1958,7 +1966,7 @@ body{
 <!-- ============ 13 · ONE SYSTEM, MAPPED ============ -->
 <section class="slide" data-hue="20">
   <div class="wrap">
-    <div class="kicker r">Worked Example</div>
+    <div class="kicker r grad">Worked Example</div>
     <h2 class="title r" style="--d:.15s">Your overloaded team, <span class="grad">mapped.</span></h2>
     <svg class="fig" viewBox="0 0 760 410" aria-hidden="true" style="max-width:min(780px,86vw);margin-top:1.6vh">
       <!-- requests cloud → intake valve → WIP stock → delivery valve → done -->
@@ -2039,7 +2047,7 @@ body{
   <div class="wrap">
     <div class="scrim"></div>
     <div class="glow"></div>
-    <div class="kicker r">The Shift</div>
+    <div class="kicker r grad">The Shift</div>
     <p class="r" style="--d:.4s"><span class="shift-old">"What caused this?"</span></p>
     <p class="shift-arrow r" style="--d:1.9s">↓</p>
     <h2 class="shift-new wline">
@@ -2056,7 +2064,7 @@ body{
 <!-- ============ 15 · PRACTICAL METHOD ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">In Practice</div>
+    <div class="kicker r grad">In Practice</div>
     <h2 class="title r" style="--d:.15s">Six moves. <span class="grad">Any system.</span></h2>
     <div class="method-row r" style="--d:.4s">
       <div class="method">
@@ -2237,7 +2245,7 @@ body{
 <!-- ============ 16 · AI: THE NEW FLOW ============ -->
 <section class="slide" data-hue="20">
   <div class="wrap">
-    <div class="kicker r">And Then Came AI</div>
+    <div class="kicker r grad">And Then Came AI</div>
     <h2 class="title r" style="--d:.15s">AI is not a tool. <span class="grad">It's a new flow.</span></h2>
     <p class="sub r" style="--d:.3s">Bolted straight onto the biggest valve your system has ever had.</p>
     <svg class="fig" viewBox="0 0 760 392" aria-hidden="true" style="max-width:min(680px,78vw)">
@@ -2336,7 +2344,7 @@ body{
 <!-- ============ 17 · AI: CLOCK SPEED ============ -->
 <section class="slide" data-hue="-40">
   <div class="wrap">
-    <div class="kicker r">Clock Speed</div>
+    <div class="kicker r grad-warm">Clock Speed</div>
     <h2 class="title r" style="--d:.15s">Same structure. <span class="grad-warm">Ten times the spin.</span></h2>
     <p class="sub r" style="--d:.3s">AI doesn't change what your loops do — it changes how fast they do it. Both of them.</p>
     <svg class="fig" viewBox="0 0 800 330" aria-hidden="true" style="max-width:min(700px,80vw)">
@@ -2375,7 +2383,7 @@ body{
 <!-- ============ 18 · AI: MACHINE DRAINS ============ -->
 <section class="slide" data-hue="150">
   <div class="wrap">
-    <div class="kicker r">The Obvious Fix</div>
+    <div class="kicker r grad">The Obvious Fix</div>
     <h2 class="title r" style="--d:.15s">Machine taps need <span class="grad">machine drains.</span></h2>
     <p class="sub r" style="--d:.3s">So we build a second outflow: agents in harnesses — nondeterministic engines inside deterministic constraints.</p>
     <svg class="fig" viewBox="0 0 760 380" aria-hidden="true" style="max-width:min(660px,76vw)">
@@ -2389,7 +2397,7 @@ body{
       <line class="flowdash fadein" x1="165" y1="68" x2="165" y2="140" stroke="#c084fc" stroke-width="5" stroke-linecap="round" style="--d:.7s"/>
       <line class="flowdash fadein" x1="179" y1="70" x2="179" y2="146" stroke="#a78bfa" stroke-width="5" stroke-linecap="round" style="--d:.8s"/>
       <!-- the tub — balanced now -->
-      <rect class="water" x="120" y="158" width="444" height="94" rx="8" fill="url(#wg)"/>
+      <rect class="water" x="122" y="158" width="420" height="92" rx="10" fill="url(#wg)"/>
       <path class="draw" pathLength="1" d="M 112 150 v 64 q 0 38 38 38 h 364 q 38 0 38 -38 v -64"
         fill="none" stroke="rgba(245,245,247,.5)" stroke-width="3.5" style="--d:.2s"/>
       <line class="fadein" x1="90" y1="150" x2="602" y2="150" stroke="rgba(245,245,247,.55)" stroke-width="5" stroke-linecap="round" style="--d:.3s"/>
@@ -2436,7 +2444,7 @@ body{
 <!-- ============ 19 · AI: THE SAME CAR ============ -->
 <section class="slide" data-hue="35">
   <div class="wrap">
-    <div class="kicker r">The Familiarity Trap</div>
+    <div class="kicker r grad-warm">The Familiarity Trap</div>
     <h2 class="title r" style="--d:.15s">Same color. Same plate. <span class="grad-warm">Not the same car.</span></h2>
     <p class="sub r" style="--d:.3s">You start the engine every morning without fear — because you believe it's the same car as yesterday.</p>
     <svg class="fig" viewBox="0 0 760 340" aria-hidden="true" style="max-width:min(680px,78vw)">
@@ -2483,7 +2491,7 @@ body{
 <!-- ============ 20 · AI: SAMPLING RATE ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">The New Discipline</div>
+    <div class="kicker r grad">The New Discipline</div>
     <h2 class="title r" style="--d:.15s">The state changed. <span class="grad">Sample faster.</span></h2>
     <p class="sub r" style="--d:.3s">Understanding decays — and with AI in the loop, it decays faster than you're anticipating. Your mental model is a cache with a shorter TTL.</p>
     <svg class="fig" viewBox="0 0 880 330" aria-hidden="true" style="max-width:min(800px,86vw)">
@@ -2531,7 +2539,7 @@ body{
 <!-- ============ 21 · AI: WHERE TO POINT IT ============ -->
 <section class="slide" data-hue="130">
   <div class="wrap">
-    <div class="kicker r">Where to Point It</div>
+    <div class="kicker r grad">Where to Point It</div>
     <h2 class="title r" style="--d:.15s">Aim it <span class="grad">high on the lever.</span></h2>
     <p class="sub r" style="--d:.3s">Most teams point AI at № 12 — produce more, faster. The wins live at the top.</p>
     <svg class="fig" viewBox="0 0 980 330" aria-hidden="true" style="max-width:min(900px,90vw);margin-top:1.4vh">
@@ -2627,7 +2635,7 @@ body{
 <!-- ============ 23 · DISCUSSION ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
-    <div class="kicker r">Discussion</div>
+    <div class="kicker r grad">Discussion</div>
     <h2 class="title r" style="--d:.15s">Four questions<br><span class="grad">to take with you.</span></h2>
     <div class="qcards" style="max-width:900px;margin-left:auto;margin-right:auto">
       <div class="qcard glass tilt r" style="--d:.5s">
