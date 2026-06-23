@@ -513,12 +513,29 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
 <div id="timer" title="Elapsed talk time — starts on your first slide change. Click to reset.">00:00</div>
 
 <div class="fab">
+  <button id="fsBtn" onclick="toggleFs()" title="Fullscreen (F)">⛶</button>
   <a href="presentation.html#1" title="Open presentation">▶</a>
   <button onclick="window.print()" title="Print script">⎙</button>
   <button onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 </div>
 
 <script>
+/* Fullscreen toggle (button + "F" key), mirroring the presentation. */
+function toggleFs(){
+  if(document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen().catch(()=>{});
+}
+document.addEventListener('fullscreenchange', ()=>{
+  const b = document.getElementById('fsBtn');
+  if(b){ b.textContent = document.fullscreenElement ? '⤢' : '⛶';
+         b.title = document.fullscreenElement ? 'Exit fullscreen (F)' : 'Fullscreen (F)'; }
+});
+document.addEventListener('keydown', e=>{
+  if((e.key === 'f' || e.key === 'F') && !/^(INPUT|TEXTAREA)$/.test(e.target.tagName)){
+    e.preventDefault(); toggleFs();
+  }
+});
+
 /* All deck links drive ONE named window ("tis-deck"): the first click opens it —
    drag it to the presentation monitor — and every later click just retargets it.
    The deck listens for hashchange, so it jumps slides without reloading. */
