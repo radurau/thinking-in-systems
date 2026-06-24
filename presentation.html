@@ -420,14 +420,14 @@ body{
 
 /* ---------- AI coda (slides 16–18) ---------- */
 .rise{transform-box:fill-box;transform-origin:bottom;transform:scaleY(.22)}
-.slide.active .rise{animation:rise 8s ease-in 1.2s forwards}
+.slide.active .rise{animation:rise 22s ease-in 3.2s forwards}
 @keyframes rise{to{transform:scaleY(1)}}
 .creep{opacity:0}
 .slide.active .creep{animation:fadein 2.5s ease forwards;animation-delay:var(--d,10s)}
 .risk{opacity:0;transform-box:fill-box;transform-origin:center;
   filter:drop-shadow(0 0 7px rgba(239,68,68,.75))}
-.slide.active .risk{animation:riskin .6s var(--ease) 13s forwards,
-  riskgrow 4s ease-in 13.6s forwards,riskpulse 2.4s ease-in-out 17.6s infinite}
+.slide.active .risk{animation:riskin .6s var(--ease) 35s forwards,
+  riskgrow 11s ease-in 36.5s forwards,riskpulse 2.4s ease-in-out 47.5s infinite}
 @keyframes riskin{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
 @keyframes riskgrow{to{transform:scale(3)}}
 @keyframes riskpulse{0%,100%{transform:scale(3)}50%{transform:scale(3.16)}}
@@ -1577,7 +1577,7 @@ body{
     <svg class="fig" viewBox="0 0 1000 440" aria-hidden="true" style="max-width:min(1320px,90vw);margin-top:1.6vh">
       <!-- the lever assembly — everything that tilts together -->
       <g>
-        <animateTransform attributeName="transform" type="rotate" calcMode="spline" dur="16s" begin="3.2s" repeatCount="indefinite"
+        <animateTransform attributeName="transform" type="rotate" calcMode="spline" dur="75s" begin="22.3s" repeatCount="indefinite"
           values="0 210 344;0 210 344;1 210 344;0.8 210 344;0.9 210 344;0 210 344;0 210 344;8.2 210 344;7.4 210 344;7.8 210 344;0 210 344;0 210 344"
           keyTimes="0;.12;.16;.19;.40;.46;.52;.57;.60;.90;.96;1"
           keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
@@ -1675,36 +1675,36 @@ body{
       </g>
       <!-- act 1: a tonne of effort, low on the arm -->
       <g opacity="0">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.103;.125;.42;.46;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="translate" values="0 -80;0 -80;0 0;0 0" keyTimes="0;.105;.13;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.103;.125;.42;.46;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 -80;0 -80;0 0;0 0" keyTimes="0;.105;.13;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
         <rect x="269" y="303" width="30" height="20" rx="4" fill="rgba(251,146,60,.85)"/>
         <rect x="273" y="285" width="22" height="16" rx="4" fill="rgba(251,146,60,.55)"/>
       </g>
       <circle cx="284" cy="318" fill="none" stroke="#fb923c" stroke-width="2" opacity="0">
-        <animate attributeName="r" values="8;8;28;30;30" keyTimes="0;.125;.17;.22;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;0;.7;0;0" keyTimes="0;.125;.155;.21;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="8;8;28;30;30" keyTimes="0;.125;.17;.22;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;.7;0;0" keyTimes="0;.125;.155;.21;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
       </circle>
       <!-- act 2: a pebble at the very top -->
       <g opacity="0">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.503;.525;.92;.96;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="translate" values="0 -60;0 -60;0 0;0 0" keyTimes="0;.505;.53;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.503;.525;.92;.96;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 -60;0 -60;0 0;0 0" keyTimes="0;.505;.53;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
         <circle cx="893" cy="140" r="6" fill="#c084fc"/>
       </g>
       <circle cx="893" cy="140" fill="none" stroke="#c084fc" stroke-width="2" opacity="0">
-        <animate attributeName="r" values="6;6;24;28;28" keyTimes="0;.525;.57;.63;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;0;.8;0;0" keyTimes="0;.525;.555;.62;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="6;6;24;28;28" keyTimes="0;.525;.57;.63;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;.8;0;0" keyTimes="0;.525;.555;.62;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
       </circle>
       </g>
       <polygon class="fadein" points="210,346 186,404 234,404"
         fill="rgba(255,255,255,.09)" stroke="rgba(245,245,247,.4)" stroke-width="1.5" style="--d:.3s"/>
       <!-- the system, sitting on the short end — it lifts only when the push is smart -->
       <g>
-        <animateTransform attributeName="transform" type="translate" calcMode="spline" dur="16s" begin="3.2s" repeatCount="indefinite"
+        <animateTransform attributeName="transform" type="translate" calcMode="spline" dur="75s" begin="22.3s" repeatCount="indefinite"
           values="0 0;0 0;0 -1.8;0 -1.4;0 -1.6;0 0;0 0;0 -20;0 -18;0 -19;0 0;0 0"
           keyTimes="0;.12;.16;.19;.40;.46;.52;.57;.60;.90;.96;1"
           keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
         <circle cx="90" cy="345" r="44" fill="none" stroke="rgba(94,234,212,.6)" stroke-width="2" opacity="0">
-          <animate attributeName="opacity" values="0;0;.8;.8;0;0" keyTimes="0;.54;.58;.88;.94;1" dur="16s" begin="3.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0;.8;.8;0;0" keyTimes="0;.54;.58;.88;.94;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
         </circle>
         <g class="pop" style="--d:.45s">
           <circle cx="90" cy="345" r="36" fill="url(#ballg)"/>
@@ -1715,13 +1715,13 @@ body{
       <!-- the moral, told in two acts -->
       <g style="font-size:13.5px" text-anchor="middle">
         <text x="120" y="206" fill="#fb923c" opacity="0">a tonne of effort, low on the arm…
-          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.12;.15;.42;.46;1" dur="16s" begin="3.2s" repeatCount="indefinite"/></text>
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.12;.15;.42;.46;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
         <text x="120" y="228" fill="rgba(245,245,247,.6)" opacity="0">…barely moves it
-          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.15;.18;.42;.46;1" dur="16s" begin="3.2s" repeatCount="indefinite"/></text>
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.15;.18;.42;.46;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
         <text x="120" y="206" fill="#c084fc" opacity="0">a pebble, at the very top…
-          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.52;.55;.90;.94;1" dur="16s" begin="3.2s" repeatCount="indefinite"/></text>
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.52;.55;.90;.94;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
         <text x="120" y="228" fill="#5eead4" opacity="0">…lifts the whole system
-          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.55;.58;.90;.94;1" dur="16s" begin="3.2s" repeatCount="indefinite"/></text>
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.55;.58;.90;.94;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
       </g>
       <text class="fadein lbl-sm" x="985" y="432" text-anchor="end" style="--d:2.9s">layout after Werner Vogels' final keynote · re:Invent 2025</text>
     </svg>
@@ -1746,8 +1746,8 @@ body{
       <!-- the lens (the paradigm) — toggles between two worldviews -->
       <g class="fadein" style="--d:.8s">
         <ellipse cx="162" cy="150" rx="16" ry="48" fill="rgba(122,162,255,.26)" stroke="#7aa2ff" stroke-width="2.5">
-          <animate attributeName="fill" values="rgba(122,162,255,.26);rgba(122,162,255,.26);rgba(94,234,212,.26);rgba(94,234,212,.26);rgba(122,162,255,.26)" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
-          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="fill" values="rgba(122,162,255,.26);rgba(122,162,255,.26);rgba(94,234,212,.26);rgba(94,234,212,.26);rgba(122,162,255,.26)" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
         </ellipse>
         <line x1="162" y1="112" x2="162" y2="188" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
       </g>
@@ -1759,9 +1759,9 @@ body{
       <!-- the lens's name, toggling -->
       <g class="fadein" style="--d:1.1s">
         <text x="120" y="232" text-anchor="middle" style="font-size:15px;font-weight:650;fill:#9dd6fc" opacity="1">"Growth is good"
-          <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
+          <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
         <text x="120" y="232" text-anchor="middle" style="font-size:15px;font-weight:650;fill:#5eead4" opacity="0">"Enough is enough"
-          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
+          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
         <text x="120" y="252" text-anchor="middle" style="font-size:11px;letter-spacing:.18em;fill:var(--ink-faint)">2 · THE PARADIGM</text>
       </g>
       <!-- the world downstream: same four rows, different content per lens -->
@@ -1775,31 +1775,31 @@ body{
       <g class="fadein" style="--d:1.4s">
         <!-- four cells; fill+stroke morph blue→teal, content swaps in sync -->
         <rect x="386" y="86" width="186" height="28" rx="8" fill="rgba(122,162,255,.2)" stroke="#7aa2ff" stroke-width="1.5">
-          <animate attributeName="fill" values="rgba(122,162,255,.2);rgba(122,162,255,.2);rgba(94,234,212,.2);rgba(94,234,212,.2);rgba(122,162,255,.2)" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
-          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="fill" values="rgba(122,162,255,.2);rgba(122,162,255,.2);rgba(94,234,212,.2);rgba(94,234,212,.2);rgba(122,162,255,.2)" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
         </rect>
         <rect x="386" y="132" width="186" height="28" rx="8" fill="rgba(122,162,255,.2)" stroke="#7aa2ff" stroke-width="1.5">
-          <animate attributeName="fill" values="rgba(122,162,255,.2);rgba(122,162,255,.2);rgba(94,234,212,.2);rgba(94,234,212,.2);rgba(122,162,255,.2)" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
-          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="fill" values="rgba(122,162,255,.2);rgba(122,162,255,.2);rgba(94,234,212,.2);rgba(94,234,212,.2);rgba(122,162,255,.2)" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
         </rect>
         <rect x="386" y="178" width="186" height="28" rx="8" fill="rgba(122,162,255,.2)" stroke="#7aa2ff" stroke-width="1.5">
-          <animate attributeName="fill" values="rgba(122,162,255,.2);rgba(122,162,255,.2);rgba(94,234,212,.2);rgba(94,234,212,.2);rgba(122,162,255,.2)" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
-          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="fill" values="rgba(122,162,255,.2);rgba(122,162,255,.2);rgba(94,234,212,.2);rgba(94,234,212,.2);rgba(122,162,255,.2)" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
         </rect>
         <rect x="386" y="224" width="186" height="28" rx="8" fill="rgba(122,162,255,.2)" stroke="#7aa2ff" stroke-width="1.5">
-          <animate attributeName="fill" values="rgba(122,162,255,.2);rgba(122,162,255,.2);rgba(94,234,212,.2);rgba(94,234,212,.2);rgba(122,162,255,.2)" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
-          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="fill" values="rgba(122,162,255,.2);rgba(122,162,255,.2);rgba(94,234,212,.2);rgba(94,234,212,.2);rgba(122,162,255,.2)" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#7aa2ff;#7aa2ff;#5eead4;#5eead4;#7aa2ff" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/>
         </rect>
         <!-- content: A = growth (blue), B = enough (teal) -->
         <g style="font-size:13px;fill:var(--ink)" text-anchor="middle">
-          <text x="479" y="105">More, faster<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
-          <text x="479" y="105">Live within limits<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
-          <text x="479" y="151">Reward output<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
-          <text x="479" y="151">Reward restraint<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
-          <text x="479" y="197">Reinvest the gains<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
-          <text x="479" y="197">Reuse &amp; restore<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
-          <text x="479" y="243">GDP, share price<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
-          <text x="479" y="243">Wellbeing, footprint<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="8s" repeatCount="indefinite"/></text>
+          <text x="479" y="105">More, faster<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
+          <text x="479" y="105">Live within limits<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
+          <text x="479" y="151">Reward output<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
+          <text x="479" y="151">Reward restraint<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
+          <text x="479" y="197">Reinvest the gains<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
+          <text x="479" y="197">Reuse &amp; restore<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
+          <text x="479" y="243">GDP, share price<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
+          <text x="479" y="243">Wellbeing, footprint<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.42;.5;.92;1" dur="16s" repeatCount="indefinite"/></text>
         </g>
       </g>
       <text class="fadein lbl-sm" x="386" y="276" style="--d:1.7s;font-size:12px">swap the lens → goals, rules, loops &amp; numbers all change</text>
@@ -2474,7 +2474,7 @@ body{
       <!-- the spill: the tub overflows along its whole length — left, right and
            across the front — but the water only drapes to mid-tub so the label
            underneath stays readable -->
-      <g class="fadein" style="--d:9.6s">
+      <g class="fadein" style="--d:26s">
         <!-- welling crest + draping sheet gently bob together -->
         <g>
           <animateTransform attributeName="transform" type="translate"
@@ -2506,7 +2506,7 @@ body{
         <path d="M 574 200 q 10 6 13 25 q 3 13 6 23" fill="none" stroke="rgba(186,214,255,.58)" stroke-width="3" stroke-linecap="round"/>
         <circle r="2.4" fill="#9db9ff"><animateMotion dur="1.25s" begin="-.6s" repeatCount="indefinite" path="M 580 206 q 7 26 13 46"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.78;1" dur="1.25s" begin="-.6s" repeatCount="indefinite"/></circle>
       </g>
-      <text class="creep" x="4" y="356" style="--d:5.8s;font-size:14px;fill:rgba(245,245,247,.75)">the overflow has a name:</text>
+      <text class="creep" x="4" y="356" style="--d:15.5s;font-size:14px;fill:rgba(245,245,247,.75)">the overflow has a name:</text>
       <text class="risk" x="200" y="356" style="font-size:15px;font-weight:800;fill:#ef4444">risk</text>
       <!-- the human drain -->
       <ellipse class="fadein" cx="520" cy="304" rx="8" ry="3.5" fill="rgba(5,5,7,.6)" stroke="rgba(245,245,247,.35)" style="--d:.6s"/>
@@ -2523,7 +2523,7 @@ body{
         </circle>
       </g>
       <!-- the PR that lands in that drain -->
-      <g class="pop" style="--d:18s">
+      <g class="pop" style="--d:48s">
         <rect x="596" y="270" width="150" height="44" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(245,245,247,.25)"/>
         <text x="610" y="290" style="font-size:14px;font-weight:700;fill:#3fb950">+5,000</text>
         <text x="668" y="290" style="font-size:14px;font-weight:700;fill:#f85149">−12,000</text>
@@ -2533,7 +2533,7 @@ body{
         <rect x="646" y="298" width="8" height="8" rx="1.5" fill="#f85149"/>
         <rect x="658" y="298" width="8" height="8" rx="1.5" fill="rgba(245,245,247,.2)"/>
       </g>
-      <text class="creep lbl-sm" x="660" y="364" text-anchor="middle" style="--d:52s">human review — drop by drop</text>
+      <text class="creep lbl-sm" x="660" y="364" text-anchor="middle" style="--d:60s">human review — drop by drop</text>
     </svg>
     <div class="chips">
       <span class="chip r" style="--d:2s">code nobody wrote</span>
@@ -2552,32 +2552,60 @@ body{
     <p class="sub r" style="--d:.3s">AI doesn't change what your loops do — it changes how fast they do it. Both of them.</p>
     <svg class="fig" viewBox="0 0 800 330" aria-hidden="true" style="max-width:min(950px,80vw)">
       <!-- the virtuous loop, accelerated -->
-      <g class="spin" style="animation-duration:3.5s">
-        <path class="fadein" d="M 170 50 A 78 78 0 1 1 169 50.01" fill="none"
-          stroke="rgba(94,234,212,.55)" stroke-width="2.5" marker-end="url(#ah3)" style="--d:.5s"/>
+      <g class="fadein" style="--d:.5s">
+        <!-- the ring thickens & brightens as strength compounds -->
+        <path d="M 170 50 A 78 78 0 1 1 169 50.01" fill="none" stroke="#5eead4"
+          stroke-width="2.5" stroke-opacity=".45" marker-end="url(#ah3)">
+          <animate attributeName="stroke-width" values="2.5;2.5;6.5" keyTimes="0;.14;1" dur="9s" begin="0.7s" fill="freeze"/>
+          <animate attributeName="stroke-opacity" values=".45;.45;1" keyTimes="0;.14;1" dur="9s" begin="0.7s" fill="freeze"/>
+        </path>
+        <!-- a dot races the loop — fast -->
+        <circle r="5" fill="#7fe7d4">
+          <animate attributeName="opacity" values="0;1" dur=".3s" begin="0.7s" fill="freeze"/>
+          <animateMotion dur="1.1s" begin="0.7s" repeatCount="indefinite" path="M 170 50 A 78 78 0 1 1 169 50.01"/>
+        </circle>
       </g>
       <text class="fadein" x="170" y="128" text-anchor="middle" dominant-baseline="central" style="--d:.7s;fill:#5eead4;font-size:30px;font-weight:700">R</text>
       <text class="fadein lbl-sm" x="170" y="146" text-anchor="middle" style="--d:.9s">build → learn → build</text>
       <text class="fadein lbl-strong" x="170" y="250" text-anchor="middle" style="--d:1.1s;fill:#5eead4">the virtuous one</text>
       <text class="fadein lbl-sm" x="170" y="270" text-anchor="middle" style="--d:1.2s">compounds your strengths</text>
       <!-- the vicious loop, accelerated just as much -->
-      <g class="spin" style="animation-duration:3.5s">
-        <path class="fadein" d="M 630 50 A 78 78 0 1 1 629 50.01" fill="none"
-          stroke="rgba(251,113,133,.55)" stroke-width="2.5" marker-end="url(#ahw)" style="--d:.5s"/>
+      <g class="fadein" style="--d:.5s">
+        <!-- debt accumulates in the core, lap after lap -->
+        <circle cx="630" cy="128" r="0" fill="rgba(251,113,133,.18)" stroke="rgba(251,113,133,.5)" stroke-width="1.5">
+          <animate attributeName="r" values="0;0;30" keyTimes="0;.12;1" dur="9s" begin="0.7s" fill="freeze"/>
+          <animate attributeName="fill-opacity" values="0;0;1" keyTimes="0;.12;1" dur="9s" begin="0.7s" fill="freeze"/>
+        </circle>
+        <path d="M 630 50 A 78 78 0 1 1 629 50.01" fill="none" stroke="#fb7185"
+          stroke-width="2.5" stroke-opacity=".6" marker-end="url(#ahw)"/>
+        <!-- a dot races the loop — the same fast pace -->
+        <circle r="5" fill="#fb7185">
+          <animate attributeName="opacity" values="0;1" dur=".3s" begin="0.7s" fill="freeze"/>
+          <animateMotion dur="1.1s" begin="0.7s" repeatCount="indefinite" path="M 630 50 A 78 78 0 1 1 629 50.01"/>
+        </circle>
       </g>
       <text class="fadein" x="630" y="128" text-anchor="middle" dominant-baseline="central" style="--d:.7s;fill:#fb7185;font-size:30px;font-weight:700">R</text>
       <text class="fadein lbl-sm" x="630" y="146" text-anchor="middle" style="--d:.9s">shortcut → debt → slower</text>
       <text class="fadein lbl-strong" x="630" y="250" text-anchor="middle" style="--d:1.1s;fill:#fb7185">the vicious one</text>
       <text class="fadein lbl-sm" x="630" y="270" text-anchor="middle" style="--d:1.2s">compounds your debt</text>
-      <!-- the part that didn't speed up -->
-      <path class="fadein" d="M 392 84 l 14 -8 M 396 98 l 14 -8" stroke="rgba(245,245,247,.55)" stroke-width="2.5" fill="none" style="--d:1.5s"/>
-      <text class="fadein lbl-strong" x="400" y="130" text-anchor="middle" style="--d:1.6s">your delays didn't speed up</text>
-      <text class="fadein lbl-sm" x="400" y="151" text-anchor="middle" style="--d:1.7s">trust · review · learning · culture</text>
-      <!-- and you've seen what that does -->
-      <line class="fadein" x1="310" y1="248" x2="490" y2="248" stroke="rgba(94,234,212,.5)" stroke-width="1.5" stroke-dasharray="6 8" style="--d:2s"/>
-      <path class="draw" pathLength="1" d="M 310 290 C 330 290 345 212 372 212 C 398 212 400 272 424 272 C 446 272 452 236 470 236 C 482 236 486 246 490 248"
-        fill="none" stroke="#c084fc" stroke-width="3" stroke-linecap="round" style="--d:2.2s;animation-duration:2.2s"/>
-      <text class="fadein lbl-sm" x="400" y="316" text-anchor="middle" style="--d:2.8s">remember the shower — turn the knob hard, get scalded</text>
+      <!-- the lag that didn't speed up — the common delay both loops run through -->
+      <g class="fadein" style="--d:1.5s">
+        <circle cx="376" cy="100" r="12" fill="none" stroke="rgba(245,245,247,.6)" stroke-width="2"/>
+        <path d="M 376 100 L 376 92 M 376 100 L 382 103" fill="none" stroke="rgba(245,245,247,.75)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 398 94 l 10 -6 M 401 104 l 10 -6" stroke="rgba(245,245,247,.45)" stroke-width="2" fill="none"/>
+      </g>
+      <text class="fadein lbl-strong" x="400" y="136" text-anchor="middle" style="--d:1.6s">your delays didn't speed up</text>
+      <text class="fadein lbl-sm" x="400" y="157" text-anchor="middle" style="--d:1.7s">trust · review · learning · culture</text>
+      <!-- a fast loop behind an unchanged delay IS the shower — so it overshoots: -->
+      <path class="fadein" d="M 400 166 C 400 190 392 198 378 206" fill="none" stroke="#c8a2ff" stroke-width="2" stroke-dasharray="3 5" style="--d:1.95s"/>
+      <path class="fadein" d="M 371 199 L 376 209 L 384 203" fill="none" stroke="#c8a2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="--d:2.05s"/>
+      <!-- the overshoot it produces, around the target it can't hold -->
+      <line class="fadein" x1="312" y1="252" x2="492" y2="252" stroke="rgba(94,234,212,.5)" stroke-width="1.5" stroke-dasharray="6 8" style="--d:2.15s"/>
+      <text class="fadein lbl-sm" x="498" y="256" style="--d:2.2s;fill:rgba(94,234,212,.85);font-size:12px">target</text>
+      <path class="draw" pathLength="1" d="M 312 292 C 332 292 348 216 374 216 C 400 216 402 276 426 276 C 448 276 454 240 472 240 C 484 240 489 250 492 252"
+        fill="none" stroke="#c084fc" stroke-width="3" stroke-linecap="round" style="--d:2.35s;animation-duration:2.2s"/>
+      <text class="fadein lbl-sm" x="332" y="214" text-anchor="end" style="--d:2.7s;fill:#c8a2ff;font-size:12px">overshoot</text>
+      <text class="fadein lbl-sm" x="400" y="322" text-anchor="middle" style="--d:2.9s">remember the shower — turn the knob hard, get scalded</text>
     </svg>
     <p class="oneliner r" style="--d:2.9s">Fast loops with human delays <em>overshoot harder.</em></p>
   </div>
