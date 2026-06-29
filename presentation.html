@@ -1578,9 +1578,9 @@ body{
       <!-- the lever assembly — everything that tilts together -->
       <g>
         <animateTransform attributeName="transform" type="rotate" calcMode="spline" dur="75s" begin="22.3s" repeatCount="indefinite"
-          values="0 210 344;0 210 344;1 210 344;0.8 210 344;0.9 210 344;0 210 344;0 210 344;8.2 210 344;7.4 210 344;7.8 210 344;0 210 344;0 210 344"
-          keyTimes="0;.12;.16;.19;.40;.46;.52;.57;.60;.90;.96;1"
-          keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
+          values="0 210 344;0 210 344;1 210 344;0.8 210 344;0.9 210 344;0 210 344;0 210 344;8.2 210 344;7.6 210 344;7.9 210 344;0 210 344;0 210 344"
+          keyTimes="0;.12;.16;.19;.40;.46;.66;.70;.73;.95;.99;1"
+          keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.2 .8 .3 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
       <line class="draw" pathLength="1" x1="66" y1="386" x2="952" y2="129"
         stroke="rgba(245,245,247,.7)" stroke-width="3.5" stroke-linecap="round" style="--d:.25s"/>
       <!-- twelve points, climbing the arm -->
@@ -1673,26 +1673,15 @@ body{
         <text class="fadein" x="677" y="291" text-anchor="middle" style="--d:2.45s">SYSTEM STRUCTURE</text>
         <text class="fadein" x="859" y="237" text-anchor="middle" style="--d:2.6s">MENTAL MODELS</text>
       </g>
-      <!-- act 1: a tonne of effort, low on the arm -->
-      <g opacity="0">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.103;.125;.42;.46;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="translate" values="0 -80;0 -80;0 0;0 0" keyTimes="0;.105;.13;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
-        <rect x="269" y="303" width="30" height="20" rx="4" fill="rgba(251,146,60,.85)"/>
-        <rect x="273" y="285" width="22" height="16" rx="4" fill="rgba(251,146,60,.55)"/>
-      </g>
-      <circle cx="284" cy="318" fill="none" stroke="#fb923c" stroke-width="2" opacity="0">
-        <animate attributeName="r" values="8;8;28;30;30" keyTimes="0;.125;.17;.22;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;0;.7;0;0" keyTimes="0;.125;.155;.21;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+      <!-- the one pebble that lands, and stays on the tip (rides the lever as it tips) -->
+      <circle r="5.5" fill="#c084fc" opacity="0">
+        <animateMotion path="M842,386 Q900,196 918,141" keyPoints="0;0;1;1" keyTimes="0;.655;.695;1" calcMode="linear" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.653;.66;.95;.965;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
       </circle>
-      <!-- act 2: a pebble at the very top -->
-      <g opacity="0">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.503;.525;.92;.96;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
-        <animateTransform attributeName="transform" type="translate" values="0 -60;0 -60;0 0;0 0" keyTimes="0;.505;.53;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
-        <circle cx="893" cy="140" r="6" fill="#c084fc"/>
-      </g>
-      <circle cx="893" cy="140" fill="none" stroke="#c084fc" stroke-width="2" opacity="0">
-        <animate attributeName="r" values="6;6;24;28;28" keyTimes="0;.525;.57;.63;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;0;.8;0;0" keyTimes="0;.525;.555;.62;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+      <!-- it lands: a success ripple at the very top -->
+      <circle cx="918" cy="141" fill="none" stroke="#c084fc" stroke-width="2" opacity="0">
+        <animate attributeName="r" values="6;6;26;30;30" keyTimes="0;.69;.73;.78;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;.85;0;0" keyTimes="0;.69;.715;.78;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
       </circle>
       </g>
       <polygon class="fadein" points="210,346 186,404 234,404"
@@ -1700,11 +1689,11 @@ body{
       <!-- the system, sitting on the short end — it lifts only when the push is smart -->
       <g>
         <animateTransform attributeName="transform" type="translate" calcMode="spline" dur="75s" begin="22.3s" repeatCount="indefinite"
-          values="0 0;0 0;0 -1.8;0 -1.4;0 -1.6;0 0;0 0;0 -20;0 -18;0 -19;0 0;0 0"
-          keyTimes="0;.12;.16;.19;.40;.46;.52;.57;.60;.90;.96;1"
-          keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
+          values="0 0;0 0;0 -1.8;0 -1.4;0 -1.6;0 0;0 0;0 -20;0 -18.3;0 -19.2;0 0;0 0"
+          keyTimes="0;.12;.16;.19;.40;.46;.66;.70;.73;.95;.99;1"
+          keySplines=".42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.2 .8 .3 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1;.42 0 .58 1"/>
         <circle cx="90" cy="345" r="44" fill="none" stroke="rgba(94,234,212,.6)" stroke-width="2" opacity="0">
-          <animate attributeName="opacity" values="0;0;.8;.8;0;0" keyTimes="0;.54;.58;.88;.94;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0;.85;.85;0;0" keyTimes="0;.69;.72;.93;.96;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
         </circle>
         <g class="pop" style="--d:.45s">
           <circle cx="90" cy="345" r="36" fill="url(#ballg)"/>
@@ -1712,20 +1701,146 @@ body{
           <text x="90" y="358" text-anchor="middle" style="font-size:13px;font-weight:650;fill:#fff">System</text>
         </g>
       </g>
+
+      <!-- ===== the actors, on the ground beneath the lever (they do not tilt with it) ===== -->
+      <line class="fadein" x1="150" y1="411" x2="906" y2="411" stroke="rgba(245,245,247,.16)" stroke-width="1.5" style="--d:.4s"/>
+
+      <!-- ACT 1: the forklift drives in from the right, sets the blocks down, turns and leaves -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.01;.03;.45;.48;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <!-- drive: in from off-screen right (.02-.13), park, then back out to the right (.37-.46) -->
+        <g>
+          <animateTransform attributeName="transform" type="translate" calcMode="spline"
+            values="720 0;720 0;0 0;0 0;720 0;720 0" keyTimes="0;.02;.13;.37;.46;1"
+            keySplines=".25 0 .25 1;.25 0 .25 1;.42 0 .58 1;.5 0 .4 1;.42 0 .58 1"
+            dur="75s" begin="22.3s" repeatCount="indefinite"/>
+          <!-- flip: after dropping the load, the forklift turns to face the other way (.33-.37) -->
+          <g>
+            <animateTransform attributeName="transform" type="translate" additive="sum"
+              values="0 0;0 0;683 0;683 0" keyTimes="0;.33;.37;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+            <animateTransform attributeName="transform" type="scale" additive="sum"
+              values="1 1;1 1;-1 1;-1 1" keyTimes="0;.33;.37;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+            <!-- mast rails (on the left, facing the drop) -->
+            <g stroke="#fb923c" stroke-width="2" stroke-linecap="round" fill="none">
+              <line x1="325" y1="406" x2="325" y2="312"/>
+              <line x1="330" y1="406" x2="330" y2="312"/>
+            </g>
+            <!-- body, cab, driver -->
+            <g fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="332" y="388" width="58" height="13" rx="3" fill="rgba(251,146,60,.14)"/>
+              <rect x="362" y="370" width="28" height="18" rx="2" fill="rgba(251,146,60,.10)"/>
+              <line x1="366" y1="370" x2="366" y2="357"/>
+              <line x1="388" y1="370" x2="388" y2="357"/>
+              <line x1="364" y1="357" x2="390" y2="357"/>
+              <circle cx="376" cy="364" r="3.8" fill="#fb923c" stroke="none"/>
+              <line x1="376" y1="368" x2="375" y2="376"/>
+            </g>
+            <circle cx="344" cy="403" r="7.5" fill="rgba(20,16,12,.9)" stroke="#fb923c" stroke-width="2"/>
+            <circle cx="378" cy="403" r="7.5" fill="rgba(20,16,12,.9)" stroke="#fb923c" stroke-width="2"/>
+            <!-- the forks raise (.13-.16), hold, then lower empty (.30-.33) -->
+            <g>
+              <animateTransform attributeName="transform" type="translate" calcMode="spline"
+                values="0 0;0 0;0 -73;0 -73;0 0;0 0" keyTimes="0;.13;.16;.30;.33;1"
+                keySplines=".4 0 .3 1;.4 0 .3 1;.4 0 .3 1;.4 0 .3 1;.4 0 .3 1"
+                dur="75s" begin="22.3s" repeatCount="indefinite"/>
+              <g stroke="#fb923c" stroke-width="2" stroke-linecap="round" fill="none">
+                <line x1="325" y1="388" x2="325" y2="401"/>
+                <line x1="325" y1="388" x2="293" y2="388"/>
+              </g>
+              <!-- blocks carried on the forks — handed off to the arm at release (.30) -->
+              <g>
+                <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.29;.31;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+                <rect x="296" y="370" width="29" height="18" rx="3" fill="rgba(251,146,60,.85)"/>
+                <rect x="300" y="356" width="20" height="15" rx="3" fill="rgba(251,146,60,.55)"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <!-- the blocks, now resting on the arm near "Buffers" — they stay, then fade once the forklift is gone -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.15;.17;.44;.47;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <rect x="296" y="297" width="29" height="18" rx="3" fill="rgba(251,146,60,.85)"/>
+        <rect x="300" y="283" width="20" height="15" rx="3" fill="rgba(251,146,60,.55)"/>
+      </g>
+      <!-- they settle: a small ripple the moment they land -->
+      <circle cx="310" cy="315" fill="none" stroke="#fb923c" stroke-width="2" opacity="0">
+        <animate attributeName="r" values="8;8;26;30;30" keyTimes="0;.16;.21;.27;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;.7;0;0" keyTimes="0;.16;.20;.27;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- ACT 2: the skinny thrower, down on the ground, lobs pebbles up the steep arm -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.47;.50;.95;.97;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <!-- it's all the way up there -->
+        <path d="M848,378 Q892,250 914,152" fill="none" stroke="rgba(192,132,252,.4)" stroke-width="1.4" stroke-dasharray="3 5" opacity="0">
+          <animate attributeName="opacity" values="0;0;.9;.9;0;0" keyTimes="0;.50;.53;.66;.70;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        </path>
+        <!-- skinny body -->
+        <g stroke="#cbb6ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="827" cy="378" r="6" fill="#cbb6ff" stroke="none"/>
+          <line x1="827" y1="384" x2="828" y2="400"/>
+          <line x1="828" y1="400" x2="820" y2="410"/>
+          <line x1="828" y1="400" x2="836" y2="410"/>
+          <line x1="827" y1="388" x2="814" y2="375"/>
+        </g>
+        <!-- throwing arm: winds back and flings, four times -->
+        <g stroke="#cbb6ff" stroke-width="2" fill="none" stroke-linecap="round">
+          <animateTransform attributeName="transform" type="rotate"
+            values="0 828 388;0 828 388;-46 828 388;54 828 388;-46 828 388;54 828 388;-46 828 388;54 828 388;-46 828 388;54 828 388;0 828 388;0 828 388"
+            keyTimes="0;.53;.545;.55;.57;.585;.605;.62;.64;.655;.70;1"
+            dur="75s" begin="22.3s" repeatCount="indefinite"/>
+          <line x1="828" y1="388" x2="844" y2="382"/>
+        </g>
+        <!-- this is hard: exclamation marks -->
+        <g fill="#fbbf24" text-anchor="middle" style="font-size:15px;font-weight:800" opacity="0">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.51;.54;.66;.70;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+          <text x="814" y="360">!</text>
+          <text x="838" y="356">!</text>
+        </g>
+      </g>
+      <!-- three pebbles miss -->
+      <circle r="5" fill="#c084fc" opacity="0">
+        <animateMotion path="M842,382 Q905,178 988,300" keyPoints="0;0;1;1" keyTimes="0;.55;.58;1" calcMode="linear" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.548;.555;.575;.585;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="5" fill="#c084fc" opacity="0">
+        <animateMotion path="M842,382 Q890,250 916,338" keyPoints="0;0;1;1" keyTimes="0;.585;.615;1" calcMode="linear" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.583;.59;.61;.62;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="5" fill="#c084fc" opacity="0">
+        <animateMotion path="M842,382 Q910,192 958,318" keyPoints="0;0;1;1" keyTimes="0;.62;.65;1" calcMode="linear" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.618;.625;.645;.655;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+      </circle>
+
       <!-- the moral, told in two acts -->
       <g style="font-size:13.5px" text-anchor="middle">
         <text x="120" y="206" fill="#fb923c" opacity="0">a tonne of effort, low on the arm…
           <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.12;.15;.42;.46;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
         <text x="120" y="228" fill="rgba(245,245,247,.6)" opacity="0">…barely moves it
           <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.15;.18;.42;.46;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
-        <text x="120" y="206" fill="#c084fc" opacity="0">a pebble, at the very top…
-          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.52;.55;.90;.94;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
-        <text x="120" y="228" fill="#5eead4" opacity="0">…lifts the whole system
-          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.55;.58;.90;.94;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
+        <text x="120" y="206" fill="#c084fc" opacity="0">a pebble — light as a thought…
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.52;.55;.69;.71;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
+        <text x="120" y="228" fill="#fb923c" opacity="0">…and he keeps missing the mark
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.56;.59;.65;.66;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
+        <text x="120" y="228" fill="#5eead4" opacity="0">…land one, and the whole system shifts
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.70;.73;.93;.95;1" dur="75s" begin="22.3s" repeatCount="indefinite"/></text>
+      </g>
+      <!-- the lesson, surfacing the moment the system shifts — above the animation -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.68;.71;.96;.98;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <rect x="140" y="16" width="720" height="94" rx="14" fill="rgba(9,9,14,.9)" stroke="rgba(192,132,252,.34)" stroke-width="1"/>
+        <text x="500" y="46" text-anchor="middle" style="font-size:15.5px;font-style:italic;font-weight:550;fill:#e9d5ff">“The higher the leverage point, the more the system will resist changing it.”</text>
+        <text x="500" y="67" text-anchor="middle" style="font-size:11.5px;letter-spacing:.08em;fill:rgba(245,245,247,.5)">— Donella Meadows</text>
+      </g>
+      <!-- and then, after it settles -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.845;.865;.96;.98;1" dur="75s" begin="22.3s" repeatCount="indefinite"/>
+        <line x1="320" y1="82" x2="680" y2="82" stroke="rgba(245,245,247,.14)" stroke-width="1"/>
+        <text x="500" y="101" text-anchor="middle" style="font-size:11.5px;fill:rgba(245,245,247,.66)">Balancing loops exist precisely to keep the paradigm stable. Push the high point and the structure pushes back.</text>
       </g>
       <text class="fadein lbl-sm" x="985" y="432" text-anchor="end" style="--d:2.9s">layout after Werner Vogels' final keynote · re:Invent 2025</text>
     </svg>
-    <p class="oneliner r" style="--d:3.1s;margin-top:1.2vh">The higher you climb, <em>the more one change changes everything.</em></p>
   </div>
 </section>
 
