@@ -9,8 +9,8 @@ import math, pathlib, re
 
 # ---- knobs ----
 NEAR_Y, FAR_Y = 346, 40          # screen y of the near / far touchline (viewBox is 680×384)
-NEAR_HALF_W = 262                # half width of the near touchline (centre x = 320)
-FAR_SHRINK = 0.36                # far touchline is (1-FAR_SHRINK) as wide as the near one
+NEAR_HALF_W = 300                # half width of the near touchline (centre x = 320)
+FAR_SHRINK = 0.34                # far touchline is (1-FAR_SHRINK) as wide as the near one
 PIN = 32                         # pin height
 GOAL_H, HOOP_H = 34, 50
 
