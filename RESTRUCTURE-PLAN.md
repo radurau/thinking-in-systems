@@ -56,8 +56,8 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 18 | · You already live inside systems | — | | done |
 | 19 | · Your overloaded team, mapped | — | | done |
 | 20 | · What structure keeps producing this? | — | | done |
-| 21 | ✎ Six moves — fold in 4–5 of the closing guidelines (get the beat, expose mental models, honour information, what's important > what's quantifiable, stay humble) | — | → AI is a new flow | [ ] |
-| 22–27 | · AI block (6) — add the **discipline-as-leverage** beat to "Aim it high" | — | | [ ] |
+| 21 | ✎ Six moves — fold in 4–5 of the closing guidelines (get the beat, expose mental models, honour information, what's important > what's quantifiable, stay humble) | — | → AI is a new flow | [x] |
+| 22–27 | · AI block (6) — add the **discipline-as-leverage** beat to "Aim it high" | — | | [x] |
 | 28 | · Don't fight the system | — | | done |
 | 29 | · Four questions | — | | done |
 
@@ -90,8 +90,8 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 - [x] #9 balancing: both-directions + goal-compensates-leak — sub, leak label on the chart, notes; one-liner bridges to 'never alone' (→ #10)
 - [x] #15 zoom-out — NW labels (a cell · a tree · a forest · a planet · a galaxy) mirror the mental-model labels; 'bacteria, not elephants' chip; hierarchy + suboptimization paragraph in notes; title/figure shrunk so it no longer clips
 - [x] #16 traps: 'Closer to home' line in every expanded trap (compute commons, alert drift, AI micro-maxing, headcount, vibe-coding, December budgets, effort-not-results boat); notes aside says read 2–3, not all
-- [ ] #21 six moves + closing guidelines
-- [ ] #26 "Aim it high": discipline-as-leverage beat
+- [x] #20 six moves + closing guidelines — notes-only: Meadows' coda (get the beat · expose mental models · honour information · important > quantifiable · stay humble); slide already full
+- [x] #26 "Aim it high": discipline-as-leverage beat — notes: comfort as an R loop, Liebig's law, 'choose the starving spot'
 
 ## Phase 5 — Optional
 
@@ -106,7 +106,7 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 - [ ] Notes panel has the section, `≈ N min` pill, `Slide N ↗` jumps and live-highlight works
 - [ ] Reduced-motion still shows the end state (no content only reachable via animation)
 - [ ] ⌘P print: one slide per page, HUD hidden
-- [ ] Notes total ≤ 42 min of script (leaves 8 min slack in a 50-min slot)
+- [~] Notes total ≤ 42 min of script — **now exactly 42 min**; if the dry run overruns, trim the AI block first (6 slides / ~8 min)
 - [ ] Commit per phase; **no push** until Radu says so
 
 ## Phase 7 — Review
