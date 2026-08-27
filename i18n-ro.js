@@ -100,7 +100,7 @@ window.__RO__ = Object.fromEntries([
 [`output becomes input`, `ieșirea devine intrare`],
 [`<b>Yellowstone wolves</b> — loops that moved rivers`, `<b>Lupii din Yellowstone</b> — bucle care au mutat râuri`],
 [`Scale → what you eat`, `Cântarul → ce mănânci`],
-[`Balance → what you buy`, `Soldul → ce cumperi`],
+[`<b>Your bank balance</b> — low: work more · high: ease off`, `<b>Soldul tău bancar</b> — mic: muncești mai mult · mare: o lași mai moale`],
 [`Retry policy → load`, `Politica de reîncercare → încărcare`],
 [`Output circles back to become input.<br> <em>Two flavors run the world:</em> loops that amplify, and loops that stabilize.`, `Ieșirea se întoarce și devine intrare.<br> <em>Două tipuri conduc lumea:</em> bucle care amplifică și bucle care stabilizează.`],
 
@@ -122,7 +122,7 @@ window.__RO__ = Object.fromEntries([
 /* ---------- 8 · balancing ---------- */
 [`Balancing Loops`, `Bucle de echilibrare`],
 [`<span class="grad-cool">Systems seek a goal.</span>`, `<span class="grad-cool">Sistemele caută un scop.</span>`],
-[`Balancing loops sense the gap between where things are and where they should be — then close it.`, `Buclele de echilibrare simt diferența dintre cum stau lucrurile și cum ar trebui — apoi o închid.`],
+[`Balancing loops sense the gap between where things are and where they should be — then close it, from either side.`, `Buclele de echilibrare simt diferența dintre unde sunt lucrurile și unde ar trebui să fie — apoi o închid, din oricare parte.`],
 [`goal: 21°C`, `scop: 21°C`],
 [`room temperature`, `temperatura camerei`],
 [`heater output`, `puterea caloriferului`],
@@ -134,7 +134,7 @@ window.__RO__ = Object.fromEntries([
 [`Hunger &amp; eating`, `Foamea &amp; mâncatul`],
 [`Project deadlines`, `Termene de proiect`],
 [`Immune response`, `Răspuns imunitar`],
-[`When change keeps failing, <em>a balancing loop is quietly undoing your work.</em>`, `Când schimbarea tot eșuează, <em>o buclă de echilibrare îți desface în liniște munca.</em>`],
+[`When change keeps failing, <em>a balancing loop is quietly undoing your work</em> — and it is never alone.`, `Când schimbarea eșuează mereu, <em>o buclă de echilibrare îți desface în liniște munca</em> — și nu e niciodată singură.`],
 
 /* ---------- 10 · competing loops & limits ---------- */
 [`Reinforcing + Balancing`, `Amplificare + Echilibrare`],
@@ -558,7 +558,7 @@ window.__RO__ = Object.fromEntries([
 [`Here's the law: a stock changes <em>only</em> through its flows. There are no shortcuts. You can't wish a stock to a new level. That's why crash diets fail and why nobody gets rich in a week — stocks take the time they take.`, `Iată legea: un stoc se schimbă <em>doar</em> prin fluxurile lui. Nu există scurtături. Nu poți dori un stoc la un nou nivel. De aceea eșuează dietele drastice și de aceea nimeni nu se îmbogățește într-o săptămână — stocurile cer timpul de care au nevoie.`],
 
 [`Feedback loops`, `Bucle de feedback`],
-[`On screen: a causal loop — the system's state → what you observe → how you respond — with two signals circulating; example chips below, Yellowstone wolves first.`, `Pe ecran: o buclă cauzală — starea sistemului → ce observi → cum reacționezi — cu două semnale care circulă; etichete de exemplu dedesubt, lupii din Yellowstone primii.`],
+[`On screen: a causal loop — the system's state → what you observe → how you respond — with two signals circulating; example chips below, your bank balance first.`, `Pe ecran: o buclă cauzală — starea sistemului → ce observi → cum reacționezi — cu două semnale care circulă; etichete de exemplu dedesubt, soldul tău bancar primul.`],
 [`Second building block. Stocks don't just sit there — systems watch their own stocks and react. That's a <em>feedback loop</em>: the system talking to itself.`, `A doua cărămidă. Stocurile nu stau pur și simplu acolo — sistemele își urmăresc propriile stocuri și reacționează. Asta e o <em>buclă de feedback</em>: sistemul vorbindu-și sieși.`],
 [`You do this all day. You step on a scale, and the number changes what you eat. You check your bank balance, and it changes what you buy. Act, observe, adjust, repeat.`, `Faci asta toată ziua. Urci pe cântar, iar numărul schimbă ce mănânci. Verifici soldul, iar el schimbă ce cumperi. Acționezi, observi, ajustezi, repeți.`],
 [`One story if you want the room leaning in: Yellowstone.`, `O poveste dacă vrei sala atentă: Yellowstone.`],
@@ -790,5 +790,12 @@ window.__RO__ = Object.fromEntries([
 [`Press → a third time. The passes turn red and run backwards into the team's own basket.`, `Apasă → a treia oară. Pasele devin roșii și merg înapoi, spre coșul propriu al echipei.`],
 [`Three: same players, same rules — flip the purpose. Play to lose. Everything on the court is identical and the behaviour is unrecognizable. That's the ranking: elements matter least, interconnections more, purpose most — <em>unless changing an element also changes the connections or the goal.</em> Then it becomes the most important element there is.`, `Trei: aceiași jucători, aceleași reguli — inversează scopul. Joacă să pierzi. Totul pe teren e identic și comportamentul e de nerecunoscut. Asta e ierarhia: elementele contează cel mai puțin, interconexiunile mai mult, scopul cel mai mult — <em>decât dacă schimbarea unui element schimbă și conexiunile sau scopul.</em> Atunci devine cel mai important element care există.`],
 [`Hold on to this. The people are the easiest thing to see and the first thing we blame. The book is going to spend most of its pages on the other two.`, `Țineți minte asta. Oamenii sunt cel mai ușor de văzut și primii pe care îi învinovățim. Cartea își va petrece cele mai multe pagini pe celelalte două.`],
+
+/* ---- notes 7 · bank account loop ---- */
+[`You run one every month without noticing. The statement arrives; the cash in your account is a stock. When it's getting low, you pick up extra hours, you skip the restaurant — money flowing in goes up, money flowing out goes down. When it grows comfortable, you ease off. Nobody told you to. The stock itself changed your behaviour, and your behaviour changed the stock. <em>Act, observe, adjust, repeat</em> — and notice it works in both directions: too little and too much both get corrected.`, `Rulezi una în fiecare lună fără să observi. Sosește extrasul; banii din cont sunt un stoc. Când scade, iei ore în plus, sari peste restaurant — banii care intră cresc, banii care ies scad. Când devine confortabil, o lași mai moale. Nimeni nu ți-a spus. Stocul însuși ți-a schimbat comportamentul, iar comportamentul tău a schimbat stocul. <em>Acționezi, observi, ajustezi, repeți</em> — și observați că merge în ambele direcții: și prea puțin, și prea mult se corectează.`],
+[`heat leaks out — so set the goal a little above 21° to cover the leak`, `căldura se pierde — așa că setează ținta puțin peste 21° ca să acoperi pierderea`],
+
+/* ---- notes 9 · both directions + leak ---- */
+[`Two details the book insists on. First, the loop corrects in <em>both</em> directions — too cold and too hot both get pulled back, the way your bank balance got corrected from both ends. Second, every stock leaks. Heat escapes through the walls, so a thermostat that aims at exactly twenty-one will always fall a little short. <em>Set the goal to cover the leak</em> — or the loop will chase a target it can never reach.`, `Două detalii pe care cartea insistă. Întâi, bucla corectează în <em>ambele</em> direcții — și prea frig, și prea cald sunt trase înapoi, așa cum soldul bancar a fost corectat din ambele capete. Apoi, orice stoc are pierderi. Căldura scapă prin pereți, așa că un termostat care țintește exact douăzeci și unu va rămâne mereu puțin sub. <em>Setează ținta ca să acopere pierderea</em> — altfel bucla va urmări o țintă pe care n-o atinge niciodată.`],
 
 ]);

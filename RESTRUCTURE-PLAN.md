@@ -42,9 +42,9 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 4 | ✎ Elements · Interconnections · Purpose — football → **basketball** → **play to lose** | — | iceberg's "structure" made concrete → stocks are the visible elements | [x] |
 | 5 | ✎ Stocks & flows — bathtub; add "we see stocks, not flows; inflows, not outflows" | 10 | elements you can count → what changes them | [ ] |
 | 6 | ★ Numbers & buffers — the car lot: order size (a number), 10 days' cover (a buffer) | 12, 11 | bathtub → dealership stock; "buffers stabilise, but a too-big buffer is rigid" | [x] |
-| 7 | ✎ Feedback — **bank account** replaces Yellowstone | — | stock → the system watches its own stock | [ ] |
+| 7 | ✎ Feedback — **bank account** leads, Yellowstone stays as story | — | stock → the system watches its own stock | [x] |
 | 8 | · Reinforcing loops | 7 | feedback → more leads to more | done |
-| 9 | ✎ Balancing loops — add "goal-seeking, corrects *both* directions; set the goal to cover the leak" | 8 | → what if both loops pull one stock? | [ ] |
+| 9 | ✎ Balancing loops — add "goal-seeking, corrects *both* directions; set the goal to cover the leak" | 8 | → what if both loops pull one stock? | [x] |
 | 10 | ★ When loops compete — R + B on one stock → S-curve; **limits**: stock-limited (oil) vs flow-limited (fish) | — | → "and the delay makes it worse" | [x] |
 | 11 | ✎ Delays — kicker says **Delays**; dealership's 3 delays (perceive / respond / deliver) → oscillation; "multiply by three" (Forrester / George Talaba) | 9 | dealership from #6 → oscillation; → who knows what, when? | [x] |
 | 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [x] |
@@ -86,8 +86,8 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 
 - [x] #4 football → basketball → play-to-lose — three `.step-item` acts on →: names swap, court + new passes, red passes into own basket; notes rewritten with cues
 - [ ] #5 stocks/flows extra lines
-- [ ] #7 bank-account feedback loop
-- [ ] #9 balancing: both-directions + goal-compensates-leak
+- [x] #7 bank-account feedback loop — leads the chips and the notes; Yellowstone kept as the optional story (Vogels callback)
+- [x] #9 balancing: both-directions + goal-compensates-leak — sub, leak label on the chart, notes; one-liner bridges to 'never alone' (→ #10)
 - [ ] #15 zoom-out (tree → forest → planet → galaxy) on the concentric-rings figure
 - [ ] #17 traps: Tripletex/Visma column per trap (show 3–4 in full, list the rest)
 - [ ] #21 six moves + closing guidelines
