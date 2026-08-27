@@ -102,7 +102,7 @@ window.__RO__ = Object.fromEntries([
 /* ---------- 5 · meadows' test ---------- */
 [`Meadows' Test`, `Testul lui Meadows`],
 [`Change one thing. <span class="grad">Watch what happens.</span>`, `Schimbă un singur lucru. <span class="grad">Privește ce se întâmplă.</span>`],
-[`Which of the three matters most? Change the elements, the interconnections, or the purpose — one at a time — and see what survives.`, `Care dintre cele trei contează cel mai mult? Schimbă elementele, interconexiunile sau scopul — pe rând — și vezi ce supraviețuiește.`],
+[`Which of the three matters most? Change one at a time — and see what survives.`, `Care dintre cele trei contează cel mai mult? Schimbă câte unul pe rând — și vezi ce supraviețuiește.`],
 /* ---------- 5 · stocks & flows ---------- */
 [`Building Block № 1`, `Cărămida № 1`],
 [`Stocks <span style="color:var(--ink-faint)">&amp;</span> <span class="grad">Flows</span>`, `Stocuri <span style="color:var(--ink-faint)">&amp;</span> <span class="grad">Fluxuri</span>`],
