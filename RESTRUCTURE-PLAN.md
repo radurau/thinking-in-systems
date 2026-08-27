@@ -40,7 +40,7 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 2 | · One small book | — | book → "a new way of seeing" | done |
 | 3 | · Iceberg: event / pattern / structure / mental model | — | → "so what *is* a system?" | done |
 | 4 | ✎ Elements · Interconnections · Purpose — football → **basketball** → **play to lose** | — | iceberg's "structure" made concrete → stocks are the visible elements | [x] |
-| 5 | ✎ Stocks & flows — bathtub; add "we see stocks, not flows; inflows, not outflows" | 10 | elements you can count → what changes them | [ ] |
+| 5 | ✎ Stocks & flows — bathtub; add "we see stocks, not flows; inflows, not outflows" | 10 | elements you can count → what changes them | [x] |
 | 6 | ★ Numbers & buffers — the car lot: order size (a number), 10 days' cover (a buffer) | 12, 11 | bathtub → dealership stock; "buffers stabilise, but a too-big buffer is rigid" | [x] |
 | 7 | ✎ Feedback — **bank account** leads, Yellowstone stays as story | — | stock → the system watches its own stock | [x] |
 | 8 | · Reinforcing loops | 7 | feedback → more leads to more | done |
@@ -50,9 +50,9 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [x] |
 | 13 | ✎ Twelve leverage points — **payoff**: every rung has now been a slide; ladder lights up bottom-to-top | all | → the top three rungs deserve their own slides | [x] |
 | 14 | ✎ Goals · Paradigms · Transcending — add **goals**: "purpose is deduced from behaviour, not rhetoric" | 3, 2, 1 | → the lens sits inside a bigger system | [x] |
-| 15 | ✎ Systems inside systems — **zoom** tree → forest → planet → galaxy; hierarchy, stable intermediate forms, resilience | — | → why we still get surprised | [ ] |
+| 15 | ✎ Systems inside systems — **zoom** tree → forest → planet → galaxy; hierarchy, stable intermediate forms, resilience | — | → why we still get surprised | [x] |
 | 16 | ★ Why systems surprise us — nonlinear (fertiliser / advertising), no real boundaries, bounded rationality (fisherman with a mortgage) | — | → recurring structures = traps, no villains | [ ] optional |
-| 17 | ✎ Eight traps — each with **book example + Tripletex/Visma example** (compute as commons, alarm-threshold drift, AI-micromaxing escalation, vibe-coding as burden-shift, budget rule-beating, effort-not-result boat) | — | → you already live in these | [ ] |
+| 17 | ✎ Eight traps — each with **book example + Tripletex/Visma example** (compute as commons, alarm-threshold drift, AI-micromaxing escalation, vibe-coding as burden-shift, budget rule-beating, effort-not-result boat) | — | → you already live in these | [x] |
 | 18 | · You already live inside systems | — | | done |
 | 19 | · Your overloaded team, mapped | — | | done |
 | 20 | · What structure keeps producing this? | — | | done |
@@ -85,11 +85,11 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 ## Phase 4 — Upgrades to existing slides
 
 - [x] #4 football → basketball → play-to-lose — three `.step-item` acts on →: names swap, court + new passes, red passes into own basket; notes rewritten with cues
-- [ ] #5 stocks/flows extra lines
+- [x] #5 stocks/flows extra lines — notes: 'we see stocks, not flows; the tap before the drain'
 - [x] #7 bank-account feedback loop — leads the chips and the notes; Yellowstone kept as the optional story (Vogels callback)
 - [x] #9 balancing: both-directions + goal-compensates-leak — sub, leak label on the chart, notes; one-liner bridges to 'never alone' (→ #10)
-- [ ] #15 zoom-out (tree → forest → planet → galaxy) on the concentric-rings figure
-- [ ] #17 traps: Tripletex/Visma column per trap (show 3–4 in full, list the rest)
+- [x] #15 zoom-out — NW labels (a cell · a tree · a forest · a planet · a galaxy) mirror the mental-model labels; 'bacteria, not elephants' chip; hierarchy + suboptimization paragraph in notes; title/figure shrunk so it no longer clips
+- [x] #16 traps: 'Closer to home' line in every expanded trap (compute commons, alert drift, AI micro-maxing, headcount, vibe-coding, December budgets, effort-not-results boat); notes aside says read 2–3, not all
 - [ ] #21 six moves + closing guidelines
 - [ ] #26 "Aim it high": discipline-as-leverage beat
 

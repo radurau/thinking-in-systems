@@ -309,9 +309,10 @@ body{
 .trap-detail{max-height:0;overflow:hidden;opacity:0;
   transition:max-height .6s var(--ease),opacity .5s ease .12s}
 .trap.current.expanded .trap-detail{max-height:660px;opacity:1}
-.trap-story{font-size:clamp(13px,1.35vw,17px);color:var(--ink-dim);line-height:1.5;padding-top:10px}
+.trap-story{font-size:clamp(13px,1.35vw,17px);color:var(--ink-dim);line-height:1.5;padding-top:8px}
+.trap-here{border-left:2px solid rgba(251,146,60,.5);padding-left:12px;margin-top:6px;font-style:italic;font-size:clamp(12px,1.2vw,15px);line-height:1.4}
 .trap-story b{color:var(--ink);font-weight:650}
-.trap-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:16px}
+.trap-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;margin-top:10px}
 .trap-cols .tlabel{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:5px}
 .trap-cols .trap-box .tlabel{color:#fb7185}
 .trap-cols .way-box .tlabel{color:#5eead4}
@@ -1919,9 +1920,9 @@ body{
 <section class="slide" data-hue="210">
   <div class="wrap">
     <div class="kicker r grad-cool">Full Circle</div>
-    <h2 class="title r" style="--d:.15s">Systems inside systems — <span class="grad-cool">all the way out.</span></h2>
+    <h2 class="title r" style="--d:.15s;font-size:clamp(30px,4.6vw,68px)">Systems inside systems — <span class="grad-cool">all the way out.</span></h2>
     <p class="sub r" style="--d:.3s">Remember the iceberg? Its deepest layer was the <b style="color:#c8a2ff">mental model</b>. Transcending paradigms is admitting the water keeps going — we sit inside systems we've never named.</p>
-    <svg class="fig r" viewBox="0 0 820 400" aria-hidden="true" style="--d:.45s;max-width:min(1030px,90vw);margin-top:1vh">
+    <svg class="fig r" viewBox="0 0 820 400" aria-hidden="true" style="--d:.45s;max-width:min(820px,66vw);margin-top:.6vh">
       <!-- expanding ripples: outward, forever -->
       <circle cx="410" cy="196" r="24" fill="none" stroke="rgba(200,162,255,.5)" stroke-width="1.6">
         <animate attributeName="r" values="24;330" dur="6s" repeatCount="indefinite"/>
@@ -1950,6 +1951,14 @@ body{
         <text class="fadein" x="540" y="78" style="--d:1.7s;fill:#9dd6fc;font-weight:600">the system it sits inside</text>
         <text class="fadein lbl-sm" x="578" y="42" style="--d:2s;font-size:12px">…and the one inside that</text>
       </g>
+      <!-- the same rings, read as a hierarchy (NW diagonal) -->
+      <g style="font-size:13px" text-anchor="end">
+        <text class="fadein" x="362" y="158" style="--d:1s;fill:#c8a2ff;font-weight:600">a cell</text>
+        <text class="fadein" x="322" y="118" style="--d:1.4s;fill:#5eead4;font-weight:600">a tree</text>
+        <text class="fadein" x="282" y="78" style="--d:1.8s;fill:#9dd6fc;font-weight:600">a forest</text>
+        <text class="fadein lbl-sm" x="244" y="42" style="--d:2.1s;font-size:12px">a planet · a galaxy · …</text>
+        <text class="fadein lbl-sm" x="362" y="174" style="--d:1.05s;font-size:11px;fill:rgba(245,245,247,.55)">the same rings, read as hierarchy</text>
+      </g>
       <!-- the unknown, out in the dark -->
       <text class="fadein" x="150" y="358" text-anchor="middle" style="--d:2.5s;font-size:20px;font-weight:700;fill:rgba(245,245,247,.18)">?</text>
       <text class="fadein" x="690" y="350" text-anchor="middle" style="--d:2.7s;font-size:26px;font-weight:700;fill:rgba(245,245,247,.16)">?</text>
@@ -1961,6 +1970,7 @@ body{
       <span class="chip r" style="--d:2.7s">what we see</span>
       <span class="chip r" style="--d:2.82s">what we know we don't know</span>
       <span class="chip r" style="--d:2.94s"><b>what we don't know we don't know</b></span>
+      <span class="chip r" style="--d:3.06s">life started with bacteria, not elephants — <b>stable layers first</b></span>
     </div>
     <p class="oneliner r" style="--d:3.1s">The last leverage point isn't a bigger model. It's the humility to look <em>outside the one you're in.</em></p>
   </div>
@@ -2002,6 +2012,7 @@ body{
           <p>Fixes that fail. Everyone pushes, the system pushes back — the quick fix relieves the symptom while quietly feeding the problem.</p>
           <div class="trap-detail">
             <p class="trap-story"><b>Romania, 1967.</b> To force the birth rate up, Ceaușescu abruptly <b>banned abortion and contraception</b>. Births tripled — then the people pushed back. The rate fell again through <b>dangerous illegal abortions</b> (maternal deaths tripled), and unwanted children filled the orphanages. When the regime fell, the first law repealed was the ban.</p>
+            <p class="trap-story trap-here"><b>Closer to home.</b> Every “no-meetings Wednesday” rule: the meetings move to Tuesday and Thursday, the calendar pushes back, and the pressure that created them is untouched.</p>
             <div class="trap-cols">
               <div class="trap-box"><span class="tlabel">The trap</span><p>Different actors haul one stock toward different goals. Every new push just drags it farther from someone else's goal — so everyone burns energy and no one likes the result.</p></div>
               <div class="way-box"><span class="tlabel">The way out</span><p>Stop pushing harder. Bring all the actors in and find a <b>larger goal</b> they'll pull toward willingly — as Sweden did, aligning on child welfare, not family size.</p></div>
@@ -2035,6 +2046,7 @@ body{
           <p>Everyone acts sensibly — the shared thing dies anyway. The meeting-room calendar. The oceans. The on-call rota.</p>
           <div class="trap-detail">
             <p class="trap-story"><b>Hardin's shared pasture (1968).</b> Each herder keeps the whole gain from one more cow, but shares the cost of overgrazing with everyone. So every rational herder adds another, and another — until the grass is gone for all. Same shape: overfished seas, crowded parks, a warming atmosphere.</p>
+            <p class="trap-story trap-here"><b>Closer to home.</b> Compute is the shared pasture. Every model, pipeline and agent takes a little more RAM, CPU and bandwidth than the last — hardware grew 100,000× and we are still short.</p>
             <div class="trap-cols">
               <div class="trap-box"><span class="tlabel">The trap</span><p>A shared resource gives each user the full benefit of use but only a sliver of the cost of abuse. The feedback is too weak — so it's overused until it collapses.</p></div>
               <div class="way-box"><span class="tlabel">The way out</span><p>Educate and appeal to conscience — then restore the missing feedback: <b>privatize</b> so each user feels their own impact, or <b>regulate</b> access ("mutual coercion, mutually agreed upon").</p></div>
@@ -2061,6 +2073,7 @@ body{
           <p>Bad becomes normal one small excuse at a time. Nobody decided to have flaky tests — the standard just… drifted.</p>
           <div class="trap-detail">
             <p class="trap-story"><b>The boiled frog.</b> Every time results dip, you believe the bad news and quietly lower the bar — "not much worse than last year." The standard erodes to match, effort drops, performance sinks further. Meadows watched her own jogging habit fade out exactly this way.</p>
+            <p class="trap-story trap-here"><b>Closer to home.</b> An alert fires so often that nobody reads it — so we raise the threshold instead of fixing the cause. Then again. The boiled frog wears a pager.</p>
             <div class="trap-cols">
               <div class="trap-box"><span class="tlabel">The trap</span><p>When the standard is set by recent — and pessimistically perceived — performance, a reinforcing loop of <b>eroding goals</b> drags the system steadily downhill.</p></div>
               <div class="way-box"><span class="tlabel">The way out</span><p>Hold the standard <b>absolute</b>. Better still, peg it to your <b>best</b> past performance, not your worst — and the same loop pulls you upward.</p></div>
@@ -2091,6 +2104,7 @@ body{
           <p>"I'll raise you one." Price wars, feature wars, the reply-all thread. It's a reinforcing loop — it compounds.</p>
           <div class="trap-detail">
             <p class="trap-story"><b>"I'll raise you one."</b> Kids trading harder hits; the US–USSR <b>arms race</b>, each side inflating the other's arsenal to justify its own — trillions spent, doomsday weapons built. Price wars and attack-ad spirals run on the same engine.</p>
+            <p class="trap-story trap-here"><b>Closer to home.</b> A colleague ships twice as fast with an AI assistant; you feel you must too, then more. Soon everyone is micro-maxing output and nobody can review it. The exit is to step down unilaterally — or to ask first: am I in a trap?</p>
             <div class="trap-cols">
               <div class="trap-box"><span class="tlabel">The trap</span><p>Each player's goal is simply to <b>beat the other's current state</b>. That's a reinforcing loop — it grows exponentially and ends in someone's collapse.</p></div>
               <div class="way-box"><span class="tlabel">The way out</span><p>Best, don't enter. If you're in it: <b>unilaterally step down</b> to break the loop, or negotiate balancing limits both sides agree to.</p></div>
@@ -2125,6 +2139,7 @@ body{
           <p>Winners get the resources to keep winning. The strong team gets the best projects — which makes it stronger.</p>
           <div class="trap-detail">
             <p class="trap-story"><b>Monopoly.</b> The first player to build hotels collects rent, buys more hotels, and ends up owning the board. Ecologists call it <b>competitive exclusion</b>; in markets it shrank US carmakers to three and most cities to one newspaper. Winners keep winning; losers get squeezed out.</p>
+            <p class="trap-story trap-here"><b>Closer to home.</b> The team that shipped last quarter gets the headcount, so it ships more, so it gets more. Ask what the other teams would have done with the same slack.</p>
             <div class="trap-cols">
               <div class="trap-box"><span class="tlabel">The trap</span><p>When winning is rewarded with the means to win again, a reinforcing loop lets the winners <b>take all</b> while the losers are eliminated.</p></div>
               <div class="way-box"><span class="tlabel">The way out</span><p>Diversify into a new game; cap any one winner (<b>antitrust</b>); or <b>level the playing field</b> — handicaps, progressive and inheritance taxes, the potlatch — so each round starts fairer.</p></div>
@@ -2158,6 +2173,7 @@ body{
           <p>The workaround works, so the real fix never gets built. Meadows' word for this one is <em style="font-style:normal;color:var(--ink)">addiction</em>. Every "temporary" process is five years old.</p>
           <div class="trap-detail">
             <p class="trap-story"><b>Addiction.</b> A drug numbs the pain without fixing what's wrong — so the real problem festers and you need more. Same shape beyond people: industries hooked on <b>subsidies</b>, farms on fertilizer, economies on cheap oil. The crutch erodes the system's own ability to cope.</p>
+            <p class="trap-story trap-here"><b>Closer to home.</b> Vibe-coding. Let the assistant fix it now, and you slowly lose the ability to fix it yourself — the way the calculator ate mental arithmetic. Help that breeds dependency is the intervenor’s trap.</p>
             <div class="trap-cols">
               <div class="trap-box"><span class="tlabel">The trap</span><p>A fix relieves the <b>symptom</b>, not the cause, and quietly atrophies the system's capacity to help itself — so it needs ever more of the fix.</p></div>
               <div class="way-box"><span class="tlabel">The way out</span><p>Best, avoid the easy fix. If you're hooked, shift focus to <b>long-term restructuring</b> — rebuild the system's own capability, then remove the prop.</p></div>
@@ -2189,6 +2205,7 @@ body{
           <p>Obeying the letter of the rule while defeating its purpose. Hitting the metric, missing the point.</p>
           <div class="trap-detail">
             <p class="trap-story"><b>Letter, not spirit.</b> Departments <b>blow the budget</b> every December so next year's isn't cut; Vermont's 10-acre rule bred a rash of 10.1-acre lots; some landowners quietly killed an endangered species so their land stayed developable.</p>
+            <p class="trap-story trap-here"><b>Closer to home.</b> The department that spends its whole budget in December, because next year’s budget is this year’s spend. Drivers who slow for the camera, not for the curve.</p>
             <div class="trap-cols">
               <div class="trap-box"><span class="tlabel">The trap</span><p>Rules invite <b>perverse workarounds</b> that look like compliance while distorting the system.</p></div>
               <div class="way-box"><span class="tlabel">The way out</span><p>Read rule-beating as <b>feedback</b>. Redesign the rule so the system's cleverness serves its purpose instead of evading it.</p></div>
@@ -2232,6 +2249,7 @@ body{
           <p>You get what you measure — exactly that, and nothing more. The big target was the point; the small one was just easier to hit.</p>
           <div class="trap-detail">
             <p class="trap-story"><b>You get what you measure.</b> Define security as military spending and you get spending, not safety. Grade schools by test scores and you get test scores. India once counted <b>IUDs implanted</b> — so doctors inserted them without consent. Chase GNP and you count car crashes as growth.</p>
+            <p class="trap-story trap-here"><b>Closer to home.</b> Measure effort instead of results and the boat gets optimised for speed until it no longer looks like a boat — velocity charts that climb while customers leave.</p>
             <div class="trap-cols">
               <div class="trap-box"><span class="tlabel">The trap</span><p>If the goal or indicator is defined badly, the system <b>obediently</b> produces the wrong result — and looks busy doing it.</p></div>
               <div class="way-box"><span class="tlabel">The way out</span><p>Choose indicators that reflect the system's <b>real welfare</b>, and never confuse effort with result.</p></div>
