@@ -6,9 +6,10 @@ Feedback from the office run: *the slides don't have continuity*. Root cause: sl
 the spine of Part 1 and threads two running examples through it.
 
 **Assumptions** (change here if wrong):
-- Slot ≈ 50 min talk + 10 min discussion (matches the notes panel). Notes total 32 min
-  of script today, so ~5 new slides (+8 min) fit without trimming.
+- **Slot = 55 min** (confirmed 27 Aug): plan for 50 min of talk + 5 min buffer for late arrivals / Q&A
+  (there is rarely any). Notes total 42 min of script → 8 min slack for pauses and animations.
 - Audience: mostly engineers at Tripletex/Visma → trap examples can be technical.
+- **Screen: 1080p** (confirmed) — 720p overflow is not a concern.
 - Deck stays a single self-contained `presentation.html`; every text change needs an
   `i18n-ro.js` key and a notes-panel section. Push only when Radu says so.
 
@@ -95,19 +96,18 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 
 ## Phase 5 — Optional
 
-- [ ] #16 ★ Why systems surprise us (nonlinear · boundaries · bounded rationality) — **deferred**: notes already at 42 min; bounded rationality is covered by the traps' 'no villains' framing. Revisit only if the AI block is trimmed.
+- [x] ~~#16 ★ Why systems surprise us~~ — **skipped** (Radu, 27 Aug); bounded rationality is covered by the traps' 'no villains' framing.
 
 ## Phase 6 — Every slide, every time (definition of done)
 
-- [ ] Renders without clipping at 1600×900 **and** 1280×720 (slide 15's title clips today;
-      at 720p slides 5 and 10 already overflow by ~57px — decide: tighten `.wrap` spacing
-      globally under a `max-height` media query, or confirm the projector is 1080p)
+- [x] Renders without clipping at **1920×1080** — full 28-slide sweep, zero overflow (27 Aug).
+      1600×900: only slide 2 (untouched) is 24px over. 720p is out of scope (1080p screen confirmed).
 - [x] `__unmatched()` returns only the pre-existing decorative letters/numbers; notes panel fully covered.
       `tools/prune-ro.py` removes keys no page uses any more (18 pruned on 27 Aug) — re-run after text edits.
 - [x] Notes panel: 28 sections, jumps and numbers in sync (`renumber-notes.py --check`); live-highlight mechanism unchanged (`#nN` by broadcast)
 - [~] Reduced-motion: new slides use `.fadein/.pop/.draw` end states and →-driven steps (no timed reveals) — spot-check on a reduce-motion Mac before the talk
 - [ ] ⌘P print: one slide per page, HUD hidden (`#hud` has a print rule; slide 4/16 step states print as-is)
-- [~] Notes total ≤ 42 min of script — **now exactly 42 min**; if the dry run overruns, trim the AI block first (6 slides / ~8 min)
+- [x] Notes total 42 min against a 50-min talk → 8 min slack. If the dry run still overruns, trim the AI block first (6 slides / ~8 min).
 - [ ] Commit per phase; **no push** until Radu says so
 
 ## Phase 7 — Review
