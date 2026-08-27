@@ -88,10 +88,10 @@ sun_a = 0.25+95*0.0165*2; sun_r=12*math.exp(0.66*sun_a); sx,sy = 450+sun_r*math.
 s3 = f'''
       <g class="zsc zsc3 near">
         {header(450,'the galaxy')}
-        <ellipse cx="450" cy="200" rx="230" ry="92" fill="rgba(200,162,255,.05)"/><ellipse cx="450" cy="200" rx="70" ry="28" fill="rgba(251,191,36,.16)"/><ellipse cx="450" cy="200" rx="24" ry="10" fill="rgba(251,191,36,.55)"/>
+        <ellipse cx="450" cy="200" rx="230" ry="92" fill="rgba(200,162,255,.025)"/><ellipse cx="450" cy="200" rx="70" ry="28" fill="rgba(251,191,36,.16)"/><ellipse cx="450" cy="200" rx="24" ry="10" fill="rgba(251,191,36,.55)"/>
         {stars}
         <circle cx="{f(sx)}" cy="{f(sy)}" r="3.5" fill="#fbbf24"/><circle class="pulse" cx="{f(sx)}" cy="{f(sy)}" r="6" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
-        <text class="lbl-sm" x="{f(sx+12)}" y="{f(sy+20)}" style="fill:#fbbf24;font-size:12px">the Sun — one of 100 billion</text>
+        <text class="lbl-sm" x="{f(sx-12)}" y="{f(sy-10)}" text-anchor="end" style="fill:#fbbf24;font-size:12px">the Sun — one of 100 billion</text>
         <text class="lbl-sm" x="450" y="372" text-anchor="middle" style="font-size:12.5px">elements — stars, gas, dust · interconnections — gravity again · purpose — still none of ours</text>
       </g>'''
 # ---------- scene 4: the universe ----------
