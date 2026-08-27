@@ -69,8 +69,8 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 - [x] `tools/renumber-notes.py` (see Phase 0). ✔ dry-run diff showed only (stale) comment markers changing.
 - [x] Ladder HUD: fixed 12-rung marker at the left edge on slides 5–12 (`data-hud`), rungs light
       cumulatively from each slide's `data-rungs`. ✔ hidden on 4 and 13+, print-hidden, numbers only (RO-safe).
-- [ ] Bridge lines: every Part-1 slide's `.oneliner` points **forward** to the next slide.
-      ✔ read all 13 one-liners in sequence — they should read as one paragraph.
+- [x] Bridge lines: every Part-1 slide's `.oneliner` points **forward** to the next slide.
+      ✔ read 3→16 in sequence; tweaked 3 (→ definition) and 5 (→ two knobs).
 
 ## Phase 3 — Structural slides (order of work = order of dependency)
 
@@ -95,17 +95,18 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 
 ## Phase 5 — Optional
 
-- [ ] #16 ★ Why systems surprise us (nonlinear · boundaries · bounded rationality)
+- [ ] #16 ★ Why systems surprise us (nonlinear · boundaries · bounded rationality) — **deferred**: notes already at 42 min; bounded rationality is covered by the traps' 'no villains' framing. Revisit only if the AI block is trimmed.
 
 ## Phase 6 — Every slide, every time (definition of done)
 
 - [ ] Renders without clipping at 1600×900 **and** 1280×720 (slide 15's title clips today;
       at 720p slides 5 and 10 already overflow by ~57px — decide: tighten `.wrap` spacing
       globally under a `max-height` media query, or confirm the projector is 1080p)
-- [ ] `__unmatched()` returns `[]` in the deck console (all new strings have RO keys)
-- [ ] Notes panel has the section, `≈ N min` pill, `Slide N ↗` jumps and live-highlight works
-- [ ] Reduced-motion still shows the end state (no content only reachable via animation)
-- [ ] ⌘P print: one slide per page, HUD hidden
+- [x] `__unmatched()` returns only the pre-existing decorative letters/numbers; notes panel fully covered.
+      `tools/prune-ro.py` removes keys no page uses any more (18 pruned on 27 Aug) — re-run after text edits.
+- [x] Notes panel: 28 sections, jumps and numbers in sync (`renumber-notes.py --check`); live-highlight mechanism unchanged (`#nN` by broadcast)
+- [~] Reduced-motion: new slides use `.fadein/.pop/.draw` end states and →-driven steps (no timed reveals) — spot-check on a reduce-motion Mac before the talk
+- [ ] ⌘P print: one slide per page, HUD hidden (`#hud` has a print rule; slide 4/16 step states print as-is)
 - [~] Notes total ≤ 42 min of script — **now exactly 42 min**; if the dry run overruns, trim the AI block first (6 slides / ~8 min)
 - [ ] Commit per phase; **no push** until Radu says so
 
