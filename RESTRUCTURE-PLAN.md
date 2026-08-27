@@ -45,7 +45,7 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 7 | ✎ Feedback — **bank account** replaces Yellowstone | — | stock → the system watches its own stock | [ ] |
 | 8 | · Reinforcing loops | 7 | feedback → more leads to more | done |
 | 9 | ✎ Balancing loops — add "goal-seeking, corrects *both* directions; set the goal to cover the leak" | 8 | → what if both loops pull one stock? | [ ] |
-| 10 | ★ When loops compete — R + B on one stock → S-curve; **limits**: stock-limited (oil) vs flow-limited (fish) | — | → "and the delay makes it worse" | [ ] |
+| 10 | ★ When loops compete — R + B on one stock → S-curve; **limits**: stock-limited (oil) vs flow-limited (fish) | — | → "and the delay makes it worse" | [x] |
 | 11 | ✎ Delays — kicker says **Delays**; dealership's 3 delays (perceive / respond / deliver) → oscillation; "multiply by three" (Forrester / George Talaba) | 9 | dealership from #6 → oscillation; → who knows what, when? | [x] |
 | 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [ ] |
 | 13 | ✎ Twelve leverage points — **payoff**: every rung has now been a slide; ladder lights up bottom-to-top | all | → the top three rungs deserve their own slides | [ ] |
@@ -76,7 +76,7 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 
 - [x] #6 ★ Numbers & buffers (dealership intro — needed by #11) — HTML + RO + notes; fits 1600×900
 - [x] #11 ✎ Delays (dealership 3 delays; rename kicker; swap chips for the three delays) — shower kept (AI slide calls back to it); notes rewritten with Forrester/Talaba ×3 + Christmas aside
-- [ ] #10 ★ When loops compete / limits
+- [x] #10 ★ When loops compete / limits — fishery R+B, S-curve vs overshoot, stock- vs flow-limited
 - [ ] #12 ★ Structure: information · rules · self-organization
 - [ ] #13 ✎ Ladder payoff (light-up sequence; "you've met all twelve")
 - [ ] #14 ✎ add Goals rung

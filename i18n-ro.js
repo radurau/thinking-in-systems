@@ -130,12 +130,30 @@ window.__RO__ = Object.fromEntries([
 [`Immune response`, `Răspuns imunitar`],
 [`When change keeps failing, <em>a balancing loop is quietly undoing your work.</em>`, `Când schimbarea tot eșuează, <em>o buclă de echilibrare îți desface în liniște munca.</em>`],
 
-/* ---------- 9 · delays ---------- */
+/* ---------- 10 · competing loops & limits ---------- */
+[`Reinforcing + Balancing`, `Amplificare + Echilibrare`],
+[`Two loops. <span class="grad">One stock.</span>`, `Două bucle. <span class="grad">Un singur stoc.</span>`],
+[`Every real stock is pulled by both kinds at once. Whichever loop dominates writes the behaviour — and dominance shifts.`, `Orice stoc real e tras de ambele feluri deodată. Bucla care domină scrie comportamentul — iar dominanța se schimbă.`],
+[`fish in the sea`, `pești în mare`],
+[`births`, `nașteri`],
+[`the catch`, `captura`],
+[`more fish, more births`, `mai mulți pești, mai multe nașteri`],
+[`fewer fish, harder to catch`, `mai puțini pești, mai greu de prins`],
+[`the limit — what the sea can regrow`, `limita — cât poate regenera marea`],
+[`R dominates`, `R domină`],
+[`B takes over`, `B preia controlul`],
+[`…or overshoot and collapse, if the limit erodes`, `…sau depășire și prăbușire, dacă limita se erodează`],
+[`<b>Stock-limited</b> — oil: every barrel is one fewer`, `<b>Limitat de stoc</b> — petrolul: fiecare baril e unul în minus`],
+[`<b>Flow-limited</b> — fish: take less than regrows, forever`, `<b>Limitat de flux</b> — peștele: ia mai puțin decât se reface, la nesfârșit`],
+[`Exploit a renewable faster than it renews and it becomes oil`, `Exploatează o resursă regenerabilă mai repede decât se reface și devine petrol`],
+[`The hand-over between loops is where the surprise lives. <em>Add a delay, and it gets worse.</em>`, `Predarea ștafetei între bucle e locul unde trăiește surpriza. <em>Adaugă o întârziere și devine mai rău.</em>`],
+
+/* ---------- 11 · delays ---------- */
 [`The Hidden Variable`, `Variabila ascunsă`],
 [`Act now. <span class="grad">Feel it later.</span>`, `Acționezi acum. <span class="grad">Simți mai târziu.</span>`],
 [`Building Block № 4 · Delays`, `Cărămida № 4 · Întârzieri`],
 [`Delays separate cause from effect. Our car dealer meets three of them — and her lot starts to swing like this shower.`, `Întârzierile separă cauza de efect. Dealerul nostru auto întâlnește trei dintre ele — și parcul ei începe să oscileze ca acest duș.`],
-[`the dealer's lot draws the same curve: over-order, then over-correct`, `parcul dealerului desenează aceeași curbă: supra-comandă, apoi supra-corecție`],
+[`the dealer's lot draws this same curve`, `parcul dealerului desenează exact aceeași curbă`],
 [`you act here`, `aici acționezi`],
 [`…still in<tspan x="104" dy="16">the pipe…</tspan>`, `…încă pe<tspan x="104" dy="16">conductă…</tspan>`],
 [`comfortable`, `confortabil`],
@@ -708,5 +726,16 @@ window.__RO__ = Object.fromEntries([
 [`The counter-intuitive part: the fix is not to react faster. If she reacts to the average of six days instead of three, the swings get <em>smaller</em>. Jay Forrester's rule for estimating any delay: ask everyone how long it takes, take your best guess — then multiply by three. My old manager George Talaba told me exactly the same thing, without ever having read this book.`, `Partea contra-intuitivă: soluția nu e să reacționeze mai repede. Dacă reacționează la media pe șase zile în loc de trei, oscilațiile devin <em>mai mici</em>. Regula lui Jay Forrester pentru a estima orice întârziere: întreabă pe toți cât durează, fă cea mai bună estimare — apoi înmulțește cu trei. Fostul meu manager, George Talaba, mi-a spus exact același lucru, fără să fi citit vreodată cartea asta.`],
 [`If someone objects that a slower dealer misses the Christmas rush — agree. Averaging longer hides real spikes too; the seasonal spike is a case for a bigger buffer, not a faster loop. Context decides.`, `Dacă cineva obiectează că un dealer mai lent ratează vârful de Crăciun — fii de acord. O medie mai lungă ascunde și vârfurile reale; vârful sezonier e un argument pentru o rezervă mai mare, nu pentru o buclă mai rapidă. Contextul decide.`],
 [`Delays are why we overshoot, overcorrect, and give up too soon — we steer by where the ship <em>is</em>, not where it's already heading. So when you change something important, decide in advance how long the delay should be, and don't judge the result before then. And notice what the dealer was missing: not effort — <em>information, arriving late.</em> Hold that thought.`, `Întârzierile sunt motivul pentru care exagerăm, supra-corectăm și renunțăm prea devreme — cârmim după locul unde <em>este</em> vaporul, nu unde se îndreaptă deja. Așa că atunci când schimbi ceva important, decide dinainte cât ar trebui să dureze întârzierea și nu judeca rezultatul înainte. Și observați ce îi lipsea dealerului: nu efort — <em>informație, sosită târziu.</em> Țineți minte gândul acesta.`],
+
+/* ---- notes 10 · competing loops & limits ---- */
+[`Two loops, one stock`, `Două bucle, un singur stoc`],
+[`On screen: a fishery. The stock "fish in the sea" with an R loop on the left (births) and a B loop on the right (the catch). Right: the S-curve rising toward a dashed limit, "R dominates" early, "B takes over" late — then a dashed red curve that overshoots and collapses.`, `Pe ecran: o pescărie. Stocul „pești în mare” cu o buclă R în stânga (nașteri) și o buclă B în dreapta (captura). Dreapta: curba în S urcând spre o limită punctată, „R domină” la început, „B preia controlul” la final — apoi o curbă roșie punctată care depășește și se prăbușește.`],
+[`So far we have looked at loops one at a time. Real stocks never get that luxury. Take a fishery. More fish, more births — that's a reinforcing loop. Fewer fish, harder to catch, less fishing — that's a balancing loop. Both are pulling on the same stock, all the time.`, `Până acum am privit buclele una câte una. Stocurile reale n-au niciodată acest lux. Luați o pescărie. Mai mulți pești, mai multe nașteri — asta e o buclă de amplificare. Mai puțini pești, mai greu de prins, mai puțin pescuit — asta e o buclă de echilibrare. Amândouă trag de același stoc, tot timpul.`],
+[`Watch the S-curve draw.`, `Privește cum se desenează curba în S.`],
+[`Whichever loop is stronger writes the behaviour. Early on, R wins and the stock grows exponentially. Then the limit starts to bite, B takes over, and growth levels off. That hand-over — <em>shifting dominance</em> — is one of the most common shapes in the world, and almost nobody sees it coming, because from inside the R phase the future looks like more of the same.`, `Bucla mai puternică scrie comportamentul. La început câștigă R și stocul crește exponențial. Apoi limita începe să muște, B preia controlul și creșterea se aplatizează. Această predare a ștafetei — <em>dominanța care se schimbă</em> — e una dintre cele mai comune forme din lume, și aproape nimeni n-o vede venind, pentru că din interiorul fazei R viitorul arată ca mai mult din același lucru.`],
+[`Wait for the red dashed curve.`, `Așteaptă curba roșie punctată.`],
+[`And here is the version that keeps me awake. If the limit itself erodes — better boats, better sonar, so the catch stays high while the fish are disappearing — you don't get a gentle S. You get overshoot and collapse. Non-renewable resources are stock-limited: every barrel of oil is one fewer. Renewables are flow-limited: you can fish forever as long as you take less than the sea regrows. Take more, and you have quietly turned a fishery into an oil field.`, `Și iată versiunea care mă ține treaz. Dacă limita însăși se erodează — bărci mai bune, sonar mai bun, așa că captura rămâne mare în timp ce peștii dispar — nu obții un S blând. Obții depășire și prăbușire. Resursele neregenerabile sunt limitate de stoc: fiecare baril de petrol e unul în minus. Cele regenerabile sunt limitate de flux: poți pescui la nesfârșit cât timp iei mai puțin decât regenerează marea. Ia mai mult și ai transformat în liniște o pescărie într-un zăcământ de petrol.`],
+[`Land the bridge line, then advance.`, `Plasează fraza de legătură, apoi avansează.`],
+[`Your team has both loops too: the more you ship, the more you're asked to ship — and the more you ship, the more you break. Which one dominates this quarter? And notice we've assumed the fishermen see the fish count instantly. They don't. Nobody does. Which brings us to the ingredient that makes all of this genuinely hard.`, `Și echipa voastră are ambele bucle: cu cât livrezi mai mult, cu atât ți se cere să livrezi mai mult — și cu cât livrezi mai mult, cu atât strici mai mult. Care domină trimestrul acesta? Și observați că am presupus că pescarii văd instantaneu numărul de pești. Nu-l văd. Nimeni nu-l vede. Ceea ce ne aduce la ingredientul care face toate acestea cu adevărat grele.`],
 
 ]);
