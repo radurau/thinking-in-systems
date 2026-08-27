@@ -39,7 +39,7 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 1 | · The world is not a machine | — | hook | done |
 | 2 | · One small book | — | book → "a new way of seeing" | done |
 | 3 | · Iceberg: event / pattern / structure / mental model | — | → "so what *is* a system?" | done |
-| 4 | ✎ Elements · Interconnections · Purpose — football → **basketball** → **play to lose** | — | iceberg's "structure" made concrete → stocks are the visible elements | [ ] |
+| 4 | ✎ Elements · Interconnections · Purpose — football → **basketball** → **play to lose** | — | iceberg's "structure" made concrete → stocks are the visible elements | [x] |
 | 5 | ✎ Stocks & flows — bathtub; add "we see stocks, not flows; inflows, not outflows" | 10 | elements you can count → what changes them | [ ] |
 | 6 | ★ Numbers & buffers — the car lot: order size (a number), 10 days' cover (a buffer) | 12, 11 | bathtub → dealership stock; "buffers stabilise, but a too-big buffer is rigid" | [x] |
 | 7 | ✎ Feedback — **bank account** replaces Yellowstone | — | stock → the system watches its own stock | [ ] |
@@ -84,7 +84,7 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 
 ## Phase 4 — Upgrades to existing slides
 
-- [ ] #4 football → basketball → play-to-lose (elements < interconnections < purpose)
+- [x] #4 football → basketball → play-to-lose — three `.step-item` acts on →: names swap, court + new passes, red passes into own basket; notes rewritten with cues
 - [ ] #5 stocks/flows extra lines
 - [ ] #7 bank-account feedback loop
 - [ ] #9 balancing: both-directions + goal-compensates-leak

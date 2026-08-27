@@ -49,7 +49,13 @@ window.__RO__ = Object.fromEntries([
 [`<tspan style="font-weight:650">elements</tspan> — players`, `<tspan style="font-weight:650">elemente</tspan> — jucători`],
 [`<tspan style="font-weight:650">interconnections</tspan> — passes`, `<tspan style="font-weight:650">interconexiuni</tspan> — pase`],
 [`<tspan style="font-weight:650">purpose</tspan> — score`, `<tspan style="font-weight:650">scop</tspan> — scor`],
-[`Change the passing — not the players — <em>and you change the team.</em>`, `Schimbă pasele — nu jucătorii — <em>și schimbi echipa.</em>`],
+[`own basket`, `coșul propriu`],
+[`purpose: lose the game`, `scop: pierde meciul`],
+[`<b>1 · Swap the players</b> — still football.`, `<b>1 · Schimbă jucătorii</b> — tot fotbal.`],
+[`<b>2 · Swap the rules</b> — a whole new ball game.`, `<b>2 · Schimbă regulile</b> — un joc cu totul nou.`],
+[`<b>3 · Flip the purpose</b> — play to lose.`, `<b>3 · Inversează scopul</b> — joacă să pierzi.`],
+[`press → to change the team, three ways`, `apasă → pentru a schimba echipa, în trei feluri`],
+[`Elements are the easiest to see — and the least important. <em>Interconnections and purpose make the system.</em>`, `Elementele sunt cel mai ușor de văzut — și cel mai puțin importante. <em>Interconexiunile și scopul fac sistemul.</em>`],
 
 /* ---------- 5 · stocks & flows ---------- */
 [`Building Block № 1`, `Cărămida № 1`],
@@ -773,5 +779,16 @@ window.__RO__ = Object.fromEntries([
 
 /* ---- notes 14 · goals rung ---- */
 [`The top three points deserve a slower look. Number three: the <em>goal</em>. Not the one in the mission statement — the one the system actually pursues. A government that declares it protects the environment and budgets almost nothing for it does not have environmental protection as a goal. <em>Purpose is deduced from behaviour, never from rhetoric.</em> Watch what a system does for a while, and it will tell you what it's for — and sometimes the purposes of the parts add up to something nobody wants.`, `Primele trei puncte merită o privire mai lentă. Numărul trei: <em>scopul</em>. Nu cel din declarația de misiune — cel pe care sistemul îl urmărește de fapt. Un guvern care declară că protejează mediul și nu bugetează aproape nimic pentru asta nu are protecția mediului drept scop. <em>Scopul se deduce din comportament, niciodată din retorică.</em> Privește ce face un sistem o vreme și îți va spune pentru ce există — și uneori scopurile părților se adună în ceva ce nimeni nu-și dorește.`],
+
+/* ---- notes 4 · three acts ---- */
+[`On screen: Meadows' verbatim definition; a football pitch — seven players with names, the passes, the goal, the ball travelling the pattern. Three dim chips underneath. Each → lights one chip and changes the picture: 1 the names swap; 2 the pitch becomes a basketball court with new passes and a shot; 3 the passes reverse into the team's own basket.`, `Pe ecran: definiția exactă a lui Meadows; un teren de fotbal — șapte jucători cu nume, pasele, poarta, mingea parcurgând tiparul. Trei etichete estompate dedesubt. Fiecare → aprinde o etichetă și schimbă imaginea: 1 numele se schimbă; 2 terenul devine teren de baschet cu pase noi și o aruncare; 3 pasele se inversează spre coșul propriu.`],
+[`Meadows has a test for which of the three matters most: change them one at a time and watch what happens. Let's do that.`, `Meadows are un test pentru care dintre cele trei contează cel mai mult: schimbă-le pe rând și privește ce se întâmplă. Hai să facem asta.`],
+[`Press → once. The names above the dots swap; nothing else moves.`, `Apasă → o dată. Numele de deasupra punctelor se schimbă; nimic altceva nu se mișcă.`],
+[`One: swap every player. New names, same passes, same goal. Still football — and honestly, from the stands you might not notice. General Motors and the Romanian Parliament keep their identity while every single member changes. <em>Changing elements usually has the least effect on the system.</em>`, `Unu: schimbă toți jucătorii. Nume noi, aceleași pase, aceeași poartă. Tot fotbal — și, sincer, din tribună s-ar putea să nu observi. General Motors și Parlamentul României își păstrează identitatea în timp ce fiecare membru se schimbă. <em>Schimbarea elementelor are, de obicei, cel mai mic efect asupra sistemului.</em>`],
+[`Press → again. The pitch turns into a basketball court; the passes rewire and end in a shot.`, `Apasă → din nou. Terenul devine teren de baschet; pasele se reconfigurează și se termină cu o aruncare.`],
+[`Two: keep the players, change the rules. Same seven people — and, as Meadows says, <em>you've got a whole new ball game.</em> Interconnections are harder to see than elements, but the system lives in them. Reorganize the exact same people with different rules of contact and you get a completely different team.`, `Doi: păstrează jucătorii, schimbă regulile. Aceiași șapte oameni — și, cum spune Meadows, <em>ai un joc cu totul nou.</em> Interconexiunile sunt mai greu de văzut decât elementele, dar sistemul trăiește în ele. Reorganizează exact aceiași oameni cu alte reguli de contact și obții o echipă complet diferită.`],
+[`Press → a third time. The passes turn red and run backwards into the team's own basket.`, `Apasă → a treia oară. Pasele devin roșii și merg înapoi, spre coșul propriu al echipei.`],
+[`Three: same players, same rules — flip the purpose. Play to lose. Everything on the court is identical and the behaviour is unrecognizable. That's the ranking: elements matter least, interconnections more, purpose most — <em>unless changing an element also changes the connections or the goal.</em> Then it becomes the most important element there is.`, `Trei: aceiași jucători, aceleași reguli — inversează scopul. Joacă să pierzi. Totul pe teren e identic și comportamentul e de nerecunoscut. Asta e ierarhia: elementele contează cel mai puțin, interconexiunile mai mult, scopul cel mai mult — <em>decât dacă schimbarea unui element schimbă și conexiunile sau scopul.</em> Atunci devine cel mai important element care există.`],
+[`Hold on to this. The people are the easiest thing to see and the first thing we blame. The book is going to spend most of its pages on the other two.`, `Țineți minte asta. Oamenii sunt cel mai ușor de văzut și primii pe care îi învinovățim. Cartea își va petrece cele mai multe pagini pe celelalte două.`],
 
 ]);

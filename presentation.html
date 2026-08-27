@@ -271,6 +271,19 @@ body{
 @keyframes peek{0%{opacity:0}15%{opacity:1}85%{opacity:1}100%{opacity:0}}
 
 /* ---------- step-through reveals ---------- */
+/* slide 4 · three-act build driven by .step-item (press →) */
+.sysfig .g-court,.sysfig .g-bpass,.sysfig .g-lpass,.sysfig .names-b{opacity:0;transition:opacity .9s ease}
+.sysfig .g-football,.sysfig .names-a{transition:opacity .9s ease}
+.sysfig .names{opacity:0;transition:opacity .9s ease}
+.slide.active .sysfig .names-a{opacity:1;transition-delay:2.2s}
+.slide:has(.sys-step.s1.on) .sysfig .names-a{opacity:0;transition-delay:0s}
+.slide:has(.sys-step.s1.on) .sysfig .names-b{opacity:1}
+.slide:has(.sys-step.s2.on) .sysfig .g-football{opacity:0}
+.slide:has(.sys-step.s2.on) .sysfig .g-court,.slide:has(.sys-step.s2.on) .sysfig .g-bpass{opacity:1}
+.slide:has(.sys-step.s3.on) .sysfig .g-bpass{opacity:0}
+.slide:has(.sys-step.s3.on) .sysfig .g-lpass{opacity:1}
+.chip.step-item{transition:opacity .5s ease,transform .5s ease}
+
 .step-item{opacity:.13;transform:translateY(10px) scale(.97);
   transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .step-item.on{opacity:1;transform:none}
@@ -910,28 +923,74 @@ body{
   <div class="wrap">
     <div class="kicker r grad">Definition</div>
     <h2 class="title r" style="--d:.15s">Elements. Interconnections. <span class="grad">Purpose.</span></h2>
-    <blockquote class="bigquote r" style="--d:.3s">"An interconnected set of elements that is coherently
+    <blockquote class="bigquote r" style="--d:.3s;font-size:clamp(14px,1.6vw,21px)">"An interconnected set of elements that is coherently
       organized in a way that achieves something."<cite>— Donella H. Meadows</cite></blockquote>
-    <svg class="fig" viewBox="0 0 680 384" aria-hidden="true" style="margin-top:2vh;max-width:min(740px,62vw)">
-      <!-- the pitch -->
-      <rect class="fadein" x="50" y="50" width="540" height="280" rx="16"
-        fill="rgba(94,234,212,.05)" stroke="rgba(94,234,212,.32)" stroke-width="1.5" style="--d:.3s"/>
-      <line class="fadein" x1="320" y1="50" x2="320" y2="330" stroke="rgba(94,234,212,.2)" style="--d:.45s"/>
-      <circle class="fadein" cx="320" cy="190" r="42" fill="none" stroke="rgba(94,234,212,.2)" style="--d:.45s"/>
-      <!-- the goal -->
-      <path class="draw" pathLength="1" d="M 590 158 h 26 v 64 h -26" fill="none"
-        stroke="#fbbf24" stroke-width="2.5" style="--d:.7s"/>
-      <path class="fadein" d="M 593 165 l 20 6 M 593 180 l 20 6 M 593 195 l 20 6 M 593 210 l 20 6"
-        stroke="rgba(251,191,36,.3)" style="--d:.95s"/>
-      <!-- the passes -->
-      <g stroke="rgba(140,175,255,.75)" stroke-width="2" fill="none">
-        <line class="flowdash fadein" x1="120" y1="210" x2="210" y2="110" style="--d:1.1s"/>
-        <line class="flowdash fadein" x1="210" y1="110" x2="262" y2="262" style="--d:1.2s"/>
-        <line class="flowdash fadein" x1="262" y1="262" x2="398" y2="150" style="--d:1.3s"/>
-        <line class="flowdash fadein" x1="398" y1="150" x2="487" y2="246" style="--d:1.4s"/>
-        <line class="flowdash fadein" x1="487" y1="246" x2="598" y2="190" style="--d:1.5s"/>
+    <svg class="fig sysfig" viewBox="0 0 680 384" aria-hidden="true" style="margin-top:1vh;max-width:min(640px,50vw)">
+      <!-- ACT 0/1 · football: pitch, goal, passes -->
+      <g class="fadein" style="--d:.3s">
+        <g class="g-football">
+          <rect x="50" y="50" width="540" height="280" rx="16" fill="rgba(94,234,212,.05)" stroke="rgba(94,234,212,.32)" stroke-width="1.5"/>
+          <line x1="320" y1="50" x2="320" y2="330" stroke="rgba(94,234,212,.2)"/>
+          <circle cx="320" cy="190" r="42" fill="none" stroke="rgba(94,234,212,.2)"/>
+          <path class="draw" pathLength="1" d="M 590 158 h 26 v 64 h -26" fill="none" stroke="#fbbf24" stroke-width="2.5" style="--d:.7s"/>
+          <path d="M 593 165 l 20 6 M 593 180 l 20 6 M 593 195 l 20 6 M 593 210 l 20 6" stroke="rgba(251,191,36,.3)"/>
+          <g stroke="rgba(140,175,255,.75)" stroke-width="2" fill="none">
+            <line class="flowdash fadein" x1="120" y1="210" x2="210" y2="110" style="--d:1.1s"/>
+            <line class="flowdash fadein" x1="210" y1="110" x2="262" y2="262" style="--d:1.2s"/>
+            <line class="flowdash fadein" x1="262" y1="262" x2="398" y2="150" style="--d:1.3s"/>
+            <line class="flowdash fadein" x1="398" y1="150" x2="487" y2="246" style="--d:1.4s"/>
+            <line class="flowdash fadein" x1="487" y1="246" x2="598" y2="190" style="--d:1.5s"/>
+          </g>
+          <g class="fadein" style="--d:1.7s">
+            <circle r="5.5" fill="#f5f5f7">
+              <animateMotion dur="5.5s" repeatCount="indefinite" path="M 120 210 L 210 110 L 262 262 L 398 150 L 487 246 L 598 190"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          <circle class="pulse" cx="600" cy="190" r="9" fill="none" stroke="#fbbf24" stroke-width="1.5" style="--d:2.2s"/>
+        </g>
       </g>
-      <!-- the players -->
+      <!-- ACT 2/3 · basketball: court with two hoops -->
+      <g class="g-court">
+        <rect x="50" y="50" width="540" height="280" rx="6" fill="rgba(251,146,60,.05)" stroke="rgba(251,146,60,.4)" stroke-width="1.5"/>
+        <line x1="320" y1="50" x2="320" y2="330" stroke="rgba(251,146,60,.22)"/>
+        <circle cx="320" cy="190" r="36" fill="none" stroke="rgba(251,146,60,.22)"/>
+        <path d="M 50 110 Q 200 190 50 270 M 590 110 Q 440 190 590 270" fill="none" stroke="rgba(251,146,60,.22)"/>
+        <line x1="64" y1="166" x2="64" y2="214" stroke="#fbbf24" stroke-width="3"/><circle cx="76" cy="190" r="8" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+        <line x1="576" y1="166" x2="576" y2="214" stroke="#fbbf24" stroke-width="3"/><circle cx="564" cy="190" r="8" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+      </g>
+      <!-- act 2: same players, basketball passes, shot on the far hoop -->
+      <g class="g-bpass">
+        <g stroke="rgba(251,146,60,.8)" stroke-width="2" fill="none">
+          <line class="flowdash" x1="150" y1="300" x2="262" y2="262"/>
+          <line class="flowdash" x1="262" y1="262" x2="398" y2="150"/>
+          <line class="flowdash" x1="398" y1="150" x2="487" y2="246"/>
+          <line class="flowdash" x1="487" y1="246" x2="450" y2="86"/>
+          <path class="flowdash" d="M 450 86 Q 520 40 564 182"/>
+        </g>
+        <circle r="6" fill="#fdba74">
+          <animateMotion dur="5s" repeatCount="indefinite" path="M 150 300 L 262 262 L 398 150 L 487 246 L 450 86 Q 520 40 564 182"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <circle class="softpulse" cx="564" cy="190" r="11" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+      </g>
+      <!-- act 3: same players, same rules — the ball travels to the OWN basket -->
+      <g class="g-lpass">
+        <g stroke="rgba(251,113,133,.85)" stroke-width="2" fill="none">
+          <line class="flowdash" x1="450" y1="86" x2="398" y2="150"/>
+          <line class="flowdash" x1="398" y1="150" x2="262" y2="262"/>
+          <line class="flowdash" x1="262" y1="262" x2="210" y2="110"/>
+          <line class="flowdash" x1="210" y1="110" x2="120" y2="210"/>
+          <path class="flowdash" d="M 120 210 Q 90 150 76 182"/>
+        </g>
+        <circle r="6" fill="#fda4af">
+          <animateMotion dur="5s" repeatCount="indefinite" path="M 450 86 L 398 150 L 262 262 L 210 110 L 120 210 Q 90 150 76 182"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <text class="lbl-sm" x="320" y="30" text-anchor="middle" style="fill:#fda4af;font-weight:650">purpose: lose the game</text>
+        <text class="lbl-sm" x="76" y="236" text-anchor="middle" style="fill:#fda4af">own basket</text>
+      </g>
+      <!-- the players — the same seven dots in every act -->
       <g>
         <circle class="pop" cx="120" cy="210" r="10" fill="#7aa2ff" style="--d:.5s"/>
         <circle class="pop" cx="210" cy="110" r="10" fill="#7aa2ff" style="--d:.6s"/>
@@ -941,15 +1000,19 @@ body{
         <circle class="pop" cx="450" cy="86"  r="10" fill="#7aa2ff" style="--d:1s"/>
         <circle class="pop" cx="150" cy="300" r="10" fill="#7aa2ff" style="--d:1.05s"/>
       </g>
-      <!-- the ball -->
-      <g class="fadein" style="--d:1.7s">
-        <circle r="5.5" fill="#f5f5f7">
-          <animateMotion dur="5.5s" repeatCount="indefinite"
-            path="M 120 210 L 210 110 L 262 262 L 398 150 L 487 246 L 598 190"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5.5s" repeatCount="indefinite"/>
-        </circle>
+      <!-- act 1: the names above the dots — one squad walks off, another walks on -->
+      <g class="names names-a" style="font-size:10.5px;fill:rgba(157,185,255,.9)">
+        <text data-ro="Ana" x="120" y="194" text-anchor="middle">Ana</text><text data-ro="Ion" x="210" y="94" text-anchor="middle">Ion</text>
+        <text data-ro="Mara" x="262" y="246" text-anchor="middle">Mara</text><text data-ro="Dan" x="398" y="134" text-anchor="middle">Dan</text>
+        <text data-ro="Vlad" x="487" y="230" text-anchor="middle">Vlad</text><text data-ro="Ilinca" x="450" y="70" text-anchor="middle">Ilinca</text>
+        <text data-ro="Tudor" x="150" y="284" text-anchor="middle">Tudor</text>
       </g>
-      <circle class="pulse" cx="600" cy="190" r="9" fill="none" stroke="#fbbf24" stroke-width="1.5" style="--d:2.2s"/>
+      <g class="names names-b" style="font-size:10.5px;fill:rgba(157,185,255,.9)">
+        <text data-ro="Sofia" x="120" y="194" text-anchor="middle">Sofia</text><text data-ro="Andrei" x="210" y="94" text-anchor="middle">Andrei</text>
+        <text data-ro="Ioana" x="262" y="246" text-anchor="middle">Ioana</text><text data-ro="Matei" x="398" y="134" text-anchor="middle">Matei</text>
+        <text data-ro="Elena" x="487" y="230" text-anchor="middle">Elena</text><text data-ro="Petru" x="450" y="70" text-anchor="middle">Petru</text>
+        <text data-ro="Irina" x="150" y="284" text-anchor="middle">Irina</text>
+      </g>
       <!-- the reading -->
       <g style="font-size:13px">
         <text class="fadein" x="52" y="368" style="--d:2s;fill:#9db9ff"><tspan style="font-weight:650">elements</tspan> — players</text>
@@ -957,7 +1020,13 @@ body{
         <text class="fadein" x="624" y="368" text-anchor="end" style="--d:2.4s;fill:#fbbf24"><tspan style="font-weight:650">purpose</tspan> — score</text>
       </g>
     </svg>
-    <p class="oneliner r" style="--d:2.6s">Change the passing — not the players — <em>and you change the team.</em></p>
+    <div class="chips" style="margin-top:1.2vh">
+      <span class="chip step-item sys-step s1"><b>1 · Swap the players</b> — still football.</span>
+      <span class="chip step-item sys-step s2"><b>2 · Swap the rules</b> — a whole new ball game.</span>
+      <span class="chip step-item sys-step s3"><b>3 · Flip the purpose</b> — play to lose.</span>
+    </div>
+    <p class="ti-hint r" style="--d:2.6s;margin-top:.6vh">press → to change the team, three ways</p>
+    <p class="oneliner r" style="--d:2.8s">Elements are the easiest to see — and the least important. <em>Interconnections and purpose make the system.</em></p>
   </div>
 </section>
 
