@@ -286,6 +286,10 @@ body{
 .sysfig .g-court,.sysfig .g-bpass,.sysfig .g-lpass,.sysfig .names-b{opacity:0;transition:opacity .9s ease}
 .sysfig .g-football,.sysfig .names-a{transition:opacity .9s ease}
 .sysfig .names{opacity:0;transition:opacity .9s ease}
+.sysfig .players-hand{opacity:0;transition:opacity .9s ease}
+.sysfig .players-foot{transition:opacity .9s ease}
+.slide:has(.sys-step.s2.on) .sysfig .players-foot{opacity:0}
+.slide:has(.sys-step.s2.on) .sysfig .players-hand{opacity:1}
 .slide.active .sysfig .names-a{opacity:1;transition-delay:2.2s}
 .slide:has(.sys-step.s1.on) .sysfig .names-a{opacity:0;transition-delay:0s}
 .slide:has(.sys-step.s1.on) .sysfig .names-b{opacity:1}
@@ -946,123 +950,254 @@ body{
       <!-- ACT 0/1 · football pitch -->
       <g class="fadein" style="--d:.3s">
         <g class="g-football">
-          <polygon points="136.7,46.0 503.3,46.0 636.0,344.0 4.0,344.0" fill="url(#pitchg)" stroke="rgba(94,234,212,.45)" stroke-width="1.5"/>
-          <line x1="320.0" y1="46.0" x2="320.0" y2="344.0" stroke="rgba(94,234,212,.25)"/>
-          <path d="M 358.8 195.0 L 358.8 202.0 L 357.8 208.8 L 355.9 215.3 L 352.9 221.3 L 349.0 226.6 L 344.3 231.2 L 338.9 234.8 L 332.9 237.5 L 326.6 239.1 L 320.0 239.7 L 313.4 239.1 L 307.1 237.5 L 301.1 234.8 L 295.7 231.2 L 291.0 226.6 L 287.1 221.3 L 284.1 215.3 L 282.2 208.8 L 281.2 202.0 L 281.2 195.0 L 282.1 188.0 L 284.0 181.2 L 286.7 174.7 L 290.1 168.7 L 294.1 163.4 L 298.6 158.8 L 303.6 155.2 L 308.9 152.5 L 314.4 150.9 L 320.0 150.3 L 325.6 150.9 L 331.1 152.5 L 336.4 155.2 L 341.4 158.8 L 345.9 163.4 L 349.9 168.7 L 353.3 174.7 L 356.0 181.2 L 357.9 188.0 Z" fill="none" stroke="rgba(94,234,212,.25)"/>
-          <path d="M 103.5 120.5 L 140.4 120.5 L 85.4 269.5 L 37.2 269.5" fill="none" stroke="rgba(94,234,212,.22)"/>
-          <path d="M 536.5 120.5 L 499.6 120.5 L 554.6 269.5 L 602.8 269.5" fill="none" stroke="rgba(94,234,212,.22)"/>
-          <g class="draw" pathLength="1" style="--d:.7s" fill="none" stroke="#fbbf24" stroke-width="2.5">
-            <path d="M 554.5 160.9 v -36 L 584.8 193.1 v 36"/>
-          </g>
-          <path d="M 554.5 124.9 l 14 -6 v 36 l -14 6 M 584.8 193.1 l 14 -6 v 36 l -14 6" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.35)"/>
+          <polygon points="152.3,40.0 487.7,40.0 582.0,346.0 58.0,346.0" fill="url(#pitchg)" stroke="rgba(94,234,212,.45)" stroke-width="1.5"/>
+          <line x1="320.0" y1="40.0" x2="320.0" y2="346.0" stroke="rgba(94,234,212,.25)"/>
+          <path d="M 353.4 193.0 L 353.3 200.2 L 352.4 207.2 L 350.7 213.8 L 348.1 220.0 L 344.7 225.5 L 340.7 230.1 L 336.1 233.9 L 331.0 236.7 L 325.6 238.3 L 320.0 238.9 L 314.4 238.3 L 309.0 236.7 L 303.9 233.9 L 299.3 230.1 L 295.3 225.5 L 291.9 220.0 L 289.3 213.8 L 287.6 207.2 L 286.7 200.2 L 286.6 193.0 L 287.3 185.8 L 288.9 178.8 L 291.1 172.2 L 294.0 166.0 L 297.5 160.5 L 301.4 155.9 L 305.7 152.1 L 310.3 149.3 L 315.1 147.7 L 320.0 147.1 L 324.9 147.7 L 329.7 149.3 L 334.3 152.1 L 338.6 155.9 L 342.5 160.5 L 346.0 166.0 L 348.9 172.2 L 351.1 178.8 L 352.7 185.8 Z" fill="none" stroke="rgba(94,234,212,.25)"/>
+          <path d="M 128.7 116.5 L 161.3 116.5 L 122.2 269.5 L 81.6 269.5" fill="none" stroke="rgba(94,234,212,.22)"/>
+          <path d="M 511.3 116.5 L 478.7 116.5 L 517.8 269.5 L 558.4 269.5" fill="none" stroke="rgba(94,234,212,.22)"/>
+          <g class="draw" pathLength="1" style="--d:.7s" fill="none" stroke="#fbbf24" stroke-width="2.5"><path d="M 115.9 158.0 v -34 L 94.4 194.0 v 34"/></g>
+          <path d="M 115.9 124.0 l -14 -6 v 34 l 14 6 M 94.4 194.0 l -14 -6 v 34 l 14 6 M 101.9 118.0 L 80.4 188.0 M 101.9 152.0 L 80.4 222.0" fill="rgba(251,191,36,.07)" stroke="rgba(251,191,36,.35)"/>
+          <path d="M 112.4 122.5 L 90.9 192.5 M 108.9 121.0 L 87.4 191.0 M 105.4 119.5 L 83.9 189.5" fill="none" stroke="rgba(251,191,36,.18)"/>
+          <g class="draw" pathLength="1" style="--d:.7s" fill="none" stroke="#fbbf24" stroke-width="2.5"><path d="M 524.1 158.0 v -34 L 545.6 194.0 v 34"/></g>
+          <path d="M 524.1 124.0 l 14 -6 v 34 l -14 6 M 545.6 194.0 l 14 -6 v 34 l -14 6 M 538.1 118.0 L 559.6 188.0 M 538.1 152.0 L 559.6 222.0" fill="rgba(251,191,36,.07)" stroke="rgba(251,191,36,.35)"/>
+          <path d="M 527.6 122.5 L 549.1 192.5 M 531.1 121.0 L 552.6 191.0 M 534.6 119.5 L 556.1 189.5" fill="none" stroke="rgba(251,191,36,.18)"/>
           <g stroke="rgba(140,175,255,.75)" stroke-width="2" fill="none">
-            <line class="flowdash fadein" x1="128.1" y1="216.3" x2="233.7" y2="109.9"/>
-            <line class="flowdash fadein" x1="233.7" y1="109.9" x2="259.0" y2="271.6"/>
-            <line class="flowdash fadein" x1="259.0" y1="271.6" x2="386.6" y2="152.4"/>
-            <line class="flowdash fadein" x1="386.6" y1="152.4" x2="490.8" y2="254.6"/>
-            <line class="flowdash fadein" x1="490.8" y1="254.6" x2="577.0" y2="195.0"/>
+            <line class="flowdash fadein" x1="155.9" y1="214.9" x2="243.5" y2="105.6"/>
+            <line class="flowdash fadein" x1="243.5" y1="105.6" x2="268.6" y2="271.7"/>
+            <line class="flowdash fadein" x1="268.6" y1="271.7" x2="378.2" y2="149.3"/>
+            <line class="flowdash fadein" x1="378.2" y1="149.3" x2="464.6" y2="254.2"/>
+            <line class="flowdash fadein" x1="464.6" y1="254.2" x2="541.2" y2="193.0"/>
           </g>
           <g class="fadein" style="--d:1.7s">
             <circle r="5" fill="#f5f5f7">
-              <animateMotion dur="5.5s" repeatCount="indefinite" path="M 128.1 216.3 L 233.7 109.9 L 259.0 271.6 L 386.6 152.4 L 490.8 254.6 L 577.0 195.0"/>
+              <animateMotion dur="5.5s" repeatCount="indefinite" path="M 155.9 214.9 L 243.5 105.6 L 268.6 271.7 L 378.2 149.3 L 464.6 254.2 L 541.2 193.0"/>
               <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5.5s" repeatCount="indefinite"/>
             </circle>
           </g>
-          <circle class="pulse" cx="577.0" cy="195.0" r="8" fill="none" stroke="#fbbf24" stroke-width="1.5" style="--d:2.2s"/>
+          <circle class="pulse" cx="541.2" cy="193.0" r="8" fill="none" stroke="#fbbf24" stroke-width="1.5" style="--d:2.2s"/>
         </g>
       </g>
       <!-- ACT 2/3 · basketball court, two hoops standing at the ends -->
       <g class="g-court">
-        <polygon points="136.7,46.0 503.3,46.0 636.0,344.0 4.0,344.0" fill="url(#courtg)" stroke="rgba(251,146,60,.5)" stroke-width="1.5"/>
-        <line x1="320.0" y1="46.0" x2="320.0" y2="344.0" stroke="rgba(251,146,60,.25)"/>
-        <path d="M 353.3 195.0 L 353.2 201.0 L 352.3 206.8 L 350.6 212.4 L 348.0 217.5 L 344.7 222.1 L 340.6 226.0 L 336.0 229.1 L 331.0 231.4 L 325.6 232.8 L 320.0 233.3 L 314.4 232.8 L 309.0 231.4 L 304.0 229.1 L 299.4 226.0 L 295.3 222.1 L 292.0 217.5 L 289.4 212.4 L 287.7 206.8 L 286.8 201.0 L 286.7 195.0 L 287.5 189.0 L 289.0 183.2 L 291.3 177.6 L 294.2 172.5 L 297.6 167.9 L 301.5 164.0 L 305.8 160.9 L 310.4 158.6 L 315.1 157.2 L 320.0 156.7 L 324.9 157.2 L 329.6 158.6 L 334.2 160.9 L 338.5 164.0 L 342.4 167.9 L 345.8 172.5 L 348.7 177.6 L 351.0 183.2 L 352.5 189.0 Z" fill="none" stroke="rgba(251,146,60,.25)"/>
-        <path d="M 108.3 109.9 L 116.7 119.3 L 124.0 128.8 L 130.3 138.2 L 135.3 147.7 L 139.1 157.2 L 141.5 166.6 L 142.5 176.1 L 141.9 185.5 L 139.7 195.0 L 135.8 204.5 L 130.1 213.9 L 122.5 223.4 L 112.9 232.8 L 101.3 242.3 L 87.5 251.8 L 71.5 261.2 L 53.2 270.7 L 32.4 280.1" fill="none" stroke="rgba(251,146,60,.25)"/>
-        <path d="M 531.7 109.9 L 523.3 119.3 L 516.0 128.8 L 509.7 138.2 L 504.7 147.7 L 500.9 157.2 L 498.5 166.6 L 497.5 176.1 L 498.1 185.5 L 500.3 195.0 L 504.2 204.5 L 509.9 213.9 L 517.5 223.4 L 527.1 232.8 L 538.7 242.3 L 552.5 251.8 L 568.5 261.2 L 586.8 270.7 L 607.6 280.1" fill="none" stroke="rgba(251,146,60,.25)"/>
-        <g stroke="#fbbf24" stroke-width="2.5" fill="none">
-          <line x1="94.4" y1="195.0" x2="94.4" y2="153.0"/><ellipse cx="94.4" cy="147.0" rx="9" ry="3.4"/>
-          <line x1="545.6" y1="195.0" x2="545.6" y2="153.0"/><ellipse cx="545.6" cy="147.0" rx="9" ry="3.4"/>
+        <polygon points="152.3,40.0 487.7,40.0 582.0,346.0 58.0,346.0" fill="url(#courtg)" stroke="rgba(251,146,60,.5)" stroke-width="1.5"/>
+        <line x1="320.0" y1="40.0" x2="320.0" y2="346.0" stroke="rgba(251,146,60,.25)"/>
+        <path d="M 348.6 193.0 L 348.5 199.2 L 347.7 205.2 L 346.2 210.9 L 343.9 216.1 L 341.1 220.8 L 337.6 224.8 L 333.7 228.1 L 329.3 230.4 L 324.7 231.9 L 320.0 232.3 L 315.3 231.9 L 310.7 230.4 L 306.3 228.1 L 302.4 224.8 L 298.9 220.8 L 296.1 216.1 L 293.8 210.9 L 292.3 205.2 L 291.5 199.2 L 291.4 193.0 L 292.0 186.8 L 293.2 180.8 L 295.1 175.1 L 297.6 169.9 L 300.6 165.2 L 303.9 161.2 L 307.6 157.9 L 311.6 155.6 L 315.8 154.1 L 320.0 153.7 L 324.2 154.1 L 328.4 155.6 L 332.4 157.9 L 336.1 161.2 L 339.4 165.2 L 342.4 169.9 L 344.9 175.1 L 346.8 180.8 L 348.0 186.8 Z" fill="none" stroke="rgba(251,146,60,.25)"/>
+        <path d="M 132.1 105.6 L 140.2 115.3 L 147.4 125.0 L 153.5 134.7 L 158.5 144.4 L 162.4 154.1 L 165.0 163.9 L 166.3 173.6 L 166.3 183.3 L 164.8 193.0 L 161.9 202.7 L 157.5 212.4 L 151.4 222.1 L 143.7 231.9 L 134.3 241.6 L 123.1 251.3 L 110.1 261.0 L 95.1 270.7 L 78.2 280.4" fill="none" stroke="rgba(251,146,60,.25)"/>
+        <path d="M 507.9 105.6 L 499.8 115.3 L 492.6 125.0 L 486.5 134.7 L 481.5 144.4 L 477.6 154.1 L 475.0 163.9 L 473.7 173.6 L 473.7 183.3 L 475.2 193.0 L 478.1 202.7 L 482.5 212.4 L 488.6 222.1 L 496.3 231.9 L 505.7 241.6 L 516.9 251.3 L 529.9 261.0 L 544.9 270.7 L 561.8 280.4" fill="none" stroke="rgba(251,146,60,.25)"/>
+        <g>
+          <line x1="125.8" y1="193.0" x2="125.8" y2="139.0" stroke="rgba(245,245,247,.55)" stroke-width="2.5"/>
+          <rect x="120.8" y="127.0" width="4" height="22" rx="1" fill="rgba(245,245,247,.75)"/>
+          <line x1="122.8" y1="139.0" x2="133.8" y2="143.0" stroke="#fb923c" stroke-width="2"/>
+          <ellipse cx="133.8" cy="143.0" rx="7.5" ry="2.6" fill="none" stroke="#fb923c" stroke-width="2.2"/>
+          <path d="M 126.8 143.0 L 130.8 156.0 M 140.8 143.0 L 136.8 156.0 M 130.8 156.0 L 136.8 156.0 M 133.8 145.0 L 133.8 156.0" fill="none" stroke="rgba(245,245,247,.45)" stroke-width="1"/>
+          <line x1="514.2" y1="193.0" x2="514.2" y2="139.0" stroke="rgba(245,245,247,.55)" stroke-width="2.5"/>
+          <rect x="515.2" y="127.0" width="4" height="22" rx="1" fill="rgba(245,245,247,.75)"/>
+          <line x1="517.2" y1="139.0" x2="506.2" y2="143.0" stroke="#fb923c" stroke-width="2"/>
+          <ellipse cx="506.2" cy="143.0" rx="7.5" ry="2.6" fill="none" stroke="#fb923c" stroke-width="2.2"/>
+          <path d="M 499.2 143.0 L 503.2 156.0 M 513.2 143.0 L 509.2 156.0 M 503.2 156.0 L 509.2 156.0 M 506.2 145.0 L 506.2 156.0" fill="none" stroke="rgba(245,245,247,.45)" stroke-width="1"/>
         </g>
       </g>
       <!-- act 2: passes at chest height, then a shot on the far ring -->
       <g class="g-bpass">
         <g stroke="rgba(251,146,60,.8)" stroke-width="2" fill="none">
-          <line class="flowdash" x1="130.0" y1="286.1" x2="259.0" y2="245.6"/>
-            <line class="flowdash" x1="259.0" y1="245.6" x2="386.6" y2="126.4"/>
-            <line class="flowdash" x1="386.6" y1="126.4" x2="490.8" y2="228.6"/>
-            <line class="flowdash" x1="490.8" y1="228.6" x2="416.5" y2="58.3"/>
-          <path class="flowdash" d="M 416.5 58.3 Q 481.0 -11.7 545.6 147.0"/>
+          <line class="flowdash" x1="161.4" y1="281.2" x2="268.6" y2="239.7"/>
+            <line class="flowdash" x1="268.6" y1="239.7" x2="378.2" y2="117.3"/>
+            <line class="flowdash" x1="378.2" y1="117.3" x2="464.6" y2="222.2"/>
+            <line class="flowdash" x1="464.6" y1="222.2" x2="406.6" y2="47.3"/>
+          <path class="flowdash" d="M 406.6 47.3 Q 456.4 -22.7 506.2 143.0"/>
         </g>
         <circle r="5.5" fill="#fdba74">
-          <animateMotion dur="5s" repeatCount="indefinite" path="M 130.0 286.1 L 259.0 245.6 L 386.6 126.4 L 490.8 228.6 L 416.5 58.3 Q 481.0 -11.7 545.6 147.0"/>
+          <animateMotion dur="5s" repeatCount="indefinite" path="M 161.4 281.2 L 268.6 239.7 L 378.2 117.3 L 464.6 222.2 L 406.6 47.3 Q 456.4 -22.7 506.2 143.0"/>
           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5s" repeatCount="indefinite"/>
         </circle>
-        <circle class="softpulse" cx="545.6" cy="147.0" r="11" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+        <circle class="softpulse" cx="506.2" cy="143.0" r="11" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
       </g>
       <!-- act 3: same players, same rules — the ball goes into the OWN ring -->
       <g class="g-lpass">
         <g stroke="rgba(251,113,133,.85)" stroke-width="2" fill="none">
-          <line class="flowdash" x1="416.5" y1="58.3" x2="386.6" y2="126.4"/>
-            <line class="flowdash" x1="386.6" y1="126.4" x2="259.0" y2="245.6"/>
-            <line class="flowdash" x1="259.0" y1="245.6" x2="233.7" y2="83.9"/>
-            <line class="flowdash" x1="233.7" y1="83.9" x2="128.1" y2="190.3"/>
-          <path class="flowdash" d="M 128.1 190.3 Q 111.2 92.0 94.4 147.0"/>
+          <line class="flowdash" x1="406.6" y1="47.3" x2="378.2" y2="117.3"/>
+            <line class="flowdash" x1="378.2" y1="117.3" x2="268.6" y2="239.7"/>
+            <line class="flowdash" x1="268.6" y1="239.7" x2="243.5" y2="73.6"/>
+            <line class="flowdash" x1="243.5" y1="73.6" x2="155.9" y2="182.9"/>
+          <path class="flowdash" d="M 155.9 182.9 Q 144.9 88.0 133.8 143.0"/>
         </g>
         <circle r="5.5" fill="#fda4af">
-          <animateMotion dur="5s" repeatCount="indefinite" path="M 416.5 58.3 L 386.6 126.4 L 259.0 245.6 L 233.7 83.9 L 128.1 190.3 Q 111.2 92.0 94.4 147.0"/>
+          <animateMotion dur="5s" repeatCount="indefinite" path="M 406.6 47.3 L 378.2 117.3 L 268.6 239.7 L 243.5 73.6 L 155.9 182.9 Q 144.9 88.0 133.8 143.0"/>
           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5s" repeatCount="indefinite"/>
         </circle>
-        <text class="lbl-sm" x="320" y="332" text-anchor="middle" style="fill:#fda4af;font-weight:650">purpose: lose the game</text>
-        <text class="lbl-sm" x="94.4" y="133.0" text-anchor="middle" style="fill:#fda4af">own basket</text>
+        <text class="lbl-sm" x="320" y="334" text-anchor="middle" style="fill:#fda4af;font-weight:650">purpose: lose the game</text>
+        <text class="lbl-sm" x="133.8" y="129.0" text-anchor="middle" style="fill:#fda4af">own basket</text>
       </g>
-      <!-- the players — the same seven pins in every act -->
-      <g>
+      <!-- the players — the same seven figures in every act: feet in football, hands in basketball -->
+      <g class="players-foot">
         <g class="pop" style="--d:0.50s">
-          <ellipse cx="128.1" cy="216.3" rx="9" ry="3.2" fill="rgba(0,0,0,.45)"/>
-          <line x1="128.1" y1="216.3" x2="128.1" y2="190.3" stroke="rgba(122,162,255,.55)" stroke-width="2"/>
-          <circle cx="128.1" cy="190.3" r="8.5" fill="#7aa2ff"/>
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="2.6s" repeatCount="indefinite"/>
+            <ellipse cx="155.9" cy="214.9" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="155.9" cy="187.9" r="4.6" fill="#7aa2ff"/>
+            <line x1="155.9" y1="192.9" x2="155.9" y2="201.9" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="155.9" y1="201.9" x2="151.4" y2="214.9" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 155.9 201.9;0 155.9 201.9;-38 155.9 201.9;14 155.9 201.9;0 155.9 201.9" keyTimes="0;.55;.7;.84;1" dur="2.20s" begin="0.0s" repeatCount="indefinite"/><line x1="155.9" y1="201.9" x2="160.4" y2="214.9" stroke="#9db9ff" stroke-width="2.2" stroke-linecap="round"/></g>
+            <line x1="155.9" y1="193.9" x2="149.9" y2="201.9" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="155.9" y1="193.9" x2="161.9" y2="201.9" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+          </g>
         </g>
         <g class="pop" style="--d:0.57s">
-          <ellipse cx="233.7" cy="109.9" rx="9" ry="3.2" fill="rgba(0,0,0,.45)"/>
-          <line x1="233.7" y1="109.9" x2="233.7" y2="83.9" stroke="rgba(122,162,255,.55)" stroke-width="2"/>
-          <circle cx="233.7" cy="83.9" r="8.5" fill="#7aa2ff"/>
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="2.9s" repeatCount="indefinite"/>
+            <ellipse cx="243.5" cy="105.6" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="243.5" cy="78.6" r="4.6" fill="#7aa2ff"/>
+            <line x1="243.5" y1="83.6" x2="243.5" y2="92.6" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="243.5" y1="92.6" x2="239.0" y2="105.6" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 243.5 92.6;0 243.5 92.6;-38 243.5 92.6;14 243.5 92.6;0 243.5 92.6" keyTimes="0;.55;.7;.84;1" dur="2.55s" begin="0.3s" repeatCount="indefinite"/><line x1="243.5" y1="92.6" x2="248.0" y2="105.6" stroke="#9db9ff" stroke-width="2.2" stroke-linecap="round"/></g>
+            <line x1="243.5" y1="84.6" x2="237.5" y2="92.6" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="243.5" y1="84.6" x2="249.5" y2="92.6" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+          </g>
         </g>
         <g class="pop" style="--d:0.64s">
-          <ellipse cx="259.0" cy="271.6" rx="9" ry="3.2" fill="rgba(0,0,0,.45)"/>
-          <line x1="259.0" y1="271.6" x2="259.0" y2="245.6" stroke="rgba(122,162,255,.55)" stroke-width="2"/>
-          <circle cx="259.0" cy="245.6" r="8.5" fill="#7aa2ff"/>
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="3.2s" repeatCount="indefinite"/>
+            <ellipse cx="268.6" cy="271.7" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="268.6" cy="244.7" r="4.6" fill="#7aa2ff"/>
+            <line x1="268.6" y1="249.7" x2="268.6" y2="258.7" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="268.6" y1="258.7" x2="264.1" y2="271.7" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 268.6 258.7;0 268.6 258.7;-38 268.6 258.7;14 268.6 258.7;0 268.6 258.7" keyTimes="0;.55;.7;.84;1" dur="2.90s" begin="0.6s" repeatCount="indefinite"/><line x1="268.6" y1="258.7" x2="273.1" y2="271.7" stroke="#9db9ff" stroke-width="2.2" stroke-linecap="round"/></g>
+            <line x1="268.6" y1="250.7" x2="262.6" y2="258.7" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="268.6" y1="250.7" x2="274.6" y2="258.7" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+          </g>
         </g>
         <g class="pop" style="--d:0.71s">
-          <ellipse cx="386.6" cy="152.4" rx="9" ry="3.2" fill="rgba(0,0,0,.45)"/>
-          <line x1="386.6" y1="152.4" x2="386.6" y2="126.4" stroke="rgba(122,162,255,.55)" stroke-width="2"/>
-          <circle cx="386.6" cy="126.4" r="8.5" fill="#7aa2ff"/>
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="3.5s" repeatCount="indefinite"/>
+            <ellipse cx="378.2" cy="149.3" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="378.2" cy="122.3" r="4.6" fill="#7aa2ff"/>
+            <line x1="378.2" y1="127.3" x2="378.2" y2="136.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="378.2" y1="136.3" x2="373.7" y2="149.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 378.2 136.3;0 378.2 136.3;-38 378.2 136.3;14 378.2 136.3;0 378.2 136.3" keyTimes="0;.55;.7;.84;1" dur="3.25s" begin="0.9s" repeatCount="indefinite"/><line x1="378.2" y1="136.3" x2="382.7" y2="149.3" stroke="#9db9ff" stroke-width="2.2" stroke-linecap="round"/></g>
+            <line x1="378.2" y1="128.3" x2="372.2" y2="136.3" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="378.2" y1="128.3" x2="384.2" y2="136.3" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+          </g>
         </g>
         <g class="pop" style="--d:0.78s">
-          <ellipse cx="490.8" cy="254.6" rx="9" ry="3.2" fill="rgba(0,0,0,.45)"/>
-          <line x1="490.8" y1="254.6" x2="490.8" y2="228.6" stroke="rgba(122,162,255,.55)" stroke-width="2"/>
-          <circle cx="490.8" cy="228.6" r="8.5" fill="#7aa2ff"/>
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="3.8s" repeatCount="indefinite"/>
+            <ellipse cx="464.6" cy="254.2" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="464.6" cy="227.2" r="4.6" fill="#7aa2ff"/>
+            <line x1="464.6" y1="232.2" x2="464.6" y2="241.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="464.6" y1="241.2" x2="460.1" y2="254.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 464.6 241.2;0 464.6 241.2;-38 464.6 241.2;14 464.6 241.2;0 464.6 241.2" keyTimes="0;.55;.7;.84;1" dur="3.60s" begin="1.2s" repeatCount="indefinite"/><line x1="464.6" y1="241.2" x2="469.1" y2="254.2" stroke="#9db9ff" stroke-width="2.2" stroke-linecap="round"/></g>
+            <line x1="464.6" y1="233.2" x2="458.6" y2="241.2" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="464.6" y1="233.2" x2="470.6" y2="241.2" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+          </g>
         </g>
         <g class="pop" style="--d:0.85s">
-          <ellipse cx="416.5" cy="84.3" rx="9" ry="3.2" fill="rgba(0,0,0,.45)"/>
-          <line x1="416.5" y1="84.3" x2="416.5" y2="58.3" stroke="rgba(122,162,255,.55)" stroke-width="2"/>
-          <circle cx="416.5" cy="58.3" r="8.5" fill="#7aa2ff"/>
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="4.1s" repeatCount="indefinite"/>
+            <ellipse cx="406.6" cy="79.3" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="406.6" cy="52.3" r="4.6" fill="#7aa2ff"/>
+            <line x1="406.6" y1="57.3" x2="406.6" y2="66.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="406.6" y1="66.3" x2="402.1" y2="79.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 406.6 66.3;0 406.6 66.3;-38 406.6 66.3;14 406.6 66.3;0 406.6 66.3" keyTimes="0;.55;.7;.84;1" dur="3.95s" begin="1.5s" repeatCount="indefinite"/><line x1="406.6" y1="66.3" x2="411.1" y2="79.3" stroke="#9db9ff" stroke-width="2.2" stroke-linecap="round"/></g>
+            <line x1="406.6" y1="58.3" x2="400.6" y2="66.3" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="406.6" y1="58.3" x2="412.6" y2="66.3" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+          </g>
         </g>
         <g class="pop" style="--d:0.92s">
-          <ellipse cx="130.0" cy="312.1" rx="9" ry="3.2" fill="rgba(0,0,0,.45)"/>
-          <line x1="130.0" y1="312.1" x2="130.0" y2="286.1" stroke="rgba(122,162,255,.55)" stroke-width="2"/>
-          <circle cx="130.0" cy="286.1" r="8.5" fill="#7aa2ff"/>
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="4.4s" repeatCount="indefinite"/>
+            <ellipse cx="161.4" cy="313.2" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="161.4" cy="286.2" r="4.6" fill="#7aa2ff"/>
+            <line x1="161.4" y1="291.2" x2="161.4" y2="300.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="161.4" y1="300.2" x2="156.9" y2="313.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 161.4 300.2;0 161.4 300.2;-38 161.4 300.2;14 161.4 300.2;0 161.4 300.2" keyTimes="0;.55;.7;.84;1" dur="4.30s" begin="1.8s" repeatCount="indefinite"/><line x1="161.4" y1="300.2" x2="165.9" y2="313.2" stroke="#9db9ff" stroke-width="2.2" stroke-linecap="round"/></g>
+            <line x1="161.4" y1="292.2" x2="155.4" y2="300.2" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="161.4" y1="292.2" x2="167.4" y2="300.2" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+          </g>
+        </g>
+      </g>
+      <g class="players-hand">
+        <g class="pop" style="--d:0.50s">
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="2.6s" repeatCount="indefinite"/>
+            <ellipse cx="155.9" cy="214.9" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="155.9" cy="187.9" r="4.6" fill="#7aa2ff"/>
+            <line x1="155.9" y1="192.9" x2="155.9" y2="201.9" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="155.9" y1="201.9" x2="151.4" y2="214.9" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="155.9" y1="201.9" x2="160.4" y2="214.9" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 155.9 191.9;-16 155.9 191.9;0 155.9 191.9" dur="0.90s" repeatCount="indefinite"/><line x1="155.9" y1="193.9" x2="149.9" y2="183.9" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="155.9" y1="193.9" x2="161.9" y2="183.9" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/></g>
+          </g>
+        </g>
+        <g class="pop" style="--d:0.57s">
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="2.9s" repeatCount="indefinite"/>
+            <ellipse cx="243.5" cy="105.6" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="243.5" cy="78.6" r="4.6" fill="#7aa2ff"/>
+            <line x1="243.5" y1="83.6" x2="243.5" y2="92.6" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="243.5" y1="92.6" x2="239.0" y2="105.6" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="243.5" y1="92.6" x2="248.0" y2="105.6" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 243.5 82.6;-16 243.5 82.6;0 243.5 82.6" dur="1.02s" repeatCount="indefinite"/><line x1="243.5" y1="84.6" x2="237.5" y2="74.6" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="243.5" y1="84.6" x2="249.5" y2="74.6" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/></g>
+          </g>
+        </g>
+        <g class="pop" style="--d:0.64s">
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="3.2s" repeatCount="indefinite"/>
+            <ellipse cx="268.6" cy="271.7" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="268.6" cy="244.7" r="4.6" fill="#7aa2ff"/>
+            <line x1="268.6" y1="249.7" x2="268.6" y2="258.7" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="268.6" y1="258.7" x2="264.1" y2="271.7" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="268.6" y1="258.7" x2="273.1" y2="271.7" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 268.6 248.7;-16 268.6 248.7;0 268.6 248.7" dur="1.14s" repeatCount="indefinite"/><line x1="268.6" y1="250.7" x2="262.6" y2="240.7" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="268.6" y1="250.7" x2="274.6" y2="240.7" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/></g>
+          </g>
+        </g>
+        <g class="pop" style="--d:0.71s">
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="3.5s" repeatCount="indefinite"/>
+            <ellipse cx="378.2" cy="149.3" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="378.2" cy="122.3" r="4.6" fill="#7aa2ff"/>
+            <line x1="378.2" y1="127.3" x2="378.2" y2="136.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="378.2" y1="136.3" x2="373.7" y2="149.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="378.2" y1="136.3" x2="382.7" y2="149.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 378.2 126.3;-16 378.2 126.3;0 378.2 126.3" dur="1.26s" repeatCount="indefinite"/><line x1="378.2" y1="128.3" x2="372.2" y2="118.3" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="378.2" y1="128.3" x2="384.2" y2="118.3" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/></g>
+          </g>
+        </g>
+        <g class="pop" style="--d:0.78s">
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="3.8s" repeatCount="indefinite"/>
+            <ellipse cx="464.6" cy="254.2" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="464.6" cy="227.2" r="4.6" fill="#7aa2ff"/>
+            <line x1="464.6" y1="232.2" x2="464.6" y2="241.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="464.6" y1="241.2" x2="460.1" y2="254.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="464.6" y1="241.2" x2="469.1" y2="254.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 464.6 231.2;-16 464.6 231.2;0 464.6 231.2" dur="1.38s" repeatCount="indefinite"/><line x1="464.6" y1="233.2" x2="458.6" y2="223.2" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="464.6" y1="233.2" x2="470.6" y2="223.2" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/></g>
+          </g>
+        </g>
+        <g class="pop" style="--d:0.85s">
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="4.1s" repeatCount="indefinite"/>
+            <ellipse cx="406.6" cy="79.3" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="406.6" cy="52.3" r="4.6" fill="#7aa2ff"/>
+            <line x1="406.6" y1="57.3" x2="406.6" y2="66.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="406.6" y1="66.3" x2="402.1" y2="79.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="406.6" y1="66.3" x2="411.1" y2="79.3" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 406.6 56.3;-16 406.6 56.3;0 406.6 56.3" dur="1.50s" repeatCount="indefinite"/><line x1="406.6" y1="58.3" x2="400.6" y2="48.3" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="406.6" y1="58.3" x2="412.6" y2="48.3" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/></g>
+          </g>
+        </g>
+        <g class="pop" style="--d:0.92s">
+          <g><animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="4.4s" repeatCount="indefinite"/>
+            <ellipse cx="161.4" cy="313.2" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="161.4" cy="286.2" r="4.6" fill="#7aa2ff"/>
+            <line x1="161.4" y1="291.2" x2="161.4" y2="300.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="161.4" y1="300.2" x2="156.9" y2="313.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="161.4" y1="300.2" x2="165.9" y2="313.2" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 161.4 290.2;-16 161.4 290.2;0 161.4 290.2" dur="1.62s" repeatCount="indefinite"/><line x1="161.4" y1="292.2" x2="155.4" y2="282.2" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="161.4" y1="292.2" x2="167.4" y2="282.2" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/></g>
+          </g>
         </g>
       </g>
       <g class="names names-a" style="font-size:10.5px;fill:rgba(157,185,255,.9)">
-        <text data-ro="Ana" x="128.1" y="176.3" text-anchor="middle">Ana</text> <text data-ro="Ion" x="233.7" y="69.9" text-anchor="middle">Ion</text> <text data-ro="Mara" x="259.0" y="231.6" text-anchor="middle">Mara</text> <text data-ro="Dan" x="386.6" y="112.4" text-anchor="middle">Dan</text> <text data-ro="Vlad" x="490.8" y="214.6" text-anchor="middle">Vlad</text> <text data-ro="Ilinca" x="416.5" y="44.3" text-anchor="middle">Ilinca</text> <text data-ro="Tudor" x="130.0" y="272.1" text-anchor="middle">Tudor</text>
+        <text data-ro="Ana" x="155.9" y="177.9" text-anchor="middle">Ana</text> <text data-ro="Ion" x="243.5" y="68.6" text-anchor="middle">Ion</text> <text data-ro="Mara" x="268.6" y="234.7" text-anchor="middle">Mara</text> <text data-ro="Dan" x="378.2" y="112.3" text-anchor="middle">Dan</text> <text data-ro="Vlad" x="464.6" y="217.2" text-anchor="middle">Vlad</text> <text data-ro="Ilinca" x="406.6" y="42.3" text-anchor="middle">Ilinca</text> <text data-ro="Tudor" x="161.4" y="276.2" text-anchor="middle">Tudor</text>
       </g>
       <g class="names names-b" style="font-size:10.5px;fill:rgba(157,185,255,.9)">
-        <text data-ro="Sofia" x="128.1" y="176.3" text-anchor="middle">Sofia</text> <text data-ro="Andrei" x="233.7" y="69.9" text-anchor="middle">Andrei</text> <text data-ro="Ioana" x="259.0" y="231.6" text-anchor="middle">Ioana</text> <text data-ro="Matei" x="386.6" y="112.4" text-anchor="middle">Matei</text> <text data-ro="Elena" x="490.8" y="214.6" text-anchor="middle">Elena</text> <text data-ro="Petru" x="416.5" y="44.3" text-anchor="middle">Petru</text> <text data-ro="Irina" x="130.0" y="272.1" text-anchor="middle">Irina</text>
+        <text data-ro="Sofia" x="155.9" y="177.9" text-anchor="middle">Sofia</text> <text data-ro="Andrei" x="243.5" y="68.6" text-anchor="middle">Andrei</text> <text data-ro="Ioana" x="268.6" y="234.7" text-anchor="middle">Ioana</text> <text data-ro="Matei" x="378.2" y="112.3" text-anchor="middle">Matei</text> <text data-ro="Elena" x="464.6" y="217.2" text-anchor="middle">Elena</text> <text data-ro="Petru" x="406.6" y="42.3" text-anchor="middle">Petru</text> <text data-ro="Irina" x="161.4" y="276.2" text-anchor="middle">Irina</text>
       </g>
       <!-- the reading -->
       <g style="font-size:13px">
-        <text class="fadein" x="4" y="378" style="--d:2s;fill:#9db9ff"><tspan style="font-weight:650">elements</tspan> — players</text>
-        <text class="fadein" x="320" y="378" text-anchor="middle" style="--d:2.2s;fill:#7fe7d4"><tspan style="font-weight:650">interconnections</tspan> — passes</text>
-        <text class="fadein" x="676" y="378" text-anchor="end" style="--d:2.4s;fill:#fbbf24"><tspan style="font-weight:650">purpose</tspan> — score</text>
+        <text class="fadein" x="4" y="380" style="--d:2s;fill:#9db9ff"><tspan style="font-weight:650">elements</tspan> — players</text>
+        <text class="fadein" x="320" y="380" text-anchor="middle" style="--d:2.2s;fill:#7fe7d4"><tspan style="font-weight:650">interconnections</tspan> — passes</text>
+        <text class="fadein" x="676" y="380" text-anchor="end" style="--d:2.4s;fill:#fbbf24"><tspan style="font-weight:650">purpose</tspan> — score</text>
       </g>
     </svg>
     <div class="chips" style="margin-top:1.2vh">

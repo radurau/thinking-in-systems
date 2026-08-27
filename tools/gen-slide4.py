@@ -8,11 +8,11 @@ below and run:  python3 tools/gen-slide4.py
 import math, pathlib, re
 
 # ---- knobs ----
-NEAR_Y, FAR_Y = 344, 46          # screen y of the near / far touchline (viewBox is 680×384)
-NEAR_HALF_W = 316                # half width of the near touchline (centre x = 320)
-FAR_SHRINK = 0.42                # far touchline is (1-FAR_SHRINK) as wide as the near one
-PIN = 26                         # pin height
-GOAL_H, HOOP_H = 36, 48
+NEAR_Y, FAR_Y = 346, 40          # screen y of the near / far touchline (viewBox is 680×384)
+NEAR_HALF_W = 262                # half width of the near touchline (centre x = 320)
+FAR_SHRINK = 0.36                # far touchline is (1-FAR_SHRINK) as wide as the near one
+PIN = 32                         # pin height
+GOAL_H, HOOP_H = 34, 50
 
 def P(x, y):
     d = (330 - y) / 280.0
@@ -27,7 +27,7 @@ def circle_path(cx, cy, r, n=40):
 def curve_pts(p0, c, p1, n=18):
     return [P((1-t)**2*p0[0] + 2*(1-t)*t*c[0] + t**2*p1[0], (1-t)**2*p0[1] + 2*(1-t)*t*c[1] + t**2*p1[1]) for t in (i/n for i in range(n+1))]
 def ground(x, y): return P(x, y)
-def head(x, y): X, Y = P(x, y); return (X, Y - PIN)
+def head(x, y): X, Y = P(x, y); return (X, Y - PIN)   # hand height for the basketball passes
 def seg_path(seq, use_head): return 'M ' + ' L '.join(f'{f(X)} {f(Y)}' for X, Y in (head(*p) if use_head else ground(*p) for p in seq))
 def lines(seq, use_head, extra=''):
     pts = [head(*p) if use_head else ground(*p) for p in seq]
@@ -38,7 +38,24 @@ players = [(120,210,'Ana','Sofia'),(210,110,'Ion','Andrei'),(262,262,'Mara','Ioa
 fb = [(120,210),(210,110),(262,262),(398,150),(487,246),(598,190)]
 bb = [(150,300),(262,262),(398,150),(487,246),(450,86)]
 lb = [(450,86),(398,150),(262,262),(210,110),(120,210)]
-def ring(x, y): gx, gy = P(x, y); return gx, gy, (gx, gy - HOOP_H)
+def ring(x, y):
+    gx, gy = P(x, y); side = -1 if x < 320 else 1        # backboard sits away from the court
+    return gx, gy, (gx - side*8, gy - HOOP_H)
+def hoop_svg(x, y):
+    gx, gy, (cx, cy) = ring(x, y); side = -1 if x < 320 else 1; bx = gx + side*3
+    return f'''<line x1="{f(gx)}" y1="{f(gy)}" x2="{f(gx)}" y2="{f(gy-HOOP_H-4)}" stroke="rgba(245,245,247,.55)" stroke-width="2.5"/>
+          <rect x="{f(bx-2)}" y="{f(cy-16)}" width="4" height="22" rx="1" fill="rgba(245,245,247,.75)"/>
+          <line x1="{f(bx)}" y1="{f(cy-4)}" x2="{f(cx)}" y2="{f(cy)}" stroke="#fb923c" stroke-width="2"/>
+          <ellipse cx="{f(cx)}" cy="{f(cy)}" rx="7.5" ry="2.6" fill="none" stroke="#fb923c" stroke-width="2.2"/>
+          <path d="M {f(cx-7)} {f(cy)} L {f(cx-3)} {f(cy+13)} M {f(cx+7)} {f(cy)} L {f(cx+3)} {f(cy+13)} M {f(cx-3)} {f(cy+13)} L {f(cx+3)} {f(cy+13)} M {f(cx)} {f(cy+2)} L {f(cx)} {f(cy+13)}" fill="none" stroke="rgba(245,245,247,.45)" stroke-width="1"/>'''
+def goal_svg(x):
+    a = P(x,158); b = P(x,222); side = -1 if x < 320 else 1; dx = side*14
+    frame = f'M {f(a[0])} {f(a[1])} v -{GOAL_H} L {f(b[0])} {f(b[1]-GOAL_H)} v {GOAL_H}'
+    net = f'M {f(a[0])} {f(a[1]-GOAL_H)} l {dx} -6 v {GOAL_H} l {-dx} 6 M {f(b[0])} {f(b[1]-GOAL_H)} l {dx} -6 v {GOAL_H} l {-dx} 6 M {f(a[0]+dx)} {f(a[1]-GOAL_H-6)} L {f(b[0]+dx)} {f(b[1]-GOAL_H-6)} M {f(a[0]+dx)} {f(a[1]-6)} L {f(b[0]+dx)} {f(b[1]-6)}'
+    mesh = ' '.join(f'M {f(a[0]+dx*k/4)} {f(a[1]-GOAL_H-6*k/4)} L {f(b[0]+dx*k/4)} {f(b[1]-GOAL_H-6*k/4)}' for k in (1,2,3))
+    return f'''<g class="draw" pathLength="1" style="--d:.7s" fill="none" stroke="#fbbf24" stroke-width="2.5"><path d="{frame}"/></g>
+          <path d="{net}" fill="rgba(251,191,36,.07)" stroke="rgba(251,191,36,.35)"/>
+          <path d="{mesh}" fill="none" stroke="rgba(251,191,36,.18)"/>'''
 rx_g, ry_g, right_top = ring(564,190); lx_g, ly_g, left_top = ring(76,190)
 p_shot = head(450,86); shot_ctrl = ((p_shot[0]+right_top[0])/2, min(p_shot[1], right_top[1]) - 70)
 shot = f'M {f(p_shot[0])} {f(p_shot[1])} Q {f(shot_ctrl[0])} {f(shot_ctrl[1])} {f(right_top[0])} {f(right_top[1])}'
@@ -46,16 +63,34 @@ p_own = head(120,210); own_ctrl = ((p_own[0]+left_top[0])/2, min(p_own[1], left_
 own = f'M {f(p_own[0])} {f(p_own[1])} Q {f(own_ctrl[0])} {f(own_ctrl[1])} {f(left_top[0])} {f(left_top[1])}'
 g1 = P(590,158); g2 = P(590,222)
 arcL = curve_pts((50,110),(200,190),(50,270)); arcR = curve_pts((590,110),(440,190),(590,270))
-pins, namesA, namesB = [], [], []
+pinsF, pinsH, namesA, namesB = [], [], [], []
 for i, (x, y, a, b) in enumerate(players):
     gx, gy = P(x, y); hx, hy = head(x, y)
-    pins.append(f'''        <g class="pop" style="--d:{0.5+0.07*i:.2f}s">
-          <ellipse cx="{f(gx)}" cy="{f(gy)}" rx="9" ry="3.2" fill="rgba(0,0,0,.45)"/>
-          <line x1="{f(gx)}" y1="{f(gy)}" x2="{f(hx)}" y2="{f(hy)}" stroke="rgba(122,162,255,.55)" stroke-width="2"/>
-          <circle cx="{f(hx)}" cy="{f(hy)}" r="8.5" fill="#7aa2ff"/>
+    sway = f'<animateTransform attributeName="transform" type="translate" values="0 0;2.2 0;0 0;-2.2 0;0 0" dur="{2.6+0.3*i:.1f}s" repeatCount="indefinite"/>'
+    kick = f'<animateTransform attributeName="transform" type="rotate" values="0 {f(gx)} {f(gy-13)};0 {f(gx)} {f(gy-13)};-38 {f(gx)} {f(gy-13)};14 {f(gx)} {f(gy-13)};0 {f(gx)} {f(gy-13)}" keyTimes="0;.55;.7;.84;1" dur="{2.2+0.35*i:.2f}s" begin="{0.3*i:.1f}s" repeatCount="indefinite"/>'
+    drib = f'<animateTransform attributeName="transform" type="rotate" values="0 {f(gx)} {f(gy-23)};-16 {f(gx)} {f(gy-23)};0 {f(gx)} {f(gy-23)}" dur="{0.9+0.12*i:.2f}s" repeatCount="indefinite"/>'
+    body = f'''<ellipse cx="{f(gx)}" cy="{f(gy)}" rx="8" ry="2.8" fill="rgba(0,0,0,.45)"/>
+            <circle cx="{f(gx)}" cy="{f(gy-27)}" r="4.6" fill="#7aa2ff"/>
+            <line x1="{f(gx)}" y1="{f(gy-22)}" x2="{f(gx)}" y2="{f(gy-13)}" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="{f(gx)}" y1="{f(gy-13)}" x2="{f(gx-4.5)}" y2="{f(gy)}" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>'''
+    pinsF.append(f'''        <g class="pop" style="--d:{0.5+0.07*i:.2f}s">
+          <g>{sway}
+            {body}
+            <g>{kick}<line x1="{f(gx)}" y1="{f(gy-13)}" x2="{f(gx+4.5)}" y2="{f(gy)}" stroke="#9db9ff" stroke-width="2.2" stroke-linecap="round"/></g>
+            <line x1="{f(gx)}" y1="{f(gy-21)}" x2="{f(gx-6)}" y2="{f(gy-13)}" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="{f(gx)}" y1="{f(gy-21)}" x2="{f(gx+6)}" y2="{f(gy-13)}" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+          </g>
         </g>''')
-    namesA.append(f'<text data-ro="{a}" x="{f(hx)}" y="{f(hy-14)}" text-anchor="middle">{a}</text>')
-    namesB.append(f'<text data-ro="{b}" x="{f(hx)}" y="{f(hy-14)}" text-anchor="middle">{b}</text>')
+    pinsH.append(f'''        <g class="pop" style="--d:{0.5+0.07*i:.2f}s">
+          <g>{sway}
+            {body}
+            <line x1="{f(gx)}" y1="{f(gy-13)}" x2="{f(gx+4.5)}" y2="{f(gy)}" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round"/>
+            <g>{drib}<line x1="{f(gx)}" y1="{f(gy-21)}" x2="{f(gx-6)}" y2="{f(gy-31)}" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="{f(gx)}" y1="{f(gy-21)}" x2="{f(gx+6)}" y2="{f(gy-31)}" stroke="#7aa2ff" stroke-width="2" stroke-linecap="round"/></g>
+          </g>
+        </g>''')
+    namesA.append(f'<text data-ro="{a}" x="{f(gx)}" y="{f(gy-37)}" text-anchor="middle">{a}</text>')
+    namesB.append(f'<text data-ro="{b}" x="{f(gx)}" y="{f(gy-37)}" text-anchor="middle">{b}</text>')
 cx_far = P(320,50); cx_near = P(320,330)
 svg = f'''    <svg class="fig sysfig" viewBox="0 0 680 384" aria-hidden="true" style="margin-top:.6vh;max-width:min(760px,56vw)">
       <!-- 2.5D (generated by tools/gen-slide4.py): the ground plane is projected, players stand as pins -->
@@ -71,10 +106,8 @@ svg = f'''    <svg class="fig sysfig" viewBox="0 0 680 384" aria-hidden="true" s
           <path d="{circle_path(320,190,42)}" fill="none" stroke="rgba(94,234,212,.25)"/>
           <path d="{path_from([P(50,120),P(96,120),P(96,260),P(50,260)])}" fill="none" stroke="rgba(94,234,212,.22)"/>
           <path d="{path_from([P(590,120),P(544,120),P(544,260),P(590,260)])}" fill="none" stroke="rgba(94,234,212,.22)"/>
-          <g class="draw" pathLength="1" style="--d:.7s" fill="none" stroke="#fbbf24" stroke-width="2.5">
-            <path d="M {f(g1[0])} {f(g1[1])} v -{GOAL_H} L {f(g2[0])} {f(g2[1]-GOAL_H)} v {GOAL_H}"/>
-          </g>
-          <path d="M {f(g1[0])} {f(g1[1]-GOAL_H)} l 14 -6 v {GOAL_H} l -14 6 M {f(g2[0])} {f(g2[1]-GOAL_H)} l 14 -6 v {GOAL_H} l -14 6" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.35)"/>
+          {goal_svg(50)}
+          {goal_svg(590)}
           <g stroke="rgba(140,175,255,.75)" stroke-width="2" fill="none">
             {lines(fb, False, ' fadein')}
           </g>
@@ -94,9 +127,9 @@ svg = f'''    <svg class="fig sysfig" viewBox="0 0 680 384" aria-hidden="true" s
         <path d="{circle_path(320,190,36)}" fill="none" stroke="rgba(251,146,60,.25)"/>
         <path d="{path_from(arcL)}" fill="none" stroke="rgba(251,146,60,.25)"/>
         <path d="{path_from(arcR)}" fill="none" stroke="rgba(251,146,60,.25)"/>
-        <g stroke="#fbbf24" stroke-width="2.5" fill="none">
-          <line x1="{f(lx_g)}" y1="{f(ly_g)}" x2="{f(left_top[0])}" y2="{f(left_top[1]+6)}"/><ellipse cx="{f(left_top[0])}" cy="{f(left_top[1])}" rx="9" ry="3.4"/>
-          <line x1="{f(rx_g)}" y1="{f(ry_g)}" x2="{f(right_top[0])}" y2="{f(right_top[1]+6)}"/><ellipse cx="{f(right_top[0])}" cy="{f(right_top[1])}" rx="9" ry="3.4"/>
+        <g>
+          {hoop_svg(76,190)}
+          {hoop_svg(564,190)}
         </g>
       </g>
       <!-- act 2: passes at chest height, then a shot on the far ring -->
@@ -124,9 +157,12 @@ svg = f'''    <svg class="fig sysfig" viewBox="0 0 680 384" aria-hidden="true" s
         <text class="lbl-sm" x="320" y="{NEAR_Y-12}" text-anchor="middle" style="fill:#fda4af;font-weight:650">purpose: lose the game</text>
         <text class="lbl-sm" x="{f(left_top[0])}" y="{f(left_top[1]-14)}" text-anchor="middle" style="fill:#fda4af">own basket</text>
       </g>
-      <!-- the players — the same seven pins in every act -->
-      <g>
-{chr(10).join(pins)}
+      <!-- the players — the same seven figures in every act: feet in football, hands in basketball -->
+      <g class="players-foot">
+{chr(10).join(pinsF)}
+      </g>
+      <g class="players-hand">
+{chr(10).join(pinsH)}
       </g>
       <g class="names names-a" style="font-size:10.5px;fill:rgba(157,185,255,.9)">
         {' '.join(namesA)}
