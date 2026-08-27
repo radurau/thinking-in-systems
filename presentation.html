@@ -178,6 +178,17 @@ body{
 @keyframes flow{to{stroke-dashoffset:-14}}
 
 /* ---------- slide 1 hero ---------- */
+/* ladder HUD — which leverage rungs the talk has covered so far (slides 5–12) */
+#hud{position:fixed;left:22px;top:50%;transform:translateY(-50%) translateX(-14px);z-index:6;display:flex;flex-direction:column-reverse;gap:7px;
+  opacity:0;transition:opacity .6s ease,transform .6s var(--ease);pointer-events:none}
+#hud.show{opacity:1;transform:translateY(-50%)}
+#hud .hr{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.06em;color:rgba(245,245,247,.28);transition:color .6s ease}
+#hud .hr i{display:block;width:18px;height:3px;border-radius:2px;background:rgba(245,245,247,.14);transition:background .6s ease,box-shadow .6s ease}
+#hud .hr.lit{color:rgba(245,245,247,.75)}
+#hud .hr.lit i{background:linear-gradient(90deg,#c084fc,#f472b6);box-shadow:0 0 10px rgba(192,132,252,.45)}
+#hud .hr.gap{margin-bottom:5px}
+@media print{#hud{display:none}}
+
 .hero-line{font-size:clamp(40px,7vw,108px);font-weight:700;letter-spacing:-.03em;line-height:1.05}
 .hero-line + .hero-line{margin-top:1.2vh}
 .hero-sub{margin-top:4.5vh;font-size:clamp(15px,1.7vw,22px);color:var(--ink-dim);letter-spacing:.01em}
@@ -1032,7 +1043,7 @@ body{
 </section>
 
 <!-- ============ 5 · STOCKS & FLOWS ============ -->
-<section class="slide" data-hue="0">
+<section class="slide" data-hud data-rungs="10" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Building Block № 1</div>
     <h2 class="title r" style="--d:.15s">Stocks <span style="color:var(--ink-faint)">&amp;</span> <span class="grad">Flows</span></h2>
@@ -1109,7 +1120,7 @@ body{
 </section>
 
 <!-- ============ 6 · NUMBERS & BUFFERS ============ -->
-<section class="slide" data-hue="0">
+<section class="slide" data-hud data-rungs="12 11" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Building Block № 2</div>
     <h2 class="title r" style="--d:.15s">Numbers <span style="color:var(--ink-faint)">&amp;</span> <span class="grad">Buffers</span></h2>
@@ -1192,7 +1203,7 @@ body{
 </section>
 
 <!-- ============ 7 · FEEDBACK LOOPS ============ -->
-<section class="slide" data-hue="0">
+<section class="slide" data-hud data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Building Block № 3</div>
     <h2 class="title r" style="--d:.15s">Feedback is how a system<br><span class="grad">talks to itself.</span></h2>
@@ -1242,8 +1253,8 @@ body{
   </div>
 </section>
 
-<!-- ============ 7 · REINFORCING LOOPS ============ -->
-<section class="slide" data-hue="150">
+<!-- ============ 8 · REINFORCING LOOPS ============ -->
+<section class="slide" data-hud data-rungs="7" data-hue="150">
   <div class="wrap">
     <div class="kicker r grad-warm">Reinforcing Loops</div>
     <h2 class="title r" style="--d:.15s"><span class="grad-warm">More leads to more.</span></h2>
@@ -1299,8 +1310,8 @@ body{
   </div>
 </section>
 
-<!-- ============ 8 · BALANCING LOOPS ============ -->
-<section class="slide" data-hue="-40">
+<!-- ============ 9 · BALANCING LOOPS ============ -->
+<section class="slide" data-hud data-rungs="8" data-hue="-40">
   <div class="wrap">
     <div class="kicker r grad-cool">Balancing Loops</div>
     <h2 class="title r" style="--d:.15s"><span class="grad-cool">Systems seek a goal.</span></h2>
@@ -1360,7 +1371,7 @@ body{
 </section>
 
 <!-- ============ 10 · COMPETING LOOPS & LIMITS ============ -->
-<section class="slide" data-hue="100">
+<section class="slide" data-hud data-hue="100">
   <div class="wrap">
     <div class="kicker r grad">Reinforcing + Balancing</div>
     <h2 class="title r" style="--d:.15s">Two loops. <span class="grad">One stock.</span></h2>
@@ -1412,7 +1423,7 @@ body{
 </section>
 
 <!-- ============ 11 · DELAYS ============ -->
-<section class="slide" data-hue="20">
+<section class="slide" data-hud data-rungs="9" data-hue="20">
   <div class="wrap">
     <div class="kicker r grad">Building Block № 4 · Delays</div>
     <h2 class="title r" style="--d:.15s">Act now. <span class="grad">Feel it later.</span></h2>
@@ -1489,7 +1500,7 @@ body{
 </section>
 
 <!-- ============ 12 · STRUCTURE: INFORMATION · RULES · SELF-ORGANIZATION ============ -->
-<section class="slide" data-hue="210">
+<section class="slide" data-hud data-rungs="6 5 4" data-hue="210">
   <div class="wrap">
     <div class="kicker r grad-cool">System Structure</div>
     <h2 class="title r" style="--d:.15s">Information. Rules. <span class="grad-cool">Self-organization.</span></h2>
@@ -1794,7 +1805,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 11b · PARADIGMS = THE LENS ============ -->
+<!-- ============ 14 · PARADIGMS = THE LENS ============ -->
 <section class="slide" data-hue="-25">
   <div class="wrap">
     <div class="kicker r grad">The Three at the Top</div>
@@ -1916,7 +1927,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 11c · SYSTEMS WITHIN SYSTEMS / THE UNKNOWN ============ -->
+<!-- ============ 15 · SYSTEMS WITHIN SYSTEMS / THE UNKNOWN ============ -->
 <section class="slide" data-hue="210">
   <div class="wrap">
     <div class="kicker r grad-cool">Full Circle</div>
@@ -1976,7 +1987,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 17 · SYSTEM TRAPS ============ -->
+<!-- ============ 16 · SYSTEM TRAPS ============ -->
 <section class="slide" data-hue="130">
   <div class="wrap">
     <div class="kicker r grad-warm">Archetypes</div>
@@ -2272,7 +2283,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 18 · REAL-WORLD SYSTEMS ============ -->
+<!-- ============ 17 · REAL-WORLD SYSTEMS ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Everywhere You Look</div>
@@ -2536,7 +2547,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 13 · ONE SYSTEM, MAPPED ============ -->
+<!-- ============ 18 · ONE SYSTEM, MAPPED ============ -->
 <section class="slide" data-hue="20">
   <div class="wrap">
     <div class="kicker r grad">Worked Example</div>
@@ -2615,7 +2626,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 14 · THE MINDSET SHIFT ============ -->
+<!-- ============ 19 · THE MINDSET SHIFT ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="scrim"></div>
@@ -2634,7 +2645,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 15 · PRACTICAL METHOD ============ -->
+<!-- ============ 20 · PRACTICAL METHOD ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">In Practice</div>
@@ -2815,7 +2826,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 16 · AI: THE NEW FLOW ============ -->
+<!-- ============ 21 · AI: THE NEW FLOW ============ -->
 <section class="slide" data-hue="20">
   <div class="wrap">
     <div class="kicker r grad">And Then Came AI</div>
@@ -2914,7 +2925,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 17 · AI: CLOCK SPEED ============ -->
+<!-- ============ 22 · AI: CLOCK SPEED ============ -->
 <section class="slide" data-hue="-40">
   <div class="wrap">
     <div class="kicker r grad-warm">Clock Speed</div>
@@ -2981,7 +2992,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 18 · AI: MACHINE DRAINS ============ -->
+<!-- ============ 23 · AI: MACHINE DRAINS ============ -->
 <section class="slide" data-hue="150">
   <div class="wrap">
     <div class="kicker r grad">The Obvious Fix</div>
@@ -3042,7 +3053,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 19 · AI: THE SAME CAR ============ -->
+<!-- ============ 24 · AI: THE SAME CAR ============ -->
 <section class="slide" data-hue="35">
   <div class="wrap">
     <div class="kicker r grad-warm">The Familiarity Trap</div>
@@ -3089,7 +3100,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 20 · AI: SAMPLING RATE ============ -->
+<!-- ============ 25 · AI: SAMPLING RATE ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">The New Discipline</div>
@@ -3137,7 +3148,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 21 · AI: WHERE TO POINT IT ============ -->
+<!-- ============ 26 · AI: WHERE TO POINT IT ============ -->
 <section class="slide" data-hue="130">
   <div class="wrap">
     <div class="kicker r grad">Where to Point It</div>
@@ -3177,7 +3188,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 22 · CLOSING ============ -->
+<!-- ============ 27 · CLOSING ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="scrim"></div>
@@ -3233,7 +3244,7 @@ body{
   </svg>
 </section>
 
-<!-- ============ 23 · DISCUSSION ============ -->
+<!-- ============ 28 · DISCUSSION ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Discussion</div>
@@ -3266,6 +3277,7 @@ body{
 <div id="progress"></div>
 <div id="counter"><b>01</b> / 16</div>
 <div id="rail" aria-label="Slide navigation"></div>
+<div id="hud" aria-hidden="true"></div>
 <div class="navbtns">
   <button class="navbtn" id="prevBtn" aria-label="Previous slide">‹</button>
   <button class="navbtn" id="nextBtn" aria-label="Next slide">›</button>
@@ -3307,6 +3319,8 @@ body{
   const prevBtn  = document.getElementById('prevBtn');
   const nextBtn  = document.getElementById('nextBtn');
   const rail     = document.getElementById('rail');
+  const hud      = document.getElementById('hud');
+  for(let r=12;r>=1;r--){ const el=document.createElement('span'); el.className='hr'+([9,6,3].includes(r)?' gap':''); el.dataset.r=r; el.innerHTML='<i></i>'+r; hud.appendChild(el); }
   let cur = 0;
 
   /* presenter-view sync: broadcast slide changes, accept remote jumps */
@@ -3339,6 +3353,11 @@ body{
     prevBtn.disabled = cur===0;
     nextBtn.disabled = cur===N-1;
     applyTheme(cur);
+    /* ladder HUD: light every rung a slide up to here has taught */
+    const covered=new Set();
+    for(let i=0;i<=cur;i++) (slides[i].dataset.rungs||'').split(/\s+/).filter(Boolean).forEach(r=>covered.add(r));
+    hud.classList.toggle('show', slides[cur].hasAttribute('data-hud'));
+    hud.querySelectorAll('.hr').forEach(el=>el.classList.toggle('lit', covered.has(el.dataset.r)));
     if(bc) try{ bc.postMessage({slide:cur+1}); }catch(e){}
     try{ history.replaceState(null,'','#'+(cur+1)); }catch(e){}
   }

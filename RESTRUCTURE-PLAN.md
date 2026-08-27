@@ -67,8 +67,8 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 ## Phase 2 — Infrastructure
 
 - [x] `tools/renumber-notes.py` (see Phase 0). ✔ dry-run diff showed only (stale) comment markers changing.
-- [ ] Ladder HUD: small fixed 12-rung marker on slides 5–13, `data-rungs="12 11"` per slide
-      lights cumulatively. ✔ visible on 5–13 only, hidden in print, RO-safe (no text).
+- [x] Ladder HUD: fixed 12-rung marker at the left edge on slides 5–12 (`data-hud`), rungs light
+      cumulatively from each slide's `data-rungs`. ✔ hidden on 4 and 13+, print-hidden, numbers only (RO-safe).
 - [ ] Bridge lines: every Part-1 slide's `.oneliner` points **forward** to the next slide.
       ✔ read all 13 one-liners in sequence — they should read as one paragraph.
 
