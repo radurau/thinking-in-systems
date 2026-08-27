@@ -40,7 +40,8 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 1 | · The world is not a machine | — | hook | done |
 | 2 | · One small book | — | book → "a new way of seeing" | done |
 | 3 | · Iceberg: event / pattern / structure / mental model | — | → "so what *is* a system?" | done |
-| 4 | ✎ Elements · Interconnections · Purpose — football → **basketball** → **play to lose** | — | iceberg's "structure" made concrete → stocks are the visible elements | [x] |
+| 4 | ★ Elements · Interconnections · Purpose — definition; **tree · body · planet** share the three parts, then → zooms out: forest/society → solar system → galaxy → universe (Radu's "Proposed Slide 1") | — | iceberg's "structure" made concrete → which part matters most? | [x] |
+| 4b | ✎ Meadows' test — football → **basketball** → **play to lose** (split out of #4 on 27 Aug; every slide below is now +1) | — | → stocks are the visible elements | [x] |
 | 5 | ✎ Stocks & flows — bathtub; add "we see stocks, not flows; inflows, not outflows" | 10 | elements you can count → what changes them | [x] |
 | 6 | ★ Numbers & buffers — the car lot: order size (a number), 10 days' cover (a buffer) | 12, 11 | bathtub → dealership stock; "buffers stabilise, but a too-big buffer is rigid" | [x] |
 | 7 | ✎ Feedback — **bank account** leads, Yellowstone stays as story | — | stock → the system watches its own stock | [x] |
