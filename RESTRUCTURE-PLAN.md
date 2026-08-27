@@ -49,7 +49,7 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 11 | ✎ Delays — kicker says **Delays**; dealership's 3 delays (perceive / respond / deliver) → oscillation; "multiply by three" (Forrester / George Talaba) | 9 | dealership from #6 → oscillation; → who knows what, when? | [x] |
 | 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [x] |
 | 13 | ✎ Twelve leverage points — **payoff**: every rung has now been a slide; ladder lights up bottom-to-top | all | → the top three rungs deserve their own slides | [x] |
-| 14 | ✎ Goals · Paradigms · Transcending — add **goals**: "purpose is deduced from behaviour, not rhetoric" | 3, 2, 1 | → the lens sits inside a bigger system | [ ] |
+| 14 | ✎ Goals · Paradigms · Transcending — add **goals**: "purpose is deduced from behaviour, not rhetoric" | 3, 2, 1 | → the lens sits inside a bigger system | [x] |
 | 15 | ✎ Systems inside systems — **zoom** tree → forest → planet → galaxy; hierarchy, stable intermediate forms, resilience | — | → why we still get surprised | [ ] |
 | 16 | ★ Why systems surprise us — nonlinear (fertiliser / advertising), no real boundaries, bounded rationality (fisherman with a mortgage) | — | → recurring structures = traps, no villains | [ ] optional |
 | 17 | ✎ Eight traps — each with **book example + Tripletex/Visma example** (compute as commons, alarm-threshold drift, AI-micromaxing escalation, vibe-coding as burden-shift, budget rule-beating, effort-not-result boat) | — | → you already live in these | [ ] |
@@ -79,8 +79,8 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 - [x] #10 ★ When loops compete / limits — fishery R+B, S-curve vs overshoot, stock- vs flow-limited
 - [x] #12 ★ Structure: information · rules · self-organization — three glass cards (hallway meter / who writes the rules / self-org); traps slide moved to after 'Systems inside systems' (#16)
 - [x] #13 ✎ Ladder payoff — sub says 'you have now met every one of these'; all 12 rungs light fully, one per .22s; notes open with the recap
-- [ ] #14 ✎ add Goals rung
-- [ ] Run renumber script; ✔ notes panel jumps + live highlight on 3 random slides.
+- [x] #14 ✎ add Goals rung — kicker 'The Three at the Top', sub + notes carry 'purpose is deduced from behaviour, not rhetoric' (no third panel: slide already dense)
+- [x] Run renumber script; ✔ 28 sections in sync, notes-panel RO coverage complete (pill now carries data-ro)
 
 ## Phase 4 — Upgrades to existing slides
 

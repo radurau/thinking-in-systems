@@ -29,8 +29,8 @@ def main():
     if len(blocks) != n_slides:
         print(f'warning: {len(blocks)} note sections vs {n_slides} deck slides', file=sys.stderr)
 
-    out = [re.sub(r'<span class="pill">\d+ slides</span>',
-                  f'<span class="pill">{n_slides} slides</span>', head)]
+    out = [re.sub(r'<span class="pill"(?: data-ro="[^"]*")?>\d+ slides</span>',
+                  f'<span class="pill" data-ro="{n_slides} de slide-uri">{n_slides} slides</span>', head)]
     for i, b in enumerate(blocks, 1):
         b = re.sub(r'(<section class="note"[^>]*\bid=")n\d+(")', rf'\g<1>n{i}\2', b, count=1)
         b = re.sub(r'(<span class="num">)\d+(</span>)', rf'\g<1>{i:02d}\2', b, count=1)
