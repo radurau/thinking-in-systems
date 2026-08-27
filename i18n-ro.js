@@ -66,7 +66,25 @@ window.__RO__ = Object.fromEntries([
 [`<b>Team workload</b> — requests in, delivery out`, `<b>Volumul echipei</b> — cereri intră, livrări ies`],
 [`A stock changes <em>only</em> through its flows — and you can fill a bathtub by closing the drain.`, `Un stoc se schimbă <em>doar</em> prin fluxurile lui — și poți umple o cadă închizând scurgerea.`],
 
-/* ---------- 6 · feedback ---------- */
+/* ---------- 6 · numbers & buffers ---------- */
+[`Numbers <span style="color:var(--ink-faint)">&amp;</span> <span class="grad">Buffers</span>`, `Numere <span style="color:var(--ink-faint)">&amp;</span> <span class="grad">Rezerve</span>`],
+[`Every stock comes with two knobs. A <b>number</b> sets how hard a tap runs. A <b>buffer</b> is how much you keep in the tub, just in case.`, `Orice stoc vine cu două butoane. Un <b>număr</b> stabilește cât de tare curge robinetul. O <b>rezervă</b> e cât păstrezi în cadă, pentru orice eventualitate.`],
+[`factory`, `fabrica`],
+[`the number`, `numărul`],
+[`order size — turn it up, the tap runs harder`, `mărimea comenzii — o crești, robinetul curge mai tare`],
+[`deliveries`, `livrări`],
+[`CARS ON THE LOT`, `MAȘINI ÎN PARC`],
+[`<tspan style="fill:#5eead4">the buffer</tspan> — ten days of sales, because a delivery takes five`, `<tspan style="fill:#5eead4">rezerva</tspan> — zece zile de vânzări, pentru că o livrare durează cinci`],
+[`sales`, `vânzări`],
+[`customers`, `clienți`],
+[`keep this dealer in mind — she comes back when we talk about delays`, `țineți minte acest dealer — revine când vorbim despre întârzieri`],
+[`<b>Numbers</b> — sprint length, alert threshold, order size`, `<b>Numere</b> — lungimea sprintului, pragul de alertă, mărimea comenzii`],
+[`<b>Buffers</b> — cash reserve, inventory, slack in the calendar`, `<b>Rezerve</b> — rezerva de numerar, inventarul, spațiul liber din calendar`],
+[`Bigger buffer: steadier — and slower to change`, `Rezervă mai mare: mai stabil — și mai greu de schimbat`],
+[`Knobs and reserves are the easy part. <em>The interesting question is who turns them — and why.</em>`, `Butoanele și rezervele sunt partea ușoară. <em>Întrebarea interesantă e cine le răsucește — și de ce.</em>`],
+
+/* ---------- 7 · feedback ---------- */
+[`Building Block № 3`, `Cărămida № 3`],
 [`Building Block № 2`, `Cărămida № 2`],
 [`Feedback is how a system<br><span class="grad">talks to itself.</span>`, `Feedbackul e felul în care un sistem<br><span class="grad">își vorbește sieși.</span>`],
 [`the system's state`, `starea sistemului`],
@@ -662,5 +680,18 @@ window.__RO__ = Object.fromEntries([
 [`What system are we part of, but not seeing? What behavior keeps repeating? What feedback loop is driving it? And — where is the <em>smallest</em> change with the <em>biggest</em> leverage?`, `Din ce sistem facem parte, dar nu-l vedem? Ce comportament se tot repetă? Ce buclă de feedback îl conduce? Și — unde e cea <em>mai mică</em> schimbare cu cea <em>mai mare</em> pârghie?`],
 [`Give the room a full thirty seconds of silence before inviting answers. Someone will break it — and that person's example is usually better than anything on your slides. Build on it using the six moves from slide 15.`, `Oferă sălii treizeci de secunde întregi de tăcere înainte să inviți răspunsuri. Cineva o va rupe — iar exemplul acelei persoane e de obicei mai bun decât orice de pe slide-urile tale. Construiește pe el folosind cele șase mișcări din slide-ul 15.`],
 [`Thank you.`, `Mulțumesc.`],
+
+/* ---- notes 6 · numbers & buffers ---- */
+[`Numbers and buffers`, `Numere și rezerve`],
+[`On screen: the same bathtub — now a car dealer's lot. Factory → deliveries → cars on the lot → sales → customers. A yellow dial appears on the inflow valve (<b>the number</b>), then a teal dashed line inside the tub (<b>the buffer</b>).`, `Pe ecran: aceeași cadă — acum parcul unui dealer auto. Fabrică → livrări → mașini în parc → vânzări → clienți. Un cadran galben apare pe robinetul de intrare (<b>numărul</b>), apoi o linie punctată turcoaz în cadă (<b>rezerva</b>).`],
+[`Same tub, new owner. This is a car dealer's lot. Cars arrive from the factory, cars leave with customers, and the stock in between is what she can actually see when she walks outside.`, `Aceeași cadă, alt proprietar. E parcul unui dealer auto. Mașinile vin de la fabrică, pleacă cu clienții, iar stocul dintre ele e ceea ce vede efectiv când iese afară.`],
+[`Every stock comes with two knobs, and the book puts them at the very bottom of its list of places to intervene — so we start there.`, `Orice stoc vine cu două butoane, iar cartea le pune chiar la baza listei de locuri unde poți interveni — așa că începem de acolo.`],
+[`Wait for the yellow dial.`, `Așteaptă cadranul galben.`],
+[`The first knob is a <em>number</em>. How many cars per order. A sprint length. An alert threshold. Numbers are where ninety percent of our attention goes — we argue about them in every meeting — and they change the system less than anything else on the list. Turn the dial, the tap runs a bit harder, nothing else moves.`, `Primul buton e un <em>număr</em>. Câte mașini pe comandă. Lungimea unui sprint. Un prag de alertă. Numerele sunt acolo unde se duce nouăzeci la sută din atenția noastră — ne certăm pe ele în fiecare ședință — și schimbă sistemul mai puțin decât orice altceva de pe listă. Răsucești cadranul, robinetul curge un pic mai tare, nimic altceva nu se mișcă.`],
+[`Wait for the teal dashed line.`, `Așteaptă linia punctată turcoaz.`],
+[`The second knob is a <em>buffer</em>: the level you refuse to drop below. She keeps ten days of cars on the lot because a delivery takes five. A cash reserve is a buffer. Inventory is a buffer. Slack in your calendar is a buffer.`, `Al doilea buton e o <em>rezervă</em>: nivelul sub care refuzi să cobori. Ține zece zile de mașini în parc pentru că o livrare durează cinci. O rezervă de numerar e un buffer. Inventarul e un buffer. Spațiul liber din calendar e un buffer.`],
+[`Buffers are how systems forgive a bad week. A bigger buffer makes everything steadier — and everything slower to change. Which is why Meadows ranks them low too: they are usually physical, expensive, and nobody wants to resize a warehouse.`, `Rezervele sunt felul în care sistemele iartă o săptămână proastă. O rezervă mai mare face totul mai stabil — și totul mai greu de schimbat. De aceea Meadows le pune și pe ele jos în listă: sunt de obicei fizice, scumpe și nimeni nu vrea să redimensioneze un depozit.`],
+[`Point at the dial, then at the line, and hand off to the next slide.`, `Arată spre cadran, apoi spre linie, și fă trecerea la slide-ul următor.`],
+[`So: knobs and reserves. Easy to see, easy to argue about. But notice what we skipped — <em>who</em> decides to turn the dial, and based on what? That's the next building block, and it's where systems start to get interesting.`, `Deci: butoane și rezerve. Ușor de văzut, ușor de dezbătut. Dar observați ce am sărit — <em>cine</em> decide să răsucească cadranul și pe baza a ce? Asta e următoarea cărămidă, și acolo sistemele încep să devină interesante.`],
 
 ]);
