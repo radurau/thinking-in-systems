@@ -144,6 +144,8 @@ body{
 .cards.c4 .card h3{font-size:clamp(13px,1.15vw,16px);margin-bottom:6px}
 .card p{font-size:clamp(12.5px,1.25vw,16px);color:var(--ink-dim);line-height:1.5;font-weight:400}
 .cards.c4 .card p{font-size:clamp(11.5px,1vw,13.5px);line-height:1.45}
+.card .ico{width:clamp(30px,2.6vw,40px);height:auto;display:block;margin-bottom:12px}
+.card .tag{margin-top:12px;padding-top:10px;border-top:1px solid var(--glass-edge);font-size:clamp(11.5px,1.05vw,14px);color:var(--ink-faint);font-style:italic}
 .card .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:9px;
   vertical-align:1px;background:var(--a1);box-shadow:0 0 14px currentColor}
 .cards.c4 .card .dot{width:7px;height:7px}
@@ -1415,295 +1417,37 @@ body{
   </div>
 </section>
 
-<!-- ============ 10 · SYSTEM TRAPS ============ -->
-<section class="slide" data-hue="130">
+<!-- ============ 12 · STRUCTURE: INFORMATION · RULES · SELF-ORGANIZATION ============ -->
+<section class="slide" data-hue="210">
   <div class="wrap">
-    <div class="kicker r grad-warm">Archetypes</div>
-    <h2 class="title r" style="--d:.15s">The eight <span class="grad-warm">system traps.</span></h2>
-    <p class="sub r" style="--d:.3s">Meadows catalogued them. Recurring structures, reliably bad outcomes — no villains required.</p>
-    <div class="trap-stage r" style="--d:.45s">
-      <div class="trap-intro">
-        <p>Eight recurring structures. No villains required.</p>
-        <p class="ti-hint">press → to meet the first one</p>
+    <div class="kicker r grad-cool">System Structure</div>
+    <h2 class="title r" style="--d:.15s">Information. Rules. <span class="grad-cool">Self-organization.</span></h2>
+    <p class="sub r" style="--d:.3s">Above the loops sit the things that shape them: what the system can see, what it may do — and whether it can rewrite itself.</p>
+    <div class="cards c3">
+      <div class="card glass tilt r" style="--d:.6s">
+        <svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M3 20 Q20 4 37 20 Q20 36 3 20 Z" fill="none" stroke="#7aa2ff" stroke-width="2.2"/><circle cx="20" cy="20" r="6" fill="none" stroke="#7aa2ff" stroke-width="2.2"/><circle cx="20" cy="20" r="2" fill="#7aa2ff"/></svg>
+        <h3>Information flows — who sees what, and when</h3>
+        <p>Dutch suburb, identical houses. Meter in the basement: normal bills. Meter in the hallway, in plain view: <b>30% less electricity.</b> Nobody was told anything. A number just became visible.</p>
+        <p class="tag">Our car dealer's problem was never effort. It was late information.</p>
       </div>
-      <div class="trap step-item glass">
-        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
-          <line x1="120" y1="42" x2="120" y2="158" stroke="rgba(245,245,247,.15)" stroke-dasharray="4 8"/>
-          <!-- round 1: push, pushed back · round 2: push HARDER, pushed back harder -->
-          <circle cy="100" r="20" fill="rgba(253,164,175,.18)" stroke="#fda4af" stroke-width="2.5">
-            <animate attributeName="cx" values="110;150;110;106;110;110;162;102;114;110" keyTimes="0;.16;.28;.34;.4;.48;.62;.8;.9;1" dur="7s" repeatCount="indefinite"/>
-          </circle>
-          <path d="M 30 100 h 42 m -10 -8 l 10 8 -10 8" fill="none" stroke="#fda4af" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <animate attributeName="opacity" values="1;1;.1;.1;1" keyTimes="0;.16;.22;.94;1" dur="7s" repeatCount="indefinite"/>
-          </path>
-          <path d="M 210 100 h -42 m 10 -8 l -10 8 10 8" fill="none" stroke="rgba(245,245,247,.6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.17;.2;.36;.42;1" dur="7s" repeatCount="indefinite"/>
-          </path>
-          <path d="M 18 100 h 54 m -12 -10 l 12 10 -12 10" fill="none" stroke="#fda4af" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.46;.5;.62;.68;1" dur="7s" repeatCount="indefinite"/>
-          </path>
-          <path d="M 222 100 h -54 m 12 -10 l -12 10 12 10" fill="none" stroke="rgba(245,245,247,.8)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.63;.67;.86;.94" dur="7s" repeatCount="indefinite"/>
-          </path>
-        </svg>
-        <div>
-          <h3 style="color:#fda4af">Policy resistance</h3>
-          <p>Fixes that fail. Everyone pushes, the system pushes back — the quick fix relieves the symptom while quietly feeding the problem.</p>
-          <div class="trap-detail">
-            <p class="trap-story"><b>Romania, 1967.</b> To force the birth rate up, Ceaușescu abruptly <b>banned abortion and contraception</b>. Births tripled — then the people pushed back. The rate fell again through <b>dangerous illegal abortions</b> (maternal deaths tripled), and unwanted children filled the orphanages. When the regime fell, the first law repealed was the ban.</p>
-            <div class="trap-cols">
-              <div class="trap-box"><span class="tlabel">The trap</span><p>Different actors haul one stock toward different goals. Every new push just drags it farther from someone else's goal — so everyone burns energy and no one likes the result.</p></div>
-              <div class="way-box"><span class="tlabel">The way out</span><p>Stop pushing harder. Bring all the actors in and find a <b>larger goal</b> they'll pull toward willingly — as Sweden did, aligning on child welfare, not family size.</p></div>
-            </div>
-          </div>
-        </div>
+      <div class="card glass tilt r" style="--d:.8s">
+        <svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="6" width="28" height="28" rx="5" fill="none" stroke="#c084fc" stroke-width="2.2"/><path d="M12 15 h16 M12 21 h16 M12 27 h9" stroke="#c084fc" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <h3>Rules — what is allowed, and what is rewarded</h3>
+        <p>Incentives, punishments, constraints. Drivers slow down for a police car, not for safety. Spend the budget or lose it next year. <b>To see where power really sits, watch who writes the rules.</b></p>
+        <p class="tag">Change the rules and you change the game — remember football → basketball.</p>
       </div>
-      <div class="trap step-item glass">
-        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
-          <!-- everyone sips faster… then the pool is gone and everyone goes gray -->
-          <g fill="#5eead4">
-            <animate attributeName="fill" values="#5eead4;#5eead4;#6b7280;#6b7280;#5eead4" keyTimes="0;.74;.8;.95;1" dur="7s" repeatCount="indefinite"/>
-            <circle cx="75" cy="28" r="7"/>
-            <circle cx="120" cy="20" r="7"/>
-            <circle cx="165" cy="28" r="7"/>
-          </g>
-          <g stroke="#5eead4" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="4 9">
-            <animate attributeName="opacity" values="1;1;.2;.2;1" keyTimes="0;.76;.8;.96;1" dur="7s" repeatCount="indefinite"/>
-            <path d="M 75 40 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1s" repeatCount="indefinite"/></path>
-            <path d="M 120 32 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur=".8s" repeatCount="indefinite"/></path>
-            <path d="M 165 40 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.2s" repeatCount="indefinite"/></path>
-          </g>
-          <path d="M 62 122 v 34 q 0 14 14 14 h 88 q 14 0 14 -14 v -34" stroke="rgba(245,245,247,.45)" stroke-width="2.5" fill="none"/>
-          <rect x="68" y="130" width="104" height="32" rx="6" fill="rgba(94,234,212,.4)">
-            <animate attributeName="y" values="130;152;156;156;130" keyTimes="0;.6;.74;.92;1" dur="7s" repeatCount="indefinite"/>
-            <animate attributeName="height" values="32;10;6;6;32" keyTimes="0;.6;.74;.92;1" dur="7s" repeatCount="indefinite"/>
-          </rect>
-        </svg>
-        <div>
-          <h3 style="color:#5eead4">Tragedy of the commons</h3>
-          <p>Everyone acts sensibly — the shared thing dies anyway. The meeting-room calendar. The oceans. The on-call rota.</p>
-          <div class="trap-detail">
-            <p class="trap-story"><b>Hardin's shared pasture (1968).</b> Each herder keeps the whole gain from one more cow, but shares the cost of overgrazing with everyone. So every rational herder adds another, and another — until the grass is gone for all. Same shape: overfished seas, crowded parks, a warming atmosphere.</p>
-            <div class="trap-cols">
-              <div class="trap-box"><span class="tlabel">The trap</span><p>A shared resource gives each user the full benefit of use but only a sliver of the cost of abuse. The feedback is too weak — so it's overused until it collapses.</p></div>
-              <div class="way-box"><span class="tlabel">The way out</span><p>Educate and appeal to conscience — then restore the missing feedback: <b>privatize</b> so each user feels their own impact, or <b>regulate</b> access ("mutual coercion, mutually agreed upon").</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="trap step-item glass">
-        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
-          <!-- the old standard winces each step down — and the team follows -->
-          <line x1="30" y1="48" x2="210" y2="48" stroke="rgba(245,245,247,.2)" stroke-dasharray="5 8">
-            <animate attributeName="opacity" values="1;.35;1;.35;1;.35;1;.35;1" keyTimes="0;.175;.28;.392;.5;.608;.7;.825;1" dur="5.5s" repeatCount="indefinite"/>
-          </line>
-          <path d="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36" stroke="#a3a3c2" stroke-width="2.5" fill="none"/>
-          <circle r="6" fill="#cfcfe0">
-            <animateMotion dur="5.5s" repeatCount="indefinite" path="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36"/>
-          </circle>
-          <circle r="4.5" fill="rgba(207,207,224,.5)">
-            <animateMotion dur="5.5s" begin=".8s" repeatCount="indefinite" path="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36"/>
-          </circle>
-        </svg>
-        <div>
-          <h3 style="color:#a3a3c2">Drift to low performance</h3>
-          <p>Bad becomes normal one small excuse at a time. Nobody decided to have flaky tests — the standard just… drifted.</p>
-          <div class="trap-detail">
-            <p class="trap-story"><b>The boiled frog.</b> Every time results dip, you believe the bad news and quietly lower the bar — "not much worse than last year." The standard erodes to match, effort drops, performance sinks further. Meadows watched her own jogging habit fade out exactly this way.</p>
-            <div class="trap-cols">
-              <div class="trap-box"><span class="tlabel">The trap</span><p>When the standard is set by recent — and pessimistically perceived — performance, a reinforcing loop of <b>eroding goals</b> drags the system steadily downhill.</p></div>
-              <div class="way-box"><span class="tlabel">The way out</span><p>Hold the standard <b>absolute</b>. Better still, peg it to your <b>best</b> past performance, not your worst — and the same loop pulls you upward.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="trap step-item glass">
-        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
-          <!-- they one-up each other to the ceiling — then both crash -->
-          <line x1="50" y1="170" x2="190" y2="170" stroke="rgba(245,245,247,.25)"/>
-          <line x1="50" y1="40" x2="190" y2="40" stroke="rgba(244,63,94,.4)" stroke-dasharray="5 7">
-            <animate attributeName="opacity" values=".4;.4;1;1;.4" keyTimes="0;.6;.7;.78;1" dur="9s" repeatCount="indefinite"/>
-          </line>
-          <rect x="85" width="26" rx="3">
-            <animate attributeName="y" values="140;140;112;112;84;84;48;48;162;162;140" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="height" values="30;30;58;58;86;86;122;122;8;8;30" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="fill" values="rgba(251,146,60,.8);rgba(251,146,60,.8);rgba(120,120,130,.5);rgba(120,120,130,.5);rgba(251,146,60,.8)" keyTimes="0;.76;.82;.94;1" dur="9s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="129" width="26" rx="3">
-            <animate attributeName="y" values="156;126;126;98;98;70;70;44;162;162;156" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="height" values="14;44;44;72;72;100;100;126;8;8;14" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="fill" values="rgba(244,63,94,.8);rgba(244,63,94,.8);rgba(120,120,130,.5);rgba(120,120,130,.5);rgba(244,63,94,.8)" keyTimes="0;.76;.82;.94;1" dur="9s" repeatCount="indefinite"/>
-          </rect>
-        </svg>
-        <div>
-          <h3 style="color:#fb923c">Escalation</h3>
-          <p>"I'll raise you one." Price wars, feature wars, the reply-all thread. It's a reinforcing loop — it compounds.</p>
-          <div class="trap-detail">
-            <p class="trap-story"><b>"I'll raise you one."</b> Kids trading harder hits; the US–USSR <b>arms race</b>, each side inflating the other's arsenal to justify its own — trillions spent, doomsday weapons built. Price wars and attack-ad spirals run on the same engine.</p>
-            <div class="trap-cols">
-              <div class="trap-box"><span class="tlabel">The trap</span><p>Each player's goal is simply to <b>beat the other's current state</b>. That's a reinforcing loop — it grows exponentially and ends in someone's collapse.</p></div>
-              <div class="way-box"><span class="tlabel">The way out</span><p>Best, don't enter. If you're in it: <b>unilaterally step down</b> to break the loop, or negotiate balancing limits both sides agree to.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="trap step-item glass">
-        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
-          <!-- the winner gets the resources — including the ones meant for the loser -->
-          <line x1="40" y1="165" x2="200" y2="165" stroke="rgba(245,245,247,.25)"/>
-          <rect x="56" width="28" rx="3" fill="rgba(192,132,252,.35)">
-            <animate attributeName="y" values="105;105;115;115;125;125;135;135;105" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="height" values="60;60;50;50;40;40;30;30;60" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="146" width="28" rx="3" fill="rgba(192,132,252,.85)">
-            <animate attributeName="y" values="85;85;73;73;61;61;49;49;85" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="height" values="80;80;92;92;104;104;116;116;80" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
-          </rect>
-          <circle r="4" fill="#e6d4ff">
-            <animateMotion dur="3s" repeatCount="indefinite" path="M 160 20 V 52"/>
-            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="3s" repeatCount="indefinite"/>
-          </circle>
-          <circle r="4" fill="#e6d4ff">
-            <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite"
-              path="M 120 24 C 95 45 75 70 88 86 C 100 98 140 100 156 100"/>
-            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.85;1" dur="3s" begin="1.5s" repeatCount="indefinite"/>
-          </circle>
-        </svg>
-        <div>
-          <h3 style="color:#c084fc">Success to the successful</h3>
-          <p>Winners get the resources to keep winning. The strong team gets the best projects — which makes it stronger.</p>
-          <div class="trap-detail">
-            <p class="trap-story"><b>Monopoly.</b> The first player to build hotels collects rent, buys more hotels, and ends up owning the board. Ecologists call it <b>competitive exclusion</b>; in markets it shrank US carmakers to three and most cities to one newspaper. Winners keep winning; losers get squeezed out.</p>
-            <div class="trap-cols">
-              <div class="trap-box"><span class="tlabel">The trap</span><p>When winning is rewarded with the means to win again, a reinforcing loop lets the winners <b>take all</b> while the losers are eliminated.</p></div>
-              <div class="way-box"><span class="tlabel">The way out</span><p>Diversify into a new game; cap any one winner (<b>antitrust</b>); or <b>level the playing field</b> — handicaps, progressive and inheritance taxes, the potlatch — so each round starts fairer.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="trap step-item glass">
-        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
-          <!-- each lap of the quick fix gets faster — and the problem grows -->
-          <circle cx="60" cy="100" fill="rgba(251,191,36,.15)" stroke="#fbbf24" stroke-width="2">
-            <animate attributeName="r" values="14;14;21;21" keyTimes="0;.15;.9;1" dur="8s" repeatCount="indefinite"/>
-          </circle>
-          <path d="M 74 90 Q 120 46 160 58 Q 120 94 76 94" stroke="rgba(251,191,36,.5)" stroke-width="2" fill="none"/>
-          <circle r="5" fill="#fde68a">
-            <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear" keyPoints="0;.333;.667;1" keyTimes="0;.5;.8;1"
-              path="M 74 90 Q 120 44 160 58 Q 120 96 74 90 Q 120 44 160 58 Q 120 96 74 90 Q 120 44 160 58 Q 120 96 74 90"/>
-          </circle>
-          <circle cx="170" cy="56" r="13" fill="rgba(251,191,36,.3)">
-            <animate attributeName="r" values="13;16;13" dur="1.6s" repeatCount="indefinite"/>
-          </circle>
-          <path d="M 74 112 Q 120 152 154 148" stroke="rgba(245,245,247,.5)" stroke-width="2" stroke-dasharray="5 7" fill="none">
-            <animate attributeName="opacity" values=".7;.1;.1;.7" keyTimes="0;.6;.9;1" dur="8s" repeatCount="indefinite"/>
-          </path>
-          <circle cx="168" cy="148" r="13" fill="none" stroke="rgba(245,245,247,.4)" stroke-dasharray="3 5">
-            <animate attributeName="opacity" values=".8;.12;.12;.8" keyTimes="0;.6;.9;1" dur="8s" repeatCount="indefinite"/>
-          </circle>
-        </svg>
-        <div>
-          <h3 style="color:#fbbf24">Shifting the burden</h3>
-          <p>The workaround works, so the real fix never gets built. Meadows' word for this one is <em style="font-style:normal;color:var(--ink)">addiction</em>. Every "temporary" process is five years old.</p>
-          <div class="trap-detail">
-            <p class="trap-story"><b>Addiction.</b> A drug numbs the pain without fixing what's wrong — so the real problem festers and you need more. Same shape beyond people: industries hooked on <b>subsidies</b>, farms on fertilizer, economies on cheap oil. The crutch erodes the system's own ability to cope.</p>
-            <div class="trap-cols">
-              <div class="trap-box"><span class="tlabel">The trap</span><p>A fix relieves the <b>symptom</b>, not the cause, and quietly atrophies the system's capacity to help itself — so it needs ever more of the fix.</p></div>
-              <div class="way-box"><span class="tlabel">The way out</span><p>Best, avoid the easy fix. If you're hooked, shift focus to <b>long-term restructuring</b> — rebuild the system's own capability, then remove the prop.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="trap step-item glass">
-        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
-          <!-- the gate stamps ✓ while everyone goes over the wall -->
-          <line x1="120" y1="44" x2="120" y2="92" stroke="rgba(56,189,248,.7)" stroke-width="3" stroke-linecap="round"/>
-          <line x1="120" y1="118" x2="120" y2="166" stroke="rgba(56,189,248,.7)" stroke-width="3" stroke-linecap="round"/>
-          <line x1="120" y1="92" x2="120" y2="118" stroke="#38bdf8" stroke-width="3" stroke-dasharray="3 5"/>
-          <line x1="55" y1="105" x2="105" y2="105" stroke="rgba(245,245,247,.18)" stroke-dasharray="4 7"/>
-          <circle r="5" fill="#7dd3fc">
-            <animateMotion dur="2.4s" repeatCount="indefinite" path="M 48 105 C 70 105 85 36 120 32 C 155 36 170 105 192 105"/>
-            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.9;1" dur="2.4s" repeatCount="indefinite"/>
-          </circle>
-          <circle r="4" fill="#7dd3fc" opacity=".7">
-            <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M 48 105 C 70 105 85 36 120 32 C 155 36 170 105 192 105"/>
-            <animate attributeName="opacity" values="0;.7;.7;0" keyTimes="0;.1;.9;1" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
-          </circle>
-          <path d="M 130 102 l 5 6 10 -12" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0">
-            <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.72;.8;1" dur="1.2s" repeatCount="indefinite"/>
-          </path>
-        </svg>
-        <div>
-          <h3 style="color:#38bdf8">Rule beating</h3>
-          <p>Obeying the letter of the rule while defeating its purpose. Hitting the metric, missing the point.</p>
-          <div class="trap-detail">
-            <p class="trap-story"><b>Letter, not spirit.</b> Departments <b>blow the budget</b> every December so next year's isn't cut; Vermont's 10-acre rule bred a rash of 10.1-acre lots; some landowners quietly killed an endangered species so their land stayed developable.</p>
-            <div class="trap-cols">
-              <div class="trap-box"><span class="tlabel">The trap</span><p>Rules invite <b>perverse workarounds</b> that look like compliance while distorting the system.</p></div>
-              <div class="way-box"><span class="tlabel">The way out</span><p>Read rule-beating as <b>feedback</b>. Redesign the rule so the system's cleverness serves its purpose instead of evading it.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="trap step-item glass">
-        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
-          <!-- the score climbs while the actual purpose fades to black -->
-          <g>
-            <animate attributeName="opacity" values=".5;.5;.32;.32;.16;.16;.06;.5" keyTimes="0;.27;.32;.6;.65;.93;.98;1" dur="5.4s" repeatCount="indefinite"/>
-            <circle cx="170" cy="52" r="26" stroke="rgba(245,245,247,.5)" fill="none"/>
-            <circle cx="170" cy="52" r="15" stroke="rgba(245,245,247,.4)" fill="none"/>
-            <circle cx="170" cy="52" r="5" fill="rgba(245,245,247,.4)"/>
-          </g>
-          <circle cx="160" cy="140" r="17" stroke="#f472b6" fill="none" stroke-width="2"/>
-          <circle cx="160" cy="140" r="6" fill="#f472b6"/>
-          <circle r="4.5" fill="#fbcfe8">
-            <animateMotion dur="1.8s" repeatCount="indefinite" path="M 38 100 Q 100 112 154 138"/>
-            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="1.8s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="160" cy="140" fill="none" stroke="#f472b6" stroke-width="2">
-            <animate attributeName="r" values="6;6;22" keyTimes="0;.82;1" dur="1.8s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0;0;.9;0" keyTimes="0;.8;.86;1" dur="1.8s" repeatCount="indefinite"/>
-          </circle>
-          <g stroke="#f472b6" stroke-width="2.5" stroke-linecap="round">
-            <line x1="192" y1="126" x2="192" y2="142" opacity="0">
-              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.28;.31;1" dur="5.4s" repeatCount="indefinite"/>
-            </line>
-            <line x1="199" y1="126" x2="199" y2="142" opacity="0">
-              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.61;.64;1" dur="5.4s" repeatCount="indefinite"/>
-            </line>
-            <line x1="206" y1="126" x2="206" y2="142" opacity="0">
-              <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.94;.97;1" dur="5.4s" repeatCount="indefinite"/>
-            </line>
-          </g>
-        </svg>
-        <div>
-          <h3 style="color:#f472b6">Seeking the wrong goal</h3>
-          <p>You get what you measure — exactly that, and nothing more. The big target was the point; the small one was just easier to hit.</p>
-          <div class="trap-detail">
-            <p class="trap-story"><b>You get what you measure.</b> Define security as military spending and you get spending, not safety. Grade schools by test scores and you get test scores. India once counted <b>IUDs implanted</b> — so doctors inserted them without consent. Chase GNP and you count car crashes as growth.</p>
-            <div class="trap-cols">
-              <div class="trap-box"><span class="tlabel">The trap</span><p>If the goal or indicator is defined badly, the system <b>obediently</b> produces the wrong result — and looks busy doing it.</p></div>
-              <div class="way-box"><span class="tlabel">The way out</span><p>Choose indicators that reflect the system's <b>real welfare</b>, and never confuse effort with result.</p></div>
-            </div>
-          </div>
-        </div>
+      <div class="card glass tilt r" style="--d:1s">
+        <svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 36 V22 M20 22 Q20 12 10 8 M20 22 Q20 12 30 8 M20 28 Q14 26 8 20 M20 28 Q26 26 32 20" fill="none" stroke="#5eead4" stroke-width="2.2" stroke-linecap="round"/><circle cx="10" cy="8" r="2.4" fill="#5eead4"/><circle cx="30" cy="8" r="2.4" fill="#5eead4"/><circle cx="8" cy="20" r="2.4" fill="#5eead4"/><circle cx="32" cy="20" r="2.4" fill="#5eead4"/></svg>
+        <h3>Self-organization — can it rewrite itself?</h3>
+        <p>The power to grow new structure: a cell dividing, a market inventing a product, a team changing how it works. <b>The most powerful thing a system can do</b> — and the first thing we trade away for short-term stability.</p>
+        <p class="tag">Every rule about "how we do things here" is a small bet against it.</p>
       </div>
     </div>
-    <div class="trap-pills warm r" style="--d:.6s">
-      <span class="trap-pill">1 · Resistance</span>
-      <span class="trap-pill">2 · Commons</span>
-      <span class="trap-pill">3 · Drift</span>
-      <span class="trap-pill">4 · Escalation</span>
-      <span class="trap-pill">5 · Success</span>
-      <span class="trap-pill">6 · Burden</span>
-      <span class="trap-pill">7 · Rule beating</span>
-      <span class="trap-pill">8 · Wrong goal</span>
-    </div>
-    <p class="oneliner r" style="--d:.8s;margin-top:1.6vh">Traps are <em>structures, not character flaws</em> — and structures can be redesigned.</p>
+    <p class="oneliner r" style="--d:1.6s">Loops decide how the system moves. <em>These decide what the loops even are.</em></p>
   </div>
 </section>
 
-<!-- ============ 11 · LEVERAGE POINTS ============ -->
+<!-- ============ 13 · LEVERAGE POINTS ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Where to Push</div>
@@ -2152,7 +1896,295 @@ body{
   </div>
 </section>
 
-<!-- ============ 12 · REAL-WORLD SYSTEMS ============ -->
+<!-- ============ 17 · SYSTEM TRAPS ============ -->
+<section class="slide" data-hue="130">
+  <div class="wrap">
+    <div class="kicker r grad-warm">Archetypes</div>
+    <h2 class="title r" style="--d:.15s">The eight <span class="grad-warm">system traps.</span></h2>
+    <p class="sub r" style="--d:.3s">Meadows catalogued them. Recurring structures, reliably bad outcomes — no villains required.</p>
+    <div class="trap-stage r" style="--d:.45s">
+      <div class="trap-intro">
+        <p>Eight recurring structures. No villains required.</p>
+        <p class="ti-hint">press → to meet the first one</p>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <line x1="120" y1="42" x2="120" y2="158" stroke="rgba(245,245,247,.15)" stroke-dasharray="4 8"/>
+          <!-- round 1: push, pushed back · round 2: push HARDER, pushed back harder -->
+          <circle cy="100" r="20" fill="rgba(253,164,175,.18)" stroke="#fda4af" stroke-width="2.5">
+            <animate attributeName="cx" values="110;150;110;106;110;110;162;102;114;110" keyTimes="0;.16;.28;.34;.4;.48;.62;.8;.9;1" dur="7s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 30 100 h 42 m -10 -8 l 10 8 -10 8" fill="none" stroke="#fda4af" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="opacity" values="1;1;.1;.1;1" keyTimes="0;.16;.22;.94;1" dur="7s" repeatCount="indefinite"/>
+          </path>
+          <path d="M 210 100 h -42 m 10 -8 l -10 8 10 8" fill="none" stroke="rgba(245,245,247,.6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.17;.2;.36;.42;1" dur="7s" repeatCount="indefinite"/>
+          </path>
+          <path d="M 18 100 h 54 m -12 -10 l 12 10 -12 10" fill="none" stroke="#fda4af" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.46;.5;.62;.68;1" dur="7s" repeatCount="indefinite"/>
+          </path>
+          <path d="M 222 100 h -54 m 12 -10 l -12 10 12 10" fill="none" stroke="rgba(245,245,247,.8)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.63;.67;.86;.94" dur="7s" repeatCount="indefinite"/>
+          </path>
+        </svg>
+        <div>
+          <h3 style="color:#fda4af">Policy resistance</h3>
+          <p>Fixes that fail. Everyone pushes, the system pushes back — the quick fix relieves the symptom while quietly feeding the problem.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Romania, 1967.</b> To force the birth rate up, Ceaușescu abruptly <b>banned abortion and contraception</b>. Births tripled — then the people pushed back. The rate fell again through <b>dangerous illegal abortions</b> (maternal deaths tripled), and unwanted children filled the orphanages. When the regime fell, the first law repealed was the ban.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>Different actors haul one stock toward different goals. Every new push just drags it farther from someone else's goal — so everyone burns energy and no one likes the result.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Stop pushing harder. Bring all the actors in and find a <b>larger goal</b> they'll pull toward willingly — as Sweden did, aligning on child welfare, not family size.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- everyone sips faster… then the pool is gone and everyone goes gray -->
+          <g fill="#5eead4">
+            <animate attributeName="fill" values="#5eead4;#5eead4;#6b7280;#6b7280;#5eead4" keyTimes="0;.74;.8;.95;1" dur="7s" repeatCount="indefinite"/>
+            <circle cx="75" cy="28" r="7"/>
+            <circle cx="120" cy="20" r="7"/>
+            <circle cx="165" cy="28" r="7"/>
+          </g>
+          <g stroke="#5eead4" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="4 9">
+            <animate attributeName="opacity" values="1;1;.2;.2;1" keyTimes="0;.76;.8;.96;1" dur="7s" repeatCount="indefinite"/>
+            <path d="M 75 40 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1s" repeatCount="indefinite"/></path>
+            <path d="M 120 32 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur=".8s" repeatCount="indefinite"/></path>
+            <path d="M 165 40 V 118"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.2s" repeatCount="indefinite"/></path>
+          </g>
+          <path d="M 62 122 v 34 q 0 14 14 14 h 88 q 14 0 14 -14 v -34" stroke="rgba(245,245,247,.45)" stroke-width="2.5" fill="none"/>
+          <rect x="68" y="130" width="104" height="32" rx="6" fill="rgba(94,234,212,.4)">
+            <animate attributeName="y" values="130;152;156;156;130" keyTimes="0;.6;.74;.92;1" dur="7s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="32;10;6;6;32" keyTimes="0;.6;.74;.92;1" dur="7s" repeatCount="indefinite"/>
+          </rect>
+        </svg>
+        <div>
+          <h3 style="color:#5eead4">Tragedy of the commons</h3>
+          <p>Everyone acts sensibly — the shared thing dies anyway. The meeting-room calendar. The oceans. The on-call rota.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Hardin's shared pasture (1968).</b> Each herder keeps the whole gain from one more cow, but shares the cost of overgrazing with everyone. So every rational herder adds another, and another — until the grass is gone for all. Same shape: overfished seas, crowded parks, a warming atmosphere.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>A shared resource gives each user the full benefit of use but only a sliver of the cost of abuse. The feedback is too weak — so it's overused until it collapses.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Educate and appeal to conscience — then restore the missing feedback: <b>privatize</b> so each user feels their own impact, or <b>regulate</b> access ("mutual coercion, mutually agreed upon").</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the old standard winces each step down — and the team follows -->
+          <line x1="30" y1="48" x2="210" y2="48" stroke="rgba(245,245,247,.2)" stroke-dasharray="5 8">
+            <animate attributeName="opacity" values="1;.35;1;.35;1;.35;1;.35;1" keyTimes="0;.175;.28;.392;.5;.608;.7;.825;1" dur="5.5s" repeatCount="indefinite"/>
+          </line>
+          <path d="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36" stroke="#a3a3c2" stroke-width="2.5" fill="none"/>
+          <circle r="6" fill="#cfcfe0">
+            <animateMotion dur="5.5s" repeatCount="indefinite" path="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36"/>
+          </circle>
+          <circle r="4.5" fill="rgba(207,207,224,.5)">
+            <animateMotion dur="5.5s" begin=".8s" repeatCount="indefinite" path="M 30 60 h 36 v 22 h 36 v 22 h 36 v 22 h 36 v 22 h 36"/>
+          </circle>
+        </svg>
+        <div>
+          <h3 style="color:#a3a3c2">Drift to low performance</h3>
+          <p>Bad becomes normal one small excuse at a time. Nobody decided to have flaky tests — the standard just… drifted.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>The boiled frog.</b> Every time results dip, you believe the bad news and quietly lower the bar — "not much worse than last year." The standard erodes to match, effort drops, performance sinks further. Meadows watched her own jogging habit fade out exactly this way.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>When the standard is set by recent — and pessimistically perceived — performance, a reinforcing loop of <b>eroding goals</b> drags the system steadily downhill.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Hold the standard <b>absolute</b>. Better still, peg it to your <b>best</b> past performance, not your worst — and the same loop pulls you upward.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- they one-up each other to the ceiling — then both crash -->
+          <line x1="50" y1="170" x2="190" y2="170" stroke="rgba(245,245,247,.25)"/>
+          <line x1="50" y1="40" x2="190" y2="40" stroke="rgba(244,63,94,.4)" stroke-dasharray="5 7">
+            <animate attributeName="opacity" values=".4;.4;1;1;.4" keyTimes="0;.6;.7;.78;1" dur="9s" repeatCount="indefinite"/>
+          </line>
+          <rect x="85" width="26" rx="3">
+            <animate attributeName="y" values="140;140;112;112;84;84;48;48;162;162;140" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="30;30;58;58;86;86;122;122;8;8;30" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="fill" values="rgba(251,146,60,.8);rgba(251,146,60,.8);rgba(120,120,130,.5);rgba(120,120,130,.5);rgba(251,146,60,.8)" keyTimes="0;.76;.82;.94;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="129" width="26" rx="3">
+            <animate attributeName="y" values="156;126;126;98;98;70;70;44;162;162;156" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="14;44;44;72;72;100;100;126;8;8;14" keyTimes="0;.1;.2;.3;.4;.5;.6;.74;.8;.94;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="fill" values="rgba(244,63,94,.8);rgba(244,63,94,.8);rgba(120,120,130,.5);rgba(120,120,130,.5);rgba(244,63,94,.8)" keyTimes="0;.76;.82;.94;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+        </svg>
+        <div>
+          <h3 style="color:#fb923c">Escalation</h3>
+          <p>"I'll raise you one." Price wars, feature wars, the reply-all thread. It's a reinforcing loop — it compounds.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>"I'll raise you one."</b> Kids trading harder hits; the US–USSR <b>arms race</b>, each side inflating the other's arsenal to justify its own — trillions spent, doomsday weapons built. Price wars and attack-ad spirals run on the same engine.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>Each player's goal is simply to <b>beat the other's current state</b>. That's a reinforcing loop — it grows exponentially and ends in someone's collapse.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Best, don't enter. If you're in it: <b>unilaterally step down</b> to break the loop, or negotiate balancing limits both sides agree to.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the winner gets the resources — including the ones meant for the loser -->
+          <line x1="40" y1="165" x2="200" y2="165" stroke="rgba(245,245,247,.25)"/>
+          <rect x="56" width="28" rx="3" fill="rgba(192,132,252,.35)">
+            <animate attributeName="y" values="105;105;115;115;125;125;135;135;105" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="60;60;50;50;40;40;30;30;60" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+          <rect x="146" width="28" rx="3" fill="rgba(192,132,252,.85)">
+            <animate attributeName="y" values="85;85;73;73;61;61;49;49;85" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="80;80;92;92;104;104;116;116;80" keyTimes="0;.2;.25;.45;.5;.7;.75;.95;1" dur="9s" repeatCount="indefinite"/>
+          </rect>
+          <circle r="4" fill="#e6d4ff">
+            <animateMotion dur="3s" repeatCount="indefinite" path="M 160 20 V 52"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.2;.8;1" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="4" fill="#e6d4ff">
+            <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite"
+              path="M 120 24 C 95 45 75 70 88 86 C 100 98 140 100 156 100"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.85;1" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <div>
+          <h3 style="color:#c084fc">Success to the successful</h3>
+          <p>Winners get the resources to keep winning. The strong team gets the best projects — which makes it stronger.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Monopoly.</b> The first player to build hotels collects rent, buys more hotels, and ends up owning the board. Ecologists call it <b>competitive exclusion</b>; in markets it shrank US carmakers to three and most cities to one newspaper. Winners keep winning; losers get squeezed out.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>When winning is rewarded with the means to win again, a reinforcing loop lets the winners <b>take all</b> while the losers are eliminated.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Diversify into a new game; cap any one winner (<b>antitrust</b>); or <b>level the playing field</b> — handicaps, progressive and inheritance taxes, the potlatch — so each round starts fairer.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- each lap of the quick fix gets faster — and the problem grows -->
+          <circle cx="60" cy="100" fill="rgba(251,191,36,.15)" stroke="#fbbf24" stroke-width="2">
+            <animate attributeName="r" values="14;14;21;21" keyTimes="0;.15;.9;1" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 74 90 Q 120 46 160 58 Q 120 94 76 94" stroke="rgba(251,191,36,.5)" stroke-width="2" fill="none"/>
+          <circle r="5" fill="#fde68a">
+            <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear" keyPoints="0;.333;.667;1" keyTimes="0;.5;.8;1"
+              path="M 74 90 Q 120 44 160 58 Q 120 96 74 90 Q 120 44 160 58 Q 120 96 74 90 Q 120 44 160 58 Q 120 96 74 90"/>
+          </circle>
+          <circle cx="170" cy="56" r="13" fill="rgba(251,191,36,.3)">
+            <animate attributeName="r" values="13;16;13" dur="1.6s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 74 112 Q 120 152 154 148" stroke="rgba(245,245,247,.5)" stroke-width="2" stroke-dasharray="5 7" fill="none">
+            <animate attributeName="opacity" values=".7;.1;.1;.7" keyTimes="0;.6;.9;1" dur="8s" repeatCount="indefinite"/>
+          </path>
+          <circle cx="168" cy="148" r="13" fill="none" stroke="rgba(245,245,247,.4)" stroke-dasharray="3 5">
+            <animate attributeName="opacity" values=".8;.12;.12;.8" keyTimes="0;.6;.9;1" dur="8s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <div>
+          <h3 style="color:#fbbf24">Shifting the burden</h3>
+          <p>The workaround works, so the real fix never gets built. Meadows' word for this one is <em style="font-style:normal;color:var(--ink)">addiction</em>. Every "temporary" process is five years old.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Addiction.</b> A drug numbs the pain without fixing what's wrong — so the real problem festers and you need more. Same shape beyond people: industries hooked on <b>subsidies</b>, farms on fertilizer, economies on cheap oil. The crutch erodes the system's own ability to cope.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>A fix relieves the <b>symptom</b>, not the cause, and quietly atrophies the system's capacity to help itself — so it needs ever more of the fix.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Best, avoid the easy fix. If you're hooked, shift focus to <b>long-term restructuring</b> — rebuild the system's own capability, then remove the prop.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the gate stamps ✓ while everyone goes over the wall -->
+          <line x1="120" y1="44" x2="120" y2="92" stroke="rgba(56,189,248,.7)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="120" y1="118" x2="120" y2="166" stroke="rgba(56,189,248,.7)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="120" y1="92" x2="120" y2="118" stroke="#38bdf8" stroke-width="3" stroke-dasharray="3 5"/>
+          <line x1="55" y1="105" x2="105" y2="105" stroke="rgba(245,245,247,.18)" stroke-dasharray="4 7"/>
+          <circle r="5" fill="#7dd3fc">
+            <animateMotion dur="2.4s" repeatCount="indefinite" path="M 48 105 C 70 105 85 36 120 32 C 155 36 170 105 192 105"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.9;1" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="4" fill="#7dd3fc" opacity=".7">
+            <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M 48 105 C 70 105 85 36 120 32 C 155 36 170 105 192 105"/>
+            <animate attributeName="opacity" values="0;.7;.7;0" keyTimes="0;.1;.9;1" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 130 102 l 5 6 10 -12" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0">
+            <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.72;.8;1" dur="1.2s" repeatCount="indefinite"/>
+          </path>
+        </svg>
+        <div>
+          <h3 style="color:#38bdf8">Rule beating</h3>
+          <p>Obeying the letter of the rule while defeating its purpose. Hitting the metric, missing the point.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>Letter, not spirit.</b> Departments <b>blow the budget</b> every December so next year's isn't cut; Vermont's 10-acre rule bred a rash of 10.1-acre lots; some landowners quietly killed an endangered species so their land stayed developable.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>Rules invite <b>perverse workarounds</b> that look like compliance while distorting the system.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Read rule-beating as <b>feedback</b>. Redesign the rule so the system's cleverness serves its purpose instead of evading it.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trap step-item glass">
+        <svg class="tanim" viewBox="0 0 240 200" aria-hidden="true">
+          <!-- the score climbs while the actual purpose fades to black -->
+          <g>
+            <animate attributeName="opacity" values=".5;.5;.32;.32;.16;.16;.06;.5" keyTimes="0;.27;.32;.6;.65;.93;.98;1" dur="5.4s" repeatCount="indefinite"/>
+            <circle cx="170" cy="52" r="26" stroke="rgba(245,245,247,.5)" fill="none"/>
+            <circle cx="170" cy="52" r="15" stroke="rgba(245,245,247,.4)" fill="none"/>
+            <circle cx="170" cy="52" r="5" fill="rgba(245,245,247,.4)"/>
+          </g>
+          <circle cx="160" cy="140" r="17" stroke="#f472b6" fill="none" stroke-width="2"/>
+          <circle cx="160" cy="140" r="6" fill="#f472b6"/>
+          <circle r="4.5" fill="#fbcfe8">
+            <animateMotion dur="1.8s" repeatCount="indefinite" path="M 38 100 Q 100 112 154 138"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="160" cy="140" fill="none" stroke="#f472b6" stroke-width="2">
+            <animate attributeName="r" values="6;6;22" keyTimes="0;.82;1" dur="1.8s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;0;.9;0" keyTimes="0;.8;.86;1" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <g stroke="#f472b6" stroke-width="2.5" stroke-linecap="round">
+            <line x1="192" y1="126" x2="192" y2="142" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.28;.31;1" dur="5.4s" repeatCount="indefinite"/>
+            </line>
+            <line x1="199" y1="126" x2="199" y2="142" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.61;.64;1" dur="5.4s" repeatCount="indefinite"/>
+            </line>
+            <line x1="206" y1="126" x2="206" y2="142" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.94;.97;1" dur="5.4s" repeatCount="indefinite"/>
+            </line>
+          </g>
+        </svg>
+        <div>
+          <h3 style="color:#f472b6">Seeking the wrong goal</h3>
+          <p>You get what you measure — exactly that, and nothing more. The big target was the point; the small one was just easier to hit.</p>
+          <div class="trap-detail">
+            <p class="trap-story"><b>You get what you measure.</b> Define security as military spending and you get spending, not safety. Grade schools by test scores and you get test scores. India once counted <b>IUDs implanted</b> — so doctors inserted them without consent. Chase GNP and you count car crashes as growth.</p>
+            <div class="trap-cols">
+              <div class="trap-box"><span class="tlabel">The trap</span><p>If the goal or indicator is defined badly, the system <b>obediently</b> produces the wrong result — and looks busy doing it.</p></div>
+              <div class="way-box"><span class="tlabel">The way out</span><p>Choose indicators that reflect the system's <b>real welfare</b>, and never confuse effort with result.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="trap-pills warm r" style="--d:.6s">
+      <span class="trap-pill">1 · Resistance</span>
+      <span class="trap-pill">2 · Commons</span>
+      <span class="trap-pill">3 · Drift</span>
+      <span class="trap-pill">4 · Escalation</span>
+      <span class="trap-pill">5 · Success</span>
+      <span class="trap-pill">6 · Burden</span>
+      <span class="trap-pill">7 · Rule beating</span>
+      <span class="trap-pill">8 · Wrong goal</span>
+    </div>
+    <p class="oneliner r" style="--d:.8s;margin-top:1.6vh">Traps are <em>structures, not character flaws</em> — and structures can be redesigned.</p>
+  </div>
+</section>
+
+<!-- ============ 18 · REAL-WORLD SYSTEMS ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Everywhere You Look</div>
@@ -3402,7 +3434,7 @@ body{
     '.trap > div > h3','.trap > div > p','.trap-story','.trap-cols .tlabel','.trap-cols p',
     '.duo .d-lbl','.duo p','.vidcap','.qcard .qn','.qcard p','.step h3','.step p',
     '.shift-old','.sys-lbl','.fig text','.icefig text','.sys-fig text',
-    '.fig .lbl-strong','.fig .lbl-sm'];
+    '.fig .lbl-strong','.fig .lbl-sm','.card h3','.card p'];
   const seen = new Set(), els = [];
   document.querySelectorAll(SEL.join(',')).forEach(el=>{
     if(seen.has(el)) return; seen.add(el);

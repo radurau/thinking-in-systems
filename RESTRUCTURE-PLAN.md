@@ -47,7 +47,7 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 9 | ✎ Balancing loops — add "goal-seeking, corrects *both* directions; set the goal to cover the leak" | 8 | → what if both loops pull one stock? | [ ] |
 | 10 | ★ When loops compete — R + B on one stock → S-curve; **limits**: stock-limited (oil) vs flow-limited (fish) | — | → "and the delay makes it worse" | [x] |
 | 11 | ✎ Delays — kicker says **Delays**; dealership's 3 delays (perceive / respond / deliver) → oscillation; "multiply by three" (Forrester / George Talaba) | 9 | dealership from #6 → oscillation; → who knows what, when? | [x] |
-| 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [ ] |
+| 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [x] |
 | 13 | ✎ Twelve leverage points — **payoff**: every rung has now been a slide; ladder lights up bottom-to-top | all | → the top three rungs deserve their own slides | [ ] |
 | 14 | ✎ Goals · Paradigms · Transcending — add **goals**: "purpose is deduced from behaviour, not rhetoric" | 3, 2, 1 | → the lens sits inside a bigger system | [ ] |
 | 15 | ✎ Systems inside systems — **zoom** tree → forest → planet → galaxy; hierarchy, stable intermediate forms, resilience | — | → why we still get surprised | [ ] |
@@ -77,7 +77,7 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 - [x] #6 ★ Numbers & buffers (dealership intro — needed by #11) — HTML + RO + notes; fits 1600×900
 - [x] #11 ✎ Delays (dealership 3 delays; rename kicker; swap chips for the three delays) — shower kept (AI slide calls back to it); notes rewritten with Forrester/Talaba ×3 + Christmas aside
 - [x] #10 ★ When loops compete / limits — fishery R+B, S-curve vs overshoot, stock- vs flow-limited
-- [ ] #12 ★ Structure: information · rules · self-organization
+- [x] #12 ★ Structure: information · rules · self-organization — three glass cards (hallway meter / who writes the rules / self-org); traps slide moved to after 'Systems inside systems' (#16)
 - [ ] #13 ✎ Ladder payoff (light-up sequence; "you've met all twelve")
 - [ ] #14 ✎ add Goals rung
 - [ ] Run renumber script; ✔ notes panel jumps + live highlight on 3 random slides.
