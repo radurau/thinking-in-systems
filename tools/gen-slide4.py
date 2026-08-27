@@ -121,7 +121,7 @@ svg = f'''    <svg class="fig sysfig" viewBox="0 0 680 384" aria-hidden="true" s
           <animateMotion dur="5s" repeatCount="indefinite" path="{seg_path(lb, True)} {own.split(' ',3)[3]}"/>
           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.04;.94;1" dur="5s" repeatCount="indefinite"/>
         </circle>
-        <text class="lbl-sm" x="320" y="{NEAR_Y+17}" text-anchor="middle" style="fill:#fda4af;font-weight:650">purpose: lose the game</text>
+        <text class="lbl-sm" x="320" y="{NEAR_Y-12}" text-anchor="middle" style="fill:#fda4af;font-weight:650">purpose: lose the game</text>
         <text class="lbl-sm" x="{f(left_top[0])}" y="{f(left_top[1]-14)}" text-anchor="middle" style="fill:#fda4af">own basket</text>
       </g>
       <!-- the players — the same seven pins in every act -->
