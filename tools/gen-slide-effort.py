@@ -24,10 +24,21 @@ def sphere(x, y1, r, t0, color, miss=False, hold=19.5):
 # uneven heaps: (centre x, colour, radii of the spheres that land there), plus a few throws at the top that miss
 heaps=[(300,LOW,[7,5,8,4]),(360,LOW,[5,6]),(500,MID,[8,6,5,7,4,6]),(590,MID,[5,4]),(690,HIGH,[6,7,5]),(805,HIGH,[7,5,6,4,5]),(880,HIGH,[6,5])]
 drops=[]
+import math
+def settle(cx, radii):
+    """Drop spheres one by one near cx; each rests on the arm or on whatever it touches first below."""
+    placed=[]; offsets=[0,12,-12,6,-7,0,17,-17,3]
+    for k,r in enumerate(radii):
+        x=cx+offsets[k%len(offsets)]+random.uniform(-1.5,1.5)
+        y=yarm(x)-r-1.75
+        for (xj,yj,rj) in placed:
+            dx=abs(x-xj)
+            if dx<r+rj-0.5:
+                y=min(y, yj-math.sqrt((r+rj)**2-dx**2))
+        placed.append((x,y,r))
+    return placed
 for cx,col,radii in heaps:
-    h=0
-    for r in radii:
-        x=cx+random.uniform(-5,5); y=yarm(x)-r-h; h+=2*r*.8
+    for (x,y,r) in settle(cx,radii):
         drops.append((x,y,r,col,False))
 for x,r in [(915,6),(935,5),(950,7),(905,4)]:
     drops.append((x,yarm(x)-r,r,HIGH,True))
