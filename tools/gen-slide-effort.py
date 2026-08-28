@@ -93,6 +93,12 @@ def leaf(cx, cy, side, appear):
             f'<ellipse cx="{cx+34*side}" cy="{cy}" rx="34" ry="12" fill="{GREEN}" stroke="none" transform="rotate({rot} {cx} {cy})">'
             f'<animate attributeName="fill" values="{GREEN};{GREEN};{GREEN};{YEL};{BROWN};{BROWN}" keyTimes="{kp(0,6,9,12,14.5,P)}" dur="{P}s" repeatCount="indefinite"/></ellipse></g>')
 leaves=leaf(300,250,-1,1.2)+leaf(300,222,1,2.2)+leaf(300,194,-1,3.3)+leaf(300,166,1,4.4)+leaf(300,140,-1,5.4)
+PINK='#f472b6'
+petals=''.join(f'<ellipse cx="0" cy="-15" rx="8" ry="15" fill="{PINK}" transform="rotate({k*60})"><animate attributeName="fill" values="{PINK};{PINK};{PINK};{YEL};{BROWN};{BROWN}" keyTimes="{kp(0,6,9,12,14.5,P)}" dur="{P}s" repeatCount="indefinite"/></ellipse>' for k in range(6))
+flower=(f'<g transform="translate(300 118)"><g opacity="0"><animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="{kp(0,5.2,5.6,13,15,15.4,P)}" dur="{P}s" repeatCount="indefinite"/>'
+        f'<animateTransform attributeName="transform" type="rotate" values="0;0;0;48;48" keyTimes="{kp(0,9,13,15,P)}" dur="{P}s" repeatCount="indefinite"/>'
+        f'<g><animateTransform attributeName="transform" type="scale" values="0;0;1.15;1;1" keyTimes="{kp(0,5.2,6.2,6.6,P)}" dur="{P}s" repeatCount="indefinite"/>'
+        f'{petals}<circle r="7" fill="#fbbf24"><animate attributeName="fill" values="#fbbf24;#fbbf24;#fbbf24;#d97706;{BROWN};{BROWN}" keyTimes="{kp(0,6,9,12,14.5,P)}" dur="{P}s" repeatCount="indefinite"/></circle></g></g></g>')
 units=''.join(f'<rect x="{560+i*24}" y="272" width="16" height="28" rx="3" fill="rgba(157,185,255,.85)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="{kp(0,.6+i*1.35,.9+i*1.35,17.6,P)}" dur="{P}s" repeatCount="indefinite"/><animate attributeName="fill" values="{"rgba(157,185,255,.85)" if i<5 else "#fb7185"};{"rgba(157,185,255,.85)" if i<5 else "#fb7185"}" dur="{P}s" repeatCount="indefinite"/></rect>' for i in range(10))
 def phase(txt,t0,t1,color):
     return (f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kp(0,t0,t0+.4,t1-.3,t1,P)}" dur="{P}s" repeatCount="indefinite"/>'
@@ -110,6 +116,7 @@ svg17=f'''    <svg class="fig" viewBox="0 0 900 400" aria-hidden="true" style="m
         <animate attributeName="stroke" values="{GREEN};{GREEN};{GREEN};{YEL};{BROWN};{BROWN}" keyTimes="{kp(0,6,9,12,14.5,P)}" dur="{P}s" repeatCount="indefinite"/>
       </line>
       {leaves}
+      {flower}
       <!-- nutrients -->
       <text class="lbl-sm" x="560" y="250" style="font-size:12px">nitrogen added, one unit at a time</text>
       {units}
