@@ -34,7 +34,7 @@ def lines(seq, use_head, extra=''):
     return '\n            '.join(f'<line class="flowdash{extra}" x1="{f(a[0])}" y1="{f(a[1])}" x2="{f(b[0])}" y2="{f(b[1])}"/>' for a, b in zip(pts, pts[1:]))
 
 corners = [P(50,50), P(590,50), P(590,330), P(50,330)]
-players = [(120,210,'Ana','Sofia'),(210,110,'Ion','Andrei'),(262,262,'Mara','Ioana'),(398,150,'Dan','Matei'),(487,246,'Vlad','Elena'),(450,86,'Ilinca','Petru'),(150,300,'Tudor','Irina')]
+players = [(120,210,'Ana','Sofia'),(210,110,'Ionut','Cotor'),(262,262,'Mara','Ioana'),(398,150,'Bogdan','Ioan'),(487,246,'Hara','Carbune'),(450,86,'Ilinca','Petru'),(150,300,'Tudor','Irina')]
 fb = [(120,210),(210,110),(262,262),(398,150),(487,246),(598,190)]
 bb = [(150,300),(262,262),(398,150),(487,246),(450,86)]
 lb = [(450,86),(398,150),(262,262),(210,110),(120,210)]
