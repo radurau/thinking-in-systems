@@ -4,45 +4,48 @@ All choreography is SMIL on a fixed loop, so the deck's setCurrentTime(0) restar
 import pathlib, re
 def f(v): return f'{v:.1f}'
 # ============ slide 16 · the lever, three rounds of ten units ============
-T=30.0
+T=20.0
+import random
+random.seed(11)
 def kt(*ts): return ';'.join(f'{t/T:.4f}'.rstrip('0').rstrip('.') if 0<t<T else ('0' if t<=0 else '1') for t in ts)
 def yarm(x): return 386+(x-66)*(129-386)/(952-66)
 rungs=[(250,333),(311,315),(372,297),(433,280),(494,262),(555,244),(616,227),(677,209),(738,191),(798,174),(859,156),(920,139)]
-def pebble(x, t0, land, color, miss=False):
-    ya=yarm(x); y0=ya-150; y1=ya-7
-    if miss:
-        y2=ya+190
-        return (f'<circle cx="{f(x)}" cy="{f(y0)}" r="5" fill="{color}" opacity="0">'
-                f'<animate attributeName="cy" values="{f(y0)};{f(y0)};{f(y1)};{f(y2)};{f(y2)}" keyTimes="{kt(0,t0,t0+.45,t0+1.1,T)}" dur="{T}s" repeatCount="indefinite"/>'
-                f'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kt(0,t0,t0+.05,t0+.6,t0+1.1,T)}" dur="{T}s" repeatCount="indefinite"/></circle>')
-    return (f'<circle cx="{f(x)}" cy="{f(y0)}" r="5" fill="{color}" opacity="0">'
-            f'<animate attributeName="cy" values="{f(y0)};{f(y0)};{f(y1)};{f(y1)}" keyTimes="{kt(0,t0,t0+.45,T)}" dur="{T}s" repeatCount="indefinite"/>'
-            f'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kt(0,t0,t0+.05,land,land+.3,T)}" dur="{T}s" repeatCount="indefinite"/></circle>')
 LOW,MID,HIGH='#fb923c','#5eead4','#c084fc'
-peb=[]
-# round 1 · 0–8 s : all low
-for i,x in enumerate([240+i*9 for i in range(10)]): peb.append(pebble(x, .6+i*.6, 8.0, LOW))
-# round 2 · 8.3–16 s : all high — 8 miss, 2 land
-hi_land=[905,925]; hi_miss=[862,878,893,940,956,970,986,848]
-seq=[(hi_miss[0],False),(hi_miss[1],False),(hi_land[0],True),(hi_miss[2],False),(hi_miss[3],False),(hi_miss[4],False),(hi_land[1],True),(hi_miss[5],False),(hi_miss[6],False),(hi_miss[7],False)]
-for i,(x,hit) in enumerate(seq): peb.append(pebble(x, 8.8+i*.6, 16.0, HIGH, miss=not hit))
-# round 3 · 16.3–26 s : spread — 3 low, 4 mid, 3 high (one high miss)
-spread=[(262,LOW,True),(302,LOW,True),(342,LOW,True),(482,MID,True),(542,MID,True),(602,MID,True),(662,MID,True),(800,HIGH,True),(918,HIGH,False),(862,HIGH,True)]
-for i,(x,c,hit) in enumerate(spread): peb.append(pebble(x, 16.8+i*.7, 29.5, c, miss=not hit))
-rot=f'values="0;0;1.2;1.2;0;0;3.6;3.6;0;0;10.5;10.5;10.5;0" keyTimes="{kt(0,.6,8,8.1,8.4,8.8,16,16.1,16.4,16.8,24.5,26,29.5,T)}"'
-rot_vals=rot.replace('values="','').split('"')[0]; rot_kt=rot.split('keyTimes="')[1].split('"')[0]
-arm_rot=f'<animateTransform attributeName="transform" type="rotate" values="{";".join(v+" 210 344" for v in rot_vals.split(";"))}" keyTimes="{rot_kt}" dur="{T}s" repeatCount="indefinite"/>'
-ball_tr=f'<animateTransform attributeName="transform" type="translate" values="{";".join("0 "+f(-float(v)*2.6) for v in rot_vals.split(";"))}" keyTimes="{rot_kt}" dur="{T}s" repeatCount="indefinite"/>'
+def sphere(x, y1, r, t0, color, miss=False, hold=19.5):
+    y0=y1-170
+    if miss:
+        y2=y1+200
+        return (f'<circle cx="{f(x)}" cy="{f(y0)}" r="{r}" fill="{color}" opacity="0">'
+                f'<animate attributeName="cy" values="{f(y0)};{f(y0)};{f(y1)};{f(y2)};{f(y2)}" keyTimes="{kt(0,t0,t0+.45,t0+1.2,T)}" dur="{T}s" repeatCount="indefinite"/>'
+                f'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kt(0,t0,t0+.05,t0+.7,t0+1.2,T)}" dur="{T}s" repeatCount="indefinite"/></circle>')
+    return (f'<circle cx="{f(x)}" cy="{f(y0)}" r="{r}" fill="{color}" opacity="0">'
+            f'<animate attributeName="cy" values="{f(y0)};{f(y0)};{f(y1)};{f(y1)}" keyTimes="{kt(0,t0,t0+.45,T)}" dur="{T}s" repeatCount="indefinite"/>'
+            f'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kt(0,t0,t0+.05,hold,hold+.3,T)}" dur="{T}s" repeatCount="indefinite"/></circle>')
+# uneven heaps: (centre x, colour, radii of the spheres that land there), plus a few throws at the top that miss
+heaps=[(300,LOW,[7,5,8,4]),(360,LOW,[5,6]),(500,MID,[8,6,5,7,4,6]),(590,MID,[5,4]),(690,HIGH,[6,7,5]),(805,HIGH,[7,5,6,4,5]),(880,HIGH,[6,5])]
+drops=[]
+for cx,col,radii in heaps:
+    h=0
+    for r in radii:
+        x=cx+random.uniform(-5,5); y=yarm(x)-r-h; h+=2*r*.8
+        drops.append((x,y,r,col,False))
+for x,r in [(915,6),(935,5),(950,7),(905,4)]:
+    drops.append((x,yarm(x)-r,r,HIGH,True))
+random.shuffle(drops)
+peb=[sphere(x,y,r,0.6+i*0.55,col,miss) for i,(x,y,r,col,miss) in enumerate(drops)]
+t_last=0.6+len(drops)*0.55
+rot_vals=['0','0','10.5','10.5','0']; rot_times=[0,.6,t_last,19.5,T]
+arm_rot=f'<animateTransform attributeName="transform" type="rotate" values="{";".join(v+" 210 344" for v in rot_vals)}" keyTimes="{kt(*rot_times)}" dur="{T}s" repeatCount="indefinite"/>'
+ball_tr=f'<animateTransform attributeName="transform" type="translate" values="{";".join("0 "+f(-float(v)*2.6) for v in rot_vals)}" keyTimes="{kt(*rot_times)}" dur="{T}s" repeatCount="indefinite"/>'
 def label(txt, t0, t1, color):
     return (f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kt(0,t0,t0+.4,t1-.3,t1,T)}" dur="{T}s" repeatCount="indefinite"/>'
             f'<text class="lbl-strong" x="60" y="66" style="font-size:15px;fill:{color}">{txt}</text></g>')
 rungs_svg=''.join(f'<circle cx="{x}" cy="{y}" r="11" fill="#0d0d15" stroke="rgba(192,132,252,.45)" stroke-width="1.5"/><text x="{x}" y="{y+4}" text-anchor="middle" style="font-size:9.5px;fill:rgba(245,245,247,.6)">{12-i}</text>' for i,(x,y) in enumerate(rungs))
 svg16=f'''    <svg class="fig" viewBox="0 0 1000 440" aria-hidden="true" style="max-width:min(1320px,90vw);margin-top:1vh">
-      <!-- generated by tools/gen-slide-effort.py — same lever as the previous slide, ten units, three rounds -->
-      {label('round 1 — all ten units low: it barely moves', .3, 8.3, LOW)}
-      {label('round 2 — all ten at the top: most bounce off', 8.5, 16.3, HIGH)}
-      {label('round 3 — the same ten, spread by what is short: it lifts', 16.5, 29.6, '#fbbf24')}
-      <text class="lbl-sm" x="60" y="88" style="font-size:12px;fill:rgba(245,245,247,.55)">ten units of effort · same lever · same system</text>
+      <!-- generated by tools/gen-slide-effort.py — same lever as the previous slide; effort piles up unevenly along it -->
+      {label('spread by what the system is short of — big and small, uneven, some at the top will miss', .3, t_last, '#fbbf24')}
+      {label('…and it lifts', t_last+.2, 19.6, '#5eead4')}
+      <text class="lbl-sm" x="60" y="88" style="font-size:12px;fill:rgba(245,245,247,.55)">the same lever · a finite budget of effort</text>
       <g>
         {arm_rot}
         <line x1="66" y1="386" x2="952" y2="129" stroke="rgba(245,245,247,.7)" stroke-width="3.5" stroke-linecap="round"/>
@@ -53,7 +56,7 @@ svg16=f'''    <svg class="fig" viewBox="0 0 1000 440" aria-hidden="true" style="
       <g>
         {ball_tr}
         <circle cx="90" cy="345" r="44" fill="none" stroke="rgba(94,234,212,.6)" stroke-width="2" opacity="0">
-          <animate attributeName="opacity" values="0;0;.85;.85;0;0" keyTimes="{kt(0,24.5,25,29,29.6,T)}" dur="{T}s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0;.85;.85;0;0" keyTimes="{kt(0,t_last,t_last+.5,19.3,19.7,T)}" dur="{T}s" repeatCount="indefinite"/>
         </circle>
         <circle cx="90" cy="345" r="36" fill="url(#ballg)"/>
         <text x="90" y="341" text-anchor="middle" style="font-size:13px;font-weight:650;fill:#fff">The</text>
