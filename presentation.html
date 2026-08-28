@@ -68,6 +68,7 @@ body{
   transition:opacity 1.05s var(--ease),transform 1.2s var(--ease),filter 1.05s var(--ease),visibility 0s}
 .wrap{max-width:min(1640px,95vw);width:100%;padding:0 3vw;text-align:center;position:relative}
 .slide.active .wrap{animation:push 22s ease-out both}
+.slide.active.nopush .wrap{animation:none}  /* dense small SVG text shimmers under the slow push */
 @keyframes push{from{transform:scale(1)}to{transform:scale(1.025)}}
 .scrim{position:absolute;left:50%;top:50%;width:96vw;height:78vh;transform:translate(-50%,-50%);
   pointer-events:none;z-index:-2;
@@ -947,7 +948,7 @@ body{
 </section>
 
 <!-- ============ 4 · WHAT IS A SYSTEM ============ -->
-<section class="slide" data-hue="0">
+<section class="slide nopush" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Definition</div>
     <h2 class="title r" style="--d:.15s">Elements. Interconnections. <span class="grad">Purpose.</span></h2>
