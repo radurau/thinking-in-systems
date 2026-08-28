@@ -21,7 +21,7 @@ DECK = ROOT / 'presentation.html'
 def main():
     check = '--check' in sys.argv
     src = NOTES.read_text(encoding='utf-8')
-    n_slides = len(re.findall(r'<section class="slide"', DECK.read_text(encoding='utf-8')))
+    n_slides = len(re.findall(r'<section class="slide[" ]', DECK.read_text(encoding='utf-8')))
 
     # Split at each note section so we can renumber per block.
     parts = re.split(r'(?=<section class="note")', src)

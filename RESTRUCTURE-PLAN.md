@@ -45,8 +45,10 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 5 | ✎ Stocks & flows — bathtub; add "we see stocks, not flows; inflows, not outflows" | 10 | elements you can count → what changes them | [x] |
 | 6 | ★ Numbers & buffers — the car lot: order size (a number), 10 days' cover (a buffer) | 12, 11 | bathtub → dealership stock; "buffers stabilise, but a too-big buffer is rigid" | [x] |
 | 7 | ✎ Feedback — **bank account** leads, Yellowstone stays as story | — | stock → the system watches its own stock | [x] |
-| 8 | · Reinforcing loops | 7 | feedback → more leads to more | done |
-| 9 | ✎ Balancing loops — add "goal-seeking, corrects *both* directions; set the goal to cover the leak" | 8 | → what if both loops pull one stock? | [x] |
+| 8 | ✎ Balancing loops — **book order** (Bathtubs → Feedback → Balancing → Reinforcing) restored 28 Aug; sub says goal-seeking or stability-seeking | 8 | feedback → systems seek a goal | [x] |
+| 9 | · Reinforcing loops — quote about growth toward a limit hands to #10 | 7 | → limits | done |
+| 9b | ★ "If A causes B — is it possible that B also causes A?" — Meadows' chapter-1 closer as a hero beat (28 Aug) | — | → two loops on one stock | [x] |
+| ~~9~~ | ~~✎ Balancing loops~~ (moved up) — add "goal-seeking, corrects *both* directions; set the goal to cover the leak" | 8 | → what if both loops pull one stock? | [x] |
 | 10 | ★ When loops compete — R + B on one stock → S-curve; **limits**: stock-limited (oil) vs flow-limited (fish) | — | → "and the delay makes it worse" | [x] |
 | 11 | ✎ Delays — kicker says **Delays**; dealership's 3 delays (perceive / respond / deliver) → oscillation; "multiply by three" (Forrester / George Talaba) | 9 | dealership from #6 → oscillation; → who knows what, when? | [x] |
 | 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [x] |
@@ -108,7 +110,7 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 - [x] Notes panel: 28 sections, jumps and numbers in sync (`renumber-notes.py --check`); live-highlight mechanism unchanged (`#nN` by broadcast)
 - [~] Reduced-motion: new slides use `.fadein/.pop/.draw` end states and →-driven steps (no timed reveals) — spot-check on a reduce-motion Mac before the talk
 - [ ] ⌘P print: one slide per page, HUD hidden (`#hud` has a print rule; slide 4/16 step states print as-is)
-- [x] Notes total 42 min against a 50-min talk → 8 min slack. If the dry run still overruns, trim the AI block first (6 slides / ~8 min).
+- [x] Notes total 44 min against a 50-min talk → 6 min slack (28 Aug: slide 4 split +1.5, A-causes-B +0.5). If the dry run still overruns, trim the AI block first (6 slides / ~8 min).
 - [ ] Commit per phase; **no push** until Radu says so
 
 ## Phase 7 — Review
