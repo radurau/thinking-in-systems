@@ -190,6 +190,14 @@ body{
 #hud .hr.gap{margin-bottom:5px}
 @media print{#hud{display:none}}
 
+/* the sentence that has to land: red→purple, breathing */
+.punch{display:inline-block;font-weight:750;font-size:1.22em;letter-spacing:-.01em;color:transparent;
+  background:linear-gradient(92deg,#fb7185,#f472b6 45%,#c084fc);-webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 0 10px rgba(244,114,182,.35))}
+.slide.active .punch{animation:punch 1.7s ease-in-out infinite}
+@keyframes punch{0%,100%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(244,114,182,.28))}50%{transform:scale(1.045);filter:drop-shadow(0 0 22px rgba(251,113,133,.65))}}
+@media (prefers-reduced-motion: reduce){.slide.active .punch{animation:none}}
+
 .hero-line{font-size:clamp(40px,7vw,108px);font-weight:700;letter-spacing:-.03em;line-height:1.05}
 .hero-line + .hero-line{margin-top:1.2vh}
 .hero-sub{margin-top:4.5vh;font-size:clamp(15px,1.7vw,22px);color:var(--ink-dim);letter-spacing:.01em}
@@ -1673,7 +1681,7 @@ body{
   <div class="wrap">
     <div class="kicker r grad-cool">Balancing Loops</div>
     <h2 class="title r" style="--d:.15s"><span class="grad-cool">Systems seek a goal.</span></h2>
-    <p class="sub r" style="--d:.3s">Balancing loops are goal-seeking or stability-seeking: they sense the gap to a goal — and close it, from either side.</p>
+    <p class="sub r" style="--d:.3s"><span class="punch">Balancing loops are goal-seeking or stability-seeking.</span><br>They sense the gap to a goal — and close it, from either side.</p>
     <svg class="fig" viewBox="-58 0 798 300" aria-hidden="true" style="max-width:min(1060px,84vw)">
       <!-- the thermostat housing, wrapped around the loop -->
       <rect class="fadein" x="-52" y="6" width="400" height="270" rx="22" fill="rgba(255,255,255,.03)" stroke="rgba(94,234,212,.28)" stroke-width="1.5" style="--d:.2s"/>

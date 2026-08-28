@@ -168,7 +168,7 @@ window.__RO__ = Object.fromEntries([
 /* ---------- 8 · balancing ---------- */
 [`Balancing Loops`, `Bucle de echilibrare`],
 [`<span class="grad-cool">Systems seek a goal.</span>`, `<span class="grad-cool">Sistemele caută un scop.</span>`],
-[`Balancing loops are goal-seeking or stability-seeking: they sense the gap to a goal — and close it, from either side.`, `Buclele de echilibrare caută un scop sau caută stabilitate: simt diferența până la o țintă — și o închid, din oricare parte.`],
+[`<span class="punch">Balancing loops are goal-seeking or stability-seeking.</span><br>They sense the gap to a goal — and close it, from either side.`, `<span class="punch">Buclele de echilibrare caută un scop sau caută stabilitate.</span><br>Simt diferența până la o țintă — și o închid, din oricare parte.`],
 [`goal: 21°C`, `scop: 21°C`],
 [`room temperature`, `temperatura camerei`],
 [`heater output`, `puterea caloriferului`],
