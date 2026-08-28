@@ -50,7 +50,7 @@ s1 = f'''
         <line x1="50" y1="190" x2="250" y2="190" stroke="rgba(245,245,247,.25)"/>{forest}
         <line x1="350" y1="190" x2="550" y2="190" stroke="rgba(245,245,247,.25)"/>{skyline}{crowd}
         <ellipse cx="750" cy="124" rx="96" ry="34" fill="none" stroke="rgba(245,245,247,.18)" stroke-dasharray="3 6"/>
-        {earth(750,124,40)}<circle cx="846" cy="124" r="6" fill="rgba(245,245,247,.6)"><animateMotion dur="9s" repeatCount="indefinite" path="M 0 0 a 96 34 0 1 0 -0.1 0"/></circle>
+        {earth(750,124,40)}<circle cx="846" cy="124" r="6" fill="rgba(245,245,247,.6)"><animateMotion dur="9s" repeatCount="indefinite" path="M 0 0 a 96 34 0 1 0 -192 0 a 96 34 0 1 0 192 0"/></circle>
         {rows(150,'trees, soil, deer, fungi','shade, seeds, shared roots','persist through fire and winter',0)}
         {rows(450,'people, roads, laws','trade, language, trust','thrive together',0)}
         {rows(750,'forests, societies, oceans','climate, tides, migration','keep the whole thing alive',0)}
