@@ -323,6 +323,31 @@ window.__RO__ = Object.fromEntries([
 [`Balancing loops exist precisely to keep the paradigm stable. Push the high point and the structure pushes back.`, `Buclele de echilibrare există tocmai ca să mențină paradigma stabilă. Împinge punctul de sus, și structura împinge înapoi.`],
 [`layout after Werner Vogels' final keynote · re:Invent 2025`, `layout după ultimul keynote al lui Werner Vogels · re:Invent 2025`],
 
+/* ---------- 16 · distribute effort ---------- */
+[`Discipline`, `Disciplină`],
+[`Don't maximize effort. <span class="grad-warm">Distribute it.</span>`, `Nu maximiza efortul. <span class="grad-warm">Distribuie-l.</span>`],
+[`Discipline is spending a finite budget of time, energy and attention across the lever — by what the system is short of right now.`, `Disciplina înseamnă să cheltuiești un buget finit de timp, energie și atenție de-a lungul pârghiei — după ceea ce îi lipsește sistemului acum.`],
+[`familiar work`, `muncă familiară`],
+[`visible progress`, `progres vizibil`],
+[`comfort`, `confort`],
+[`routine`, `rutină`],
+[`LOW ON THE LEVER`, `JOS PE PÂRGHIE`],
+[`predictable · comfortable · diminishing returns`, `previzibil · confortabil · randamente în scădere`],
+[`what we already do well`, `ce facem deja bine`],
+[`the level is set by the shortest stave`, `nivelul e dat de cea mai scurtă doagă`],
+[`next unit of effort`, `următoarea unitate de efort`],
+[`the part we avoid`, `partea pe care o evităm`],
+[`THE LIMITING FACTOR DECIDES`, `FACTORUL LIMITATIV DECIDE`],
+[`more nitrogen does nothing when potassium is short — Liebig`, `mai mult azot nu ajută când lipsește potasiul — Liebig`],
+[`HIGH ON THE LEVER`, `SUS PE PÂRGHIE`],
+[`uncertain · uncomfortable · mostly misses — outsized wins`, `incert · inconfortabil · mai ales ratări — câștiguri disproporționate`],
+[`<b>Reinforcing loop</b> — comfort feeds routine`, `<b>Buclă de amplificare</b> — confortul hrănește rutina`],
+[`<b>Success to the successful</b> — skill attracts resources`, `<b>Succes celui de succes</b> — priceperea atrage resurse`],
+[`<b>Limiting factor</b> — Liebig's law`, `<b>Factor limitativ</b> — legea lui Liebig`],
+[`<b>Commons</b> — attention is finite`, `<b>Bun comun</b> — atenția e finită`],
+[`Not “where can I make progress?” — <em>“where does the next unit of effort create the greatest value for the system?”</em>`, `Nu „unde pot face progres?” — <em>„unde creează următoarea unitate de efort cea mai mare valoare pentru sistem?”</em>`],
+
+/* ---------- 17 · the lens ---------- */
 /* ---------- 12 · the lens ---------- */
 [`The Three at the Top`, `Cele trei din vârf`],
 [`See the lens. <span class="grad">Then set it down.</span>`, `Vezi lentila. <span class="grad">Apoi las-o jos.</span>`],
@@ -862,5 +887,16 @@ window.__RO__ = Object.fromEntries([
 [`On screen: one question builds word by word — "If A causes B — is it possible that B also causes A?"`, `Pe ecran: o singură întrebare se construiește cuvânt cu cuvânt — „Dacă A îl provoacă pe B — e posibil ca B să îl provoace și pe A?”`],
 [`Let the question finish building. Then wait one beat longer than feels comfortable.`, `Lasă întrebarea să se construiască până la capăt. Apoi așteaptă o clipă mai mult decât e confortabil.`],
 [`Meadows ends her first chapter with this. We are trained to think in straight lines: A causes B — find A, fix A. But you have just watched two loops in which B turns around and causes A. That is the whole shift, in one question. And it gets more interesting when a stock has more than one loop pulling on it — which is exactly what comes next.`, `Meadows își încheie primul capitol cu asta. Suntem antrenați să gândim în linie dreaptă: A îl provoacă pe B — găsește A, repară A. Dar tocmai ați văzut două bucle în care B se întoarce și îl provoacă pe A. Asta e toată schimbarea, într-o singură întrebare. Și devine mai interesant când un stoc are mai multe bucle care trag de el — exact ce urmează.`],
+/* ---- notes 16 · distribute effort ---- */
+[`Distribute the effort`, `Distribuie efortul`],
+[`On screen: three panels. Left, an orange R loop — familiar work → visible progress → comfort → routine. Centre, Liebig's barrel: five tall staves and one short one, the water level set by the short stave and spilling over it; a gold arrow "next unit of effort" points at the short stave. Right, a target with nine red misses and one purple hit in the centre. Four archetype chips below.`, `Pe ecran: trei panouri. Stânga, o buclă R portocalie — muncă familiară → progres vizibil → confort → rutină. Centru, butoiul lui Liebig: cinci doage înalte și una scurtă, nivelul apei dat de doaga scurtă și revărsându-se peste ea; o săgeată aurie „următoarea unitate de efort” arată spre doaga scurtă. Dreapta, o țintă cu nouă ratări roșii și o lovitură mov în centru. Patru etichete cu arhetipuri dedesubt.`],
+[`The lever tells you the top moves the system. Here is the part it doesn't tell you — and it changed how I think about discipline.`, `Pârghia îți spune că vârful mișcă sistemul. Iată partea pe care n-o spune — și care mi-a schimbat felul în care gândesc disciplina.`],
+[`Point at the R loop.`, `Arată spre bucla R.`],
+[`Working low on the lever is demanding, but it is <em>comfortable</em>, because the outcome is predictable. That comfort is a reinforcing loop: familiar work gives visible progress, progress gives comfort, comfort becomes routine, routine sends me back to familiar work. I know it isn't the best use of my hours — and I still feel the progress, so I keep doing what I already know how to do. It's success-to-the-successful running inside one person: the skill that already has resources attracts more.`, `Munca jos pe pârghie e solicitantă, dar e <em>confortabilă</em>, pentru că rezultatul e previzibil. Confortul acela e o buclă de amplificare: munca familiară dă progres vizibil, progresul dă confort, confortul devine rutină, rutina mă trimite înapoi la munca familiară. Știu că nu e cea mai bună folosire a orelor mele — și tot simt progresul, așa că continui să fac ce știu deja. E „succes celui de succes” rulând într-o singură persoană: priceperea care are deja resurse atrage și mai multe.`],
+[`Point at the target.`, `Arată spre țintă.`],
+[`The opposite extreme isn't rational either. Aim only at the top — mental models, paradigms — and the potential impact is huge, but so is the uncertainty. Far more misses than wins. Remember the thrower on the previous slide.`, `Nici extrema opusă nu e rațională. Țintește doar vârful — modele mentale, paradigme — și impactul potențial e uriaș, dar la fel e și incertitudinea. Mult mai multe ratări decât câștiguri. Amintiți-vă de aruncătorul de pe slide-ul anterior.`],
+[`Point at the barrel, then at the short stave.`, `Arată spre butoi, apoi spre doaga scurtă.`],
+[`So the lesson is not "always aim high." It's Liebig's law, from the chapter on limiting factors: a plant can have all the nitrogen in the world — if potassium is what it's short of, more nitrogen grows nothing, and a pinch of potassium changes everything. The barrel holds exactly as much as its shortest stave. Effort works the same way. We keep pouring into what we're already good at because every extra unit still <em>looks</em> like it produces something — but once that part is no longer the constraint, its marginal value is close to zero. Meanwhile a small, uncomfortable unit of effort into the neglected stave can lift the whole system tenfold.`, `Deci lecția nu e „țintește mereu sus”. E legea lui Liebig, din capitolul despre factorii limitativi: o plantă poate avea tot azotul din lume — dacă potasiul e ce îi lipsește, mai mult azot nu crește nimic, iar un vârf de potasiu schimbă totul. Butoiul ține exact cât cea mai scurtă doagă. Efortul funcționează la fel. Continuăm să turnăm în ceea ce facem deja bine pentru că fiecare unitate în plus încă <em>pare</em> să producă ceva — dar odată ce partea aceea nu mai e constrângerea, valoarea ei marginală e aproape zero. Între timp, o unitate mică și inconfortabilă de efort în doaga neglijată poate ridica întregul sistem de zece ori.`],
+[`Discipline, then, is not maximizing effort. It's distributing a finite budget of time, energy and attention across the lever according to the system's current constraint — and your attention is a commons too, with every part of the system competing for it. So the question changes. Not "where can I make progress?" but <em>"where does the next unit of effort create the greatest value for the system?"</em>`, `Disciplina, așadar, nu înseamnă să maximizezi efortul. Înseamnă să distribui un buget finit de timp, energie și atenție de-a lungul pârghiei, după constrângerea curentă a sistemului — iar atenția ta e și ea un bun comun, cu fiecare parte a sistemului concurând pentru ea. Așa că întrebarea se schimbă. Nu „unde pot face progres?”, ci <em>„unde creează următoarea unitate de efort cea mai mare valoare pentru sistem?”</em>`],
 
 ]);

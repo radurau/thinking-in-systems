@@ -53,6 +53,7 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 11 | ✎ Delays — kicker says **Delays**; dealership's 3 delays (perceive / respond / deliver) → oscillation; "multiply by three" (Forrester / George Talaba) | 9 | dealership from #6 → oscillation; → who knows what, when? | [x] |
 | 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [x] |
 | 13 | ✎ Twelve leverage points — **payoff**: every rung has now been a slide; ladder lights up bottom-to-top | all | → the top three rungs deserve their own slides | [x] |
+| 13b | ★ Don't maximize effort. Distribute it. — comfort R loop · Liebig's barrel (limiting factor) · target of misses; the question is where the next unit of effort creates the most value (28 Aug, from Radu's discipline note) | — | ladder → honest complement → top three rungs | [x] |
 | 14 | ✎ Goals · Paradigms · Transcending — add **goals**: "purpose is deduced from behaviour, not rhetoric" | 3, 2, 1 | → the lens sits inside a bigger system | [x] |
 | 15 | ✎ Systems inside systems — **zoom** tree → forest → planet → galaxy; hierarchy, stable intermediate forms, resilience | — | → why we still get surprised | [x] |
 | 16 | ★ Why systems surprise us — nonlinear (fertiliser / advertising), no real boundaries, bounded rationality (fisherman with a mortgage) | — | → recurring structures = traps, no villains | [ ] optional |
@@ -110,7 +111,7 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 - [x] Notes panel: 28 sections, jumps and numbers in sync (`renumber-notes.py --check`); live-highlight mechanism unchanged (`#nN` by broadcast)
 - [~] Reduced-motion: new slides use `.fadein/.pop/.draw` end states and →-driven steps (no timed reveals) — spot-check on a reduce-motion Mac before the talk
 - [ ] ⌘P print: one slide per page, HUD hidden (`#hud` has a print rule; slide 4/16 step states print as-is)
-- [x] Notes total 44 min against a 50-min talk → 6 min slack (28 Aug: slide 4 split +1.5, A-causes-B +0.5). If the dry run still overruns, trim the AI block first (6 slides / ~8 min).
+- [x] Notes total 46 min against a 50-min talk → 4 min slack (28 Aug: slide 4 split +1.5, A-causes-B +0.5, Distribute effort +2). Trim the AI block first if the dry run overruns. If the dry run still overruns, trim the AI block first (6 slides / ~8 min).
 - [ ] Commit per phase; **no push** until Radu says so
 
 ## Phase 7 — Review
