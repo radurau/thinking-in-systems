@@ -2025,7 +2025,7 @@ body{
     <div class="kicker r grad">Where to Push</div>
     <h2 class="title r" style="--d:.15s;margin-bottom:1.2vh">Twelve <span class="grad">leverage points.</span></h2>
     <p class="sub r" style="--d:.3s">You have now met every one of these. Meadows ranks them — places to intervene, in increasing order of power.</p>
-    <svg class="fig" viewBox="0 0 1000 440" aria-hidden="true" style="max-width:min(1320px,90vw);margin-top:1.6vh">
+    <svg class="fig leverfig" viewBox="0 0 1000 440" aria-hidden="true" style="max-width:min(1320px,90vw);margin-top:1.6vh">
       <!-- the lever assembly — everything that tilts together -->
       <g>
         <animateTransform attributeName="transform" type="rotate" calcMode="spline" dur="75s" begin="22.3s" repeatCount="indefinite"
@@ -2292,6 +2292,9 @@ body{
       </g>
       <text class="fadein lbl-sm" x="985" y="432" text-anchor="end" style="--d:2.9s">layout after Werner Vogels' final keynote · re:Invent 2025</text>
     </svg>
+    <span class="step-item lv" style="display:none" aria-hidden="true"></span>
+    <span class="step-item lv" style="display:none" aria-hidden="true"></span>
+    <p class="ti-hint r" style="--d:2.8s">press → for the forklift · → again for the thrower</p>
   </div>
 </section>
 
@@ -3921,6 +3924,7 @@ body{
     applyTheme(cur);
     /* only the active slide's SVG clocks run — the rest are paused to keep the deck smooth */
     slides.forEach((sl,idx)=>sl.querySelectorAll('svg').forEach(v=>{ try{ idx===cur ? v.unpauseAnimations() : v.pauseAnimations(); }catch(e){} }));
+    syncLever();
     /* ladder HUD: light every rung a slide up to here has taught */
     const covered=new Set();
     for(let i=0;i<=cur;i++) (slides[i].dataset.rungs||'').split(/\s+/).filter(Boolean).forEach(r=>covered.add(r));
@@ -3957,6 +3961,19 @@ body{
       p.classList.toggle('current', i === last);
     });
   }
+  /* slide 15: the two acts on the lever play only when asked (→ forklift, → thrower) */
+  let leverTimer=null;
+  function leverSeg(svg,t0,t1){
+    clearInterval(leverTimer); svg.setCurrentTime(t0); svg.unpauseAnimations();
+    leverTimer=setInterval(()=>{ try{ if(svg.getCurrentTime()>=t1){ svg.pauseAnimations(); clearInterval(leverTimer); } }catch(e){ clearInterval(leverTimer); } },100);
+  }
+  function syncLever(){
+    const fig=slides[cur].querySelector('.leverfig'); if(!fig) return;
+    const on=slides[cur].querySelectorAll('.lv.on').length;
+    if(on===0){ clearInterval(leverTimer); try{ fig.setCurrentTime(22.29); fig.pauseAnimations(); }catch(e){} }
+    else if(on===1) leverSeg(fig,22.3,57.6);
+    else leverSeg(fig,57.6,96.9);
+  }
   function syncMethod(){
     const fig = slides[cur].querySelector('.mfig');
     if(!fig) return;
@@ -3970,14 +3987,14 @@ body{
       curTrap.classList.add('expanded'); return true;
     }
     const it = slides[cur].querySelector('.step-item:not(.on)');
-    if(it){ it.classList.add('on'); syncTraps(); syncMethod(); return true; }
+    if(it){ it.classList.add('on'); syncTraps(); syncMethod(); syncLever(); return true; }
     return false;
   }
   function stepBack(){
     const expanded = slides[cur].querySelector('.trap.current.expanded');
     if(expanded){ expanded.classList.remove('expanded'); return true; }
     const ons = slides[cur].querySelectorAll('.step-item.on');
-    if(ons.length){ ons[ons.length-1].classList.remove('on'); syncTraps(); syncMethod(); return true; }
+    if(ons.length){ ons[ons.length-1].classList.remove('on'); syncTraps(); syncMethod(); syncLever(); return true; }
     return false;
   }
   /* slide 3 cinematic: first forward-press finishes the ~22s sequence,
