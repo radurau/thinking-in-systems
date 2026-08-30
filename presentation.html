@@ -226,15 +226,15 @@ body{
 .book-shadow{width:60%;height:14px;margin:-4px auto 0;border-radius:50%;
   background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 70%)}
 /* slide 2: animations | book | video, side by side */
-.book-trio{display:grid;grid-template-columns:auto auto;
-  grid-template-areas:"book anim" "book vid";
+.book-trio{display:grid;grid-template-columns:auto auto auto;
+  grid-template-areas:"anim book vid";
   align-items:center;justify-content:center;
-  column-gap:clamp(28px,6vw,96px);row-gap:clamp(12px,1.6vw,22px);
+  column-gap:clamp(36px,7vw,120px);row-gap:clamp(12px,1.6vw,22px);
   margin:2.6vh auto 1.8vh}
 .book-trio .book-scene{grid-area:book;margin:0}
 .book-trio .anim-side{grid-area:anim;justify-self:center}
-.book-trio .trio-side.vid-side{grid-area:vid;width:clamp(266px,29vw,336px)}
-.book-trio .trio-side{width:clamp(170px,19vw,240px)}
+.book-trio .trio-side.vid-side{grid-area:vid;width:clamp(300px,26vw,420px)}
+.book-trio .trio-side{width:clamp(220px,22vw,320px)}
 .book-trio .sys-fig{width:100%;height:auto;display:block}
 .sys-fig .sys-lbl{font-size:13px;font-weight:600;fill:var(--ink-dim)}
 .vidwrap{display:flex;flex-direction:column;gap:8px}
