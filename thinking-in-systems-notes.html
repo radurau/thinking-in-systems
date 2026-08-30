@@ -861,7 +861,9 @@ addEventListener('resize', ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout((
         items.push({t:shortCue(p.textContent), press:true});
       }
     });
-    return items;
+    /* a plain beat that contains (or is contained by) a hit is a duplicate */
+    const hits=items.filter(i=>i.hit).map(i=>i.t.toLowerCase());
+    return items.filter(i=>i.hit||i.press||!hits.some(h=>i.t.toLowerCase().includes(h.slice(0,60))||h.includes(i.t.toLowerCase().slice(0,60))));
   }
   function rebuild(){
     document.querySelectorAll('.note').forEach(sec=>{
