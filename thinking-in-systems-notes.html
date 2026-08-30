@@ -285,15 +285,15 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
       <span class="num">07</span><h2>Numbers and buffers</h2>
       <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#7">Slide 7 ↗</a>
     </div>
-    <p class="onscreen">On screen: the same bathtub — now a car dealer's lot. Factory → deliveries → cars on the lot → sales → customers. A yellow dial appears on the inflow valve (<b>the number</b>), then a teal dashed line inside the tub (<b>the buffer</b>).</p>
+    <p class="onscreen">On screen: the same bathtub — now a car dealer's lot. Factory → deliveries → cars on the lot → sales → customers. Nothing extra until you press: → brings the yellow dial on the inflow valve (<b>the number</b>), → again fills a teal band in the tub (<b>the buffer</b>), → lights the last chip.</p>
     <p class="say">Same tub, new owner. This is a car dealer's lot. Cars arrive from the factory, cars leave with customers, and the stock in between is what she can actually see when she walks outside.</p>
     <p class="say">Every stock comes with two knobs, and the book puts them at the very bottom of its list of places to intervene — so we start there.</p>
-    <p class="cue">Wait for the yellow dial.</p>
+    <p class="cue">Press → — the yellow dial appears on the inflow valve.</p>
     <p class="say">The first knob is a <em>number</em>. How many cars per order. A sprint length. An alert threshold. Numbers are where ninety percent of our attention goes — we argue about them in every meeting — and they change the system less than anything else on the list. Turn the dial, the tap runs a bit harder, nothing else moves.</p>
-    <p class="cue">Wait for the teal dashed line.</p>
+    <p class="cue">Press → — the teal band appears: the level she refuses to drop below.</p>
     <p class="say">The second knob is a <em>buffer</em>: the level you refuse to drop below. She keeps ten days of cars on the lot because a delivery takes five. A cash reserve is a buffer. Inventory is a buffer. Slack in your calendar is a buffer.</p>
     <p class="say">Buffers are how systems forgive a bad week. A bigger buffer makes everything steadier — and everything slower to change. Which is why Meadows ranks them low too: they are usually physical, expensive, and nobody wants to resize a warehouse.</p>
-    <p class="cue">Point at the dial, then at the line, and hand off to the next slide.</p>
+    <p class="cue">Press → for the last chip, then hand off to the next slide.</p>
     <p class="say">So: knobs and reserves. Easy to see, easy to argue about. But notice what we skipped — <em>who</em> decides to turn the dial, and based on what? That's the next building block, and it's where systems start to get interesting.</p>
   </section>
 
@@ -303,11 +303,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
       <span class="num">08</span><h2>Feedback loops</h2>
       <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#8">Slide 8 ↗</a>
     </div>
-    <p class="onscreen">On screen: a causal loop — the system's state → what you observe → how you respond — with two signals circulating; example chips below, your bank balance first.</p>
+    <p class="onscreen">On screen: a causal loop — the system's state → what you observe → how you respond — with two signals circulating; the nodes read cars on the lot → what the dealer sees → what she orders; example chips below, the car lot first.</p>
     <p class="say">Second building block. Stocks don't just sit there — systems watch their own stocks and react. That's a <em>feedback loop</em>: the system talking to itself.</p>
+    <p class="say">Our dealer runs one every week. She walks out, looks at the lot, compares it with ten days of sales — and writes the order. The stock changed what she did; what she did will change the stock. Output circles back to become input.</p>
     <p class="say">You run one every month without noticing. The statement arrives; the cash in your account is a stock. When it's getting low, you pick up extra hours, you skip the restaurant — money flowing in goes up, money flowing out goes down. When it grows comfortable, you ease off. Nobody told you to. The stock itself changed your behaviour, and your behaviour changed the stock. <em>Act, observe, adjust, repeat</em> — and notice it works in both directions: too little and too much both get corrected.</p>
-    <p class="cue">One story if you want the room leaning in: Yellowstone.</p>
-    <p class="say">Nature runs the most beautiful version of this. In 1995, Yellowstone brought wolves back after seventy years. The wolves didn't just eat elk — the elk stopped grazing the river valleys bare, the willows came back, the beavers came back, the beaver dams changed how the water flowed. <em>The wolves moved the rivers</em> — through nothing but feedback loops. Werner Vogels told that exact story in his final keynote, because it's true of our systems too: it's never the parts. It's the loops.</p>
     <p class="say">Every loop in the world comes in one of two flavors: loops that <em>stabilize</em>, and loops that <em>amplify</em>. Let me show you both — because they explain almost everything.</p>
   </section>
 

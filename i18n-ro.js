@@ -154,12 +154,12 @@ window.__RO__ = Object.fromEntries([
 [`Building Block № 3`, `Cărămida № 3`],
 [`Building Block № 2`, `Cărămida № 2`],
 [`Feedback is how a system<br><span class="grad">talks to itself.</span>`, `Feedbackul e felul în care un sistem<br><span class="grad">își vorbește sieși.</span>`],
-[`the system's state`, `starea sistemului`],
-[`what you observe`, `ce observi`],
-[`how you respond`, `cum reacționezi`],
+[`cars on the lot`, `mașinile din parc`],
+[`what the dealer sees`, `ce vede dealerul`],
+[`what she orders`, `ce comandă ea`],
 [`feedback`, `feedback`],
 [`output becomes input`, `ieșirea devine intrare`],
-[`<b>Yellowstone wolves</b> — loops that moved rivers`, `<b>Lupii din Yellowstone</b> — bucle care au mutat râuri`],
+[`<b>The car lot</b> — lot drops, orders rise`, `<b>Parcul auto</b> — parcul scade, comenzile cresc`],
 [`Scale → what you eat`, `Cântarul → ce mănânci`],
 [`<b>Your bank balance</b> — low: work more · high: ease off`, `<b>Soldul tău bancar</b> — mic: muncești mai mult · mare: o lași mai moale`],
 [`Retry policy → load`, `Politica de reîncercare → încărcare`],
@@ -634,10 +634,8 @@ window.__RO__ = Object.fromEntries([
 [`Here's the law: a stock changes <em>only</em> through its flows. There are no shortcuts. You can't wish a stock to a new level. That's why crash diets fail and why nobody gets rich in a week — stocks take the time they take.`, `Iată legea: un stoc se schimbă <em>doar</em> prin fluxurile lui. Nu există scurtături. Nu poți dori un stoc la un nou nivel. De aceea eșuează dietele drastice și de aceea nimeni nu se îmbogățește într-o săptămână — stocurile cer timpul de care au nevoie.`],
 
 [`Feedback loops`, `Bucle de feedback`],
-[`On screen: a causal loop — the system's state → what you observe → how you respond — with two signals circulating; example chips below, your bank balance first.`, `Pe ecran: o buclă cauzală — starea sistemului → ce observi → cum reacționezi — cu două semnale care circulă; etichete de exemplu dedesubt, soldul tău bancar primul.`],
+[`On screen: a causal loop — the system's state → what you observe → how you respond — with two signals circulating; the nodes read cars on the lot → what the dealer sees → what she orders; example chips below, the car lot first.`, `Pe ecran: o buclă cauzală — starea sistemului → ce observi → cum răspunzi — cu două semnale care circulă; nodurile spun mașinile din parc → ce vede dealerul → ce comandă ea; etichete de exemplu dedesubt, parcul auto primul.`],
 [`Second building block. Stocks don't just sit there — systems watch their own stocks and react. That's a <em>feedback loop</em>: the system talking to itself.`, `A doua cărămidă. Stocurile nu stau pur și simplu acolo — sistemele își urmăresc propriile stocuri și reacționează. Asta e o <em>buclă de feedback</em>: sistemul vorbindu-și sieși.`],
-[`One story if you want the room leaning in: Yellowstone.`, `O poveste dacă vrei sala atentă: Yellowstone.`],
-[`Nature runs the most beautiful version of this. In 1995, Yellowstone brought wolves back after seventy years. The wolves didn't just eat elk — the elk stopped grazing the river valleys bare, the willows came back, the beavers came back, the beaver dams changed how the water flowed. <em>The wolves moved the rivers</em> — through nothing but feedback loops. Werner Vogels told that exact story in his final keynote, because it's true of our systems too: it's never the parts. It's the loops.`, `Natura rulează cea mai frumoasă versiune. În 1995, Yellowstone a readus lupii după șaptezeci de ani. Lupii nu doar au mâncat cerbi — cerbii au încetat să pască la fund văile râurilor, sălciile au revenit, castorii au revenit, barajele de castori au schimbat felul în care curgea apa. <em>Lupii au mutat râurile</em> — doar prin bucle de feedback. Werner Vogels a spus exact povestea asta în ultimul lui keynote, fiindcă e adevărată și pentru sistemele noastre: niciodată nu sunt părțile. Sunt buclele.`],
 [`Every loop in the world comes in one of two flavors: loops that <em>stabilize</em>, and loops that <em>amplify</em>. Let me show you both — because they explain almost everything.`, `Orice buclă din lume vine într-una din două variante: bucle care <em>stabilizează</em> și bucle care <em>amplifică</em>. Lasă-mă să ți le arăt pe amândouă — fiindcă explică aproape tot.`],
 [`On screen: the bank-interest loop — money ⇄ interest, both arrows "+", marked R — beside its exponential curve; the whole room turns warm.`, `Pe ecran: bucla dobânzii bancare — bani ⇄ dobândă, ambele săgeți „+”, marcată R — lângă curba ei exponențială; toată sala se încălzește.`],
 [`Flavor two: the reinforcing loop. <em>More leads to more.</em>`, `A doua variantă: bucla de amplificare. <em>Mai mult duce la mai mult.</em>`],
@@ -797,15 +795,15 @@ window.__RO__ = Object.fromEntries([
 
 /* ---- notes 6 · numbers & buffers ---- */
 [`Numbers and buffers`, `Numere și rezerve`],
-[`On screen: the same bathtub — now a car dealer's lot. Factory → deliveries → cars on the lot → sales → customers. A yellow dial appears on the inflow valve (<b>the number</b>), then a teal dashed line inside the tub (<b>the buffer</b>).`, `Pe ecran: aceeași cadă — acum parcul unui dealer auto. Fabrică → livrări → mașini în parc → vânzări → clienți. Un cadran galben apare pe robinetul de intrare (<b>numărul</b>), apoi o linie punctată turcoaz în cadă (<b>rezerva</b>).`],
+[`On screen: the same bathtub — now a car dealer's lot. Factory → deliveries → cars on the lot → sales → customers. Nothing extra until you press: → brings the yellow dial on the inflow valve (<b>the number</b>), → again fills a teal band in the tub (<b>the buffer</b>), → lights the last chip.`, `Pe ecran: aceeași cadă — acum parcul unui dealer auto. Fabrică → livrări → mașini în parc → vânzări → clienți. Nimic în plus până nu apeși: → aduce cadranul galben pe robinetul de intrare (<b>numărul</b>), → încă o dată umple o bandă turcoaz în cadă (<b>rezerva</b>), → aprinde ultima etichetă.`],
 [`Same tub, new owner. This is a car dealer's lot. Cars arrive from the factory, cars leave with customers, and the stock in between is what she can actually see when she walks outside.`, `Aceeași cadă, alt proprietar. E parcul unui dealer auto. Mașinile vin de la fabrică, pleacă cu clienții, iar stocul dintre ele e ceea ce vede efectiv când iese afară.`],
 [`Every stock comes with two knobs, and the book puts them at the very bottom of its list of places to intervene — so we start there.`, `Orice stoc vine cu două butoane, iar cartea le pune chiar la baza listei de locuri unde poți interveni — așa că începem de acolo.`],
-[`Wait for the yellow dial.`, `Așteaptă cadranul galben.`],
+[`Press → — the yellow dial appears on the inflow valve.`, `Apasă → — cadranul galben apare pe robinetul de intrare.`],
 [`The first knob is a <em>number</em>. How many cars per order. A sprint length. An alert threshold. Numbers are where ninety percent of our attention goes — we argue about them in every meeting — and they change the system less than anything else on the list. Turn the dial, the tap runs a bit harder, nothing else moves.`, `Primul buton e un <em>număr</em>. Câte mașini pe comandă. Lungimea unui sprint. Un prag de alertă. Numerele sunt acolo unde se duce nouăzeci la sută din atenția noastră — ne certăm pe ele în fiecare ședință — și schimbă sistemul mai puțin decât orice altceva de pe listă. Răsucești cadranul, robinetul curge un pic mai tare, nimic altceva nu se mișcă.`],
-[`Wait for the teal dashed line.`, `Așteaptă linia punctată turcoaz.`],
+[`Press → — the teal band appears: the level she refuses to drop below.`, `Apasă → — apare banda turcoaz: nivelul sub care refuză să coboare.`],
 [`The second knob is a <em>buffer</em>: the level you refuse to drop below. She keeps ten days of cars on the lot because a delivery takes five. A cash reserve is a buffer. Inventory is a buffer. Slack in your calendar is a buffer.`, `Al doilea buton e o <em>rezervă</em>: nivelul sub care refuzi să cobori. Ține zece zile de mașini în parc pentru că o livrare durează cinci. O rezervă de numerar e un buffer. Inventarul e un buffer. Spațiul liber din calendar e un buffer.`],
 [`Buffers are how systems forgive a bad week. A bigger buffer makes everything steadier — and everything slower to change. Which is why Meadows ranks them low too: they are usually physical, expensive, and nobody wants to resize a warehouse.`, `Rezervele sunt felul în care sistemele iartă o săptămână proastă. O rezervă mai mare face totul mai stabil — și totul mai greu de schimbat. De aceea Meadows le pune și pe ele jos în listă: sunt de obicei fizice, scumpe și nimeni nu vrea să redimensioneze un depozit.`],
-[`Point at the dial, then at the line, and hand off to the next slide.`, `Arată spre cadran, apoi spre linie, și fă trecerea la slide-ul următor.`],
+[`Press → for the last chip, then hand off to the next slide.`, `Apasă → pentru ultima etichetă, apoi fă trecerea la slide-ul următor.`],
 [`So: knobs and reserves. Easy to see, easy to argue about. But notice what we skipped — <em>who</em> decides to turn the dial, and based on what? That's the next building block, and it's where systems start to get interesting.`, `Deci: butoane și rezerve. Ușor de văzut, ușor de dezbătut. Dar observați ce am sărit — <em>cine</em> decide să răsucească cadranul și pe baza a ce? Asta e următoarea cărămidă, și acolo sistemele încep să devină interesante.`],
 
 /* ---- notes 10 · delays (dealer rewrite) ---- */
@@ -939,5 +937,7 @@ window.__RO__ = Object.fromEntries([
 /* ---- notes 4 · zoom back in ---- */
 [`Press → once more and say nothing for five seconds — the picture falls back in through the galaxy, the solar system, the society and the body before it lands on the cells.`, `Apasă → încă o dată și nu spune nimic cinci secunde — imaginea cade înapoi prin galaxie, sistemul solar, societate și corp înainte să aterizeze pe celule.`],
 [`And now zoom back in — past the tree, past the body, past the planet: cells in a leaf, cells in a body, atoms in the Earth. Same three rows again. Elements, interconnections, purpose — all the way out and all the way down.`, `Și acum înapoi înăuntru — dincolo de copac, de corp, de planetă: celulele unei frunze, celulele unui corp, atomii Pământului. Aceleași trei rânduri. Elemente, interconexiuni, scop — până afară de tot și până jos de tot.`],
+[`press → for the number, then the buffer`, `apasă → pentru număr, apoi pentru rezervă`],
+[`Our dealer runs one every week. She walks out, looks at the lot, compares it with ten days of sales — and writes the order. The stock changed what she did; what she did will change the stock. Output circles back to become input.`, `Dealerul nostru rulează una în fiecare săptămână. Iese, se uită la parc, îl compară cu zece zile de vânzări — și scrie comanda. Stocul i-a schimbat acțiunea; acțiunea ei va schimba stocul. Ieșirea se întoarce și devine intrare.`],
 
 ]);
