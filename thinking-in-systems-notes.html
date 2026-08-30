@@ -160,6 +160,9 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
 .note .beats li::marker{color:var(--accent,#7aa2ff)}
 .mode-brief .note .say,.mode-brief .note .onscreen,.mode-brief .note .aside,.mode-brief .note .cue{display:none}
 .mode-brief .note .beats{display:block}
+.say .hit,.beats li.hit{font-weight:750;color:transparent;background:linear-gradient(92deg,#fb7185,#f472b6 45%,#c084fc);-webkit-background-clip:text;background-clip:text}
+.beats li.hit{font-size:1.12em}
+.beats li.hit::marker{color:#f472b6}
 .note .beats li.press{list-style:none;color:#fbbf24;font-weight:650;font-size:14.5px;margin:10px 0 10px -14px}
 .note .cue.press{--cue:#fbbf24;color:#fbbf24}
 .note .cue.press::before{color:#fbbf24}
@@ -255,7 +258,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     </div>
     <p class="onscreen">On screen: Meadows' verbatim definition; then a tree, a human body and a planet side by side, each broken into the same three rows — elements, interconnections, purpose. Four → presses zoom out: forest / society / planet with moon → solar system → galaxy → universe; a fifth zooms all the way back in — cells in a leaf, cells in a body, atoms in the Earth. Each scene keeps the same three-row caption.</p>
     <p class="say">So what is a system? Meadows' own definition is on screen: <em>"an interconnected set of elements that is coherently organized in a way that achieves something."</em> Three things hiding in that sentence. <em>Elements</em> — the parts. <em>Interconnections</em> — how the parts talk to each other. And a <em>purpose</em> — what the whole thing is actually optimizing for, which is often not what's written on the poster in the lobby.</p>
-    <p class="say">Look at three things nobody would call alike. A tree: roots, trunk, leaves — connected by sap and water and light — trying to grow and seed. Your body: organs, bones, cells — connected by blood and nerves and hormones — trying to stay alive. A planet: oceans, forests, creatures, us — connected by water, carbon, food chains — staying habitable. Different in every way except the one that matters: <em>each one is elements, interconnections and a purpose.</em></p>
+    <p class="say">Look at three things nobody would call alike. A tree: roots, trunk, leaves — connected by sap and water and light — trying to grow and seed. Your body: organs, bones, cells — connected by blood and nerves and hormones — trying to stay alive. A planet: oceans, forests, creatures, us — connected by water, carbon, food chains — staying habitable. Different in every way except the one that matters: <span class="hit"><em>each one is elements, interconnections and a purpose.</em></span></p>
     <p class="cue">Press → once. The tree becomes a forest, the body a society, the planet gets its moon.</p>
     <p class="say">Now zoom out one level. The forest is a system: trees, soil, deer, fungi — roots literally trading sugar underground. A society is a system: people, roads, laws — held together by trade, language, trust. Same three rows.</p>
     <p class="cue">Press → three more times, one per scene. Don't narrate each — let the pictures do the zooming, then land the line on the universe.</p>
@@ -277,7 +280,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="cue">Press → again. The pitch turns into a basketball court; the passes rewire and end in a shot.</p>
     <p class="say">Two: keep the players, change the rules. Same seven people — and, as Meadows says, <em>you've got a whole new ball game.</em> Interconnections are harder to see than elements, but the system lives in them. Reorganize the exact same people with different rules of contact and you get a completely different team.</p>
     <p class="cue">Press → a third time. The passes turn red and run backwards into the team's own basket.</p>
-    <p class="say">Three: same players, same rules — flip the purpose. Play to lose. Everything on the court is identical and the behaviour is unrecognizable. That's the ranking: elements matter least, interconnections more, purpose most — <em>unless changing an element also changes the connections or the goal.</em> Then it becomes the most important element there is.</p>
+    <p class="say">Three: same players, same rules — flip the purpose. Play to lose. Everything on the court is identical and the behaviour is unrecognizable. That's the ranking: <span class="hit">elements matter least, interconnections more, purpose most</span> — <em>unless changing an element also changes the connections or the goal.</em> Then it becomes the most important element there is.</p>
     <p class="say">Hold on to this. The people are the easiest thing to see and the first thing we blame. The book is going to spend most of its pages on the other two.</p>
   </section>
 
@@ -293,7 +296,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">Your team's backlog? A stock. Requests pour in through the tap, and delivery is the drain — and most teams respond to overflow by demanding a bigger drain instead of touching the tap.</p>
     <p class="cue">No press — slow down for the last line — it's the rule everything else builds on.</p>
     <p class="say">Meadows notes a bias worth admitting: our minds see stocks far more easily than flows — and when we do see flows, we see the tap before the drain. The backlog count gets a dashboard; the rate things leave it rarely does.</p>
-    <p class="say">Here's the law: a stock changes <em>only</em> through its flows. There are no shortcuts. You can't wish a stock to a new level. That's why crash diets fail and why nobody gets rich in a week — stocks take the time they take.</p>
+    <p class="say">Here's the law: <span class="hit">a stock changes <em>only</em> through its flows</span>. There are no shortcuts. You can't wish a stock to a new level. That's why crash diets fail and why nobody gets rich in a week — stocks take the time they take.</p>
   </section>
 
   <!-- ============ 7 ============ -->
@@ -322,7 +325,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     </div>
     <p class="onscreen">On screen: a causal loop — the system's state → what you observe → how you respond — with two signals circulating; the nodes read cars on the lot → what the dealer sees → what she orders; example chips below, the car lot first.</p>
     <p class="say">Second building block. Stocks don't just sit there — systems watch their own stocks and react. That's a <em>feedback loop</em>: the system talking to itself.</p>
-    <p class="say">Our dealer runs one every week. She walks out, looks at the lot, compares it with ten days of sales — and writes the order. The stock changed what she did; what she did will change the stock. Output circles back to become input.</p>
+    <p class="say">Our dealer runs one every week. She walks out, looks at the lot, compares it with ten days of sales — and writes the order. The stock changed what she did; what she did will change the stock. <span class="hit">Output circles back to become input.</span></p>
     <p class="say">You run one every month without noticing. The statement arrives; the cash in your account is a stock. When it's getting low, you pick up extra hours, you skip the restaurant — money flowing in goes up, money flowing out goes down. When it grows comfortable, you ease off. Nobody told you to. The stock itself changed your behaviour, and your behaviour changed the stock. <em>Act, observe, adjust, repeat</em> — and notice it works in both directions: too little and too much both get corrected.</p>
     <p class="say">Every loop in the world comes in one of two flavors: loops that <em>stabilize</em>, and loops that <em>amplify</em>. Let me show you both — because they explain almost everything.</p>
   </section>
@@ -334,7 +337,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
       <span class="time">≈ 2 min</span><a class="jump" href="presentation.html#9">Slide 9 ↗</a>
     </div>
     <p class="onscreen">On screen: a thermostat housing around the loop — room temperature ⇄ heater output, marked B, goal 21°C — with a thermometer on its left; beside it the line settling onto the dashed goal. The mercury rises and falls with the dot on the chart: rose when hot, blue when cold, teal as it settles on 21°.</p>
-    <p class="say">Flavor one: the balancing loop. These loops have a <em>goal</em>, and they fight to reach it — Meadows calls them goal-seeking or stability-seeking.</p>
+    <p class="say">Flavor one: the balancing loop. These loops have a <em>goal</em>, and they fight to reach it — Meadows calls them <span class="hit">goal-seeking or stability-seeking</span>.</p>
     <p class="say">The thermostat in this room is running one right now. So is your body — holding thirty-seven degrees without you lifting a finger. Hunger is a balancing loop. Deadlines are a balancing loop: notice how the work somehow always expands or shrinks to exactly fill the time.</p>
     <p class="say">Two details the book insists on. First, the loop corrects in <em>both</em> directions — too cold and too hot both get pulled back, the way your bank balance got corrected from both ends. Second, every stock leaks. Heat escapes through the walls, so a thermostat that aims at exactly twenty-one will always fall a little short. <em>Set the goal to cover the leak</em> — or the loop will chase a target it can never reach.</p>
     <p class="cue">No press — watch the line settle on the goal, then deliver the punchline slowly.</p>
@@ -352,7 +355,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">A video gets shared, so more people see it, so it gets shared more. A product gets users, which attracts users. You nail a presentation, you gain confidence, the confidence makes the next one better.</p>
     <p class="say">And it runs downhill just as happily. Debt grows interest, which grows the debt. One missed workout makes the next one easier to miss. Same loop — both directions. The loop doesn't care.</p>
     <p class="cue">No press — point at the top of the curve, then read Meadows' warning from the screen.</p>
-    <p class="say">One warning, in her own words: <em>"A quantity growing exponentially toward a limit reaches that limit in a surprisingly short time."</em> Nothing grows forever. The only question is whether you choose the limit — or it chooses you.</p>
+    <p class="say">One warning, in her own words: <span class="hit"><em>"A quantity growing exponentially toward a limit reaches that limit in a surprisingly short time."</em></span> Nothing grows forever. The only question is whether you choose the limit — or it chooses you.</p>
   </section>
 
   <!-- ============ 11 ============ -->
@@ -393,7 +396,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">Now the ingredient that makes systems genuinely hard: <em>delays.</em> You turn the shower knob — nothing. So you turn it further. Two seconds later you're scalded, you overcorrect, and now it's freezing. In a system, you act here — and the consequence shows up over there. Later. Sometimes much later.</p>
     <p class="say">Remember our car dealer? She keeps ten days of cars because deliveries take five. Now watch what the delays do to her. Sales step up a little. She doesn't react to one good day — she averages five days first. That's a <em>perception</em> delay. Once she believes it, she doesn't fix the whole gap in one order; she closes a third at a time. A <em>response</em> delay. And the factory still needs five days. A <em>delivery</em> delay.</p>
     <p class="cue">No press — point at the curve on the right.</p>
-    <p class="say">Meanwhile the lot keeps draining, so she orders a little more. Then the big orders land all at once, the lot overflows, she cuts back hard — and now she's short again. Her lot draws exactly this shower curve. Nobody did anything stupid. <em>A delay inside a balancing loop makes the system oscillate.</em> That's the whole lesson.</p>
+    <p class="say">Meanwhile the lot keeps draining, so she orders a little more. Then the big orders land all at once, the lot overflows, she cuts back hard — and now she's short again. Her lot draws exactly this shower curve. Nobody did anything stupid. <span class="hit"><em>A delay inside a balancing loop makes the system oscillate.</em></span> That's the whole lesson.</p>
     <p class="say">The counter-intuitive part: the fix is not to react faster. If she reacts to the average of six days instead of three, the swings get <em>smaller</em>. Jay Forrester's rule for estimating any delay: ask everyone how long it takes, take your best guess — then multiply by three. My old manager George Talaba told me exactly the same thing, without ever having read this book.</p>
     <p class="aside">If someone objects that a slower dealer misses the Christmas rush — agree. Averaging longer hides real spikes too; the seasonal spike is a case for a bigger buffer, not a faster loop. Context decides.</p>
     <p class="say">Delays are why we overshoot, overcorrect, and give up too soon — we steer by where the ship <em>is</em>, not where it's already heading. So when you change something important, decide in advance how long the delay should be, and don't judge the result before then. And notice what the dealer was missing: not effort — <em>information, arriving late.</em> Hold that thought.</p>
@@ -410,7 +413,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="cue">No press — card one.</p>
     <p class="say">Information. A Dutch suburb, identical houses, identical prices. In some, the electricity meter was in the basement; in others, by accident of design, in the front hallway. The hallway houses used thirty percent less electricity. Nobody ran a campaign. A number people had always been paying for simply became visible. Our car dealer had the same problem — not effort, <em>late information</em>. Most of what goes wrong in systems goes wrong because information is missing, late, or biased.</p>
     <p class="cue">No press — card two.</p>
-    <p class="say">Rules. Incentives, punishments, constraints. Drivers slow down when they see a police car — not because the road got safer. A department spends its whole budget in December because next year's budget is this year's spending. Rules define the game, which is why changing football into basketball changed everything while the players stayed. And if you ever want to know where power really lives in an organization, don't look at the org chart. <em>Watch who gets to write the rules.</em></p>
+    <p class="say">Rules. Incentives, punishments, constraints. Drivers slow down when they see a police car — not because the road got safer. A department spends its whole budget in December because next year's budget is this year's spending. Rules define the game, which is why changing football into basketball changed everything while the players stayed. And if you ever want to know where power really lives in an organization, don't look at the org chart. <span class="hit"><em>Watch who gets to write the rules.</em></span></p>
     <p class="cue">No press — card three.</p>
     <p class="say">Self-organization. The capacity of a system to make its own structure more complex: a cell dividing, a market inventing a product nobody planned, a team quietly changing how it works. Meadows calls it the most powerful thing a system can do — and notes that it's the first thing we sacrifice for short-term stability and productivity. Every rule about "how we do things here" is a small bet against it. Some of those bets are worth it. Most aren't examined.</p>
     <p class="cue">No press — pause on the one-liner, then advance — the next slide stacks everything so far.</p>
@@ -433,7 +436,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">And the top three: the <em>goal</em> of the system. The <em>paradigm</em> — the mindset the whole system springs from. And number one, almost zen: <em>transcending paradigms</em> — staying loose enough to realize that no single worldview is true.</p>
     <p class="cue">Press → — the forklift drives in, hoists the heavy blocks onto the low end, and the ball barely moves. Point at all that effort.</p>
     <p class="cue">Press → again — the thrower. Point at the misses, count a couple out loud, then at the one that lands and the ball lifting. Let the Meadows quote sit before you move on.</p>
-    <p class="say">And watch the two figures prove it. A forklift, down on the ground, hoisting heavy blocks onto the low end of the arm — more process, more metrics, another reorganized backlog — and the system barely moves. Now a skinny figure at the far end, throwing up toward the top where the mental models live. The pebble is feather-light — a changed goal, a changed belief about what the system is for. But look how high it is, and watch him miss. Again. Again. <em>Then</em> one lands, and the whole thing lifts. That's the honest picture: the pebble is light, and landing it is the hardest throw you'll ever make. As Meadows warns — <em>the higher the leverage point, the more the system will resist changing it.</em> Balancing loops exist precisely to keep the paradigm stable; push the high point and the structure pushes back.</p>
+    <p class="say">And watch the two figures prove it. A forklift, down on the ground, hoisting heavy blocks onto the low end of the arm — more process, more metrics, another reorganized backlog — and the system barely moves. Now a skinny figure at the far end, throwing up toward the top where the mental models live. The pebble is feather-light — a changed goal, a changed belief about what the system is for. But look how high it is, and watch him miss. Again. Again. <em>Then</em> one lands, and the whole thing lifts. That's the honest picture: the pebble is light, and landing it is the hardest throw you'll ever make. As Meadows warns — <span class="hit"><em>the higher the leverage point, the more the system will resist changing it.</em></span> Balancing loops exist precisely to keep the paradigm stable; push the high point and the structure pushes back.</p>
     <p class="say">That's the message hiding in this slide: <em>working smarter beats pushing harder.</em> Not as a motivational poster — as physics. Effort spent on events and patterns is heavy lifting near the fulcrum. Effort spent on goals and mental models is the long arm of the lever.</p>
     <p class="say">The pattern to remember: <em>the higher you climb, the harder the change is to make — and the more it changes everything.</em> We fight over the bottom rung because it's easy. The top rungs are where futures get decided.</p>
     <p class="cue">No press — name both figures as failure modes — the forklift is "all the effort low", the thrower is "all the effort high" — you will come back to them three slides from now.</p>
@@ -446,7 +449,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
       <span class="time">≈ 2 min</span><a class="jump" href="presentation.html#16">Slide 16 ↗</a>
     </div>
     <p class="onscreen">On screen: an eye looks through a tinted lens at four stacked rows — Goals, Rules, Loops, Numbers — which all take the lens's colour. The lens toggles between <i>"Growth is good"</i> and <i>"Enough is enough,"</i> and the rows rewrite themselves each time. To the right, a "step back" arrow, then the same eye holding a fan of lenses — one yellow — none clamped on.</p>
-    <p class="say">The top three points deserve a slower look. Number three: the <em>goal</em>. Not the one in the mission statement — the one the system actually pursues. A government that declares it protects the environment and budgets almost nothing for it does not have environmental protection as a goal. <em>Purpose is deduced from behaviour, never from rhetoric.</em> Watch what a system does for a while, and it will tell you what it's for — and sometimes the purposes of the parts add up to something nobody wants.</p>
+    <p class="say">The top three points deserve a slower look. Number three: the <em>goal</em>. Not the one in the mission statement — the one the system actually pursues. A government that declares it protects the environment and budgets almost nothing for it does not have environmental protection as a goal. <span class="hit"><em>Purpose is deduced from behaviour, never from rhetoric.</em></span> Watch what a system does for a while, and it will tell you what it's for — and sometimes the purposes of the parts add up to something nobody wants.</p>
     <p class="say">Now the two above it. A <em>paradigm</em> is the lens you think through, not about: the shared, unspoken belief the whole system grows out of. "Growth is good." "You can own land." "Nature is just resources."</p>
     <p class="cue">No press — let the left lens flip once — Growth is good → Enough is enough — and point at the rows rewriting themselves underneath it.</p>
     <p class="say">Watch what happens when the lens changes. Same system — but the goals, the rules, the loops, even the numbers all recolour. That's why it's the second-highest leverage point: everything downstream pours out of the belief at the top. Change the belief and the structure rearranges itself.</p>
@@ -478,7 +481,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">Back to the lever. You saw the two ways to waste the budget — the forklift, all of it low; the thrower, all of it high. Here is the third way, and it isn't tidy.</p>
     <p class="cue">No press — let the heaps build; point at a miss at the top when one bounces off.</p>
     <p class="say">Effort comes in different sizes, and it lands unevenly: a heap where the constraint is this quarter, a smaller one where it will be next, a few throws at the mental models that mostly miss — and that's fine, some of them are supposed to miss. What matters is that the budget is spread by what the system is <em>short of</em>, not by what feels productive. This is where I live most days otherwise: familiar work, visible progress, comfort, routine — a reinforcing loop, success-to-the-successful inside one person.</p>
-    <p class="say">Discipline is not maximizing effort; it's distributing a finite budget of time, energy and attention across the lever. Attention is a commons — every part of the system competes for it. So the question changes: not "where can I make progress?" but <em>"where does the next unit of effort create the greatest value for the system?"</em> Why the constraint decides — next slide.</p>
+    <p class="say">Discipline is not maximizing effort; it's distributing a finite budget of time, energy and attention across the lever. Attention is a commons — every part of the system competes for it. So the question changes: not "where can I make progress?" but <span class="hit"><em>"where does the next unit of effort create the greatest value for the system?"</em></span> Why the constraint decides — next slide.</p>
   </section>
 
   <!-- ============ 19 ============ -->
@@ -490,7 +493,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="onscreen">On screen: a plant in soil; on the right, nitrogen units appear one at a time (blue, then red past an "enough" line) while a short red potassium bar stays short. The plant grows with the first five units, stops growing, turns yellow and droops, then browns and drops its leaves. A label names each phase; the loop restarts every 18 seconds.</p>
     <p class="say">Here is why the constraint decides — Liebig's law, from Meadows' chapter on limiting factors. Add nitrogen a unit at a time and the plant grows. Then it stops: the plant is no longer short of nitrogen, it's short of potassium, and more nitrogen does nothing. Keep going anyway and the excess starts to hurt. Keep going still and it kills the plant.</p>
     <p class="cue">No press — point at the short potassium bar.</p>
-    <p class="say">Effort works the same way. We keep pouring into what we're already good at because each extra unit still looks like it produces something — but once that part is no longer the constraint, its marginal value is close to zero, and past a point it's damage: burnout, gold-plating, a team optimising a part the system no longer needs. Meanwhile a pinch of potassium — a small, uncomfortable unit of effort into the neglected part — lifts the whole system tenfold.</p>
+    <p class="say">Effort works the same way. We keep pouring into what we're already good at because each extra unit still looks like it produces something — but once that part is no longer the constraint, its marginal value is close to zero, and past a point it's damage: burnout, gold-plating, a team optimising a part the system no longer needs. Meanwhile <span class="hit">a pinch of potassium — a small, uncomfortable unit of effort into the neglected part — lifts the whole system tenfold</span>.</p>
   </section>
 
   <!-- ============ 20 ============ -->
@@ -821,7 +824,7 @@ addEventListener('resize', ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout((
 (function(){
   function emBeats(p, seen){
     const out=[];
-    p.querySelectorAll('em').forEach(em=>{
+    p.querySelectorAll('em').forEach(em=>{ if(em.closest('.hit')) return;
       let s=em.textContent.replace(/\s+/g,' ').trim().replace(/^[—-]\s*/,'');
       if(s.length<18) return;
       if(!/[.?!…]$/.test(s)) s+='.';
@@ -842,6 +845,11 @@ addEventListener('resize', ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout((
     const items=[]; const seen=new Set();
     sec.querySelectorAll(':scope > p').forEach(p=>{
       if(p.classList.contains('say')){
+        p.querySelectorAll('.hit').forEach(h=>{
+          let s=h.textContent.replace(/\s+/g,' ').trim();
+          const k=s.toLowerCase(); if(seen.has(k)) return; seen.add(k);
+          items.push({t:s.charAt(0).toUpperCase()+s.slice(1), hit:true});
+        });
         const bs=emBeats(p, seen);
         if(bs.length) bs.forEach(x=>items.push({t:x}));
         else{
@@ -860,7 +868,7 @@ addEventListener('resize', ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout((
       let ul=sec.querySelector('.beats');
       if(ul && ul.dataset.hand==='1') return;      /* hand-written beats win */
       if(!ul){ ul=document.createElement('ul'); ul.className='beats'; sec.querySelector('.note-head').after(ul); }
-      ul.innerHTML=beatsFor(sec).map(b=>'<li'+(b.press?' class="press"':'')+'>'+b.t.replace(/</g,'&lt;')+'</li>').join('');
+      ul.innerHTML=beatsFor(sec).map(b=>'<li'+(b.press?' class="press"':(b.hit?' class="hit"':''))+'>'+b.t.replace(/</g,'&lt;')+'</li>').join('');
     });
   }
   function apply(mode){
