@@ -303,8 +303,16 @@ body{
 .slide:has(.zs.s4.on) .zoomfig .zsc3{opacity:0;transform:scale(.3)}
 .slide:has(.zs.s4.on) .zoomfig .zsc4{opacity:1;transform:none}
 .zoomfig .zsc.far{opacity:0;transform:scale(.3)}
-.slide:has(.zs.s5.on) .zoomfig .zsc4{opacity:0;transform:scale(2.6)}
-.slide:has(.zs.s5.on) .zoomfig .zsc5{opacity:1;transform:none}
+/* step 5 · a cinematic zoom back in: universe → galaxy → solar system → society → body → cells */
+@keyframes zin-out{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes zin-pass{0%{opacity:0;transform:scale(.3)}30%{opacity:1;transform:scale(1)}68%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes zin-land{0%{opacity:0;transform:scale(.3)}100%{opacity:1;transform:none}}
+.slide:has(.zs.s5.on) .zoomfig .zsc4{animation:zin-out 1.1s ease-in both}
+.slide:has(.zs.s5.on) .zoomfig .zsc3{animation:zin-pass 1.7s ease-in-out .5s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc2{animation:zin-pass 1.7s ease-in-out 1.8s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc1{animation:zin-pass 1.7s ease-in-out 3.1s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc0{animation:zin-pass 1.7s ease-in-out 4.4s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc5{animation:zin-land 1.2s ease-out 5.8s both}
 
 /* slide 5 · three-act build driven by .step-item (press →) */
 .sysfig .g-court,.sysfig .g-bpass,.sysfig .g-lpass,.sysfig .names-b{opacity:0;transition:opacity .9s ease}
