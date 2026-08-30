@@ -310,14 +310,14 @@ body{
 .zoomfig .zsc.far{opacity:0;transform:scale(.3)}
 /* step 5 · a cinematic zoom back in: universe → galaxy → solar system → society → body → cells */
 @keyframes zin-out{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
-@keyframes zin-pass{0%{opacity:0;transform:scale(.3)}30%{opacity:1;transform:scale(1)}68%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes zin-pass{0%{opacity:0;transform:scale(.28)}22%{opacity:1}78%{opacity:1}100%{opacity:0;transform:scale(2.6)}}
 @keyframes zin-land{0%{opacity:0;transform:scale(.3)}100%{opacity:1;transform:none}}
 .slide:has(.zs.s5.on) .zoomfig .zsc4{animation:zin-out .8s ease-in both}
-.slide:has(.zs.s5.on) .zoomfig .zsc3{animation:zin-pass 1.2s ease-in-out .35s both}
-.slide:has(.zs.s5.on) .zoomfig .zsc2{animation:zin-pass 1.2s ease-in-out 1.25s both}
-.slide:has(.zs.s5.on) .zoomfig .zsc1{animation:zin-pass 1.2s ease-in-out 2.15s both}
-.slide:has(.zs.s5.on) .zoomfig .zsc0{animation:zin-pass 1.2s ease-in-out 3.05s both}
-.slide:has(.zs.s5.on) .zoomfig .zsc5{animation:zin-land .9s ease-out 4.05s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc3{animation:zin-pass 1.5s linear .3s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc2{animation:zin-pass 1.5s linear 1.15s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc1{animation:zin-pass 1.5s linear 2s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc0{animation:zin-pass 1.5s linear 2.85s both}
+.slide:has(.zs.s5.on) .zoomfig .zsc5{animation:zin-land 1s ease-out 3.8s both}
 
 /* slide 7 · the dial and the buffer appear on → (chips are the steps) */
 .g-dial,.g-buffer{opacity:0;transition:opacity .8s ease}
