@@ -158,8 +158,11 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
 .note .beats{display:none;margin:12px 0 4px;padding-left:24px}
 .note .beats li{margin:8px 0;font-size:16.5px;color:var(--ink);line-height:1.45;font-weight:550}
 .note .beats li::marker{color:var(--accent,#7aa2ff)}
-.mode-brief .note .say,.mode-brief .note .onscreen,.mode-brief .note .aside{display:none}
+.mode-brief .note .say,.mode-brief .note .onscreen,.mode-brief .note .aside,.mode-brief .note .cue{display:none}
 .mode-brief .note .beats{display:block}
+.note .beats li.press{list-style:none;color:#7fe7d4;font-weight:650;font-size:14.5px;margin:10px 0 10px -14px}
+.note .beats li.press::before{content:"▶ ";font-size:.8em}
+.note.live .beats li.press{font-size:calc(var(--lf)*.62);margin:calc(var(--lf)*.5) 0 calc(var(--lf)*.5) calc(var(--lf)*-.35)}
 .note.live .beats li{font-size:calc(var(--lf)*.92);margin:calc(var(--lf)*.45) 0}
 @media print{.mode-brief .note .say,.mode-brief .note .onscreen,.mode-brief .note .aside{display:block}.note .beats{display:none!important}#viewtog{display:none}}
 
@@ -814,30 +817,48 @@ addEventListener('resize', ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout((
 <script>
 /* Beats mode: derive each section's beats from its <em> punchlines (cues stay visible). */
 (function(){
-  function beatsFor(sec){
-    const out=[]; const seen=new Set();
-    sec.querySelectorAll('.say em').forEach(em=>{
+  function emBeats(p, seen){
+    const out=[];
+    p.querySelectorAll('em').forEach(em=>{
       let s=em.textContent.replace(/\s+/g,' ').trim().replace(/^[—-]\s*/,'');
-      if(s.length<18) return;                       /* one-word emphasis is not a beat */
+      if(s.length<18) return;
       if(!/[.?!…]$/.test(s)) s+='.';
       const k=s.toLowerCase(); if(seen.has(k)) return; seen.add(k);
       out.push(s.charAt(0).toUpperCase()+s.slice(1));
     });
-    if(out.length<3){
-      sec.querySelectorAll('.say').forEach(p=>{
-        let first=(p.textContent.replace(/\s+/g,' ').trim().match(/^.*?[.?!](?=\s|$)/)||[p.textContent.replace(/\s+/g,' ').trim()])[0].trim();
+    return out;
+  }
+  function shortCue(txt){
+    let s=txt.replace(/\s+/g,' ').trim().replace(/^(Press|Apasă)\s*→\s*/,'');
+    const dash=s.indexOf('—'); if(dash>-1 && dash<30) s=s.slice(dash+1).trim();
+    const first=s.match(/^[^.?!]{0,14}[.?!]\s*/); if(first) s=s.slice(first[0].length);   /* drop "once." / "again." */
+    s=s.split(/[,;·]/)[0].trim().replace(/[.?!…]+$/,'');
+    if(s.length>60) s=s.slice(0,60).replace(/\s+\S*$/,'')+'…';
+    return '→ '+(s.charAt(0).toLowerCase()+s.slice(1));
+  }
+  function beatsFor(sec){
+    const items=[]; const seen=new Set();
+    sec.querySelectorAll(':scope > p').forEach(p=>{
+      if(p.classList.contains('say')){
+        const bs=emBeats(p, seen);
+        if(bs.length) bs.forEach(x=>items.push({t:x}));
+        else{
+          let first=(p.textContent.replace(/\s+/g,' ').trim().match(/^.*?[.?!](?=\s|$)/)||[p.textContent.replace(/\s+/g,' ').trim()])[0].trim();
         const k=first.toLowerCase();
-        if(first.length>15 && !seen.has(k) && out.length<5){ seen.add(k); out.push(first); }
-      });
-    }
-    return out.slice(0,7);
+          if(first.length>15 && !seen.has(k) && items.filter(i=>!i.press).length<6){ seen.add(k); items.push({t:first}); }
+        }
+      }else if(p.classList.contains('cue') && /^(Press|Apasă)\s*→/.test(p.textContent.trim())){
+        items.push({t:shortCue(p.textContent), press:true});
+      }
+    });
+    return items;
   }
   function rebuild(){
     document.querySelectorAll('.note').forEach(sec=>{
       let ul=sec.querySelector('.beats');
       if(ul && ul.dataset.hand==='1') return;      /* hand-written beats win */
       if(!ul){ ul=document.createElement('ul'); ul.className='beats'; sec.querySelector('.note-head').after(ul); }
-      ul.innerHTML=beatsFor(sec).map(b=>'<li>'+b.replace(/</g,'&lt;')+'</li>').join('');
+      ul.innerHTML=beatsFor(sec).map(b=>'<li'+(b.press?' class="press"':'')+'>'+b.t.replace(/</g,'&lt;')+'</li>').join('');
     });
   }
   function apply(mode){
