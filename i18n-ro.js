@@ -579,7 +579,7 @@ window.__RO__ = Object.fromEntries([
 
 /* ---------- 31 · gambling ---------- */
 [`The Human In The Loop`, `Omul din buclă`],
-[`Unreviewed AI <span class="grad-warm">is gambling.</span>`, `AI nerevizuit <span class="grad-warm">înseamnă jocuri de noroc.</span>`],
+[`Unreviewed AI <span class="grad-warm punch-title">is gambling.</span>`, `AI nerevizuit <span class="grad-warm punch-title">înseamnă jocuri de noroc.</span>`],
 [`"AI without proper human review is gambling." — Werner Vogels, re:Invent 2025. Here is the loop that deals the cards.`, `„AI fără o revizuire umană adecvată înseamnă jocuri de noroc.” — Werner Vogels, re:Invent 2025. Iată bucla care împarte cărțile.`],
 [`merge unreviewed`, `merge fără review`],
 [`nothing breaks (yet)`, `nimic nu se strică (încă)`],

@@ -195,6 +195,7 @@ body{
   background:linear-gradient(92deg,#fb7185,#f472b6 45%,#c084fc);-webkit-background-clip:text;background-clip:text;
   filter:drop-shadow(0 0 10px rgba(244,114,182,.35))}
 .slide.active .punch{animation:punch 1.7s ease-in-out infinite}
+.slide.active .punch-title{display:inline-block;animation:punch 1.7s ease-in-out infinite}
 @keyframes punch{0%,100%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(244,114,182,.28))}50%{transform:scale(1.045);filter:drop-shadow(0 0 22px rgba(251,113,133,.65))}}
 @media (prefers-reduced-motion: reduce){.slide.active .punch{animation:none}}
 
@@ -3774,7 +3775,7 @@ body{
 <section class="slide" data-hue="20">
   <div class="wrap">
     <div class="kicker r grad-warm">The Human In The Loop</div>
-    <h2 class="title r" style="--d:.15s">Unreviewed AI <span class="grad-warm">is gambling.</span></h2>
+    <h2 class="title r" style="--d:.15s">Unreviewed AI <span class="grad-warm punch-title">is gambling.</span></h2>
     <p class="sub r" style="--d:.3s">"AI without proper human review is gambling." — Werner Vogels, re:Invent 2025. Here is the loop that deals the cards.</p>
     <svg class="fig" viewBox="0 0 1000 420" aria-hidden="true" style="max-width:min(1240px,88vw);margin-top:1vh">
       <!-- LEFT · the gambler's loop -->
@@ -3789,9 +3790,15 @@ body{
         <path class="draw" pathLength="1" d="M 104 134 Q 120 90 130 66" marker-end="url(#ahw)" style="--d:1.45s"/>
       </g>
       <text class="fadein" x="210" y="160" text-anchor="middle" dominant-baseline="central" style="--d:1.6s;fill:#fb923c;font-size:24px;font-weight:700">R</text>
+      <g class="fadein" style="--d:1.9s">
+        <circle r="4.5" fill="#fdba74">
+          <animateMotion dur="3.6s" repeatCount="indefinite" path="M 360 158 a 150 105 0 1 1 -300 0 a 150 105 0 1 1 300 0"/>
+          <animate attributeName="opacity" values="0;.9;.9;0" keyTimes="0;.06;.94;1" dur="3.6s" repeatCount="indefinite"/>
+        </circle>
+      </g>
       <!-- the run of luck -->
-      <g class="fadein" style="--d:1.8s"><rect x="104" y="336" width="32" height="32" rx="7" fill="rgba(255,255,255,.05)" stroke="#5eead4" stroke-width="1.8"/><circle cx="113" cy="345" r="2.6" fill="#5eead4"/><circle cx="120" cy="352" r="2.6" fill="#5eead4"/><circle cx="127" cy="359" r="2.6" fill="#5eead4"/></g><g class="fadein" style="--d:1.95s"><rect x="159" y="336" width="32" height="32" rx="7" fill="rgba(255,255,255,.05)" stroke="#5eead4" stroke-width="1.8"/><circle cx="168" cy="345" r="2.6" fill="#5eead4"/><circle cx="182" cy="345" r="2.6" fill="#5eead4"/><circle cx="175" cy="352" r="2.6" fill="#5eead4"/><circle cx="168" cy="359" r="2.6" fill="#5eead4"/><circle cx="182" cy="359" r="2.6" fill="#5eead4"/></g><g class="fadein" style="--d:2.1s"><rect x="214" y="336" width="32" height="32" rx="7" fill="rgba(255,255,255,.05)" stroke="#5eead4" stroke-width="1.8"/><circle cx="224" cy="346" r="2.6" fill="#5eead4"/><circle cx="236" cy="358" r="2.6" fill="#5eead4"/></g>
-      <g class="fadein" style="--d:2.3s"><rect x="269" y="336" width="32" height="32" rx="7" fill="rgba(251,113,133,.1)" stroke="#fb7185" stroke-width="2"/><text x="285" y="358" text-anchor="middle" style="fill:#fb7185;font-size:18px;font-weight:750">?</text></g>
+      <g class="fadein" style="--d:1.8s"><g><animateTransform attributeName="transform" type="rotate" values="-16 120 352;10 120 352;-4 120 352;0 120 352" keyTimes="0;.4;.7;1" begin="1.8s" dur=".7s" fill="freeze"/><rect x="104" y="336" width="32" height="32" rx="7" fill="rgba(255,255,255,.05)" stroke="#5eead4" stroke-width="1.8"/><circle cx="113" cy="345" r="2.6" fill="#5eead4"/><circle cx="120" cy="352" r="2.6" fill="#5eead4"/><circle cx="127" cy="359" r="2.6" fill="#5eead4"/></g></g><g class="fadein" style="--d:1.95s"><g><animateTransform attributeName="transform" type="rotate" values="-16 175 352;10 175 352;-4 175 352;0 175 352" keyTimes="0;.4;.7;1" begin="1.95s" dur=".7s" fill="freeze"/><rect x="159" y="336" width="32" height="32" rx="7" fill="rgba(255,255,255,.05)" stroke="#5eead4" stroke-width="1.8"/><circle cx="168" cy="345" r="2.6" fill="#5eead4"/><circle cx="182" cy="345" r="2.6" fill="#5eead4"/><circle cx="175" cy="352" r="2.6" fill="#5eead4"/><circle cx="168" cy="359" r="2.6" fill="#5eead4"/><circle cx="182" cy="359" r="2.6" fill="#5eead4"/></g></g><g class="fadein" style="--d:2.1s"><g><animateTransform attributeName="transform" type="rotate" values="-16 230 352;10 230 352;-4 230 352;0 230 352" keyTimes="0;.4;.7;1" begin="2.1s" dur=".7s" fill="freeze"/><rect x="214" y="336" width="32" height="32" rx="7" fill="rgba(255,255,255,.05)" stroke="#5eead4" stroke-width="1.8"/><circle cx="224" cy="346" r="2.6" fill="#5eead4"/><circle cx="236" cy="358" r="2.6" fill="#5eead4"/></g></g>
+      <g class="fadein" style="--d:2.3s"><rect x="269" y="336" width="32" height="32" rx="7" fill="rgba(251,113,133,.1)" stroke="#fb7185" stroke-width="2"><animate attributeName="stroke-opacity" values=".45;1;.45" dur="1.4s" repeatCount="indefinite"/></rect><text x="285" y="358" text-anchor="middle" style="fill:#fb7185;font-size:18px;font-weight:750">?</text></g>
       <text class="fadein lbl-sm" x="120" y="398" style="--d:2.4s">held Monday · Tuesday · yesterday —</text>
       <text class="fadein lbl-sm" x="330" y="398" style="--d:2.55s;fill:#fb7185;font-weight:650">what are the odds today?</text>
       <!-- RIGHT · Yerkes–Dodson -->
@@ -3809,6 +3816,13 @@ body{
       <circle class="pulse" cx="905" cy="290.7" r="8" fill="none" stroke="#fb7185" stroke-width="1.5" style="--d:3.2s"/>
       <text class="fadein lbl-sm" x="886" y="252" text-anchor="end" style="--d:3.1s;fill:#fb7185">review at AI pace</text>
       <path class="draw" pathLength="1" d="M 730 131.5 Q 820 60 895 280.7" fill="none" stroke="rgba(251,113,133,.4)" stroke-width="1.8" stroke-dasharray="4 7" marker-end="url(#ahw)" style="--d:3.3s"/>
+      <g class="fadein" style="--d:3.4s">
+        <circle r="5.5" fill="#5eead4">
+          <animateMotion dur="3s" repeatCount="indefinite" path="M 712.0 131.2 L 720.0 133.4 L 728.1 136.5 L 736.1 140.7 L 744.2 145.8 L 752.2 151.7 L 760.2 158.3 L 768.3 165.6 L 776.3 173.3 L 784.4 181.5 L 792.4 190.0 L 800.5 198.7 L 808.5 207.4 L 816.5 216.1 L 824.6 224.7 L 832.6 233.1 L 840.7 241.1 L 848.7 248.9 L 856.8 256.2 L 864.8 263.2 L 872.8 269.6 L 880.9 275.6 L 888.9 281.1 L 897.0 286.1 L 905.0 290.7"/>
+          <animate attributeName="fill" values="#5eead4;#5eead4;#fb7185;#fb7185" keyTimes="0;.35;.75;1" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="3s" repeatCount="indefinite"/>
+        </circle>
+      </g>
       <text class="fadein lbl-sm" x="742" y="404" text-anchor="middle" style="--d:2s">Yerkes–Dodson: judgment peaks at moderate pressure — then collapses</text>
     </svg>
     <div class="chips">
