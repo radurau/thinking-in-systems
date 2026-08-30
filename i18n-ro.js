@@ -336,7 +336,7 @@ window.__RO__ = Object.fromEntries([
 [`“The higher the leverage point, the more the system will resist changing it.”`, `„Cu cât punctul de pârghie e mai sus, cu atât sistemul va rezista mai mult la schimbarea lui.”`],
 [`— Donella Meadows`, `— Donella Meadows`],
 [`Balancing loops exist precisely to keep the paradigm stable. Push the high point and the structure pushes back.`, `Buclele de echilibrare există tocmai ca să mențină paradigma stabilă. Împinge punctul de sus, și structura împinge înapoi.`],
-[`layout after Werner Vogels' final keynote · re:Invent 2025`, `layout după ultimul keynote al lui Werner Vogels · re:Invent 2025`],
+[`the essay — scan or click`, `eseul — scanează sau apasă`],
 
 /* ---------- 16 · spread the effort ---------- */
 [`Discipline`, `Disciplină`],
