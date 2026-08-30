@@ -976,7 +976,6 @@ window.__RO__ = Object.fromEntries([
 [`shifting the burden`, `mutarea poverii`],
 [`— the trap Meadows calls addiction`, `— capcana căreia Meadows îi spune dependență`],
 [`Yerkes–Dodson law`, `legea Yerkes–Dodson`],
-[`pace →`, `ritm →`],
 [`human pace`, `ritm uman`],
 [`AI pace`, `ritm AI`],
 [`judgment peaks at moderate pace — then collapses`, `judecata atinge vârful la ritm moderat — apoi se prăbușește`],
