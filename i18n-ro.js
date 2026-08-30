@@ -577,6 +577,29 @@ window.__RO__ = Object.fromEntries([
 [`Don't spend a 10× technology <em>on a № 12 problem.</em>`, `Nu cheltui o tehnologie de 10× <em>pe o problemă de № 12.</em>`],
 [`"We can't control systems or figure them out. But we can dance with them!"<cite>— Donella H. Meadows, 1941–2001</cite>`, `„Nu putem controla sistemele și nici nu le putem descifra. Dar putem dansa cu ele!”<cite>— Donella H. Meadows, 1941–2001</cite>`],
 
+/* ---------- 31 · gambling ---------- */
+[`The Human In The Loop`, `Omul din buclă`],
+[`Unreviewed AI <span class="grad-warm">is gambling.</span>`, `AI nerevizuit <span class="grad-warm">înseamnă jocuri de noroc.</span>`],
+[`"AI without proper human review is gambling." — Werner Vogels, re:Invent 2025. Here is the loop that deals the cards.`, `„AI fără o revizuire umană adecvată înseamnă jocuri de noroc.” — Werner Vogels, re:Invent 2025. Iată bucla care împarte cărțile.`],
+[`merge unreviewed`, `merge fără review`],
+[`nothing breaks (yet)`, `nimic nu se strică (încă)`],
+[`confidence grows`, `încrederea crește`],
+[`faster, less review`, `mai repede, mai puțin review`],
+[`held Monday · held Tuesday · held yesterday —`, `a ținut luni · a ținut marți · a ținut ieri —`],
+[`what are the odds today?`, `ce șanse sunt azi?`],
+[`pace · pressure →`, `ritm · presiune →`],
+[`quality of judgment`, `calitatea judecății`],
+[`bored`, `plictisit`],
+[`sharp`, `ascuțit`],
+[`gambling`, `jocuri de noroc`],
+[`review at human pace`, `review în ritm uman`],
+[`review at AI pace`, `review în ritm de AI`],
+[`Yerkes–Dodson: judgment peaks at moderate pressure — then collapses`, `Yerkes–Dodson: judecata atinge vârful la presiune moderată — apoi se prăbușește`],
+[`<b>Drift to low performance</b> — "it held yesterday"`, `<b>Alunecare spre performanță scăzută</b> — „a ținut ieri”`],
+[`<b>Shifting the burden</b> — the reviewer who no longer reads`, `<b>Mutarea poverii</b> — reviewerul care nu mai citește`],
+[`<b>Boiled frog</b> — deviance, normalized`, `<b>Broasca fiartă</b> — devierea, normalizată`],
+[`Every unreviewed merge is a bet. <em>The wins pile up as confidence — the risk piles up out of sight.</em>`, `Fiecare merge nerevizuit e un pariu. <em>Câștigurile se adună ca încredere — riscul se adună nevăzut.</em>`],
+
 /* ---------- 25 · discussion ---------- */
 [`Discussion`, `Discuție`],
 [`Four questions<br><span class="grad">to take with you.</span>`, `Patru întrebări<br><span class="grad">de luat cu tine.</span>`],
@@ -941,5 +964,15 @@ window.__RO__ = Object.fromEntries([
 [`press → for the number, then the buffer`, `apasă → pentru număr, apoi pentru rezervă`],
 [`Our dealer runs one every week. She walks out, looks at the lot, compares it with ten days of sales — and writes the order. The stock changed what she did; what she did will change the stock. <span class="hit">Output circles back to become input.</span>`, `Dealerul nostru rulează una în fiecare săptămână. Iese, se uită la parc, îl compară cu zece zile de vânzări — și scrie comanda. Stocul i-a schimbat acțiunea; acțiunea ei va schimba stocul. <span class="hit">Ieșirea se întoarce și devine intrare.</span>`],
 [`press → for the forklift · → again for the thrower`, `apasă → pentru stivuitor · → din nou pentru aruncător`],
+
+/* ---- notes 31 · gambling ---- */
+[`Gambling`, `Jocuri de noroc`],
+[`On screen: left, an orange R loop — merge unreviewed → nothing breaks (yet) → confidence grows → faster, less review — with three teal dice ("held Monday · Tuesday · yesterday") and a red "?" die. Right, the Yerkes–Dodson curve: judgment peaks at moderate pressure, with a teal dot at "review at human pace" and a red dot far down the falling limb at "review at AI pace".`, `Pe ecran: stânga, o buclă R portocalie — merge fără review → nimic nu se strică (încă) → încrederea crește → mai repede, mai puțin review — cu trei zaruri turcoaz („a ținut luni · marți · ieri”) și un zar roșu cu „?”. Dreapta, curba Yerkes–Dodson: judecata atinge vârful la presiune moderată, cu un punct turcoaz la „review în ritm uman” și unul roșu, jos pe panta descendentă, la „review în ritm de AI”.`],
+[`Werner Vogels put it bluntly in that same keynote: <span class="hit">"AI without proper human review is gambling."</span> I want to show you why good engineers end up at the casino table without noticing.`, `Werner Vogels a spus-o direct în același keynote: <span class="hit">„AI fără o revizuire umană adecvată înseamnă jocuri de noroc.”</span> Vreau să vă arăt de ce ingineri buni ajung la masa de cazinou fără să observe.`],
+[`Remember the PR from a few slides ago — five thousand lines added, twelve thousand removed. Here is what I see around it. Developers losing curiosity: they don't ask "why is it done this way?" anymore, because they didn't write it. Worse — question a PR and people get <em>annoyed</em>. Not because you're wrong, but because they feel like imposters: it's their name on code they don't fully understand. Everyone else is moving fast, so they must keep up.`, `Amintiți-vă PR-ul de acum câteva slide-uri — cinci mii de linii adăugate, douăsprezece mii șterse. Iată ce văd în jurul lui. Developeri care își pierd curiozitatea: nu mai întreabă „de ce e făcut așa?”, pentru că nu ei l-au scris. Mai rău — pune o întrebare pe un PR și oamenii se <em>enervează</em>. Nu pentru că ai greși, ci pentru că se simt impostori: e numele lor pe un cod pe care nu-l înțeleg pe deplin. Toți ceilalți merg repede, deci trebuie să țină pasul.`],
+[`No press — point at the dice, left to right, and land on the red one.`, `Fără apăsare — arată spre zaruri, de la stânga la dreapta, și oprește-te pe cel roșu.`],
+[`And then the most seductive argument in engineering: it held Monday. It held Tuesday. It held yesterday. What are the chances it fails today? That's not evidence — that's a run of luck. Each unreviewed merge is a bet, the wins pile up as confidence, and the loop spins: nothing breaks yet, so we review even less. <em>The risk accumulates exactly where nobody is looking.</em> Meadows named this trap decades ago — drift to low performance, the boiled frog.`, `Și apoi cel mai seducător argument din inginerie: a ținut luni. A ținut marți. A ținut ieri. Ce șanse sunt să pice azi? Asta nu e dovadă — e o serie norocoasă. Fiecare merge nerevizuit e un pariu, câștigurile se adună ca încredere, iar bucla se învârte: nimic nu se strică încă, deci revizuim și mai puțin. <em>Riscul se acumulează exact unde nu se uită nimeni.</em> Meadows a numit capcana asta acum decenii — alunecarea spre performanță scăzută, broasca fiartă.`],
+[`Why does judgment fail at speed? Psychology has a curve for it — <span class="hit">Yerkes–Dodson: human judgment peaks at moderate pressure, and collapses past it.</span> At human pace, review sits near the peak — engaged, sharp, curious. At AI pace, we're far down the falling limb: too much throughput, too little arousal per decision, and reviewing turns into scrolling. The answer is not to slow AI down — it's the machine drains and the faster sampling you've already seen: put the human back where the curve peaks, reviewing what matters.`, `De ce cedează judecata la viteză? Psihologia are o curbă pentru asta — <span class="hit">Yerkes–Dodson: judecata umană atinge vârful la presiune moderată și se prăbușește dincolo de el.</span> În ritm uman, review-ul stă lângă vârf — implicat, ascuțit, curios. În ritm de AI, suntem departe pe panta descendentă: prea mult debit, prea puțină încordare pe decizie, iar revizuirea devine derulare. Răspunsul nu e să încetinim AI-ul — ci scurgerile-mașină și eșantionarea mai deasă pe care le-ați văzut deja: pune omul înapoi unde curba atinge vârful, revizuind ce contează.`],
+
 
 ]);

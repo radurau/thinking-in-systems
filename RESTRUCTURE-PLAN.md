@@ -64,6 +64,7 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 20 | · What structure keeps producing this? | — | | done |
 | 21 | ✎ Six moves — fold in 4–5 of the closing guidelines (get the beat, expose mental models, honour information, what's important > what's quantifiable, stay humble) | — | → AI is a new flow | [x] |
 | 22–27 | · AI block (6) — add the **discipline-as-leverage** beat to "Aim it high" | — | | [x] |
+| 27b | ★ Unreviewed AI is gambling (30 Aug, Radu's observation + Vogels re:Invent 2025) — gambler's R loop, dice run of luck, Yerkes–Dodson curve | — | aim it high → the human in the loop → closing | [x] |
 | 28 | · Don't fight the system | — | | done |
 | 29 | · Four questions | — | | done |
 
@@ -114,7 +115,7 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
 - [ ] ⌘P print: one slide per page, HUD hidden (`#hud` has a print rule; step states print as-is)
 - [x] Performance: only the active slide's SVG clocks run (`update()` pauses the others) — 30 Aug
 - [x] Slide 19 (nested systems) no longer repeats slide 4's zoom labels — 30 Aug
-- [x] Notes total 46.5 min against a 50-min talk → 3.5 min slack (28 Aug: slide 4 split +1.5, A-causes-B +0.5, Spread effort +1.5, Liebig +1). Trim the AI block first if the dry run overruns. If the dry run still overruns, trim the AI block first (6 slides / ~8 min).
+- [~] Notes total 48 min against a 50-min talk → **2 min slack** (30 Aug: +Gambling 2 min). The dry run decides: trim the AI block (merge 'same car'+'sample faster') if it overruns. If the dry run still overruns, trim the AI block first (6 slides / ~8 min).
 - [ ] Commit per phase; **no push** until Radu says so
 
 ## Phase 7 — Review
