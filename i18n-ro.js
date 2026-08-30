@@ -585,7 +585,7 @@ window.__RO__ = Object.fromEntries([
 [`nothing breaks (yet)`, `nimic nu se strică (încă)`],
 [`confidence grows`, `încrederea crește`],
 [`faster, less review`, `mai repede, mai puțin review`],
-[`held Monday · held Tuesday · held yesterday —`, `a ținut luni · a ținut marți · a ținut ieri —`],
+[`held Monday · Tuesday · yesterday —`, `a ținut luni · marți · ieri —`],
 [`what are the odds today?`, `ce șanse sunt azi?`],
 [`pace · pressure →`, `ritm · presiune →`],
 [`quality of judgment`, `calitatea judecății`],
