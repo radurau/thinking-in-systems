@@ -37,7 +37,7 @@ def main():
         b = re.sub(r'(href="presentation\.html#)\d+(")', rf'\g<1>{i}\2', b, count=1)
         b = re.sub(r'(>Slide )\d+( ↗<)', rf'\g<1>{i}\2', b, count=1)
         # the "<!-- ==== N ==== -->" marker for the *next* section lives at the end of this block
-        b = re.sub(r'(<!-- =+ )\S+( =+ -->\s*)$', rf'\g<1>{i+1}\2', b)
+        b = re.sub(r'(<!-- =+ )[^\n]*?( =+ -->\s*)$', rf'\g<1>{i+1}\2', b)
         out.append(b)
     new = ''.join(out)
 

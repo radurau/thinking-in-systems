@@ -53,8 +53,8 @@ New = ★, changed = ✎, unchanged = ·. "Inherits" = what the slide carries fr
 | 11 | ✎ Delays — kicker says **Delays**; dealership's 3 delays (perceive / respond / deliver) → oscillation; "multiply by three" (Forrester / George Talaba) | 9 | dealership from #6 → oscillation; → who knows what, when? | [x] |
 | 12 | ★ Structure — information flows, rules, self-organization (hallway meter, speed-camera vs police, teams that rewrite their rules) | 6, 5, 4 | delayed info → *where* info arrives; → who sets the goal? | [x] |
 | 13 | ✎ Twelve leverage points — **payoff**: every rung has now been a slide; ladder lights up bottom-to-top | all | → the top three rungs deserve their own slides | [x] |
-| 13b | ★ Don't maximize effort. Distribute it. — the ladder's lever again: ten units, three rounds (all low → barely moves · all high → mostly misses · spread → it lifts), 30 s SMIL loop (28 Aug) | — | ladder → same picture, honest complement | [x] |
-| 13c | ★ Little by little helps. Excess kills. — Liebig's plant: nitrogen unit by unit, potassium short; grows → plateaus → dries → dies, 18 s loop | — | → why the constraint decides → top three rungs | [x] |
+| 13b→15b | ★ Don't maximize effort. Distribute it. — the ladder's lever again: spheres of different sizes pile unevenly along the arm, a few at the top bounce off (30 Aug: moved **after** the top-three and nested-systems slides, so the rung discussion finishes first) | — | nested systems → discipline | [x] |
+| 15c | ★ Little by little helps. Excess kills. — Liebig's plant with flower: grows → plateaus → dries → dies, 18 s loop | — | → why the constraint decides → traps | [x] |
 | 14 | ✎ Goals · Paradigms · Transcending — add **goals**: "purpose is deduced from behaviour, not rhetoric" | 3, 2, 1 | → the lens sits inside a bigger system | [x] |
 | 15 | ✎ Systems inside systems — **zoom** tree → forest → planet → galaxy; hierarchy, stable intermediate forms, resilience | — | → why we still get surprised | [x] |
 | 16 | ★ Why systems surprise us — nonlinear (fertiliser / advertising), no real boundaries, bounded rationality (fisherman with a mortgage) | — | → recurring structures = traps, no villains | [ ] optional |
@@ -111,7 +111,9 @@ success-to-the-successful, universe zoom as *opener* (lands better as #15).
       `tools/prune-ro.py` removes keys no page uses any more (18 pruned on 27 Aug) — re-run after text edits.
 - [x] Notes panel: 28 sections, jumps and numbers in sync (`renumber-notes.py --check`); live-highlight mechanism unchanged (`#nN` by broadcast)
 - [~] Reduced-motion: new slides use `.fadein/.pop/.draw` end states and →-driven steps (no timed reveals) — spot-check on a reduce-motion Mac before the talk
-- [ ] ⌘P print: one slide per page, HUD hidden (`#hud` has a print rule; slide 4/16 step states print as-is)
+- [ ] ⌘P print: one slide per page, HUD hidden (`#hud` has a print rule; step states print as-is)
+- [x] Performance: only the active slide's SVG clocks run (`update()` pauses the others) — 30 Aug
+- [x] Slide 19 (nested systems) no longer repeats slide 4's zoom labels — 30 Aug
 - [x] Notes total 46.5 min against a 50-min talk → 3.5 min slack (28 Aug: slide 4 split +1.5, A-causes-B +0.5, Spread effort +1.5, Liebig +1). Trim the AI block first if the dry run overruns. If the dry run still overruns, trim the AI block first (6 slides / ~8 min).
 - [ ] Commit per phase; **no push** until Radu says so
 

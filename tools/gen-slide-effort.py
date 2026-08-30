@@ -129,7 +129,7 @@ svg17=f'''    <svg class="fig" viewBox="0 0 900 400" aria-hidden="true" style="m
     </svg>
 '''
 p=pathlib.Path(__file__).resolve().parent.parent/'presentation.html'; s=p.read_text()
-for marker,nxt,svg in [('16 · SPREAD THE EFFORT =====','17 · LIEBIG =====',svg16),('17 · LIEBIG =====','18 · PARADIGMS',svg17)]:
+for marker,nxt,svg in [('18 · SPREAD THE EFFORT =====','19 · LIEBIG =====',svg16),('19 · LIEBIG =====','20 · SYSTEM TRAPS',svg17)]:
     i=s.index(marker); j=s.index(nxt); seg=s[i:j]; a=seg.index('    <svg class="fig"'); b=seg.index('</svg>',a)+len('</svg>\n')
     s=s[:i]+seg[:a]+svg+seg[b:]+s[j:]
 p.write_text(s); print('figures regenerated')
