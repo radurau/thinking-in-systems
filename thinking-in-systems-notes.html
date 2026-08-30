@@ -152,6 +152,17 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   padding:5px 9px;border-radius:999px;opacity:.45;transition:opacity .2s ease,background .2s ease;filter:grayscale(.4)}
 .langtog button.on{opacity:1;background:rgba(255,255,255,.14);filter:none}
 @media print{.langtog{display:none}}
+
+/* ---------- Beats mode: cues + punchlines only (Full script one toggle away) ---------- */
+#viewtog{position:fixed;top:18px;right:118px;z-index:10}
+.note .beats{display:none;margin:12px 0 4px;padding-left:24px}
+.note .beats li{margin:8px 0;font-size:16.5px;color:var(--ink);line-height:1.45;font-weight:550}
+.note .beats li::marker{color:var(--accent,#7aa2ff)}
+.mode-brief .note .say,.mode-brief .note .onscreen,.mode-brief .note .aside{display:none}
+.mode-brief .note .beats{display:block}
+.note.live .beats li{font-size:calc(var(--lf)*.92);margin:calc(var(--lf)*.45) 0}
+@media print{.mode-brief .note .say,.mode-brief .note .onscreen,.mode-brief .note .aside{display:block}.note .beats{display:none!important}#viewtog{display:none}}
+
 </style>
 </head>
 <body>
@@ -181,7 +192,8 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     appear, so the main skill is <b>pausing</b>. Each section's <i>"Slide N ↗"</i> button drives the deck:
     the <b>first click opens it in its own window</b> — drag that to the presentation monitor — and every
     click after that jumps the <b>same window</b> to that slide, no reload. Press <b>⌘P</b> for a clean
-    printable script.
+    printable script. The <b>Beats / Full</b> switch (top right) trims every section to its cues and
+    punchlines — Beats is what you present from; Full is the rehearsal script. Printing always uses Full.
     <br><br>
     <b>Presenter mode.</b> While the deck window is open, this page <b>follows it automatically</b> —
     the section for the current slide lights up and scrolls into view, and the <b>timer</b> (top right)
@@ -678,6 +690,10 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
 </div>
 
 <div id="timer" title="Elapsed talk time — starts on your first slide change. Click to reset.">00:00</div>
+<div id="viewtog" class="langtog" aria-label="Notes view">
+  <button data-mode="brief" data-ro="Idei" title="Beats — cues and punchlines only">Beats</button>
+  <button data-mode="full" data-ro="Tot textul" title="The full word-for-word script">Full</button>
+</div>
 
 <div class="fab">
   <button id="fsBtn" onclick="toggleFs()" title="Fullscreen (F)">⛶</button>
@@ -754,7 +770,7 @@ function fitLive(sec){
   sec = sec || document.querySelector('.note.live');
   if(!sec) return;
   const avail = window.innerHeight * 0.93;
-  let lf = 40;                      // start large, shrink until it fits
+  let lf = document.body.classList.contains('mode-brief') ? 62 : 40;   // beats mode can go much larger
   sec.style.setProperty('--lf', lf + 'px');
   let guard = 0;
   while(sec.getBoundingClientRect().height > avail && lf > 13 && guard < 60){
@@ -791,6 +807,50 @@ addEventListener('resize', ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout((
   window.__unmatched = ()=> els.filter(el=>!(el.dataset.ro!=null) && !(norm(el.__en) in T)).map(el=>norm(el.__en));
   let l='en'; try{ if(localStorage.getItem('tis-lang-notes')==='ro') l='ro'; }catch(e){}
   apply(l);
+})();
+</script>
+
+<script>
+/* Beats mode: derive each section's beats from its <em> punchlines (cues stay visible). */
+(function(){
+  function beatsFor(sec){
+    const out=[]; const seen=new Set();
+    sec.querySelectorAll('.say em').forEach(em=>{
+      let s=em.textContent.replace(/\s+/g,' ').trim().replace(/^[—-]\s*/,'');
+      if(s.length<18) return;                       /* one-word emphasis is not a beat */
+      if(!/[.?!…]$/.test(s)) s+='.';
+      const k=s.toLowerCase(); if(seen.has(k)) return; seen.add(k);
+      out.push(s.charAt(0).toUpperCase()+s.slice(1));
+    });
+    if(out.length<3){
+      sec.querySelectorAll('.say').forEach(p=>{
+        let first=(p.textContent.replace(/\s+/g,' ').trim().match(/^.*?[.?!](?=\s|$)/)||[p.textContent.replace(/\s+/g,' ').trim()])[0].trim();
+        const k=first.toLowerCase();
+        if(first.length>15 && !seen.has(k) && out.length<5){ seen.add(k); out.push(first); }
+      });
+    }
+    return out.slice(0,7);
+  }
+  function rebuild(){
+    document.querySelectorAll('.note').forEach(sec=>{
+      let ul=sec.querySelector('.beats');
+      if(ul && ul.dataset.hand==='1') return;      /* hand-written beats win */
+      if(!ul){ ul=document.createElement('ul'); ul.className='beats'; sec.querySelector('.note-head').after(ul); }
+      ul.innerHTML=beatsFor(sec).map(b=>'<li>'+b.replace(/</g,'&lt;')+'</li>').join('');
+    });
+  }
+  function apply(mode){
+    document.body.classList.toggle('mode-brief', mode==='brief');
+    document.querySelectorAll('#viewtog button').forEach(b=>b.classList.toggle('on', b.dataset.mode===mode));
+    try{localStorage.setItem('tis-notes-mode',mode);}catch(e){}
+    if(typeof fitLive==='function') fitLive();
+  }
+  document.querySelectorAll('#viewtog button').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.mode)));
+  const orig=window.__setLang;
+  if(orig) window.__setLang=l=>{ orig(l); rebuild(); };
+  rebuild();
+  let m='brief'; try{ if(localStorage.getItem('tis-notes-mode')==='full') m='full'; }catch(e){}
+  apply(m);
 })();
 </script>
 </body>
