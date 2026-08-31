@@ -306,6 +306,15 @@ window.__RO__ = Object.fromEntries([
 [`Self-organization — can it rewrite itself?`, `Auto-organizare — se poate rescrie singur?`],
 [`The power to grow new structure: a cell dividing, a market inventing a product, a team changing how it works. <b>The most powerful thing a system can do</b> — and the first thing we trade away for short-term stability.`, `Puterea de a crește structură nouă: o celulă care se divide, o piață care inventează un produs, o echipă care își schimbă felul de a lucra. <b>Cel mai puternic lucru pe care îl poate face un sistem</b> — și primul la care renunțăm pentru stabilitate pe termen scurt.`],
 [`Every rule about "how we do things here" is a small bet against it.`, `Fiecare regulă despre „așa facem noi aici” e un mic pariu împotriva ei.`],
+[`INFORMATION`, `INFORMAȚIA`],
+[`RULES`, `REGULILE`],
+[`SELF-ORGANIZATION`, `AUTO-ORGANIZAREA`],
+[`meter in the basement`, `contorul în subsol`],
+[`meter in the hallway`, `contorul pe hol`],
+[`Dutch suburb · identical houses`, `suburbie olandeză · case identice`],
+[`YOUR SPEED`, `VITEZA TA`],
+[`no fine — just your own number`, `fără amendă — doar numărul tău`],
+[`it can rewrite itself`, `se poate rescrie singur`],
 [`Loops decide how the system moves. <em>These decide what the loops even are.</em>`, `Buclele decid cum se mișcă sistemul. <em>Acestea decid ce sunt buclele, în primul rând.</em>`],
 
 /* ---------- 13 · leverage points ---------- */
@@ -911,7 +920,7 @@ window.__RO__ = Object.fromEntries([
 
 /* ---- notes 12 · structure ---- */
 [`Structure: information, rules, self-organization`, `Structură: informație, reguli, auto-organizare`],
-[`On screen: three cards — Information flows (the Dutch hallway meter, −30%), Rules (police car, use-it-or-lose-it budgets, "watch who writes the rules"), Self-organization (a system growing new structure).`, `Pe ecran: trei carduri — Fluxuri de informație (contorul olandez de pe hol, −30%), Reguli (mașina de poliție, bugete de tip „folosește sau pierzi”, „uită-te cine scrie regulile”), Auto-organizare (un sistem care își crește structură nouă).`],
+[`On screen: three wordless scenes. INFORMATION — two identical Dutch houses in cutaway: the left one’s meter sits grey in the basement and its windows burn bright; the right one’s meter glows teal in the hallway with a person standing at it, windows dimmer, and −30% pops above the roof. RULES — a car rolls toward a YOUR SPEED sign: 87 in red, then 74, 62, brake light flashing, settling at 55 in teal. SELF-ORGANIZATION — a small network glides from grid to ring to tree, growing a brand-new amber node along the way.`, `Pe ecran: trei scene fără cuvinte. INFORMAȚIA — două case olandeze identice, în secțiune: contorul celei din stânga stă gri în subsol și ferestrele îi ard puternic; contorul celei din dreapta strălucește turcoaz pe hol, cu o persoană lângă el, ferestre mai stinse, iar −30% apare deasupra acoperișului. REGULILE — o mașină rulează spre un panou VITEZA TA: 87 pe roșu, apoi 74, 62, stopul de frână clipind, așezându-se la 55 pe turcoaz. AUTO-ORGANIZAREA — o rețea mică alunecă din grilă în inel și apoi în arbore, crescând pe drum un nod nou, chihlimbariu.`],
 [`We've now seen everything that sits <em>inside</em> a system: stocks, flows, the two knobs, the two loops, and the delays between them. Now step up one level. Three things shape which loops exist at all.`, `Am văzut acum tot ce stă <em>în interiorul</em> unui sistem: stocuri, fluxuri, cele două butoane, cele două bucle și întârzierile dintre ele. Acum urcați un nivel. Trei lucruri decid care bucle există, în primul rând.`],
 [`No press — card one.`, `Fără apăsare — cardul unu.`],
 [`Information. A Dutch suburb, identical houses, identical prices. In some, the electricity meter was in the basement; in others, by accident of design, in the front hallway. The hallway houses used thirty percent less electricity. Nobody ran a campaign. A number people had always been paying for simply became visible. Our car dealer had the same problem — not effort, <em>late information</em>. Most of what goes wrong in systems goes wrong because information is missing, late, or biased.`, `Informația. O suburbie olandeză, case identice, prețuri identice. În unele, contorul de electricitate era în subsol; în altele, printr-un accident de proiectare, pe holul de la intrare. Casele cu contorul pe hol au consumat cu treizeci la sută mai puțină electricitate. Nimeni n-a făcut o campanie. Un număr pe care oamenii îl plăteau dintotdeauna a devenit, simplu, vizibil. Dealerul nostru auto a avut aceeași problemă — nu efortul, <em>informația sosită târziu</em>. Cea mai mare parte din ce merge prost în sisteme merge prost pentru că informația lipsește, întârzie sau e părtinitoare.`],
