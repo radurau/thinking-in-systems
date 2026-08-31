@@ -345,15 +345,14 @@ body{
   transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .step-item.on{opacity:1;transform:none}
 
-/* slide 31 · press 1 names the trap, press 2 draws the diagram, press 3 lands the remedies */
-.g-ask,.g-name,.g-trap{transition:opacity .6s ease}
-.g-name,.g-trap{opacity:0}
+/* slide 26 · press 1 answers "is this bad?", press 2 lands the discipline + closer */
+.g-ask,.g-ans,.g-disc{transition:opacity .6s ease}
+.g-ans,.g-disc{opacity:0}
 .slide:has(.cq.s1.on) .g-ask{opacity:0}
-.slide:has(.cq.s1.on) .g-name{opacity:1}
-.slide:has(.cq.s2.on) .g-name{opacity:0}
-.slide:has(.cq.s2.on) .g-trap{opacity:1}
+.slide:has(.cq.s1.on) .g-ans{opacity:1}
+.slide:has(.cq.s2.on) .g-disc{opacity:1}
 .cure{opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease) var(--td,0s),transform .6s var(--ease) var(--td,0s)}
-.slide:has(.cq.s3.on) .cure{opacity:1;transform:none}
+.slide:has(.cq.s2.on) .cure{opacity:1;transform:none}
 
 /* ---------- trap stage (slide 10): one big card at a time ---------- */
 .trap-stage{position:relative;height:clamp(240px,34vh,310px);max-width:1080px;margin:2.6vh auto 0}
@@ -3534,7 +3533,121 @@ body{
   </div>
 </section>
 
-<!-- ============ 26 · AI: CLOCK SPEED ============ -->
+<!-- ============ 26 · BE CURIOUS ============ -->
+<section class="slide" data-hue="20">
+  <div class="wrap">
+    <div class="kicker r grad-warm">The Human In The Loop</div>
+    <h2 class="title r" style="--d:.15s">Be curious, <span class="grad-warm">not judgmental.</span></h2>
+    <p class="sub r" style="--d:.3s">— attributed to Walt Whitman. Nobody can read +5,000 −12,000 line by line — and that PR is the new normal.</p>
+    <svg class="fig" viewBox="0 0 1000 420" aria-hidden="true" style="max-width:min(1240px,88vw);margin-top:1vh">
+      <!-- LEFT · the review, at human pace: a highlight walks the diff -->
+      <g class="pop" style="--d:.5s">
+        <rect x="72" y="58" width="336" height="292" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(245,245,247,.28)" stroke-width="1.5"/>
+        <circle cx="92" cy="76" r="4" fill="#fb7185"/><circle cx="106" cy="76" r="4" fill="#fbbf24"/><circle cx="120" cy="76" r="4" fill="#34d399"/>
+        <text class="lbl-sm" x="140" y="80" style="font-size:11px;fill:rgba(245,245,247,.5)">the PR from the last slide</text>
+        <text x="330" y="80" text-anchor="end" style="font-size:13px;font-weight:700;fill:#3fb950">+5,000</text>
+        <text x="396" y="80" text-anchor="end" style="font-size:13px;font-weight:700;fill:#f85149">−12,000</text>
+        <line x1="72" y1="90" x2="408" y2="90" stroke="rgba(245,245,247,.15)"/>
+      </g>
+      <g class="fadein" style="--d:.9s">
+        <rect x="88" y="102" width="304" height="18" rx="5" fill="rgba(94,234,212,.12)" stroke="rgba(94,234,212,.55)" stroke-width="1.5">
+          <animateTransform attributeName="transform" type="translate" calcMode="discrete" values="0 0;0 18;0 36;0 54;0 72;0 90;0 108;0 126;0 144;0 162;0 180;0 198;0 216" keyTimes="0.0000;0.0769;0.1538;0.2308;0.3077;0.3846;0.4615;0.5385;0.6154;0.6923;0.7692;0.8462;0.9231" dur="6.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="96" y="108" width="180" height="8" rx="4" fill="rgba(245,245,247,.18)"/>
+        <rect x="96" y="126" width="240" height="8" rx="4" fill="rgba(245,245,247,.18)"/>
+        <rect x="96" y="144" width="140" height="8" rx="4" fill="rgba(63,185,80,.55)"/>
+        <rect x="96" y="162" width="260" height="8" rx="4" fill="rgba(245,245,247,.18)"/>
+        <rect x="96" y="180" width="200" height="8" rx="4" fill="rgba(248,81,73,.5)"/>
+        <rect x="96" y="198" width="120" height="8" rx="4" fill="rgba(245,245,247,.18)"/>
+        <rect x="96" y="216" width="230" height="8" rx="4" fill="rgba(245,245,247,.18)"/>
+        <rect x="96" y="234" width="170" height="8" rx="4" fill="rgba(63,185,80,.55)"/>
+        <rect x="96" y="252" width="250" height="8" rx="4" fill="rgba(245,245,247,.18)"/>
+        <rect x="96" y="270" width="150" height="8" rx="4" fill="rgba(248,81,73,.5)"/>
+        <rect x="96" y="288" width="210" height="8" rx="4" fill="rgba(248,81,73,.5)"/>
+        <rect x="96" y="306" width="190" height="8" rx="4" fill="rgba(245,245,247,.18)"/>
+        <rect x="96" y="324" width="130" height="8" rx="4" fill="rgba(245,245,247,.18)"/>
+      </g>
+      <text class="fadein lbl-sm" x="240" y="376" text-anchor="middle" style="--d:1.4s;fill:#fda4af;font-size:12px">at 3 seconds a line, this PR is a 14-hour read</text>
+      <text class="fadein lbl-sm" x="240" y="398" text-anchor="middle" style="--d:1.6s;font-size:11px;fill:rgba(245,245,247,.55)">reviewing is no longer reading — it is knowing what to ask</text>
+      <!-- RIGHT · the bridge: is this bad? → not necessarily, as long as… -->
+      <g class="g-ask">
+        <text class="fadein" x="720" y="190" text-anchor="middle" style="--d:1.2s;font-size:30px;font-weight:750;fill:#f5f5f7">is this bad?</text>
+        <text class="fadein lbl-sm" x="720" y="224" text-anchor="middle" style="--d:1.7s;font-size:15px;fill:rgba(245,245,247,.6)">be honest.</text>
+      </g>
+      <g class="g-ans">
+        <text x="720" y="86" text-anchor="middle" style="font-size:25px;font-weight:750;fill:#fdba74">not necessarily —</text>
+        <text class="lbl-sm" x="720" y="114" text-anchor="middle" style="font-size:12.5px;fill:rgba(245,245,247,.6)">as long as you can answer these, every time:</text>
+        <g>
+          <rect class="node" x="520" y="132" width="400" height="46" rx="23" style="stroke:rgba(94,234,212,.4)"/>
+          <text class="lbl-strong" x="548" y="161" style="font-size:14.5px">1 · What am I changing?</text>
+        </g>
+        <g>
+          <rect class="node" x="520" y="192" width="400" height="46" rx="23" style="stroke:rgba(94,234,212,.4)"/>
+          <text class="lbl-strong" x="548" y="221" style="font-size:14.5px">2 · What does it impact?</text>
+        </g>
+        <g>
+          <rect class="node" x="520" y="252" width="400" height="46" rx="23" style="stroke:rgba(94,234,212,.4)"/>
+          <text class="lbl-strong" x="548" y="281" style="font-size:14.5px">3 · Do I understand the context?</text>
+        </g>
+        <g>
+          <rect class="node" x="520" y="312" width="400" height="46" rx="23" style="stroke:rgba(94,234,212,.4)"/>
+          <text class="lbl-strong" x="548" y="341" style="font-size:14.5px">4 · Will I notice fast enough if it goes wrong?</text>
+        </g>
+      </g>
+      <g class="g-disc">
+        <text x="988" y="410" text-anchor="end" style="font-size:11.5px;fill:rgba(245,245,247,.6)">after the <tspan style="font-weight:700;fill:rgba(245,245,247,.85)">Yerkes–Dodson law</tspan> — judgment peaks at moderate pace, then collapses</text>
+      </g>
+    </svg>
+    <span class="step-item cq s1" style="display:none" aria-hidden="true"></span>
+    <span class="step-item cq s2" style="display:none" aria-hidden="true"></span>
+    <p class="oneliner cure" style="--td:.2s">Ship fast — each change breeds new patterns, some stable, some not. <em>Think in systems, not isolated parts.</em></p>
+  </div>
+</section>
+
+<!-- ============ 27 · HIDDEN DIMENSIONS ============ -->
+<section class="slide" data-hue="20">
+  <div class="wrap">
+    <div class="kicker r grad">The Hidden Z-Axis</div>
+    <h2 class="title r" style="--d:.15s">Two axes on screen. <span class="grad">Many dimensions behind.</span></h2>
+    <p class="sub r" style="--d:.3s">We watch tokens and the clock. The system runs where we cannot see.</p>
+    <svg class="fig" viewBox="0 0 1000 420" aria-hidden="true" style="max-width:min(1180px,84vw);margin-top:1vh">
+      <!-- the two axes we watch -->
+      <path class="draw" pathLength="1" d="M 470 60 L 470 348 L 950 348" fill="none" stroke="rgba(245,245,247,.5)" stroke-width="2.5" style="--d:.4s"/>
+      <path class="fadein" d="M 950 348 l -12 -6 v 12 Z M 470 60 l -6 12 h 12 Z" fill="rgba(245,245,247,.5)" style="--d:.9s"/>
+      <text class="fadein lbl-sm" x="948" y="372" text-anchor="end" style="--d:1s">tokens consumed</text>
+      <text class="fadein lbl-sm" x="452" y="66" text-anchor="end" style="--d:1s">time you wait</text>
+      <!-- what you see: the observed curve -->
+      <path class="draw" pathLength="1" d="M 474 344 C 600 322 700 262 924 128" fill="none" stroke="#5eead4" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round" style="--d:.8s"/>
+      <circle class="pop" cx="806" cy="200" r="5.5" fill="#5eead4" style="--d:1.2s"/>
+      <text class="fadein lbl-sm" x="822" y="196" style="--d:1.3s;fill:#5eead4">what you see</text>
+      <!-- the z-axis, receding into the dark -->
+      <line class="draw" pathLength="1" x1="470" y1="348" x2="110" y2="124" stroke="#c084fc" stroke-width="2" stroke-dasharray="4 7" style="--d:1s"/>
+      <path class="fadein" d="M 110 124 l 15 2 l -8 11 Z" fill="#c084fc" style="--d:1.5s"/>
+      <text class="fadein" x="96" y="104" style="--d:1.6s;font-size:14px;font-weight:650;fill:#c084fc">what is actually happening</text>
+      <!-- three planes along z — drawn far to near so depth occludes naturally -->
+      <g class="pop" style="--d:2.4s">
+        <rect x="90" y="126" width="155" height="68" rx="10" fill="rgba(16,14,24,.96)" stroke="rgba(192,132,252,.45)" stroke-width="1.5"/>
+        <text x="168" y="152" text-anchor="middle" style="font-size:11.5px;font-weight:650;fill:rgba(245,245,247,.8)">model internals</text>
+        <text x="168" y="168" text-anchor="middle" style="font-size:9.5px;fill:rgba(245,245,247,.5)">sampling · temperature · drift</text>
+      </g>
+      <g class="pop" style="--d:2s">
+        <rect x="147" y="165" width="200" height="88" rx="11" fill="rgba(16,14,24,.96)" stroke="rgba(192,132,252,.6)" stroke-width="1.5"/>
+        <text x="247" y="188" text-anchor="middle" style="font-size:12.5px;font-weight:650;fill:rgba(245,245,247,.85)">orchestration</text>
+        <text x="247" y="204" text-anchor="middle" style="font-size:10px;fill:rgba(245,245,247,.55)">tools · retries · prompts</text>
+      </g>
+      <g class="pop" style="--d:1.6s">
+        <rect x="208" y="208" width="250" height="110" rx="12" fill="rgba(16,14,24,.97)" stroke="rgba(192,132,252,.8)" stroke-width="1.8"/>
+        <text x="333" y="252" text-anchor="middle" style="font-size:15px;font-weight:700;fill:#f5f5f7">context window</text>
+        <text x="333" y="278" text-anchor="middle" style="font-size:12.5px;font-weight:700;fill:#fb7185">overflow → hallucinations</text>
+        <circle class="pulse" cx="333" cy="274" r="16" fill="none" stroke="#fb7185" stroke-width="1.5" style="--d:2.8s"/>
+      </g>
+      <text class="fadein lbl-sm" x="66" y="398" style="--d:3s;font-size:11.5px;fill:rgba(245,245,247,.55)">…and more: cost · caches · safety passes · the dimension nobody named yet</text>
+    </svg>
+    <p class="oneliner r" style="--d:3.4s">A hallucination is not magic — <em>it is an overflow in a dimension you were not watching.</em></p>
+  </div>
+</section>
+
+<!-- ============ 28 · AI: CLOCK SPEED ============ -->
 <section class="slide" data-hue="-40">
   <div class="wrap">
     <div class="kicker r grad-warm">Clock Speed</div>
@@ -3601,7 +3714,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 27 · AI: MACHINE DRAINS ============ -->
+<!-- ============ 29 · AI: MACHINE DRAINS ============ -->
 <section class="slide" data-hue="150">
   <div class="wrap">
     <div class="kicker r grad">The Obvious Fix</div>
@@ -3662,7 +3775,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 28 · AI: THE SAME CAR ============ -->
+<!-- ============ 30 · AI: THE SAME CAR ============ -->
 <section class="slide" data-hue="35">
   <div class="wrap">
     <div class="kicker r grad-warm">The Familiarity Trap</div>
@@ -3709,7 +3822,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 29 · AI: SAMPLING RATE ============ -->
+<!-- ============ 31 · AI: SAMPLING RATE ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">The New Discipline</div>
@@ -3757,7 +3870,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 30 · AI: WHERE TO POINT IT ============ -->
+<!-- ============ 32 · AI: WHERE TO POINT IT ============ -->
 <section class="slide" data-hue="130">
   <div class="wrap">
     <div class="kicker r grad">Where to Point It</div>
@@ -3797,65 +3910,7 @@ body{
   </div>
 </section>
 
-<!-- ============ 31 · BE CURIOUS ============ -->
-<section class="slide" data-hue="20">
-  <div class="wrap">
-    <div class="kicker r grad-warm">The Human In The Loop</div>
-    <h2 class="title r" style="--d:.15s">Be curious, <span class="grad-warm">not judgmental.</span></h2>
-    <p class="sub r" style="--d:.3s">— attributed to Walt Whitman. Every unreviewed merge pulls the jackpot lever — and the lever is a trap with a name.</p>
-    <svg class="fig" viewBox="0 0 1000 420" aria-hidden="true" style="max-width:min(1240px,88vw);margin-top:1vh">
-      <g transform="translate(-41,-44) scale(1.2)"><!-- LEFT · the slot machine: it pays, it pays… it doesn't -->
-      <g class="pop" style="--d:.5s">
-        <rect x="90" y="120" width="230" height="150" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(251,146,60,.55)" stroke-width="2"/>
-        <rect x="112" y="152" width="186" height="62" rx="10" fill="rgba(5,5,7,.6)" stroke="rgba(245,245,247,.25)"/>
-        <line x1="177" y1="156" x2="177" y2="210" stroke="rgba(245,245,247,.15)"/>
-        <line x1="233" y1="156" x2="233" y2="210" stroke="rgba(245,245,247,.15)"/>
-        <text class="lbl-sm" x="205" y="142" text-anchor="middle" style="letter-spacing:.18em;fill:rgba(251,146,60,.8)">SHIP IT</text>
-        <rect x="180" y="228" width="50" height="16" rx="8" fill="rgba(5,5,7,.6)" stroke="rgba(245,245,247,.25)"/>
-      </g>
-      <g class="fadein" style="--d:.8s"><text x="150" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#5eead4" opacity="0">✓<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.183;0.193;0.404;0.412;1" dur="12s" repeatCount="indefinite"/></text><text x="150" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#5eead4" opacity="0">✓<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.517;0.527;0.737;0.746;1" dur="12s" repeatCount="indefinite"/></text><text x="150" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#5eead4" opacity="0">✓<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.850;0.860;0.992;1.000;1" dur="12s" repeatCount="indefinite"/></text><text x="205" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#5eead4" opacity="0">✓<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.196;0.206;0.404;0.412;1" dur="12s" repeatCount="indefinite"/></text><text x="205" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#5eead4" opacity="0">✓<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.529;0.539;0.737;0.746;1" dur="12s" repeatCount="indefinite"/></text><text x="205" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#5eead4" opacity="0">✓<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.862;0.872;0.992;1.000;1" dur="12s" repeatCount="indefinite"/></text><text x="260" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#5eead4" opacity="0">✓<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.208;0.218;0.404;0.412;1" dur="12s" repeatCount="indefinite"/></text><text x="260" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#5eead4" opacity="0">✓<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.542;0.552;0.737;0.746;1" dur="12s" repeatCount="indefinite"/></text><text x="260" y="190" text-anchor="middle" style="font-size:26px;font-weight:750;fill:#fb7185" opacity="0">✕<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.875;0.885;0.992;1.000;1" dur="12s" repeatCount="indefinite"/></text></g>
-      <g class="fadein" style="--d:.7s"><g><animateTransform attributeName="transform" type="rotate" values="0 318 210;0 318 210;46 318 210;0 318 210;0 318 210;46 318 210;0 318 210;0 318 210;46 318 210;0 318 210;0 318 210" keyTimes="0;.083;.11;.15;.417;.443;.483;.75;.776;.816;1" dur="12s" repeatCount="indefinite"/><line x1="318" y1="210" x2="318" y2="128" stroke="rgba(245,245,247,.6)" stroke-width="5" stroke-linecap="round"/><circle cx="318" cy="122" r="11" fill="#fb7185"/></g></g>
-      <text class="fadein lbl-sm" x="205" y="300" text-anchor="middle" style="--d:1.4s">it pays… and pays… <tspan style="fill:#fb7185;font-weight:650">until it doesn't</tspan></text>
-      <text class="fadein lbl-sm" x="205" y="322" text-anchor="middle" style="--d:1.6s;fill:rgba(245,245,247,.55)">each pull ships code nobody understood</text></g>
-      <g class="g-ask">
-        <text class="fadein" x="700" y="180" text-anchor="middle" style="--d:1.2s;font-size:30px;font-weight:750;fill:#f5f5f7">which trap is this?</text>
-        <text class="fadein lbl-sm" x="700" y="214" text-anchor="middle" style="--d:1.7s;font-size:15px;fill:rgba(245,245,247,.6)">you have met this one — call it out</text>
-      </g>
-      <g class="g-name">
-        <text x="700" y="168" text-anchor="middle" style="font-size:34px;font-weight:750;fill:#fda4af">shifting the burden</text>
-        <text class="lbl-sm" x="700" y="206" text-anchor="middle" style="font-size:15px;fill:rgba(245,245,247,.65)">— the trap Meadows calls addiction</text>
-      </g>
-      <g class="g-trap"><!-- RIGHT · the trap has a name: shifting the burden (addiction) -->
-      <g>
-        <rect x="682" y="12" width="316" height="30" rx="15" fill="rgba(251,113,133,.09)" stroke="rgba(251,113,133,.5)" stroke-width="1.5"/>
-        <text x="840" y="31.5" text-anchor="middle" style="font-size:13px;font-weight:700;letter-spacing:.12em;fill:#fda4af">ARCHETYPE · SHIFTING THE BURDEN</text>
-      </g>
-      <g class="pop" style="--d:1.1s"><rect class="node" x="400" y="170" width="170" height="38" rx="19" style="stroke:rgba(251,146,60,.4)"/><text class="lbl-strong" x="485" y="194" text-anchor="middle" style="font-size:13.5px">pressure to ship</text></g>
-      <g class="pop" style="--d:1.3s"><rect class="node" x="760" y="86" width="190" height="38" rx="19" style="stroke:rgba(251,113,133,.45)"/><text class="lbl-strong" x="855" y="110" text-anchor="middle" style="font-size:13.5px">the machine does it</text></g>
-      <g class="pop" style="--d:1.5s"><rect class="node" x="760" y="280" width="190" height="38" rx="19" style="stroke:rgba(94,234,212,.45)"/><text class="lbl-strong" x="855" y="304" text-anchor="middle" style="font-size:13.5px">your own understanding</text></g>
-      <path class="draw" pathLength="1" d="M 560 172 Q 640 110 752 106" fill="none" stroke="#fb7185" stroke-width="2.5" marker-end="url(#ahw)" style="--d:1.7s"/>
-      <text class="fadein lbl-sm" x="640" y="106" text-anchor="middle" style="--d:1.9s;fill:#fda4af">the quick fix — instant relief</text>
-      <path class="draw" pathLength="1" d="M 560 206 Q 640 300 752 302" fill="none" stroke="#5eead4" stroke-width="2.5" stroke-dasharray="7 7" marker-end="url(#ah3)" style="--d:2.1s"/>
-      <text class="fadein lbl-sm" x="628" y="322" text-anchor="middle" style="--d:2.3s;fill:rgba(94,234,212,.85)">the real fix — slow, deliberate ∥</text>
-      <path class="draw" pathLength="1" d="M 855 128 L 855 274" fill="none" stroke="rgba(251,113,133,.6)" stroke-width="2" stroke-dasharray="3 6" marker-end="url(#ahw)" style="--d:2.5s"/>
-      <text class="fadein lbl-sm" x="872" y="205" style="--d:2.7s;fill:#fb7185">− atrophies</text>
-      <text class="fadein lbl-sm" x="205" y="378" text-anchor="middle" style="--d:2.9s;font-size:11.5px">every pull makes the next pull more necessary — that is the whole trap</text>
-      <text x="988" y="434" text-anchor="end" style="font-size:11.5px;fill:rgba(245,245,247,.6)">after the <tspan style="font-weight:700;fill:rgba(245,245,247,.85)">Yerkes–Dodson law</tspan> — judgment peaks at moderate pace, then collapses</text></g>
-    </svg>
-    <span class="step-item cq s1" style="display:none" aria-hidden="true"></span>
-    <span class="step-item cq s2" style="display:none" aria-hidden="true"></span>
-    <span class="step-item cq s3" style="display:none" aria-hidden="true"></span>
-    <div class="chips">
-      <span class="chip cure" style="--td:0s"><b>Stay connected</b> — review together</span>
-      <span class="chip cure" style="--td:.15s"><b>Stay curious</b> — ask why, twice</span>
-      <span class="chip cure" style="--td:.3s"><b>Split the work</b> — small PRs, real owners</span>
-      <span class="chip cure" style="--td:.45s"><b>Map the system</b> — before you change it</span>
-    </div>
-    <p class="oneliner cure" style="--td:.6s">Ship fast — each change breeds new patterns, some stable, some not. <em>Think in systems, not isolated parts.</em></p>
-  </div>
-</section>
-
-<!-- ============ 32 · CLOSING ============ -->
+<!-- ============ 33 · CLOSING ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="scrim"></div>
@@ -3911,7 +3966,7 @@ body{
   </svg>
 </section>
 
-<!-- ============ 33 · DISCUSSION ============ -->
+<!-- ============ 34 · DISCUSSION ============ -->
 <section class="slide" data-hue="0">
   <div class="wrap">
     <div class="kicker r grad">Discussion</div>

@@ -187,7 +187,7 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
   Read it as-is, or steal the beats and make it yours.</p>
 
   <div class="meta">
-    <span class="pill" data-ro="33 de slide-uri">33 slides</span>
+    <span class="pill" data-ro="34 de slide-uri">34 slides</span>
     <span class="pill">≈ <b>50 min</b> talk</span>
     <span class="pill">55 min slot · 5 min buffer / Q&amp;A</span>
     <a class="openbtn" href="presentation.html#1">▶ Open the presentation</a>
@@ -598,11 +598,39 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">AI widens the tap. Your drain is still human-sized.</p>
   </section>
 
-  <!-- ============ 26 ============ -->
-  <section class="note" id="n26">
+  <!-- ==== 26 ==== -->
+  <section class="note" data-tone="warm" id="n26">
     <div class="note-head">
-      <span class="num">26</span><h2>AI — clock speed</h2>
-      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#26">Slide 26 ↗</a>
+      <span class="num">26</span><h2>Be curious, not judgmental</h2>
+      <span class="time">≈ 2 min</span><a class="jump" href="presentation.html#26">Slide 26 ↗</a>
+    </div>
+    <p class="onscreen">On screen: a code panel reviews itself — a teal highlight walks the diff line by line under a +5,000 −12,000 header, captioned "at 3 seconds a line, this PR is a 14-hour read". The right side asks, big: "is this bad?". The first press answers — "not necessarily —, as long as you can answer these, every time:" and four question cards land. The second press brings the Yerkes–Dodson line at lower right and the closing line.</p>
+    <p class="say">That PR from the last slide — plus five thousand, minus twelve thousand. Werner Vogels called unreviewed AI gambling, and he is right. But let us be honest about the physics: at three seconds a line, that PR is a fourteen-hour read. Nobody reviews that line by line — and this is the new normal. So ask it with me: <span class="hit">is this bad? Not necessarily.</span></p>
+    <p class="cue">Press → after the room answers — the four questions land.</p>
+    <p class="say">Not necessarily — as long as every change ships with a mindset, not just a diff: <span class="hit">what am I changing? what does it impact? do I understand the context? and will I notice fast enough if it goes wrong?</span> Answer those four and a big diff is just a big diff. Skip them and any diff is a bet.</p>
+    <p class="say">Is this the right way to review in the new normal? Honestly — I do not know. Nobody does yet. What I do know is what skipping the questions does to us: developers stop asking "why is it done this way?", and questioning a PR starts to feel like an accusation — because deep down we feel like imposters on code we did not write. Be curious, not judgmental — with the code and with each other.</p>
+    <p class="cue">Press → — Yerkes–Dodson and the closing line land.</p>
+    <p class="say">The line at the bottom names the discipline: Yerkes–Dodson — judgment peaks at a moderate pace and collapses when the pace runs past you. Discipline and awareness keep you at the peak. So ship fast — each change breeds new patterns, some stable, some not. <span class="hit">Think in systems, not isolated parts.</span></p>
+    <p class="aside">"Be curious, not judgmental" is popularly attributed to Walt Whitman (Ted Lasso made it famous) but isn't found in his writings — hence "attributed to" on the slide. If anyone asks, smile and say the sentiment survives the sourcing.</p>
+  </section>
+
+  <!-- ==== 27 ==== -->
+  <section class="note" id="n27">
+    <div class="note-head">
+      <span class="num">27</span><h2>The hidden z-axis</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#27">Slide 27 ↗</a>
+    </div>
+    <p class="onscreen">On screen: an isometric chart. Two solid axes — tokens consumed (x) and time you wait (y) — with a dotted teal curve and a dot labelled "what you see". A dashed purple z-axis recedes into the dark, labelled "what is actually happening", and three ghost panes slide in along it: context window (with a red "overflow → hallucinations" spark), orchestration, model internals. A faint line at the bottom: "…and more: cost · caches · safety passes · the dimension nobody named yet".</p>
+    <p class="cue">No press — let the three panes land along the z-axis, then point into the dark corner.</p>
+    <p class="say">When we watch an AI system, we watch two dimensions: tokens consumed, and how long we wait for the answer. Everything else happens on a z-axis we never render. Context — and when context overflows you do not get an error message, you get hallucinations. Orchestration — tools, retries, prompt chains. The model itself — sampling, temperature, drift.</p>
+    <p class="say">You have seen this picture before — it is the iceberg from the start of this talk, wearing new clothes: events above the waterline, structure underneath. <span class="hit">A hallucination is not magic — it is an overflow in a dimension you were not watching.</span></p>
+  </section>
+
+  <!-- ============ 28 ============ -->
+  <section class="note" id="n28">
+    <div class="note-head">
+      <span class="num">28</span><h2>AI — clock speed</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#28">Slide 28 ↗</a>
     </div>
     <p class="onscreen">On screen: two big R loops spinning fast — teal "build → learn → build" (the virtuous one) and red "shortcut → debt → slower" (the vicious one). Between them, the delay marks: "your delays didn't speed up — trust · review · learning · culture." Below, a mini overshoot curve: "remember the shower."</p>
     <p class="say">Here's the part people miss. AI doesn't add new kinds of loops to your system. It spins the loops you already have — faster.</p>
@@ -611,11 +639,11 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">Fast loops with human delays overshoot harder.</p>
   </section>
 
-  <!-- ============ 27 ============ -->
-  <section class="note" id="n27">
+  <!-- ============ 29 ============ -->
+  <section class="note" id="n29">
     <div class="note-head">
-      <span class="num">27</span><h2>AI — machine drains</h2>
-      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#27">Slide 27 ↗</a>
+      <span class="num">29</span><h2>AI — machine drains</h2>
+      <span class="time">≈ 1 min</span><a class="jump" href="presentation.html#29">Slide 29 ↗</a>
     </div>
     <p class="onscreen">On screen: the bathtub again, balanced this time — the AI tap still pours, the human drain still drips, but a second, machine-sized outflow appears: a teal harness box ("evals · policies / limits · rollbacks") with a purple spark inside and a valve, draining "out — at machine speed". Top right: "the level holds ✓". Caption: "nondeterministic core · deterministic walls".</p>
     <p class="say">So the engineer in the room says: fine — if the taps and the loops run at machine speed, give the drains machine speed too. Build agents to review, test, and verify. Wrap the nondeterministic engine in deterministic constraints: evals that gate every merge, policies that bound the blast radius, rollbacks so cheap they're a reflex.</p>
@@ -623,11 +651,11 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="cue">No press — beat. Then, with a small smile: "Problem solved, right?" — and advance.</p>
   </section>
 
-  <!-- ============ 28 ============ -->
-  <section class="note" id="n28">
+  <!-- ============ 30 ============ -->
+  <section class="note" id="n30">
     <div class="note-head">
-      <span class="num">28</span><h2>AI — the same car</h2>
-      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#28">Slide 28 ↗</a>
+      <span class="num">30</span><h2>AI — the same car</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#30">Slide 30 ↗</a>
     </div>
     <p class="onscreen">On screen: a car. "same color ✓" and "same plate ✓" (plate: TRUST·1) check off in teal — then a dashed purple cutaway opens over the engine bay revealing an AI spark and strange parts, with a red "not the same engine ✗" and the caption "swapped overnight · no visible change · your perception never got the memo".</p>
     <p class="say">Sure — that's logical. But here's what logic forgets: trust doesn't come from verification. It comes from familiarity.</p>
@@ -636,11 +664,11 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">That's a system with agents in it. The repo looks the same. The service answers on the same port. But under the hood, it changed while you slept — and your trust didn't notice, because trust samples the paint, not the engine.</p>
   </section>
 
-  <!-- ============ 29 ============ -->
-  <section class="note" id="n29">
+  <!-- ============ 31 ============ -->
+  <section class="note" id="n31">
     <div class="note-head">
-      <span class="num">29</span><h2>AI — sampling rate</h2>
-      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#29">Slide 29 ↗</a>
+      <span class="num">31</span><h2>AI — sampling rate</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#31">Slide 31 ↗</a>
     </div>
     <p class="onscreen">On screen: a state-over-time wave. Left: slow wave, four teal sample dots — "your reviews kept up". A purple dashed line marks "AI enters the system". Right: the wave turns fast, but the same sparse dots now trace a red dashed phantom wave — "the state you assume — same dots, wrong story". Then a dense teal tick row appears: "adapt the sampling rate — re-review on the system's clock, not yours".</p>
     <p class="cue">No press — this is the driving point of the whole AI arc — slow down and land each sentence.</p>
@@ -650,11 +678,11 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">So the discipline is this: don't let familiarity stand in for understanding. The repo you "know", the runbook you wrote, the gut feel you trust — check the timestamp on each. Critical thinking has a refresh rate, and AI just raised it.</p>
   </section>
 
-  <!-- ============ 30 ============ -->
-  <section class="note" id="n30">
+  <!-- ============ 32 ============ -->
+  <section class="note" id="n32">
     <div class="note-head">
-      <span class="num">30</span><h2>AI — where to point it</h2>
-      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#30">Slide 30 ↗</a>
+      <span class="num">32</span><h2>AI — where to point it</h2>
+      <span class="time">≈ 1.5 min</span><a class="jump" href="presentation.html#32">Slide 32 ↗</a>
     </div>
     <p class="onscreen">On screen: the lever returns. A swarm of AI sparks sits low at "№ 12 — more output, faster · autocomplete everything · barely moves it" with a small ripple. One single spark sits at the top — "see the system: information flows · goals · paradigms" — with a big ring, and a dashed arc nudges from low to high. Bottom-right: "tools change · systems thinking doesn't."</p>
     <p class="cue">No press — this is the keynote beat — slow down, Werner-style. Point low, then high.</p>
@@ -666,29 +694,11 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">Don't spend a ten-x technology on a № 12 problem.</p>
   </section>
 
-  <!-- ============ 31 ============ -->
-  <section class="note" data-tone="warm" id="n31">
+  <!-- ============ 33 ============ -->
+  <section class="note" id="n33">
     <div class="note-head">
-      <span class="num">31</span><h2>Be curious, not judgmental</h2>
-      <span class="time">≈ 2 min</span><a class="jump" href="presentation.html#31">Slide 31 ↗</a>
-    </div>
-    <p class="onscreen">On screen: a slot machine marked SHIP IT — the lever pulls itself three times; the reels land ✓ ✓ ✓, ✓ ✓ ✓, then ✓ ✓ ✕. The right side opens as a question — "which trap is this?". The first press names the trap: shifting the burden, the one Meadows calls addiction. The second press draws its diagram — the quick fix versus the real fix, with the red "− atrophies" arrow — the archetype name in a corner badge, and a Yerkes–Dodson law mention in the lower right. A third press lands the four remedy chips and the closing line.</p>
-    <p class="say">Werner Vogels said it in that same keynote: AI without proper human review is gambling. And here is the machine we built ourselves. <span class="hit">Every unreviewed merge is a pull on the jackpot lever.</span> It pays Monday. It pays Tuesday. It paid yesterday — so what are the odds today? That's not evidence, that's a run of luck.</p>
-    <p class="say">I see what the lever does to us. Developers losing curiosity — nobody asks "why is it done this way?" anymore, because they didn't write it. Question a PR and people get annoyed — not because you're wrong, but because they feel like imposters: their name on code they don't fully understand, everyone else moving fast, so they must keep up.</p>
-    <p class="cue press">Press → after the room guesses — the trap gets its name.</p>
-    <p class="say">Which trap is this? You've met it: <span class="hit">shifting the burden — the one Meadows calls addiction.</span> The quick fix relieves the pressure instantly: the machine does it. The real fix — building your own understanding — is slow, so it starves. And the red arrow is the whole story: every pull atrophies exactly the capability that would make the next pull unnecessary. That's why the dependence grows. That's the casino's business model.</p>
-    <p class="cue">Press → — the diagram appears: walk the quick fix, the real fix, and the red arrow.</p>
-    <p class="say">And the line in the lower right names the mechanism: Yerkes–Dodson — judgment peaks at a moderate pace and collapses when the pace runs past you. That is why reviewing at AI speed feels fine right up until it isn't.</p>
-    <p class="cue">Press → again — the four remedies land with the closing line.</p>
-    <p class="say">The way out is not to stop shipping fast — I need to ship fast, because each change creates new patterns, some stable, some not, and the system won't wait for me. The way out is the four chips: <em>stay connected</em> — review together, not alone at midnight. <em>Stay curious</em> — be curious, not judgmental; ask why, twice. <em>Split the work</em> — small PRs with real owners instead of five-thousand-line bets. And <em>map the system</em> before you change it. Think in systems, not isolated parts.</p>
-    <p class="aside">"Be curious, not judgmental" is popularly attributed to Walt Whitman (Ted Lasso made it famous) but isn't found in his writings — hence "attributed to" on the slide. If anyone asks, smile and say the sentiment survives the sourcing.</p>
-  </section>
-
-  <!-- ============ 32 ============ -->
-  <section class="note" id="n32">
-    <div class="note-head">
-      <span class="num">32</span><h2>Closing</h2>
-      <span class="time">≈ 30 sec</span><a class="jump" href="presentation.html#32">Slide 32 ↗</a>
+      <span class="num">33</span><h2>Closing</h2>
+      <span class="time">≈ 30 sec</span><a class="jump" href="presentation.html#33">Slide 33 ↗</a>
     </div>
     <p class="onscreen">On screen: three lines build word by word; then her quote appears beneath. At the bottom, an epilogue: the same ship from slide 3 returns and calmly sails past the iceberg — whose underwater mass is fully visible this time — with the caption "this time, it saw the whole thing."</p>
     <p class="cue">No press — this slide does the talking. Read each line only after it has fully appeared, slowly, almost quietly.</p>
@@ -700,11 +710,11 @@ h1 .grad{background:linear-gradient(100deg,var(--a1),var(--a2),var(--a5));
     <p class="say">Donella Meadows died in 2001, before this book was even finished. Her colleagues completed it from her drafts — which means the ideas were strong enough to outlive their author. That's a system worth being part of.</p>
   </section>
 
-  <!-- ============ 33 ============ -->
-  <section class="note" id="n33">
+  <!-- ============ 34 ============ -->
+  <section class="note" id="n34">
     <div class="note-head">
-      <span class="num">33</span><h2>Discussion</h2>
-      <span class="time">open-ended</span><a class="jump" href="presentation.html#33">Slide 33 ↗</a>
+      <span class="num">34</span><h2>Discussion</h2>
+      <span class="time">open-ended</span><a class="jump" href="presentation.html#34">Slide 34 ↗</a>
     </div>
     <p class="onscreen">On screen: four question cards.</p>
     <p class="say">I'll leave these four questions up. Pick the one that stings a little — that's the one worth answering.</p>
