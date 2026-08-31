@@ -345,6 +345,13 @@ body{
   transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .step-item.on{opacity:1;transform:none}
 
+/* slide 16 · press 1: the sky, press 2: the high jump */
+.g-sc1,.g-sc2,.g-sc3{transition:opacity .6s ease}
+.g-sc2,.g-sc3{opacity:0}
+.slide:has(.cq.s1.on) .g-sc1{opacity:0}
+.slide:has(.cq.s1.on) .g-sc2{opacity:1}
+.slide:has(.cq.s2.on) .g-sc2{opacity:0}
+.slide:has(.cq.s2.on) .g-sc3{opacity:1}
 /* slide 27 · press 1 turns the cards edge-on and reveals the networks */
 .g-cardA,.g-cardB{transition:transform .9s var(--ease),opacity .9s ease;transform-box:fill-box;transform-origin:center}
 .slide:has(.cq.s1.on) .g-cardA{transform:scaleX(.07) skewY(-10deg);opacity:.15}
@@ -2354,6 +2361,7 @@ body{
     <h2 class="title r" style="--d:.15s">See the lens. <span class="grad">Then set it down.</span></h2>
     <p class="sub r" style="--d:.3s">You never see the system raw — you see it through a lens.</p>
     <svg class="fig r" viewBox="0 0 960 330" aria-hidden="true" style="--d:.45s;max-width:min(1140px,84vw);margin-top:2vh">
+      <g class="g-sc1">
       <!-- the water (always the same) -->
       <g class="fadein" style="--d:.6s">
         <path d="M 423.0 210.0 H 537.0 L 531.0 296 Q 480 308 429.0 296 Z" fill="rgba(125,211,252,.28)"/>
@@ -2404,7 +2412,28 @@ body{
       <g opacity="0"><animate attributeName="opacity" values="1;1;1;1;0;0;1" keyTimes="0;.32;.38;.66;.72;.94;1" dur="15s" repeatCount="indefinite"/>
         <text x="480" y="52" text-anchor="middle" style="font-size:11px;letter-spacing:.2em;fill:var(--ink-faint)">2 · THE PARADIGM — same glass, same water</text>
       </g>
+      </g>
+      <g class="g-sc2">
+        <text x="480" y="46" text-anchor="middle" style="font-size:15px;font-weight:650;fill:rgba(245,245,247,.75); letter-spacing:.06em">same sky · two beliefs</text>
+        <circle cx="280" cy="178" r="74" fill="none" stroke="rgba(245,245,247,.18)" stroke-dasharray="3 6"/><circle cx="280" cy="178" r="16" fill="#7dd3fc" opacity=".85"/><path d="M 272 174 q 5 -5 12 -2 M 270 184 q 6 4 14 1" stroke="#166534" stroke-width="3.5" fill="none" stroke-linecap="round"/><g><circle r="10" fill="#fbbf24"/><line x1="0" y1="-13" x2="0" y2="-17" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" transform="rotate(0)"/><line x1="0" y1="-13" x2="0" y2="-17" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" transform="rotate(60)"/><line x1="0" y1="-13" x2="0" y2="-17" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" transform="rotate(120)"/><line x1="0" y1="-13" x2="0" y2="-17" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" transform="rotate(180)"/><line x1="0" y1="-13" x2="0" y2="-17" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" transform="rotate(240)"/><line x1="0" y1="-13" x2="0" y2="-17" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" transform="rotate(300)"/><animateMotion dur="9s" repeatCount="indefinite" path="M 354 178 a 74 74 0 1 0 -148 0 a 74 74 0 1 0 148 0"/></g>
+        <text x="280" y="292" text-anchor="middle" style="font-size:17px;font-weight:700;fill:#fbbf24">"obviously, the sun moves."</text>
+        <circle cx="680" cy="178" r="74" fill="none" stroke="rgba(245,245,247,.18)" stroke-dasharray="3 6"/><circle cx="680" cy="178" r="17" fill="#fbbf24"/><line x1="680" y1="178" x2="680" y2="151" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" transform="rotate(0 680 178)"/><line x1="680" y1="178" x2="680" y2="151" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" transform="rotate(45 680 178)"/><line x1="680" y1="178" x2="680" y2="151" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" transform="rotate(90 680 178)"/><line x1="680" y1="178" x2="680" y2="151" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" transform="rotate(135 680 178)"/><line x1="680" y1="178" x2="680" y2="151" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" transform="rotate(180 680 178)"/><line x1="680" y1="178" x2="680" y2="151" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" transform="rotate(225 680 178)"/><line x1="680" y1="178" x2="680" y2="151" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" transform="rotate(270 680 178)"/><line x1="680" y1="178" x2="680" y2="151" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" transform="rotate(315 680 178)"/><g><circle r="8" fill="#7dd3fc"/><animateMotion dur="9s" repeatCount="indefinite" path="M 754 178 a 74 74 0 1 0 -148 0 a 74 74 0 1 0 148 0"/></g>
+        <text x="680" y="292" text-anchor="middle" style="font-size:17px;font-weight:700;fill:#5eead4">"obviously, the earth moves."</text>
+        <text x="480" y="326" text-anchor="middle" style="font-size:13px;fill:rgba(245,245,247,.55)">changing this took a century — and a trial</text>
+      </g>
+      <g class="g-sc3">
+        <text x="480" y="46" text-anchor="middle" style="font-size:15px;font-weight:650;fill:rgba(245,245,247,.75);letter-spacing:.06em">same bar · two beliefs</text>
+        <line x1="170" y1="296" x2="390" y2="296" stroke="rgba(245,245,247,.35)" stroke-width="2"/><line x1="222" y1="296" x2="222" y2="212" stroke="rgba(245,245,247,.4)" stroke-width="3"/><line x1="338" y1="296" x2="338" y2="212" stroke="rgba(245,245,247,.4)" stroke-width="3"/><line x1="222" y1="212" x2="338" y2="212" stroke="rgba(245,245,247,.6)" stroke-width="3.5" stroke-linecap="round"/>
+        <g opacity="0"><animateMotion dur="3.4s" begin="0s" repeatCount="indefinite" path="M 184 286 Q 280 86 376 286" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".3 .6 .7 .4"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="3.4s" begin="0s" repeatCount="indefinite"/><g><animateTransform attributeName="transform" type="rotate" values="0;28;8" keyTimes="0;.5;1" dur="3.4s" begin="0s" repeatCount="indefinite"/><circle cy="-16" r="6" fill="none" stroke="#f5f5f7" stroke-width="2.5"/><rect x="-4" y="-10" width="8" height="20" rx="4" fill="#f5f5f7" opacity=".85"/></g></g>
+        <text x="280" y="326" text-anchor="middle" style="font-size:17px;font-weight:700;fill:#fbbf24">"you jump facing the bar."</text>
+        <line x1="570" y1="296" x2="790" y2="296" stroke="rgba(245,245,247,.35)" stroke-width="2"/><line x1="622" y1="296" x2="622" y2="168" stroke="rgba(245,245,247,.4)" stroke-width="3"/><line x1="738" y1="296" x2="738" y2="168" stroke="rgba(245,245,247,.4)" stroke-width="3"/><line x1="622" y1="168" x2="738" y2="168" stroke="#5eead4" stroke-width="3.5" stroke-linecap="round"/><circle cx="680" cy="168" r="12" fill="none" stroke="#5eead4" stroke-width="1.5"><animate attributeName="r" values="8;22" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="1.8s" repeatCount="indefinite"/></circle>
+        <g opacity="0"><animateMotion dur="3.4s" begin="1.7s" repeatCount="indefinite" path="M 584 286 Q 680 -2 776 286" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".3 .6 .7 .4"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="3.4s" begin="1.7s" repeatCount="indefinite"/><g><animateTransform attributeName="transform" type="rotate" values="0;-100;-195" keyTimes="0;.5;1" dur="3.4s" begin="1.7s" repeatCount="indefinite"/><circle cy="-16" r="6" fill="none" stroke="#f5f5f7" stroke-width="2.5"/><rect x="-4" y="-10" width="8" height="20" rx="4" fill="#f5f5f7" opacity=".85"/></g></g>
+        <text x="680" y="326" text-anchor="middle" style="font-size:17px;font-weight:700;fill:#5eead4">1968 · Fosbury jumps backwards</text>
+        <text x="480" y="86" text-anchor="middle" style="font-size:13px;fill:rgba(245,245,247,.55)">they laughed — then every jumper on earth copied him</text>
+      </g>
     </svg>
+    <span class="step-item cq s1" style="display:none" aria-hidden="true"></span>
+    <span class="step-item cq s2" style="display:none" aria-hidden="true"></span>
   </div>
 </section>
 
