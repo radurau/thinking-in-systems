@@ -791,7 +791,7 @@ document.querySelectorAll('a[href*="index.html"]').forEach(a=>{
   let last = 0;
   try{
     const bc = new BroadcastChannel('tis-deck');
-    bc.onmessage = e=>{
+    const follow = n0=>{ const e = {data:{slide:n0}};
       const n = e.data && e.data.slide;
       if(!n || n === last) return;
       /* arm the clock on the first real slide change (not the deck merely opening on #1) */
@@ -805,6 +805,8 @@ document.querySelectorAll('a[href*="index.html"]').forEach(a=>{
         sec.scrollIntoView({behavior:'smooth', block:'start'});
       }
     };
+    bc.onmessage = ev=>{ if(ev && ev.data && ev.data.slide) follow(ev.data.slide); };
+    try{ const es = new EventSource('/sync/events'); es.onmessage = msg=>{ try{ const j = JSON.parse(msg.data); if(j && j.slide) follow(j.slide); }catch(_){} }; }catch(_){}
   }catch(err){ timerEl.style.display = 'none'; }
 })();
 

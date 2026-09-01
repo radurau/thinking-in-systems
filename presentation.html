@@ -4456,6 +4456,8 @@ body{
   /* presenter-view sync: broadcast slide changes, accept remote jumps */
   let bc = null;
   try{ bc = new BroadcastChannel('tis-deck'); }catch(e){}
+  let syncOK = false;
+  fetch('/sync/state').then(r=>r.ok?r.json():null).then(j=>{ if(j && typeof j.slide==='number') syncOK = true; }).catch(()=>{});
   if(bc) bc.onmessage = e=>{
     const d = e.data || {};
     if(d.cmd === 'go' && d.n >= 1 && d.n <= N && d.n-1 !== cur) go(d.n-1);
@@ -4492,6 +4494,7 @@ body{
     hud.classList.toggle('show', slides[cur].hasAttribute('data-hud'));
     hud.querySelectorAll('.hr').forEach(el=>el.classList.toggle('lit', covered.has(el.dataset.r)));
     if(bc) try{ bc.postMessage({slide:cur+1}); }catch(e){}
+    if(syncOK) fetch('/sync/set',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slide:cur+1})}).catch(()=>{});
     try{ history.replaceState(null,'','#'+(cur+1)); }catch(e){}
   }
 
