@@ -80,6 +80,20 @@ h1{font-size:clamp(30px,5.4vw,60px);font-weight:700;line-height:1.07;letter-spac
 .key{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink-faint);
   border:1px solid var(--glass-edge);border-radius:7px;padding:2px 8px;background:rgba(255,255,255,.03)}
 
+
+.session{margin:0 auto 14px;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.session input{width:min(280px,60vw);padding:12px 16px;border-radius:12px;border:1px solid var(--glass-edge);
+  background:rgba(255,255,255,.05);color:var(--ink);font:inherit;font-size:15px;letter-spacing:.08em;
+  text-align:center;outline:none;transition:border-color .3s ease}
+.session input:focus{border-color:rgba(122,162,255,.6)}
+.session input::placeholder{color:var(--ink-faint)}
+.session .gen{font:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+  cursor:pointer;border:1px solid var(--glass-edge);border-radius:9px;padding:9px 13px;
+  background:rgba(255,255,255,.03);transition:color .3s ease,border-color .3s ease}
+.session .gen:hover{color:var(--ink-dim);border-color:rgba(255,255,255,.28)}
+.session-note{font-size:12.5px;color:var(--ink-faint);margin:0 auto 36px;max-width:540px;line-height:1.5}
+.session-note b{color:var(--ink-dim);font-weight:600}
+
 .hint{margin-top:30px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
 @media (max-width:620px){.hint{display:none}}
 </style>
@@ -93,6 +107,12 @@ h1{font-size:clamp(30px,5.4vw,60px);font-weight:700;line-height:1.07;letter-spac
   <div class="kicker">Thinking in Systems</div>
   <h1>What would you like to <span class="grad">open</span>?</h1>
   <p class="lede">Pick a view for this browser. The presentation is the full-screen deck; the control panel is the presenter view with speaker notes and a live timer.</p>
+
+  <div class="session">
+    <input id="ch" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="session code — optional" aria-label="session code">
+    <button class="gen" id="gen" type="button">new code</button>
+  </div>
+  <p class="session-note">Enter the <b>same code</b> here on the laptop and on the tablet, then pick a view on each — the deck will drive the notes live.</p>
 
   <div class="choices">
     <a class="choice c-deck" href="presentation.html" data-key="1">
@@ -118,7 +138,23 @@ h1{font-size:clamp(30px,5.4vw,60px);font-weight:700;line-height:1.07;letter-spac
 </main>
 
 <script>
+  const chIn = document.getElementById('ch');
+  const cards = [...document.querySelectorAll('.choice')];
+  const base = new Map(cards.map(c=>[c, c.getAttribute('href')]));
+  function applyCh(){
+    const v = (chIn.value||'').replace(/[^\w-]/g,'').slice(0,40);
+    if(v !== chIn.value) chIn.value = v;
+    try{ localStorage.setItem('tis-ch', v); }catch(_){}
+    cards.forEach(c=>c.setAttribute('href', base.get(c) + (v.length>=3 ? '?ch='+v : '')));
+  }
+  chIn.addEventListener('input', applyCh);
+  document.getElementById('gen').addEventListener('click', ()=>{
+    chIn.value = Math.random().toString(36).slice(2,8); applyCh(); chIn.focus();
+  });
+  try{ chIn.value = localStorage.getItem('tis-ch') || ''; }catch(_){}
+  applyCh();
   addEventListener('keydown', e=>{
+    if(e.target && e.target.tagName === 'INPUT') return;
     const t = document.querySelector('.choice[data-key="'+e.key+'"]');
     if(t){ e.preventDefault(); window.location.href = t.getAttribute('href'); }
   });
