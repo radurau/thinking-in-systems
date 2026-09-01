@@ -807,6 +807,8 @@ document.querySelectorAll('a[href*="index.html"]').forEach(a=>{
     };
     bc.onmessage = ev=>{ if(ev && ev.data && ev.data.slide) follow(ev.data.slide); };
     try{ const es = new EventSource('/sync/events'); es.onmessage = msg=>{ try{ const j = JSON.parse(msg.data); if(j && j.slide) follow(j.slide); }catch(_){} }; }catch(_){}
+    const chM = location.search.match(/[?&]ch=([\w-]{3,40})/);
+    if(chM){ try{ const es2 = new EventSource('https://ntfy.sh/tis-deck-'+chM[1]+'/sse'); es2.onmessage = msg=>{ try{ const j = JSON.parse(msg.data); if(j.event==='message'){ const n0 = parseInt(j.message,10); if(n0>0) follow(n0); } }catch(_){} }; }catch(_){} }
   }catch(err){ timerEl.style.display = 'none'; }
 })();
 
