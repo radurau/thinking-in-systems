@@ -517,6 +517,12 @@ body{
 @keyframes rise{to{transform:scaleY(1)}}
 .creep{opacity:0}
 .slide.active .creep{animation:fadein 2.5s ease forwards;animation-delay:var(--d,10s)}
+/* slide 3 · iceberg: every entrance 2s slower */
+#icebergSlide.slide.active .fadein{animation-duration:3s}
+#icebergSlide.slide.active .pop{animation-duration:2.7s}
+#icebergSlide.slide.active .draw{animation-duration:3.8s}
+#icebergSlide.slide.active .shout{animation-duration:3.9s}
+#icebergSlide.slide.active .creep{animation-duration:4.5s}
 .risk{opacity:0;transform-box:fill-box;transform-origin:center;
   filter:drop-shadow(0 0 7px rgba(239,68,68,.75))}
 .slide.active .risk{animation:riskin .6s var(--ease) 35s forwards,
